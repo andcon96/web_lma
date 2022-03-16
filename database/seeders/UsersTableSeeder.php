@@ -26,12 +26,10 @@ class UsersTableSeeder extends Seeder
             $data[$i] = [
                 'name' => $faker->name,
                 'username' => $faker->userName,
-                'supp_id' => Supplier::first()->id,
                 'email' => $faker->unique()->safeEmail,
                 'domain' => '10USA',
                 'role_id' => Role::all()->random()->id,
                 'role_type_id' => RoleType::all()->random()->id,
-                'department_id' => Department::all()->random()->id,
                 'isActive' => 1,
                 'email_verified_at' => now(),
                 'password' => bcrypt('password'),

@@ -12,8 +12,7 @@ class Role extends Model
     public $table = 'roles';
 
     public const SUPER_USER = 'Super_User';
-    public const SUPPLIER   = 'Supplier';
-    public const PURCHASING = 'Purchasing';
+    public const User   = 'User';
 
     public function getRoleType()
     {
