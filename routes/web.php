@@ -78,21 +78,10 @@ Route::group(['middleware' => ['auth']], function () {
         //================================
 
         //================================
-        // Supplier Maintenance
-        //================================
-        Route::resource('suppmaint', SupplierMTController::class);
-        Route::get('/searchsupplier', [SupplierMTController::class, 'index']);
-        Route::get('/searchsupplierwhenedit', [SupplierMTController::class, 'searchsupplierwhenedit']);
-        Route::post('/loadsupplier', [SupplierMTController::class, 'loadsupplier'])->name('loadsupplier');
-        //================================
-
-
-        //================================
         // Role Maintenance
         //================================
         Route::resource('rolemaint', RoleMTController::class);
         //================================
-
 
         //================================
         // Access Role Menu
@@ -105,91 +94,6 @@ Route::group(['middleware' => ['auth']], function () {
         // Site Maintenance
         //================================
         Route::resource('sitemaint', SiteMTController::class);
-        //================================
-
-        //================================
-        // Item Inventory Control
-        //================================
-        Route::resource('iteminventorycontrol', ItemInventoryCtrlController::class);
-        Route::post('/loaditem', [ItemInventoryCtrlController::class, 'loadItem'])->name('iteminventorycontrol.loaditem');
-        //================================
-
-        //================================
-        // Item Inventory Master
-        //================================
-        Route::resource('iteminventorymaster', ItemInventoryMstrController::class);
-        Route::get('/searchitemmaster', [ItemInventoryMstrController::class, 'index']);
-        //================================
-
-        //================================
-        // RQF Control
-        //================================
-        Route::resource('itemrfqcontrol', ItemRFQCtrlController::class);
-        Route::post('/loaditemrfq', [ItemRFQCtrlController::class, 'loadItem'])->name('itemrfqcontrol.loaditemrfq');
-        //================================
-
-        //================================
-        // RFQ Master
-        //================================
-        Route::resource('itemrfqmaster', ItemRFQMasterController::class);
-        Route::get('/searchrfqmaster', [ItemRFQMasterController::class, 'index']);
-        //================================
-
-        //================================
-        // Item Conversion MT
-        //================================
-        Route::resource('itemconversionMT', ItemConversionMTController::class);
-        Route::get('/loaditemconversion', [ItemConversionMTController::class, 'loaditemconversion'])->name('itemconversionMT.loaditemconversion');
-        Route::get('/searchitemconversion', [ItemConversionMTController::class, 'searchitemconversion'])->name('searchitemconversion');
-        //================================
-
-        //================================
-        // UM MT
-        //================================
-        Route::resource('UMMT', UMMTController::class);
-        Route::get('/loadum', [UMMTController::class, 'loadum'])->name('loadum');
-        Route::get('/searchum', [UMMTController::class, 'searchumcode'])->name('searchum');
-        //================================
-
-        //================================
-        // Supplier Inventory MT
-        //================================
-        Route::resource('supplierinventoryMT', SupplierInventoryMTController::class);
-        Route::get('/searchsupplierinventory', [SupplierInventoryMTController::class, 'searchsupplierinventory'])->name('searchsupplierinventory');
-        //================================
-
-        //================================
-        // RFQ RFP MT
-        //================================
-        Route::resource('rfq-rfpMT', RfqRfpMTController::class);
-        //================================
-
-        //================================
-        // RFQ Approval
-        //================================
-        Route::resource('rfpapproval', RFPApprController::class);
-        Route::get('/getData', [RFPApprController::class, 'getData'])->name('getData');
-        //================================
-
-        //================================
-        // Transaction Type Master
-        //================================
-        Route::resource('transaction', TransactionMTController::class);
-        //================================
-
-
-        //================================
-        // Budgeting Approval Master
-        //================================
-        Route::resource('budgeting', BudgetingMTController::class);
-        //================================
-
-
-        //================================
-        // PO Approver Master
-        //================================
-        Route::resource('poapprover', POApproverController::class);
-        Route::get('getdetailapp', [POApproverController::class, 'getdetailapp']);
         //================================
 
         // QX WSA Master
