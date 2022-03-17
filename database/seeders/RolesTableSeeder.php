@@ -14,7 +14,7 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $roleName = ['Super_User', 'Supplier', 'Purchasing'];
+        $roleName = ['Super_User', 'User'];
 
         for($i = 0; $i < count($roleName); $i++)
         {

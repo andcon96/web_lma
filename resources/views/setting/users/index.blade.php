@@ -110,19 +110,7 @@
               <select id="role" class="form-control role" name="role" required autofocus>
                 <option value=""> Select Data </option>
                 <option value="Super_User">Admin</option>
-                <option value="Purchasing"> Internal </option>
-                <option value="Supplier"> External </option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row" id="divDept" style="display:none;">
-            <label for="deptselect" class="col-md-3 col-form-label text-md-right">Department</label>
-            <div class="col-md-5">
-              <select id="deptselect" class="form-control role" name="deptselect" required autofocus>
-                @foreach($departments as $showdept)
-                <option value="{{$showdept->id}}"> {{$showdept->department_code}} -- {{$showdept->department_name}}
-                </option>
-                @endforeach
+                <option value="User"> User </option>
               </select>
             </div>
           </div>
@@ -132,20 +120,6 @@
               <select id="roletype" class="form-control roletype" name="roletype" required autofocus>
                 <option value=""> Select Data </option>
               </select>
-            </div>
-          </div>
-          <!--Supplier ID & Name Dispaly-->
-          <div class="form-group row" id="supplierid" style="display:none;">
-            <label for="suppid" class="col-md-3 col-form-label text-md-right">Supplier Name</label>
-            <div class="col-md-5">
-              <!--<input id="suppid" type="text" class="form-control" name="suppid" value="{{ old('suppid') }}"  autofocus>-->
-              <select id="suppid" type="text" class="form-control" name="suppid">
-                <option value=""> Select Data </option>
-                @foreach($suppliers as $supp)
-                <option value="{{$supp->id}}">{{$supp->supp_code}} -- {{$supp->supp_name}}</option>
-                @endforeach
-              </select>
-
             </div>
           </div>
 
@@ -231,16 +205,6 @@
                 autofocus>
             </div>
           </div>
-          <div class="form-group row" id="supplierField">
-            <label for="d_supplier" class="col-md-3 col-form-label text-md-right">Supplier</label>
-            <div class="col-md-7">
-              <select id="d_supplier" type="text" class="form-control" name="d_supplier" value="" disabled autofocus>
-                @foreach($suppliers as $supp2)
-                <option value="{{$supp2->id}}"> {{$supp2->supp_code}} -- {{$supp2->supp_name }}</option>
-                @endforeach
-              </select>
-            </div>
-          </div>
           <div class="form-group row">
             <label for="d_name" class="col-md-3 col-form-label text-md-right">Name</label>
             <div class="col-md-7">
@@ -260,17 +224,6 @@
             <div class="col-md-7">
               <select id="t_roletype" class="form-control roletype" name="roletype" required autofocus>
                 <option value=""> Select Data </option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row" id="departmentField">
-            <label for="t_dept" class="col-md-3 col-form-label text-md-right">Department</label>
-            <div class="col-md-5">
-              <select id="t_dept" class="form-control" name="t_dept" required autofocus>
-                <option value=""> Select Department </option>
-                @foreach($departments as $dept)
-                <option value="{{$dept->id}}">{{$dept->department_code}} -- {{$dept->department_name}}</option>
-                @endforeach
               </select>
             </div>
           </div>
@@ -505,11 +458,8 @@
     var domain = $(this).data('domain');
     var email = $(this).data('email');
 
-    var deptid = $(this).data('deptid');
     var role_type = $(this).data('roletype');
     var role = $(this).data('role');
-    var suppid = $(this).data('suppid');
-    var suppname = $(this).data('suppname');
 
 
     document.getElementById("t_id").value = uid;
@@ -517,27 +467,7 @@
     document.getElementById("d_name").value = name;
     document.getElementById("d_domain").value = domain;
     document.getElementById("d_email").value = email;
-    document.getElementById('t_dept').value = deptid;
     document.getElementById("t_role").value = role;
-    document.getElementById("t_suppid").value = suppid;
-    document.getElementById("t_suppname").value = suppname;
-    document.getElementById("d_supplier").value = suppname;
-    
-    if(role == 'Supplier'){
-      // alert('ini external');
-      $('#d_supplier').attr("disabled", false);
-      $('#t_dept').attr('disabled', true);
-      document.getElementById('supplierField').style.display = '';
-      document.getElementById('departmentField').style.display = 'none';
-    }else{
-      // $('#d_supplier').attr("disabled", true);
-      $('#t_dept').attr('disabled', false);
-      document.getElementById('supplierField').style.display = 'none';
-      document.getElementById('departmentField').style.display = '';
-    }
-
-    $('#d_supplier').val(suppid).change();
-    $('#t_dept').val(deptid).change();
 
     jQuery.ajax({
       type: "get",
@@ -550,17 +480,9 @@
         $('#t_roletype').find('option').remove().end().append('<option value="">Select Data</option>');
         for (var i = 0; i < data.length; i++) {
           if(role_type == data[i].role_type){
-            // alert('masuk');
             $('#t_roletype').append('<option value="' + data[i].id + '" selected>' + data[i].role_type + '</option>');
           }else{
-            // if(role == 'Super_User') {
-            //   $('#t_roletype').append('<option value="' + data[i].id + '"selected>Super User</option>');
-            // } else {
-            //   $('#t_roletype').append('<option value="' + data[i].id + '">' + data[i].role_type + '</option>');
-            // }
             $('#t_roletype').append('<option value="' + data[i].id + '">' + data[i].role_type + '</option>');
-            // alert(data[i].xxrole_role);
-            // alert(role_type);
           }
         }
       }

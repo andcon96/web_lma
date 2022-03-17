@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
-use App\Models\Master\Department;
 use App\Models\Master\Role;
 use App\Models\Master\RoleType;
-use App\Models\Master\Supplier;
 use App\Models\Master\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,44 +19,11 @@ class UserMTController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::with(['getDepartment', 'getRoleType', 'getRole'])
+        $users = User::with([ 'getRoleType', 'getRole'])
             ->orderBy('role_id')
             ->paginate(10);
         
-        $departments = Department::get();
-        $suppliers = Supplier::get();
         $roleType = RoleType::get();
-
-        // if ($request->ajax()) {
-        //     $username = $request->username;
-        //     $name = $request->name;
-
-        //     if ($username == "" && $name == "") {
-        //     } else {
-        //         // $query = "";
-
-        //         // if($username != null){
-        //         //     $query .= " and xrfp_nbr = '".$rfpnbr."'";
-        //         // }
-        //         // if($name != null){
-        //         //     $query .= " and xrfp_supp = '".$supp."'";
-        //         // }
-        //         $users = User::with('getRole')
-        //             ->with('getRoleType')
-        //             ->with('getDepartment')
-        //             ->where('username', 'like', '%' . $username . '%')
-        //             ->where('name', 'like', '%' . $name . '%')
-        //             ->paginate(2);
-
-        //         // $users = DB::table('users')
-        //         //     ->leftJoin('xalert_mstrs', 'users.supp_id', '=', 'xalert_mstrs.xalert_supp')
-        //         //     ->where('username', 'like', '%' . $username . '%')
-        //         //     ->where('name', 'like', '%' . $name . '%')
-        //         //     ->orderBy('users.role', 'ASC')
-        //         //     ->paginate(10);
-        //     }
-        //     return view('setting.users.table', compact('users'));
-        // }
 
         if ($request->ajax()) {
             $username = $request->username;
@@ -75,13 +40,13 @@ class UserMTController extends Controller
             }
 
             $users = $users
-                ->with(['getRoleType', 'getDepartment', 'getRole'])
+                ->with(['getRoleType', 'getRole'])
                 ->orderBy('role_id')
                 ->paginate(10);
 
             return view('setting.users.table', compact('users'));
         } else {
-            return view('setting.users.index', compact('users', 'departments', 'suppliers', 'roleType'));
+            return view('setting.users.index', compact('users', 'roleType'));
         }
     }
 
@@ -128,8 +93,6 @@ class UserMTController extends Controller
 
         $role_id = Role::where('role', $role)->value('id');
 
-        $department_id = Department::where('id', $request->deptselect)->value('id');
-
         DB::beginTransaction();
         try {
             $storeUser->username = $request->input('username');
@@ -140,17 +103,6 @@ class UserMTController extends Controller
             $storeUser->role_id = $role_id;
             $storeUser->role_type_id = $request->input('roletype');
 
-            if ($department_id == null) {
-                $storeUser->department_id = 1;
-            } else {
-                $storeUser->department_id = $department_id;
-            }
-
-            if ($request->suppid == null) {
-                $storeUser->supp_id = 1;
-            } else {
-                $storeUser->supp_id = $request->input('suppid');
-            }
             $storeUser->isActive = 1;
             $storeUser->save();
 
@@ -208,15 +160,10 @@ class UserMTController extends Controller
     public function update(Request $request, $id)
     {
         $user_id = $request->t_id;
-        $role = $request->role;
-        $supp_id = $request->d_suppid;
-        $supp_name = $request->d_suppname;
         $username = $request->d_uname;
-        $domain = $request->d_domain;
         $name = $request->name;
         $email = $request->email;
         $roletype = $request->roletype;
-        $department_id = $request->t_dept;
 
         DB::beginTransaction();
 
@@ -225,10 +172,8 @@ class UserMTController extends Controller
             $user = User::where('id', $user_id)->first();
             $user->name = $name;
             $user->username = $username;
-            $user->supp_id = $supp_id;
             $user->email = $email;
             $user->role_type_id = $roletype;
-            $user->department_id = $department_id;
             if ($user->isDirty()) {
                 $user->save();
             }
@@ -256,12 +201,13 @@ class UserMTController extends Controller
 
         if ($user->isActive == 1) {
             $user->isActive = 0;
+            $request->session()->flash('updated', 'User successfully De-Activated ');
         } else {
             $user->isActive = 1;
+            $request->session()->flash('updated', 'User successfully Activated ');
         }
         $user->save();
 
-        $request->session()->flash('updated', 'User successfully deactivated');
         return redirect()->back();
     }
 

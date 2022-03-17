@@ -51,24 +51,4 @@ class User extends Authenticatable
     {
         return $this->belongsTo(RoleType::class, 'role_type_id');
     }
-
-    public function getSupplier()
-    {
-        return $this->belongsTo(Supplier::class, 'supp_id');
-    }
-
-    public function getDepartment()
-    {
-        return $this->belongsTo(Department::class, 'department_id');
-    }
-
-    public function hasApproverBudget()
-    {
-        return $this->hasOne(Budgeting::class, 'approver_budget');
-    }
-
-    public function hasAltApproverBudget()
-    {
-        return $this->hasOne(Budgeting::class, 'alt_approver_budget');
-    }
 }

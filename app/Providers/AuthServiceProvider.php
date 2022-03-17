@@ -45,6 +45,15 @@ class AuthServiceProvider extends ServiceProvider
                 $user->getRole->role === Role::SUPER_USER;
         });
 
+
+        //=============================
+        // Menu Transaksi
+        //=============================
+
+        Gate::define('po_receipt', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'PO01');
+        });
+
         //=============================
         // Menu Master
         //=============================

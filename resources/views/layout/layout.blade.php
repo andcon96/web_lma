@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Purchasing Module IMI</title>
+  <title>Web LMA</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -144,12 +144,6 @@
                   <a href="{{route('usermaint.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>User Maintenance</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('deptmaint.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Department Maintenance</p>
                   </a>
                 </li>
                 <li class="nav-item">

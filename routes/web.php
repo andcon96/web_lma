@@ -1,27 +1,15 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Inventory\InventoryController;
-use App\Http\Controllers\Master\BudgetingMTController;
 use App\Http\Controllers\Master\DepartmentController;
-use App\Http\Controllers\Master\POApproverController;
 use App\Http\Controllers\Master\AccessRoleMenuController;
-use App\Http\Controllers\Master\ItemConversionMTController;
-use App\Http\Controllers\Master\ItemInventoryCtrlController;
-use App\Http\Controllers\Master\ItemInventoryMstrController;
-use App\Http\Controllers\Master\ItemRFQCtrlController;
-use App\Http\Controllers\Master\ItemRFQMasterController;
 use App\Http\Controllers\Master\RoleMTController;
-use App\Http\Controllers\Master\SupplierMTController;
 use App\Http\Controllers\Master\UserMTController;
 use App\Http\Controllers\Master\QxWsaMTController;
-use App\Http\Controllers\Master\RFPApprController;
-use App\Http\Controllers\Master\RfqRfpMTController;
 use App\Http\Controllers\Master\SiteMTController;
-use App\Http\Controllers\Master\SupplierInventoryMTController;
-use App\Http\Controllers\Master\TransactionMTController;
-use App\Http\Controllers\Master\UMMTController;
+use App\Http\Controllers\Transaksi\PO\POReceiptController;
 use App\Http\Controllers\NotificationController;
+use App\Models\Transaksi\PurchaseOrder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +44,12 @@ Route::group(['middleware' => ['auth']], function () {
      * Transaction
      */
 
+    Route::group(['middleware'=>'can:po_receipt'],function (){
+        Route::resource('poreceipt', POReceiptController::class);
+        Route::get('searchpo', [POReceiptController::class, 'searchPO'])->name('searchPO');
+        Route::get('showreceipt', [POReceiptController::class, 'showReceipt'])->name('showReceipt');
+        Route::post('submitreceipt', [POReceiptController::class, 'submitReceipt'])->name('submitReceipt');
+    });
 
     
     /**
