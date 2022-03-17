@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Transaksi\PO;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaksi\POhist;
 use App\Models\Transaksi\PurchaseOrder;
 use App\Services\CreateTempTable;
+use App\Services\QxtendServices;
 use App\Services\WSAServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as Session;
@@ -52,7 +54,23 @@ class POReceiptController extends Controller
     }
 
     public function submitReceipt(Request $req){
-        dd($req->all());
+        $newrequest = $req->all();
+
+        $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
+        if($poreceipt_submit === 'qxtend_err'){
+            alert()->error('Error', 'Qxtend Error');
+            return redirect()->back();
+        }
+
+        if($poreceipt_submit === false){
+            alert()->error('Error', 'Terdapat masalah pada qxtend');
+            return redirect()->back();
+        }
+
+
+        alert()->success('Success', 'PO berhasil di receipt');
+        return redirect()->route('poreceipt.index');
+
     }
     
 }
