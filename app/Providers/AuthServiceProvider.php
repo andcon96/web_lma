@@ -54,6 +54,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'PO01');
         });
 
+        Gate::define('po_approval', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'PO02');
+        });
+
         //=============================
         // Menu Master
         //=============================

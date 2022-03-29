@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePoHistTable extends Migration
+class CreatePoinvcEmailTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreatePoHistTable extends Migration
      */
     public function up()
     {
-        Schema::create('po_hist', function (Blueprint $table) {
+        Schema::create('poinvc_email', function (Blueprint $table) {
             $table->id();
-            $table->string('ph_ponbr');
-            $table->integer('ph_line');
-            $table->string('ph_part');
-            $table->decimal('ph_qty_order',15,2);
-            $table->decimal('ph_qty_rcvd',15,2);
-            $table->decimal('ph_qty_input',15,2);
-            $table->string('created_by');
+            $table->string('email_invc');
+            $table->string('name_invc');
+            $table->longText('email_receiver');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
@@ -34,6 +30,6 @@ class CreatePoHistTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('po_hist');
+        Schema::dropIfExists('poinvc_email');
     }
 }

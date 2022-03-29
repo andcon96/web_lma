@@ -3,12 +3,14 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Master\DepartmentController;
 use App\Http\Controllers\Master\AccessRoleMenuController;
+use App\Http\Controllers\Master\POInvcMTController;
 use App\Http\Controllers\Master\RoleMTController;
 use App\Http\Controllers\Master\UserMTController;
 use App\Http\Controllers\Master\QxWsaMTController;
 use App\Http\Controllers\Master\SiteMTController;
 use App\Http\Controllers\Transaksi\PO\POReceiptController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Transaksi\PO\POApprovalController;
 use App\Models\Transaksi\PurchaseOrder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -49,6 +51,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('searchpo', [POReceiptController::class, 'searchPO'])->name('searchPO');
         Route::get('showreceipt', [POReceiptController::class, 'showReceipt'])->name('showReceipt');
         Route::post('submitreceipt', [POReceiptController::class, 'submitReceipt'])->name('submitReceipt');
+    });
+
+    Route::group(['middleware'=>'can:po_approval'],function (){
+        Route::resource('poapproval', POApprovalController::class);
+        Route::get('searchpoinvc', [POApprovalController::class, 'searchpoinvc'])->name('searchpoinvc');
+        Route::get('showinvoice', [POApprovalController::class, 'showInvoice'])->name('showInvoice');
+        Route::post('sendmailapproval', [POApprovalController::class, 'sendMailApproval'])->name('sendMailApproval');
     });
 
     
@@ -93,6 +102,11 @@ Route::group(['middleware' => ['auth']], function () {
         // QX WSA Master
         //================================
         Route::resource('qxwsa', QxWsaMTController::class);
+        //================================
+
+        // Invoice PO Email Setting
+        //================================
+        Route::resource('poinvcemail', POInvcMTController::class);
         //================================
     });
 });

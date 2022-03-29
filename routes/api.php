@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\APIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Jika yes approve
+route::get('/apiapprovalinvoice/yes/{ponbr}/{invcnbr}',[APIController::class,'approvedInvcYes']);
+
+//jika no approve
+route::get('/apiapprovalinvoice/no/{ponbr}/{invcnbr}',[APIController::class,'approvedInvcNo']);
