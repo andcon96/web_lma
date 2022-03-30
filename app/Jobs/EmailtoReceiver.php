@@ -63,7 +63,7 @@ class EmailtoReceiver
                 'pesan2' => $pesan2,
             ],
             function ($message) use ($emailto) {
-                $message->subject('Purchase Order Invoice Approval Task');
+                $message->subject('Purchase Order Invoice Approval Information');
                 $message->to($emailto);
             }
         );

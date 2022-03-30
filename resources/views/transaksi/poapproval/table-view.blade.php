@@ -2,12 +2,12 @@
   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>
       <tr>
-          <th>PO Nbr.</th>
-          <th>Invoice Nbr.</th>
-          <th>Amount</th>
-          <th>Status</th>
-          <th>Email Status</th>
-          <th style="text-align: center;">Send Email</th>
+          <th style="width: 15%;">PO Nbr.</th>
+          <th style="width: 25%;">Invoice Nbr.</th>
+          <th style="width: 15%;">Amount</th>
+          <th style="width: 10%;">Status</th>
+          <th style="width: 15%;">Email Status</th>
+          <th style="width: 10%; text-align: center;">Send Email</th>
       </tr>
    </thead>
     <tbody>         
@@ -22,7 +22,7 @@
               <input type="hidden" name="invoice_nbr[]" value="{{$show->invoice_nbr}}"/>
             </td>
             <td>
-              {{$show->invoice_amt}}
+              {{number_format($show->invoice_amt,2)}}
               <input type="hidden" name="invoice_amt[]" value="{{$show->invoice_amt}}"/>
             </td>
             <td>

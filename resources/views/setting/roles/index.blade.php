@@ -239,7 +239,7 @@
      } else if ($(this).data('role') == 'Purchasing') {
        var uname = 'Internal';
      } else {
-       var uname = 'External';
+       var uname = 'User';
      }
 
      document.getElementById("temp_id").value = uid;
@@ -256,7 +256,7 @@
      } else if ($(this).data('role') == 'Purchasing') {
        var role = 'Internal';
      } else {
-       var role = 'External';
+       var role = 'User';
      }
      var role_type = $(this).data('role_type');
 

@@ -11,19 +11,6 @@
 @section('content')
 
 <!-- Page Heading -->
-<ul>
-
-  @if(count($errors) > 0)
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-      <li>{{ $error }}</li>
-      @endforeach
-    </ul>
-  </div>
-  @endif
-
-</ul>
 
 <input type="hidden" id="tmp_username" />
 <input type="hidden" id="tmp_name" />
@@ -123,19 +110,6 @@
             </div>
           </div>
 
-
-          <div class="form-group row">
-            <label for="domain" class="col-md-3 col-form-label text-md-right">Domain</label>
-            <div class="col-md-5">
-              {{-- <select id="domain" class="form-control role" name="domain" required autofocus>
-                <option value=''> Choose Domain </option>
-                @foreach($domain as $domain)
-                <option value='{{$domain->xdomain_code}}'> {{$domain->xdomain_code}}</option>
-                @endforeach
-              </select> --}}
-              <input type="text" class="form-control role" name="domain" required autofocus>
-            </div>
-          </div>
           <div class="form-group row">
             <label for="email" class="col-md-3 col-form-label text-md-right">E-Mail</label>
             <div class="col-md-7">
@@ -195,13 +169,6 @@
             <label for="d_uname" class="col-md-3 col-form-label text-md-right">Username</label>
             <div class="col-md-7 {{ $errors->has('d_uname') ? 'has-error' : '' }}">
               <input id="d_uname" type="text" class="form-control" name="d_uname" value="{{ old('d_uname') }}" readonly
-                autofocus>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="d_domain" class="col-md-3 col-form-label text-md-right">Domain</label>
-            <div class="col-md-7">
-              <input id="d_domain" type="text" class="form-control" name="d_domain" value="{{ old('domain') }}" readonly
                 autofocus>
             </div>
           </div>
@@ -455,17 +422,19 @@
     var uid = $(this).data('id');
     var username = $(this).data('uname');
     var name = $(this).data('name');
-    var domain = $(this).data('domain');
+    // var domain = $(this).data('domain');
     var email = $(this).data('email');
 
     var role_type = $(this).data('roletype');
     var role = $(this).data('role');
 
+    // alert(role);
+
 
     document.getElementById("t_id").value = uid;
     document.getElementById("d_uname").value = username;
     document.getElementById("d_name").value = name;
-    document.getElementById("d_domain").value = domain;
+    // document.getElementById("d_domain").value = domain;
     document.getElementById("d_email").value = email;
     document.getElementById("t_role").value = role;
 
@@ -497,6 +466,8 @@
 
     $("#role").change(function() {
       var value = $(this).val();
+
+      // alert(value);
       if (value == 'Purchasing') {
         //alert('123');
         //$('.supplier').hide();
@@ -563,6 +534,44 @@
           url: "{{URL::to("searchoptionuser") }}",
           data: {
             search: 'Super_User',
+          },
+          success: function(data) {
+            console.log(data);
+            $('#roletype').find('option').remove().end().append('<option value="">Select Data</option>');
+            for (var i = 0; i < data.length; i++) {
+              if (data[i].role_type == 'Super_User') {
+                $('#roletype').append('<option value="' + data[i].id + '">Super User</option>');
+              } else {
+                $('#roletype').append('<option value="' + data[i].id + '">' + data[i].role_type + '</option>');
+              }
+            }
+          }
+        });
+      } else if (value == 'Super_User') {
+        jQuery.ajax({
+          type: "get",
+          url: "{{URL::to("searchoptionuser") }}",
+          data: {
+            search: 'Super_User',
+          },
+          success: function(data) {
+            console.log(data);
+            $('#roletype').find('option').remove().end().append('<option value="">Select Data</option>');
+            for (var i = 0; i < data.length; i++) {
+              if (data[i].role_type == 'Super_User') {
+                $('#roletype').append('<option value="' + data[i].id + '">Super User</option>');
+              } else {
+                $('#roletype').append('<option value="' + data[i].id + '">' + data[i].role_type + '</option>');
+              }
+            }
+          }
+        });
+      } else if (value == 'User') {
+        jQuery.ajax({
+          type: "get",
+          url: "{{URL::to("searchoptionuser") }}",
+          data: {
+            search: 'User',
           },
           success: function(data) {
             console.log(data);

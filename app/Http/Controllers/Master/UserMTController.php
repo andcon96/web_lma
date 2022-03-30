@@ -71,7 +71,6 @@ class UserMTController extends Controller
         $this->validate($request, [
             'username' => 'required|unique:users',
             'name' => 'required',
-            'domain' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|max:20',
             'password_confirmation' => 'required|min:8|max:20|same:password',
@@ -80,8 +79,9 @@ class UserMTController extends Controller
         ]);
 
         $users = User::where('isActive', 1)->get();
-        if ($users->count() >= 13) {
-            $request->session()->flash('error', 'Exceeded Maximum Allowed User');
+        if ($users->count() >= 2) {
+            alert()->error('Error', 'Exceeded Maximum Allowed User');
+            // $request->session()->flash('error', 'Exceeded Maximum Allowed User');
             return back();
         }
 
@@ -97,7 +97,6 @@ class UserMTController extends Controller
         try {
             $storeUser->username = $request->input('username');
             $storeUser->name = $request->input('name');
-            $storeUser->domain = $request->input('domain');
             $storeUser->email = $request->input('email');
             $storeUser->password = Hash::make($password);
             $storeUser->role_id = $role_id;
@@ -201,10 +200,10 @@ class UserMTController extends Controller
 
         if ($user->isActive == 1) {
             $user->isActive = 0;
-            $request->session()->flash('updated', 'User successfully De-Activated ');
+            alert()->success('Success', 'User successfully De-Activated');
         } else {
             $user->isActive = 1;
-            $request->session()->flash('updated', 'User successfully Activated ');
+            alert()->success('Success', 'User successfully Activated');
         }
         $user->save();
 
