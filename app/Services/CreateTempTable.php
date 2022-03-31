@@ -78,4 +78,38 @@ class CreateTempTable
 
         return $table_poinvc;
     }
+
+    public function createSOTemp($data){
+        // WSA -> LMA_getPO
+        Schema::create('temp_group', function ($table) {
+            $table->string('so_nbr');
+            $table->string('so_cust');
+            $table->string('so_ship');
+            $table->string('so_bill');
+            $table->string('sod_line');
+            $table->string('sod_part');
+            $table->string('sod_qty_ord');
+            $table->string('sod_qty_ship');
+            $table->temporary();
+        });
+
+        foreach($data as $datas){
+            DB::table('temp_group')->insert([
+                'so_nbr' => $datas->t_sonbr,
+                'so_cust' => $datas->t_socust,
+                'so_ship' => $datas->t_soship,
+                'so_bill' => $datas->t_sobill,
+                'sod_line' => $datas->t_soline,
+                'sod_part' => $datas->t_sopart,
+                'sod_qty_ord' => $datas->t_soqtyord,
+                'sod_qty_ship' => $datas->t_soqtyship,
+            ]);
+        }
+
+        $table_so = DB::table('temp_group')->get();
+
+        Schema::dropIfExists('temp_group');
+
+        return $table_so;
+    }
 }

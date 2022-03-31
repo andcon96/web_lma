@@ -170,6 +170,12 @@
                     <p>WSA Qxtend Maintenance</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{url('prefixmaint')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Prefix Maintenance</p>
+                  </a>
+                </li>
 
               </ul>
             </li>
