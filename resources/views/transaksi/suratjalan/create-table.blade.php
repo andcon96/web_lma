@@ -27,7 +27,7 @@
                     {{$show->sod_qty_ship}}
                     <input type="hidden" name="sodqtyship[]" value="{{$show->sod_qty_ship}}" {{$show->sod_qty_ord <= $show->sod_qty_ship ? 'disabled':''}} />
                 </td>
-                <td><input type="number" name="qtyinput[]" min="0" max="{{$show->sod_qty_ord - $show->sod_qty_ship}}" step="0.01" value="0" required {{$show->sod_qty_ord <= $show->sod_qty_ship ? 'disabled':''}} /></td>
+                <td><input type="number" name="qtyinput[]" class="form-control" min="0" max="{{$show->sod_qty_ord - $show->sod_qty_ship}}" step="0.01" value="0" required {{$show->sod_qty_ord <= $show->sod_qty_ship ? 'disabled':''}} /></td>
             </tr>
             @empty
             <td colspan='7' class='text-danger'><b>No Data Available</b></td>

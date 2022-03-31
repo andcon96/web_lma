@@ -143,14 +143,36 @@ class SuratJalanController extends Controller
     }
 
     public function browsesj(Request $request){
-        $data = SuratJalan::paginate(10);
+        $data = SuratJalan::query();
+        $cust = SuratJalan::groupBy('sj_so_cust')->select('sj_so_cust')->get();
+        
+        if($request->sjnbr){
+            $data->where('sj_nbr',$request->sjnbr);
+        }
+        if($request->sonbr){
+            $data->where('sj_so_nbr',$request->sonbr);
+        }
+        if($request->cust){
+            $data->where('sj_so_cust',$request->cust);
+        }
+        if($request->status){
+            $data->where('sj_status',$request->status);
+        }
 
-        return view('transaksi.suratjalan.browse',compact('data'));
+        $data = $data->paginate(10);
+
+        return view('transaksi.suratjalan.browse',compact('data','cust'));
     }
 
     public function editjsbrowse($id){
         $data = SuratJalan::with('getDetail')->findOrFail($id);
 
         return view('transaksi.suratjalan.edit-browse',compact('data'));
+    }
+
+    public function viewjsbrowse($id){
+        $data = SuratJalan::with('getDetail')->findOrFail($id);
+
+        return view('transaksi.suratjalan.show-browse',compact('data'));
     }
 }

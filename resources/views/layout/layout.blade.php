@@ -7,8 +7,7 @@
   <title>Web LMA</title>
 
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{url('assets/lte/fontawesome-free/css/all.min.css')}}">
   <!-- IonIcons -->
@@ -53,19 +52,15 @@
       <ul class="navbar-nav ml-auto">
 
         <!-- Notifications Dropdown Menu -->
-        <a class="nav-link mr-2" data-toggle="dropdown" id="alertsDropdown" href="javascript:void(0)"
-          aria-expanded="false">
+        <a class="nav-link mr-2" data-toggle="dropdown" id="alertsDropdown" href="javascript:void(0)" aria-expanded="false">
           <i class="fas fa-bell"></i>
           <span class="badge badge-primary">{{ auth()->user()->unreadNotifications->count() }}</span>
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" aria-labelledby="alertsDropdown"
-          style="overflow-y:scroll; max-height: 250px; max-width:500px !important;">
-          <a class="dropdown-item text-center small font-weight-bold mark-as-read-all" href="javascript:void(0)"
-            data-id="{{ Session::get('userid') }}">Mark All as Read</a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" aria-labelledby="alertsDropdown" style="overflow-y:scroll; max-height: 250px; max-width:500px !important;">
+          <a class="dropdown-item text-center small font-weight-bold mark-as-read-all" href="javascript:void(0)" data-id="{{ Session::get('userid') }}">Mark All as Read</a>
           <div class="dropdown-divider"></div>
           @forelse(Auth::User()->unreadNotifications as $notif)
-          <a id="bell" href="{{$notif->data['url']}}" data-id="{{$notif->id}}" data-link="{{$notif->data['url']}}"
-            class="dropdown-item mark-as-read" style="text-wrap:break-word">
+          <a id="bell" href="{{$notif->data['url']}}" data-id="{{$notif->id}}" data-link="{{$notif->data['url']}}" class="dropdown-item mark-as-read" style="text-wrap:break-word">
             <div class="media">
               <i class="fas fa-envelope mr-2"></i>
               <div class="media-body">
@@ -107,8 +102,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="{{url('/')}}" class="brand-link">
-        <img src="{{url('images/imi.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-          style="opacity: .8">
+        <img src="{{url('images/imi.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">IMI Modules</span>
       </a>
 
@@ -118,14 +112,14 @@
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             @can('access_dashboard')
-              <li class="nav-item">
-                <a href="{{url('/home')}}" class="nav-link">
-                  <i class="nav-icon fas fa-home"></i>
-                  <p>
-                    Home
-                  </p>
-                </a>
-              </li>
+            <li class="nav-item">
+              <a href="{{url('/home')}}" class="nav-link">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                  Home
+                </p>
+              </a>
+            </li>
             @endcan
 
             @can('access_transactions')
@@ -139,18 +133,60 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can('po_receipt')
                 <li class="nav-item">
                   <a href="{{route('poreceipt.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Purchase Order Receipt</p>
                   </a>
                 </li>
+                @endcan
+                @can('po_approval')
                 <li class="nav-item">
                   <a href="{{route('poapproval.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Purchase Order Invoice Approval</p>
                   </a>
                 </li>
+                @endcan
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-shopping-bag"></i>
+                <p>
+                  Surat Jalan
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @can('sj_create')
+                <li class="nav-item">
+                  <a href="{{route('suratjalan.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Create Surat Jalan</p>
+                  </a>
+                </li>
+                @endcan
+                
+                @can('sj_browse')
+                <li class="nav-item">
+                  <a href="{{route('browseSJ')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Browse Surat Jalan</p>
+                  </a>
+                </li>
+                @endcan
+                
+                @can('sj_confirm')
+                <li class="nav-item">
+                  <a href="{{route('sjconfirm.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Confirm Surat Jalan</p>
+                  </a>
+                </li>
+                @endcan
               </ul>
             </li>
             @endcan
@@ -258,6 +294,7 @@
           </div>
           @endif
 
+
           @if(session('errors'))
           <div class="alert alert-danger alert-dismissible fade show" id="getError" role="alert">
             @foreach ($errors->all() as $err)
@@ -290,8 +327,7 @@
 
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -336,7 +372,6 @@
   <script src="{{ url('vendors/chart.js/dist/Chart.min.js') }}"></script>
   <!-- Barcode Scanner -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-
 
   @yield('scripts')
 

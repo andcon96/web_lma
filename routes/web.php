@@ -12,6 +12,7 @@ use App\Http\Controllers\Master\SiteMTController;
 use App\Http\Controllers\Transaksi\PO\POReceiptController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Transaksi\PO\POApprovalController;
+use App\Http\Controllers\Transaksi\SJ\SuratJalanConfirmController;
 use App\Http\Controllers\Transaksi\SJ\SuratJalanController;
 use App\Models\Transaksi\PurchaseOrder;
 use App\Models\Transaksi\SuratJalan;
@@ -65,9 +66,17 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware'=>'can:sj_create'],function(){
         Route::resource('suratjalan', SuratJalanController::class);
-        Route::get('sjbrowse',[SuratJalanController::class, 'browsesj'])->name('browseSJ');
-        Route::get('editjsbrowse/{id}',[SuratJalanController::class, 'editjsbrowse'])->name('editSJBrowse');
         Route::get('searchso',[SuratJalanController::class, 'searchso'])->name('searchSO');
+    });
+
+    Route::group(['middleware'=>'can:sj_browse'],function(){
+        Route::get('browsesj',[SuratJalanController::class, 'browsesj'])->name('browseSJ');
+        Route::get('editjsbrowse/{id}',[SuratJalanController::class, 'editjsbrowse'])->name('editSJBrowse');
+        Route::get('viewjsbrowse/{id}',[SuratJalanController::class, 'viewjsbrowse'])->name('viewSJBrowse');
+    });
+
+    Route::group(['middleware'=>'can:sj_confirm'],function(){
+        Route::resource('sjconfirm', SuratJalanConfirmController::class);
     });
 
     

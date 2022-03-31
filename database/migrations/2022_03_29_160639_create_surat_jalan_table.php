@@ -20,7 +20,9 @@ class CreateSuratJalanTable extends Migration
             $table->string('sj_so_cust',15);
             $table->string('sj_so_ship',15);
             $table->string('sj_so_bill',15);
-            $table->enum('sj_status',['New','Closed']);
+            $table->date('sj_eff_date');
+            $table->string('sj_remark',255);
+            $table->enum('sj_status',['New','Closed','On Process']);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

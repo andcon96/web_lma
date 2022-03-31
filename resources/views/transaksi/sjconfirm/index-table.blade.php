@@ -22,9 +22,9 @@
                     <td>{{$datas->sj_status}}</td>
                     <td>
                         @if($datas->sj_status == 'New')
-                        <a href="{{route('editSJBrowse',$datas->id) }}"><i class="fas fa-edit"></i></a>
+                            <a href="{{route('sjconfirm.edit',$datas->id) }}"><i class="fas fa-edit"></i></a>
                         @else
-                        <a href="{{route('viewSJBrowse',$datas->id) }}"><i class="fas fa-eye"></i></a>
+                            <a href="{{route('sjconfirm.show',$datas->id) }}"><i class="fas fa-eye"></i></a>
                         @endif
                     </td>
                 </tr>

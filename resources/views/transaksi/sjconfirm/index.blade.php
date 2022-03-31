@@ -3,14 +3,14 @@
 @section('breadcrumbs')
 <ol class="breadcrumb float-sm-right">
     <li class="breadcrumb-item"><a href="{{url('/')}}">Transaksi</a></li>
-    <li class="breadcrumb-item active">Browse Surat Jalan</li>
+    <li class="breadcrumb-item active">Confirm Surat Jalan</li>
 </ol>
 @endsection
 
 
 @section('content')
 
-<form action="{{route('browseSJ')}}" method="GET">
+<form action="{{route('sjconfirm.index')}}" method="GET">
     <div class="form-group row offset-lg-1">
         <div class="col-lg-2 col-md-4">
             <label for="sjnbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('SJ Number') }}</label>
@@ -57,7 +57,7 @@
 </form>
 
 <div class="row col-12">
-    @include('transaksi.suratjalan.browse-table')
+    @include('transaksi.sjconfirm.index-table')
 </div>
 
 @endsection
