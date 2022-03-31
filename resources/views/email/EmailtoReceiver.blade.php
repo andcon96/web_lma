@@ -141,10 +141,6 @@
   <div class="row">
     <div class="leftcolumn">
       <div class="card" style="text-align:center;">
-        <h2>Nomor Purchase Order</h2>
-        <h4>{{$note1}}</h4>
-        <h2>Nomor Invoice</h2>
-        <h4>{{$note2}}</h4>
         <h2>{{$pesan2}}</h2>
       </div>
     </div>

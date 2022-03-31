@@ -142,8 +142,8 @@
     </div>
     <div style="text-align: center;">
       <p>Approve PO {{$note1}} dengan Invoice {{$note2}} ? </p>
-      <a href="{{url('/api/apiapprovalinvoice/yes/'.$param1.'/'.$param2)}}" class="button">Yes</a>
-      <a href="{{url('/api/apiapprovalinvoice/no/'.$param1.'/'.$param2)}}" class="button2">No</a>
+      <a href="{{url('/api/apiapprovalinvoice/yes/'.$param1.'/'.$param2)}}" class="button">Approve</a>
+      <a href="{{url('/api/apiapprovalinvoice/no/'.$param1.'/'.$param2)}}" class="button2">Reject</a>
     </div>
   
       <!-- URL ganti ketika dipasang -->
