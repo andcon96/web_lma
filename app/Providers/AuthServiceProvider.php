@@ -51,7 +51,7 @@ class AuthServiceProvider extends ServiceProvider
         //=============================
 
         Gate::define('access_transactions', function($user){
-            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'PO01');
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'TR');
         });
 
         Gate::define('po_receipt', function($user){
@@ -62,6 +62,15 @@ class AuthServiceProvider extends ServiceProvider
             return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'PO02');
         });
 
+        Gate::define('sj_create', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'SJ01');
+        });
+        Gate::define('sj_browse', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'SJ02');
+        });
+        Gate::define('sj_confirm', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'SJ03');
+        });
         //=============================
         // Menu Master
         //=============================

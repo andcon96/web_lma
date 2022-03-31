@@ -133,18 +133,60 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can('po_receipt')
                 <li class="nav-item">
                   <a href="{{route('poreceipt.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Purchase Order Receipt</p>
                   </a>
                 </li>
+                @endcan
+                @can('po_approval')
                 <li class="nav-item">
                   <a href="{{route('poapproval.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Purchase Order Invoice Approval</p>
                   </a>
                 </li>
+                @endcan
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-shopping-bag"></i>
+                <p>
+                  Surat Jalan
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @can('sj_create')
+                <li class="nav-item">
+                  <a href="{{route('suratjalan.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Create Surat Jalan</p>
+                  </a>
+                </li>
+                @endcan
+                
+                @can('sj_browse')
+                <li class="nav-item">
+                  <a href="{{route('browseSJ')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Browse Surat Jalan</p>
+                  </a>
+                </li>
+                @endcan
+                
+                @can('sj_confirm')
+                <li class="nav-item">
+                  <a href="{{route('sjconfirm.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Confirm Surat Jalan</p>
+                  </a>
+                </li>
+                @endcan
               </ul>
             </li>
             @endcan
@@ -188,6 +230,12 @@
                   <a href="{{url('qxwsa')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>WSA Qxtend Maintenance</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{url('prefixmaint')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Prefix Maintenance</p>
                   </a>
                 </li>
                 <li class="nav-item">
