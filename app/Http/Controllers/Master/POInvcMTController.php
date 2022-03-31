@@ -49,7 +49,8 @@ class POInvcMTController extends Controller
 
         $poinvc_email->save();
 
-        $req->session()->flash('updated', 'Invoice PO Email Successfully Updated');
+
+        alert()->success('Success', 'Invoice PO Email Successfully Updated');
         return redirect()->route('poinvcemail.index');
     }
 }

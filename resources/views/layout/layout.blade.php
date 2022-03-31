@@ -127,7 +127,33 @@
                 </a>
               </li>
             @endcan
+
+            @can('access_transactions')
             <li class="nav-header">TRANSAKSI</li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-money-check"></i>
+                <p>
+                  Purchase Order
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('poreceipt.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Purchase Order Receipt</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('poapproval.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Purchase Order Invoice Approval</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            @endcan
 
             @can('access_masters')
             <li class="nav-header">MASTER</li>
@@ -158,12 +184,12 @@
                     <p>Role Menu Maintenance</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a href="{{route('sitemaint.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Site Maintenance</p>
                   </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a href="{{url('qxwsa')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -174,6 +200,12 @@
                   <a href="{{url('prefixmaint')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Prefix Maintenance</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('poinvcemail.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>PO Invoice Email Control</p>
                   </a>
                 </li>
 

@@ -50,6 +50,10 @@ class AuthServiceProvider extends ServiceProvider
         // Menu Transaksi
         //=============================
 
+        Gate::define('access_transactions', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'PO01');
+        });
+
         Gate::define('po_receipt', function($user){
             return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'PO01');
         });

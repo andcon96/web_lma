@@ -82,6 +82,7 @@ class APIController extends Controller
                 $ponbr,
                 $invcnbr,
             );
+            
 
             return view('Invc_no');
         } catch (DecryptException $error) {

@@ -47,7 +47,7 @@ class POReceiptController extends Controller
         
         if(is_null($po)){
             alert()->error('Error', 'Silahkan Search Ulang');
-            return view('transaksi.poreceipt.index');
+            return redirect()->route('poreceipt.index');
         }
         
         return view('transaksi.poreceipt.view', compact('po'));
