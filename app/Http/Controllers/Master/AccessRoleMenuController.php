@@ -73,75 +73,12 @@ class AccessRoleMenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Dashboard
-        $cbDashboard = $request->input('cbDashboard');
+        // Menu SJ
+        $cbCreateSJ = $request->input('cbCreateSJ');
+        $cbBrowseSJ = $request->input('cbBrowseSJ');
+        $cbConfSJ = $request->input('cbConfSJ');
 
-        // Menu PO
-        $cbPOBrowse = $request->input('cbPOBrowse');
-        $cbPOReceipt = $request->input('cbPOReceipt');
-        $cbPOApproval = $request->input('cbPOApproval');
-        $cbLast10PO = $request->input('cbLast10PO');
-        $cbAuditPOApp = $request->input('cbAuditPOApp');
-        $cbAuditPO = $request->input('cbAuditPO');
-        $cbResetApproval = $request->input('cbResetApp');
-
-        // Menu RFQ
-        $cbRfqMain = $request->input('cbRfqMain');
-        $cbRFQApp = $request->input('cbRFQApp');
-        $cbLast10RFQ = $request->input('cbLast10RFQ');
-        $cbAuditRFQ = $request->input('cbAuditRFQ');
-
-        //Menu RFP
-        $cbRfpMain = $request->input('cbRfpMain');
-        $cbRfpApp = $request->input('cbRfpApp');
-        // $cbRFfpgeneratepo = $request->input('cbRFfpgeneratepo');
-        $cbHistRfp = $request->input('cbHistRfp');
-        $cbAuditRfp = $request->input('cbAuditRfp');
-        $cbresetRfp = $request->input('cbresetRfp');
-
-
-        // Menu Supp
-        $cbPOConf = $request->input('cbPOConf');
-        $cbShipConf = $request->input('cbShipConf');
-        $cbRFQFeed = $request->input('cbRFQFeed');
-        $cbShipBrowse = $request->input('cbShipBrowse');
-
-        // Menu Ship
-        $cbStockData = $request->input('cbStockData');
-        $cbExpInv = $request->input('cbExpInv');
-        $cbSlowMov = $request->input('cbSlowMov');
-
-        // Menu Purplan
-        $cbPPbrowse = $request->input('cbPPbrowse');
-        $cbPPcreate = $request->input('cbPPcreate');
-
-        // Menu Setting
-        $cbUserMT = $request->input('cbUserMT');
-        $cbRoleMT = $request->input('cbRoleMT');
-        $cbRoleMenu = $request->input('cbRoleMenu');
-        $cbSuppMT = $request->input('cbSuppMT');
-        $cbItem = $request->input('cbItem');
-        $cbItemMT = $request->input('cbItemMT');
-        $cbSuppItem = $request->input('cbSuppItem');
-        $cbRfqControl = $request->input('cbRFQControl');
-        $cbAppCont = $request->input('cbAppCont');
-        $cbSiteCon = $request->input('cbSiteCon');
-        $cbLicense = $request->input('cbLicense');
-        $cbTrSync = $request->input('cbTrSync');
-        $cbDept = $request->input('cbDept');
-        $cbRFPApprove = $request->input('cbRFPApprove');
-        $cbItemConv = $request->input('cbItemConv');
-        $cbUmMaint = $request->input('cbUmMaint');
-
-        $data = $cbPOBrowse . $cbPOReceipt . $cbPOApproval . $cbLast10PO . 
-                $cbAuditPOApp . $cbAuditPO . $cbRfqMain . $cbRFQApp . 
-                $cbLast10RFQ . $cbResetApproval . $cbAuditRFQ . $cbRfpMain . $cbRfpApp . 
-                $cbHistRfp . $cbAuditRfp . $cbresetRfp . $cbPOConf . $cbShipConf . 
-                $cbRFQFeed . $cbShipBrowse . $cbStockData . $cbExpInv . $cbSlowMov . 
-                $cbUserMT . $cbRoleMT . $cbRoleMenu . $cbSuppMT . $cbItem . 
-                $cbItemMT . $cbSuppItem . $cbRfqControl . $cbAppCont . $cbSiteCon . 
-                $cbLicense . $cbTrSync . $cbDept . $cbRFPApprove . $cbItemConv . 
-                $cbUmMaint . $cbPPbrowse . $cbPPcreate. $cbDashboard;
+        $data = $cbCreateSJ . $cbBrowseSJ . $cbConfSJ;
 
         DB::beginTransaction();
 
