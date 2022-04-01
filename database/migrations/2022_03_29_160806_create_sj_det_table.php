@@ -19,6 +19,7 @@ class CreateSjDetTable extends Migration
             $table->foreign('sj_mstr_id')->references('id')->on('sj_mstr')->onDelete('restrict');
             $table->integer('sj_line');
             $table->string('sj_part');
+            $table->string('sj_part_desc',255)->nullable();
             $table->decimal('sj_qty_ord');
             $table->decimal('sj_qty_ship');
             $table->decimal('sj_qty_input');

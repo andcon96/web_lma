@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware'=>'can:sj_browse'],function(){
         Route::get('browsesj',[SuratJalanController::class, 'browsesj'])->name('browseSJ');
         Route::get('editjsbrowse/{id}',[SuratJalanController::class, 'editjsbrowse'])->name('editSJBrowse');
+        Route::get('deletejsbrowse/{id}',[SuratJalanController::class, 'deletejsbrowse'])->name('deleteSJBrowse');
         Route::get('viewjsbrowse/{id}',[SuratJalanController::class, 'viewjsbrowse'])->name('viewSJBrowse');
     });
 

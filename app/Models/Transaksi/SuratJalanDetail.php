@@ -10,4 +10,10 @@ class SuratJalanDetail extends Model
     use HasFactory;
 
     public $table = 'sj_det';
+
+    
+    public function getMaster()
+    {
+        return $this->belongsTo(SuratJalan::class, 'sj_mstr_id');
+    }
 }

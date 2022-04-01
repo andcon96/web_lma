@@ -23,6 +23,7 @@
                     <td>
                         @if($datas->sj_status == 'New')
                         <a href="{{route('editSJBrowse',$datas->id) }}"><i class="fas fa-edit"></i></a>
+                        <a href="{{route('deleteSJBrowse',$datas->id) }}" id="btndel" data-url="{{route('deleteSJBrowse',$datas->id) }}"><i class="fas fa-trash"></i></a>
                         @else
                         <a href="{{route('viewSJBrowse',$datas->id) }}"><i class="fas fa-eye"></i></a>
                         @endif
