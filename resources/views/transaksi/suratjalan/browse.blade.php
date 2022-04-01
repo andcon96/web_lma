@@ -45,7 +45,7 @@
                 <option value="">Select Data</option>
                 <option value="New">New</option>
                 <option value="Closed">Closed</option>
-                <option value="On Process">On Process</option>
+                <option value="Cancelled">Cancelled</option>
             </select>
         </div>
         <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
@@ -86,6 +86,28 @@
 
         $('#cust').val(customer).trigger('change');
         $('#status').val(status).trigger('change');
+    });
+    
+    $(document).on('click', '#btndel', function(e){
+        e.preventDefault();
+        let url = $(this).data('url');
+
+        Swal.fire({
+            title: "Delete Surat Jalan ?",
+            text: "Cannot be undone",
+            type: "warning",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Delete",
+            closeOnConfirm: false
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                window.location = url;
+            }
+        })
+        
     });
     
     $(document).on('click', '#btnrefresh', function(){

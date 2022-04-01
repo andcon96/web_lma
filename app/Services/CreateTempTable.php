@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\Master\PoInvcEmail;
 use App\Models\Transaksi\POInvc;
+use App\Models\Transaksi\SuratJalan;
+use App\Models\Transaksi\SuratJalanDetail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -88,12 +90,26 @@ class CreateTempTable
             $table->string('so_bill');
             $table->string('sod_line');
             $table->string('sod_part');
+            $table->string('sod_part_desc');
             $table->string('sod_qty_ord');
             $table->string('sod_qty_ship');
+            $table->string('sod_qty_ongoing');
             $table->temporary();
         });
 
         foreach($data as $datas){
+            // Current Surat Jalan
+            $listsj = SuratJalanDetail::with('getMaster')
+                            ->whereRelation('getMaster','sj_status','New')
+                            ->whereRelation('getMaster','sj_so_nbr',$datas->t_sonbr)
+                            ->where('sj_line',$datas->t_soline)
+                            ->where('sj_part',$datas->t_sopart)    
+                            ->get();
+            $qtysj = 0;
+            foreach($listsj as $lists){
+                $qtysj += $lists->sj_qty_input;
+            }
+            
             DB::table('temp_group')->insert([
                 'so_nbr' => $datas->t_sonbr,
                 'so_cust' => $datas->t_socust,
@@ -101,12 +117,15 @@ class CreateTempTable
                 'so_bill' => $datas->t_sobill,
                 'sod_line' => $datas->t_soline,
                 'sod_part' => $datas->t_sopart,
+                'sod_part_desc' => $datas->t_sopartdesc,
                 'sod_qty_ord' => $datas->t_soqtyord,
                 'sod_qty_ship' => $datas->t_soqtyship,
+                'sod_qty_ongoing' => $qtysj,
             ]);
         }
 
         $table_so = DB::table('temp_group')->get();
+
 
         Schema::dropIfExists('temp_group');
 

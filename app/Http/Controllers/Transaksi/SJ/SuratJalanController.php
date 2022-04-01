@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi\SJ;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\Prefix;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use App\Services\CreateTempTable;
@@ -54,8 +55,12 @@ class SuratJalanController extends Controller
         // dd($request->all()); 
         DB::beginTransaction();
         try{
+            $prefix = Prefix::firstOrFail();
+            $newrn = str_pad($prefix->rn_sj + 1,6,'0',STR_PAD_LEFT);
+            $newprefix = $prefix->prefix_sj . $newrn;
+
             $sj_mstr = New SuratJalan();
-            $sj_mstr->sj_nbr = 'SJ1';
+            $sj_mstr->sj_nbr = $newprefix;
             $sj_mstr->sj_so_nbr = $request->sonbr;
             $sj_mstr->sj_so_cust = $request->customer;
             $sj_mstr->sj_so_ship = $request->shipto;
@@ -69,14 +74,18 @@ class SuratJalanController extends Controller
                 $sj_dets->sj_mstr_id = $id;
                 $sj_dets->sj_line = $datas;
                 $sj_dets->sj_part = $request->sodpart[$key];
+                $sj_dets->sj_part_desc = $request->soddesc[$key];
                 $sj_dets->sj_qty_ord = $request->sodqtyord[$key];
                 $sj_dets->sj_qty_ship = $request->sodqtyship[$key];
                 $sj_dets->sj_qty_input = $request->qtyinput[$key];
                 $sj_dets->save();
             }
 
+            $prefix->rn_sj = $newrn;
+            $prefix->save();
+
             DB::commit();
-            alert()->success('Success', 'Surat jalan Created, SJ Number : ');
+            alert()->success('Success', 'Surat jalan Created, SJ Number : '.$newprefix);
             return redirect()->route('suratjalan.index');
         }catch(Exception $err){
             DB::rollBack();
@@ -159,7 +168,7 @@ class SuratJalanController extends Controller
             $data->where('sj_status',$request->status);
         }
 
-        $data = $data->paginate(10);
+        $data = $data->orderBy('created_at','Desc')->paginate(10);
 
         return view('transaksi.suratjalan.browse',compact('data','cust'));
     }
@@ -174,5 +183,14 @@ class SuratJalanController extends Controller
         $data = SuratJalan::with('getDetail')->findOrFail($id);
 
         return view('transaksi.suratjalan.show-browse',compact('data'));
+    }
+
+    public function deletejsbrowse($id){
+        $data = SuratJalan::with('getDetail')->findOrFail($id);
+        $data->sj_status = 'Cancelled';
+        $data->save();
+
+        alert()->success('Success', 'SJ Cancelled');
+        return back();
     }
 }

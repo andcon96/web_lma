@@ -12,7 +12,7 @@
             @forelse ($data->getDetail as $index => $datas)
                 <tr>
                     <td>{{$datas->sj_line}}</td>
-                    <td>{{$datas->sj_part}}</td>
+                    <td>{{$datas->sj_part}} - {{$datas->sj_part_desc}}</td>
                     <td>{{$datas->sj_qty_ord}}</td>
                     <td>
                         <input type="hidden" value="{{$datas->sj_line}}" name="line[]">

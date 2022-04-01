@@ -45,7 +45,7 @@
                 <option value="">Select Data</option>
                 <option value="New">New</option>
                 <option value="Closed">Closed</option>
-                <option value="On Process">On Process</option>
+                <option value="On Process">Cancelled</option>
             </select>
         </div>
         <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
