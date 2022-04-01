@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Jobs\EmailtoReceiver;
 use App\Models\Master\PoInvcEmail;
+use App\Models\Transaksi\POInvc;
 use App\Models\Transaksi\POInvcApprHist;
 use Carbon\Carbon;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -20,36 +21,48 @@ class APIController extends Controller
 
         try {
 
+            // dd('aa');
+
             $param1 = Crypt::decrypt($ponbr);
             $param2 = Crypt::decrypt($invcnbr);
+            // dd($param1);
 
-            $poinvc_hist = POInvcApprHist::firstOrNew(array('id' => '1'));
-            $poinvc_hist->ponbr = $param1;
-            $poinvc_hist->invcnbr = $param2;
-            $poinvc_hist->status = 'approved';
+            $poinvc_hist = POInvcApprHist::where('ponbr','=',$param1)->where('invcnbr','=',$param2)->first();
+            // dd($poinvc_hist);
+            if(!$poinvc_hist){
+                // dd($param1);
 
-            $poinvc_hist->save();
+                $poinvc1 = new POInvcApprHist();
+                $poinvc1->ponbr = $param1;
+                $poinvc1->invcnbr = $param2;
+                $poinvc1->status = 'approved';
 
-            // dd($emailto);
+                $poinvc1->save();
 
-            $pesan = 'PO Invoice Information';
-            $pesan2 =  'PO '.$param1.' dengan invoice '.$param2.' sudah diapprove';
+                // dd($emailto);
 
-            $ponbr = $param1;
-            $invcnbr = $param2;
+                $pesan = 'PO Invoice Information';
+                $pesan2 =  'PO '.$param1.' dengan invoice '.$param2.' sudah diapprove';
 
-            EmailtoReceiver::dispatch(
-                $pesan,
-                $pesan2,
-                $ponbr,
-                $invcnbr,
-            );
+                $ponbr = $param1;
+                $invcnbr = $param2;
+
+                EmailtoReceiver::dispatch(
+                    $pesan,
+                    $pesan2,
+                    $ponbr,
+                    $invcnbr,
+                );
 
 
-            // dd($emailto);
+                // dd($emailto);
 
 
-            return view('Invc_yes');
+                return view('Invc_yes');
+            }else{
+                return view('Invc_Ada');
+            }
+            
         } catch (DecryptException $error) {
             // dd($error);
             abort('404');
@@ -63,28 +76,36 @@ class APIController extends Controller
             $param1 = Crypt::decrypt($ponbr);
             $param2 = Crypt::decrypt($invcnbr);
 
-            $poinvc_hist = POInvcApprHist::firstOrNew(array('id' => '1'));
-            $poinvc_hist->ponbr = $param1;
-            $poinvc_hist->invcnbr = $param2;
-            $poinvc_hist->status = 'reject';
+            $poinvc_hist = POInvcApprHist::where('ponbr','=',$param1)->where('invcnbr','=',$param2)->first();
 
-            $poinvc_hist->save();
+            if(!$poinvc_hist){
 
-            $pesan = 'PO Invoice Information';
-            $pesan2 =  'PO '.$param1.' dengan invoice '.$param2.' sudah direject';
 
-            $ponbr = $param1;
-            $invcnbr = $param2;
+                $poinvc2 = new POInvcApprHist();
+                $poinvc2->ponbr = $param1;
+                $poinvc2->invcnbr = $param2;
+                $poinvc2->status = 'reject';
 
-            EmailtoReceiver::dispatch(
-                $pesan,
-                $pesan2,
-                $ponbr,
-                $invcnbr,
-            );
+                $poinvc2->save();
+
+                $pesan = 'PO Invoice Information';
+                $pesan2 =  'PO '.$param1.' dengan invoice '.$param2.' sudah direject';
+
+                $ponbr = $param1;
+                $invcnbr = $param2;
+
+                EmailtoReceiver::dispatch(
+                    $pesan,
+                    $pesan2,
+                    $ponbr,
+                    $invcnbr,
+                );
+
+                return view('Invc_no');
+            }else{
+                return view('Invc_Ada');
+            }
             
-
-            return view('Invc_no');
         } catch (DecryptException $error) {
             abort('404');
         }

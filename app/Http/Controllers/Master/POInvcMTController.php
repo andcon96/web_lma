@@ -14,8 +14,9 @@ class POInvcMTController extends Controller
     public function index(){
 
         $emailpoinvc = PoInvcEmail::first();
+        $listemailrcv = '';
 
-        $listemailrcv = explode(';',$emailpoinvc->email_receiver);
+        is_null($emailpoinvc) ? $listemailrcv = [] : $listemailrcv = explode(';',$emailpoinvc->email_receiver);
 
         return view('setting.poinvcappr.emailset_approver',['data'=>$emailpoinvc,'list'=>$listemailrcv]);
 

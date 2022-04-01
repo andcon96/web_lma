@@ -34,8 +34,9 @@
             </td>
             <td>
               {{$show->email_status}}
+              <input type="hidden" value="R" name="hide_check[]" class="hide_check"/>
             </td>
-            <td style="text-align: center;"><input type="checkbox" name="sendmail[]" {{$show->invoice_status == 'true' ? '':'disabled'}}/></td>
+            <td style="text-align: center;"><input class="sendmail" type="checkbox" name="sendmail[]" {{$show->invoice_status == 'true' ? '':'disabled'}}/></td>
         </tr>
         @empty
             <td colspan='7' class='text-danger'><b>No Data Available</b></td>

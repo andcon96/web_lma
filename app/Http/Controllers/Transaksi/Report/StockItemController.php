@@ -35,7 +35,17 @@ class StockItemController extends Controller
             alert()->error('Error', 'Stock Item Loc. FG tidak ditemukan');
             return redirect()->back();
         }else{
+            StockItm::truncate();
             foreach($stockitem[0] as $datas){
+
+                // $stocks = StockItm::firstOrNew();
+                // $stocks->item_nbr = $datas->t_part;
+                // $stocks->item_desc = $datas->t_desc1.' '.$datas->t_desc2;
+                // $stocks->item_um = $datas->t_um;
+                // $stocks->item_loc = $datas->t_loc;
+                // $stocks->item_qtyoh = $datas->t_qtyoh;
+
+                // $stocks->save();
                 DB::table('stockitm')->insert([
                     'item_nbr'  => $datas->t_part,
                     'item_desc' => $datas->t_desc1.' '.$datas->t_desc2,

@@ -380,6 +380,9 @@
   <script src="{{ url('vendors/chart.js/dist/Chart.min.js') }}"></script>
   <!-- Barcode Scanner -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+  
+  @yield('scripts')
+
 
 
   @if(session('errors'))
@@ -405,10 +408,8 @@
       showCancelButton: true,
       focusConfirm: false,
     })
-</script>
-@endif
-
-  @yield('scripts')
+  </script>
+  @endif
 
   <script type="text/javascript">
     $(document).ready(function() {
