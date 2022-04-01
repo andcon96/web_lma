@@ -9,6 +9,7 @@ use App\Http\Controllers\Master\RoleMTController;
 use App\Http\Controllers\Master\UserMTController;
 use App\Http\Controllers\Master\QxWsaMTController;
 use App\Http\Controllers\Master\SiteMTController;
+use App\Http\Controllers\Transaksi\Report\StockItemController;
 use App\Http\Controllers\Transaksi\PO\POReceiptController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Transaksi\PO\POApprovalController;
@@ -79,6 +80,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('sjconfirm', SuratJalanConfirmController::class);
     });
 
+    Route::group(['middleware'=>'can:stock_item'],function(){
+        Route::resource('stockitm', StockItemController::class);
+    });
+
     
     /**
      * Group yang bisa akses menu settings
@@ -132,5 +137,6 @@ Route::group(['middleware' => ['auth']], function () {
         //================================
         Route::resource('poinvcemail', POInvcMTController::class);
         //================================
+
     });
 });

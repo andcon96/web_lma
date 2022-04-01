@@ -71,6 +71,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('sj_confirm', function($user){
             return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'SJ03');
         });
+
+        Gate::define('stock_item', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'R01');
+        });
         //=============================
         // Menu Master
         //=============================

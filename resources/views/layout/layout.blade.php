@@ -189,6 +189,26 @@
                 @endcan
               </ul>
             </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Report
+                  <i class="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @can('stock_item')
+                <li class="nav-item">
+                  <a href="{{route('stockitm.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Stock Item</p>
+                  </a>
+                </li>
+                @endcan
+              </ul>
+            </li>
             @endcan
 
             @can('access_masters')
