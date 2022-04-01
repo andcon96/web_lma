@@ -73,12 +73,19 @@ class AccessRoleMenuController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //Menu PO
+        $cbPOReceipt = $request->input('cbPOReceipt');
+        $cbPOApproval = $request->input('cbPOApproval');
+
         // Menu SJ
         $cbCreateSJ = $request->input('cbCreateSJ');
         $cbBrowseSJ = $request->input('cbBrowseSJ');
         $cbConfSJ = $request->input('cbConfSJ');
 
-        $data = $cbCreateSJ . $cbBrowseSJ . $cbConfSJ;
+        //Menu Report
+        $cbStockItem = $request->input('cbStockItem');
+
+        $data = 'TR'. $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbStockItem;
 
         DB::beginTransaction();
 

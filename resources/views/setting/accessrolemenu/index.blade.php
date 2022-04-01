@@ -87,36 +87,26 @@
           </div>
 
           <div class="form-group row">
-            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('PO List') }}</label>
-            <div class="col-md-6">
-              <label class="switch" for="cbPOBrowse">
-                <input type="checkbox" id="cbPOBrowse" name="cbPOBrowse" value="PO01" />
-                <div class="slider round"></div>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group row">
             <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('PO Receipt') }}</label>
             <div class="col-md-6">
               <label class="switch" for="cbPOReceipt">
-                <input type="checkbox" id="cbPOReceipt" name="cbPOReceipt" value="PO02" />
+                <input type="checkbox" id="cbPOReceipt" name="cbPOReceipt" value="PO01" />
                 <div class="slider round"></div>
               </label>
             </div>
           </div>
 
           <div class="form-group row">
-            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('PO Approval') }}</label>
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('PO Invoice Approval') }}</label>
             <div class="col-md-6">
               <label class="switch" for="cbPOApproval">
-                <input type="checkbox" id="cbPOApproval" name="cbPOApproval" value="PO03" />
+                <input type="checkbox" id="cbPOApproval" name="cbPOApproval" value="PO02" />
                 <div class="slider round"></div>
               </label>
             </div>
           </div>
 
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('PO Approval Utility') }}</label>
             <div class="col-md-6">
               <label class="switch" for="cbResetApp">
@@ -154,7 +144,7 @@
                 <div class="slider round"></div>
               </label>
             </div>
-          </div>
+          </div> -->
 
           <div class="form-group">
             <h6>
@@ -188,6 +178,23 @@
             <div class="col-md-6">
               <label class="switch" for="cbConfSJ">
                 <input type="checkbox" id="cbConfSJ" name="cbConfSJ" value="SJ03" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <h6>
+              <center><strong>Report</strong></center>
+              </h5>
+              <hr>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Stock Item') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbStockItem">
+                <input type="checkbox" id="cbStockItem" name="cbStockItem" value="R01" />
                 <div class="slider round"></div>
               </label>
             </div>
@@ -241,6 +248,20 @@
             var totmenu = data;
             
             // Centang Checkbox berdasarkan data
+
+            //PO
+            if(totmenu.search("PO01") >= 0){
+              document.getElementById("cbPOReceipt").checked = true;  
+            }else{
+              document.getElementById("cbPOReceipt").checked = false;
+            }
+            if(totmenu.search("PO02") >= 0){
+              document.getElementById("cbPOApproval").checked = true;  
+            }else{
+              document.getElementById("cbPOApproval").checked = false;
+            }
+
+            //SJ
             if(totmenu.search("SJ01") >= 0){
               document.getElementById("cbCreateSJ").checked = true;  
             }else{
@@ -255,6 +276,13 @@
               document.getElementById("cbConfSJ").checked = true;  
             }else{
               document.getElementById("cbConfSJ").checked = false;
+            }
+
+            //Report
+            if(totmenu.search("R01") >= 0){
+              document.getElementById("cbStockItem").checked = true;  
+            }else{
+              document.getElementById("cbStockItem").checked = false;
             }
           }
       });

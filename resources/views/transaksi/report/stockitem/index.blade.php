@@ -88,6 +88,17 @@
         $('#item').val('');
   }
 
+  $(document).ready(function() {
+        var cur_url = window.location.href;
+
+        let paramString = cur_url.split('?')[1];
+        let queryString = new URLSearchParams(paramString);
+
+        let item = queryString.get('item');
+
+        $('#item').val(item).trigger('change');
+  });
+
   $(document).on('click', '#btnrefresh', function(){
         resetSearch();
   });
