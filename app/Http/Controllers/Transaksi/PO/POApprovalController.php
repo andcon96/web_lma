@@ -26,11 +26,17 @@ class POApprovalController extends Controller
         }
 
         $po_invoice = (new WSAServices())->getpoinvoice($req->ponbr);
-        if($po_invoice[1] == "false"){
-            alert()->error('Error', 'PO tidak ditemukan');
-            return redirect()->back();
+
+        if($po_invoice === false){
+            alert()->error('Error', 'WSA Failed');
+            return redirect()->route('poapproval.index');
         }else{
-            $tempPO = (new CreateTempTable())->createPOInvcTemp($po_invoice[0]);
+            if($po_invoice[1] == "false"){
+                alert()->error('Error','PO tidak ditemukan');
+                return redirect()->back();
+            }else{
+                $tempPO = (new CreateTempTable())->createPOInvcTemp($po_invoice[0]);
+            }
         }
         
         return redirect()->route('showInvoice')->with(['tablepo' => $tempPO]);

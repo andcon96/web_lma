@@ -84,8 +84,9 @@ class AccessRoleMenuController extends Controller
 
         //Menu Report
         $cbStockItem = $request->input('cbStockItem');
+        $cbHutangCust = $request->input('cbHutangCust');
 
-        $data = 'TR'. $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbStockItem;
+        $data = 'TR'. $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbStockItem . $cbHutangCust;
 
         DB::beginTransaction();
 
@@ -95,11 +96,11 @@ class AccessRoleMenuController extends Controller
             $roleAccess->save();
             
             DB::commit();
-            $request->session()->flash('updated', 'Role Access successfully updated');
+            alert()->success('Success','Role Access successfully updated');
             return redirect()->back();
         } catch (\Exception $err) {
             DB::rollBack();
-            $request->session()->flash('error', 'Failed to save role access');
+            alert()->error('Error','Failed to save role access');
             return redirect()->back();
         }
     }

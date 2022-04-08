@@ -32,12 +32,19 @@ class POReceiptController extends Controller
 
         // WSA QAD
         $po_receipt = (new WSAServices())->wsagetpo($req->sjnbr);
-        if($po_receipt[1] == "false"){
-            alert()->error('Error', 'PO tidak ditemukan');
-            return redirect()->back();
+
+        if($po_receipt === false){
+            alert()->error('Error', 'WSA Failed');
+            return redirect()->route('poreceipt.index');
         }else{
-            $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
+            if($po_receipt[1] == "false"){
+                alert()->error('Error', 'PO tidak ditemukan');
+                return redirect()->back();
+            }else{
+                $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
+            }
         }
+        
         
         return redirect()->route('showReceipt')->with(['tablepo' => $tempPO]);
     }

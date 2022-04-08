@@ -207,6 +207,15 @@
                   </a>
                 </li>
                 @endcan
+
+                @can('hutang_cust')
+                <li class="nav-item">
+                  <a href="{{route('hutangcust.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Hutang Customer</p>
+                  </a>
+                </li>
+                @endcan
               </ul>
             </li>
             @endcan

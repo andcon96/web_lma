@@ -13,6 +13,7 @@ use App\Http\Controllers\Transaksi\Report\StockItemController;
 use App\Http\Controllers\Transaksi\PO\POReceiptController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Transaksi\PO\POApprovalController;
+use App\Http\Controllers\Transaksi\Report\HutangCustController;
 use App\Http\Controllers\Transaksi\SJ\SuratJalanConfirmController;
 use App\Http\Controllers\Transaksi\SJ\SuratJalanController;
 use App\Models\Transaksi\PurchaseOrder;
@@ -83,6 +84,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware'=>'can:stock_item'],function(){
         Route::resource('stockitm', StockItemController::class);
+    });
+
+    Route::group(['middleware'=>'can:hutang_cust'],function(){
+        Route::resource('hutangcust', HutangCustController::class);
     });
 
     

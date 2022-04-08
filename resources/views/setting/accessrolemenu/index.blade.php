@@ -199,6 +199,16 @@
               </label>
             </div>
           </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Hutang Customer') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbHutangCust">
+                <input type="checkbox" id="cbHutangCust" name="cbHutangCust" value="R02" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
         </div>
 
         <div class="modal-footer">
@@ -283,6 +293,12 @@
               document.getElementById("cbStockItem").checked = true;  
             }else{
               document.getElementById("cbStockItem").checked = false;
+            }
+
+            if(totmenu.search("R02") >= 0){
+              document.getElementById("cbHutangCust").checked = true;  
+            }else{
+              document.getElementById("cbHutangCust").checked = false;
             }
           }
       });
