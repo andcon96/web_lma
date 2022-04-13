@@ -105,6 +105,11 @@
 
         .button2:hover {opacity: .8}
 
+        table, tr, td {
+          margin: 0 auto;
+          border: 1px solid black;
+        }
+
         /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 800px) {
           .leftcolumn, .rightcolumn {   
@@ -133,15 +138,37 @@
 <div class="row">
   <div class="leftcolumn">
     <div class="card" style="text-align:center;">
-      <h2>Nomor Purchase Order</h2>
-      <h4>{{$note1}}</h4>
-      <h2>Nomor Invoice</h2>
-      <h4>{{$note2}}</h4>
-      <h2>Invoice Amount</h2>
-      <h4>{{$note3}}</h4>
+      <table>
+        <tbody>
+          <tr>
+            <td style="width: 15%; background-color: #aaa;" >
+              PO No.
+            </td>
+            <td style="width: 20%;">
+              {{$note1}}
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 15%; background-color: #aaa;">
+              Invoice No.
+            </td>
+            <td style="width: 20%;">
+              {{$note2}}
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 15%; background-color: #aaa;">
+              Amount
+            </td>
+            <td style="width: 20%;">
+              {{number_format($note3,2)}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div style="text-align: center;">
-      <p>Approve PO {{$note1}} dengan Invoice {{$note2}} ? </p>
+      <p>Approve or Reject this Request using the buttons below. </p>
       <a href="{{url('/api/apiapprovalinvoice/yes/'.$param1.'/'.$param2)}}" class="button">Approve</a>
       <a href="{{url('/api/apiapprovalinvoice/no/'.$param1.'/'.$param2)}}" class="button2">Reject</a>
     </div>
