@@ -441,7 +441,13 @@
 
     /** add active class and stay opened when selected */
     var url = window.location.href;
-    url = url.split('?')[0];
+
+    if(url.includes("?")){
+      url = url.split('?')[0];
+    }else if (url.split("/").length > 3) {
+      url = url.substr(0,url.indexOf('/',22));
+    }
+    // 
 
     // for sidebar menu entirely but not cover treeview
     $('ul.nav-sidebar a').filter(function() {

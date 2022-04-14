@@ -53,16 +53,17 @@ Route::group(['middleware' => ['auth']], function () {
      */
 
     Route::group(['middleware'=>'can:po_receipt'],function (){
+        
+        Route::get('poreceipt/showreceipt', [POReceiptController::class, 'showReceipt'])->name('showReceipt');
         Route::resource('poreceipt', POReceiptController::class);
         Route::get('searchpo', [POReceiptController::class, 'searchPO'])->name('searchPO');
-        Route::get('showreceipt', [POReceiptController::class, 'showReceipt'])->name('showReceipt');
         Route::post('submitreceipt', [POReceiptController::class, 'submitReceipt'])->name('submitReceipt');
     });
 
     Route::group(['middleware'=>'can:po_approval'],function (){
+        Route::get('poapproval/showinvoice', [POApprovalController::class, 'showInvoice'])->name('showInvoice');
         Route::resource('poapproval', POApprovalController::class);
         Route::get('searchpoinvc', [POApprovalController::class, 'searchpoinvc'])->name('searchpoinvc');
-        Route::get('showinvoice', [POApprovalController::class, 'showInvoice'])->name('showInvoice');
         Route::post('sendmailapproval', [POApprovalController::class, 'sendMailApproval'])->name('sendMailApproval');
     });
 
@@ -73,9 +74,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware'=>'can:sj_browse'],function(){
         Route::get('browsesj',[SuratJalanController::class, 'browsesj'])->name('browseSJ');
-        Route::get('editjsbrowse/{id}',[SuratJalanController::class, 'editjsbrowse'])->name('editSJBrowse');
-        Route::get('deletejsbrowse/{id}',[SuratJalanController::class, 'deletejsbrowse'])->name('deleteSJBrowse');
-        Route::get('viewjsbrowse/{id}',[SuratJalanController::class, 'viewjsbrowse'])->name('viewSJBrowse');
+        Route::get('browsesj/editjsbrowse/{id}',[SuratJalanController::class, 'editjsbrowse'])->name('editSJBrowse');
+        Route::get('browsesj/deletejsbrowse/{id}',[SuratJalanController::class, 'deletejsbrowse'])->name('deleteSJBrowse');
+        Route::get('browsesj/viewjsbrowse/{id}',[SuratJalanController::class, 'viewjsbrowse'])->name('viewSJBrowse');
     });
 
     Route::group(['middleware'=>'can:sj_confirm'],function(){
