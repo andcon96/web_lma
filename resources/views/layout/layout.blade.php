@@ -60,7 +60,7 @@
           <a class="dropdown-item text-center small font-weight-bold mark-as-read-all" href="javascript:void(0)" data-id="{{ Session::get('userid') }}">Mark All as Read</a>
           <div class="dropdown-divider"></div>
           @forelse(Auth::User()->unreadNotifications as $notif)
-          <a id="bell" href="{{$notif->data['url']}}" data-id="{{$notif->id}}" data-link="{{$notif->data['url']}}" class="dropdown-item mark-as-read" style="text-wrap:break-word">
+          <a id="bell" href="{{$notif->data['url']}}" data-id="{{$notif->id}}" data-link="{{$notif->data['url']}}" class="dropdown-item mark-as-read" style="text-warp:break-word">
             <div class="media">
               <i class="fas fa-envelope mr-2"></i>
               <div class="media-body">
@@ -169,7 +169,7 @@
                   </a>
                 </li>
                 @endcan
-                
+
                 @can('sj_browse')
                 <li class="nav-item">
                   <a href="{{route('browseSJ')}}" class="nav-link">
@@ -178,7 +178,7 @@
                   </a>
                 </li>
                 @endcan
-                
+
                 @can('sj_confirm')
                 <li class="nav-item">
                   <a href="{{route('sjconfirm.index')}}" class="nav-link">
@@ -389,7 +389,7 @@
   <script src="{{ url('vendors/chart.js/dist/Chart.min.js') }}"></script>
   <!-- Barcode Scanner -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
-  
+
   @yield('scripts')
 
 
@@ -407,12 +407,11 @@
     var newtext = '';
     for (var i = 0; i < countnewerror; i++) {
 
-      newtext += '<li>'+ newerror[i] +'</li>';
+      newtext += '<li>' + newerror[i] + '</li>';
     }
     Swal.fire({
       icon: 'error',
-      html:
-      newtext,
+      html: newtext,
       showCloseButton: true,
       showCancelButton: true,
       focusConfirm: false,
@@ -441,7 +440,8 @@
     });
 
     /** add active class and stay opened when selected */
-    var url = window.location;
+    var url = window.location.href;
+    url = url.split('?')[0];
 
     // for sidebar menu entirely but not cover treeview
     $('ul.nav-sidebar a').filter(function() {
