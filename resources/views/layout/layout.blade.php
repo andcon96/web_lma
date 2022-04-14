@@ -111,7 +111,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            @can('access_dashboard')
+            
             <li class="nav-item">
               <a href="{{url('/home')}}" class="nav-link">
                 <i class="nav-icon fas fa-home"></i>
@@ -120,104 +120,114 @@
                 </p>
               </a>
             </li>
-            @endcan
+           
 
             @can('access_transactions')
             <li class="nav-header">TRANSAKSI</li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-money-check"></i>
-                <p>
-                  Purchase Order
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                @can('po_receipt')
-                <li class="nav-item">
-                  <a href="{{route('poreceipt.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Purchase Order Receipt</p>
-                  </a>
-                </li>
-                @endcan
-                @can('po_approval')
-                <li class="nav-item">
-                  <a href="{{route('poapproval.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Purchase Order Invoice Approval</p>
-                  </a>
-                </li>
-                @endcan
-              </ul>
-            </li>
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-shopping-bag"></i>
-                <p>
-                  Surat Jalan
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                @can('sj_create')
-                <li class="nav-item">
-                  <a href="{{route('suratjalan.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Create Surat Jalan</p>
-                  </a>
-                </li>
-                @endcan
+              @can('access_po_head')
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-money-check"></i>
+                  <p>
+                    Purchase Order
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  @can('po_receipt')
+                  <li class="nav-item">
+                    <a href="{{route('poreceipt.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Purchase Order Receipt</p>
+                    </a>
+                  </li>
+                  @endcan
+                  @can('po_approval')
+                  <li class="nav-item">
+                    <a href="{{route('poapproval.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Purchase Order Invoice Approval</p>
+                    </a>
+                  </li>
+                  @endcan
+                </ul>
+              </li>
+              @endcan
+              
 
-                @can('sj_browse')
-                <li class="nav-item">
-                  <a href="{{route('browseSJ')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Browse Surat Jalan</p>
-                  </a>
-                </li>
-                @endcan
+              @can('access_sj_head')
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-shopping-bag"></i>
+                  <p>
+                    Surat Jalan
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  @can('sj_create')
+                  <li class="nav-item">
+                    <a href="{{route('suratjalan.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Create Surat Jalan</p>
+                    </a>
+                  </li>
+                  @endcan
 
-                @can('sj_confirm')
-                <li class="nav-item">
-                  <a href="{{route('sjconfirm.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Confirm Surat Jalan</p>
-                  </a>
-                </li>
-                @endcan
-              </ul>
-            </li>
+                  @can('sj_browse')
+                  <li class="nav-item">
+                    <a href="{{route('browseSJ')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Browse Surat Jalan</p>
+                    </a>
+                  </li>
+                  @endcan
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-book"></i>
-                <p>
-                  Report
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                @can('stock_item')
-                <li class="nav-item">
-                  <a href="{{route('stockitm.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Stock Item</p>
-                  </a>
-                </li>
-                @endcan
+                  @can('sj_confirm')
+                  <li class="nav-item">
+                    <a href="{{route('sjconfirm.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Confirm Surat Jalan</p>
+                    </a>
+                  </li>
+                  @endcan
+                </ul>
+              </li>
+              @endcan
 
-                @can('hutang_cust')
-                <li class="nav-item">
-                  <a href="{{route('hutangcust.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Hutang Customer</p>
-                  </a>
-                </li>
-                @endcan
-              </ul>
-            </li>
+
+              @can('access_report_head')
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Report
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  @can('stock_item')
+                  <li class="nav-item">
+                    <a href="{{route('stockitm.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Stock Item</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('hutang_cust')
+                  <li class="nav-item">
+                    <a href="{{route('hutangcust.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Hutang Customer</p>
+                    </a>
+                  </li>
+                  @endcan
+                </ul>
+              </li>
+              @endcan
+            
             @endcan
 
             @can('access_masters')
@@ -445,7 +455,9 @@
     if(url.includes("?")){
       url = url.split('?')[0];
     }else if (url.split("/").length > 3) {
-      url = url.substr(0,url.indexOf('/',22));
+      url = url.split("/");
+      url = url[0] + "/" + url[1] + "/" + url[2] + "/" + url[3];
+      console.log(url);  
     }
     // 
 

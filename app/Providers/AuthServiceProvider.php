@@ -45,6 +45,21 @@ class AuthServiceProvider extends ServiceProvider
                 $user->getRole->role === Role::SUPER_USER;
         });
 
+        //=============================
+        // Menu HEADER
+        //=============================
+        Gate::define('access_po_head', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'PO');
+        });
+
+        Gate::define('access_sj_head', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'SJ');
+        });
+
+        Gate::define('access_report_head', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'RP');
+        });
+
 
         //=============================
         // Menu Transaksi
@@ -73,11 +88,11 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('stock_item', function($user){
-            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'R01');
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'RP01');
         });
 
         Gate::define('hutang_cust', function($user){
-            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'R02');
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'RP02');
         });
         //=============================
         // Menu Master
