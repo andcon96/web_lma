@@ -43,7 +43,8 @@ class QxWsaMTController extends Controller
         $qxwsa->qx_path = $request->qxpath;
         $qxwsa->save();
 
-        $request->session()->flash('updated', 'QX WSA Successfully Updated');
+        alert()->success('Success', 'QX WSA Successfully Updated');
         return redirect()->route('qxwsa.index');
+
     }
 }

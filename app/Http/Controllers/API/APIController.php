@@ -29,6 +29,7 @@ class APIController extends Controller
 
             $poinvc_hist = POInvcApprHist::where('ponbr','=',$param1)->where('invcnbr','=',$param2)->first();
             // dd($poinvc_hist);
+
             if(!$poinvc_hist){
                 // dd($param1);
 
@@ -77,7 +78,7 @@ class APIController extends Controller
             $param2 = Crypt::decrypt($invcnbr);
 
             $poinvc_hist = POInvcApprHist::where('ponbr','=',$param1)->where('invcnbr','=',$param2)->first();
-
+            
             if(!$poinvc_hist){
 
 

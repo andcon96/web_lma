@@ -90,7 +90,7 @@
 
     });
 
-    $('#submit').on("submit", function() {
+    $('#submit').on("submit", function(e) {
         document.getElementById('btnconf').style.display = 'none';
         document.getElementById('btnloading').style.display = '';
     });
@@ -118,7 +118,7 @@
         var cols = "";
 
         cols += '<td>';
-        cols += '<input type="email" class="form-control" name="emailrcv[]" required />';
+        cols += '<input type="email" class="form-control emailrcv" name="emailrcv[]" required />';
         cols += '</td>';
 
         cols += '<td data-title="Action"><input type="button" class="ibtnDel btn btn-danger btn-focus"  value="Delete"></td>';

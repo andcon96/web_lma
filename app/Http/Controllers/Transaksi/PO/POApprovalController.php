@@ -60,10 +60,20 @@ class POApprovalController extends Controller
 
         if(is_null($req->sendmail)){
             alert()->error('Error','Kirim email tidak boleh kosong, pilih minimal satu');
-            return back();
+            return redirect()->route('poapproval.index');
         }
 
         $emailto = PoInvcEmail::first();
+        // dd($emailto);
+        if($emailto == null){
+            alert()->error('Error','Harap setting terlebih dahulu email untuk Approver dan Receiver di PO Invoice Email Control');
+            return redirect()->route('poapproval.index');
+        }
+
+        if($emailto->email_invc == "" && $emailto->email_receiver == ""){
+            alert()->error('Error','Harap setting terlebih dahulu email untuk Approver dan Receiver di PO Invoice Email Control');
+            return redirect()->route('poapproval.index');
+        }
 
         foreach($req->hide_check as $key => $v){
             // dump($req->hide_check[$key]);
