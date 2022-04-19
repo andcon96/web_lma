@@ -25,15 +25,17 @@ class POInvcMTController extends Controller
     public function store(Request $req){
         // dd($req->all());
 
-        if(is_null($req->emailrcv)){
-            alert()->error('Error', 'Please add at least ADD one email receiver');
-            return redirect()->route('poinvcemail.index');
-        }
+        
 
         $this->validate($req, [
             'nameappr' => 'required',
             'emailappr' => 'required',
         ]);
+
+        if(is_null($req->emailrcv)){
+            alert()->error('Error', 'Please add at least ADD one email receiver');
+            return redirect()->route('poinvcemail.index');
+        }
 
         $listrcv = '';
 

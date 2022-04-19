@@ -640,6 +640,10 @@ class WSAServices
             curl_close($curl);
         }
 
+        if(is_bool($qdocResponse)){
+            return false;
+        }
+
         $xmlResp = simplexml_load_string($qdocResponse);
 
         $xmlResp->registerXPathNamespace('ns1', $wsa->wsas_path);
@@ -716,6 +720,10 @@ class WSAServices
             curl_close($curl);
         }
 
+        if(is_bool($qdocResponse)){
+            return false;
+        }
+
         $xmlResp = simplexml_load_string($qdocResponse);
 
         $xmlResp->registerXPathNamespace('ns1', $wsa->wsas_path);
@@ -786,6 +794,10 @@ class WSAServices
                 }
             }
             curl_close($curl);
+        }
+
+        if(is_bool($qdocResponse)){
+            return false;
         }
 
         $xmlResp = simplexml_load_string($qdocResponse);
@@ -860,6 +872,10 @@ class WSAServices
             curl_close($curl);
         }
 
+        if(is_bool($qdocResponse)){
+            return false;
+        }
+
         $xmlResp = simplexml_load_string($qdocResponse);
 
         $xmlResp->registerXPathNamespace('ns1', $wsa->wsas_path);
@@ -931,6 +947,10 @@ class WSAServices
             curl_close($curl);
         }
 
+        if(is_bool($qdocResponse)){
+            return false;
+        }
+
         $xmlResp = simplexml_load_string($qdocResponse);
 
         $xmlResp->registerXPathNamespace('ns1', $wsa->wsas_path);
@@ -1000,6 +1020,10 @@ class WSAServices
                 }
             }
             curl_close($curl);
+        }
+
+        if(is_bool($qdocResponse)){
+            return false;
         }
 
         $xmlResp = simplexml_load_string($qdocResponse);

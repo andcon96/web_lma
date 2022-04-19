@@ -65,7 +65,7 @@ class POApprovalController extends Controller
 
         $emailto = PoInvcEmail::first();
         // dd($emailto);
-        if($emailto == null){
+        if(is_null($emailto)){
             alert()->error('Error','Harap setting terlebih dahulu email untuk Approver dan Receiver di PO Invoice Email Control');
             return redirect()->route('poapproval.index');
         }
