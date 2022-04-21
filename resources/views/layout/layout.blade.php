@@ -283,6 +283,12 @@
                     <p>PO Invoice Email Control</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{route('custmstr.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Customer Master</p>
+                  </a>
+                </li>
 
               </ul>
             </li>

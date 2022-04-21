@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Master\DepartmentController;
 use App\Http\Controllers\Master\AccessRoleMenuController;
+use App\Http\Controllers\Master\CustMstrController;
 use App\Http\Controllers\Master\POInvcMTController;
 use App\Http\Controllers\Master\PrefixMTController;
 use App\Http\Controllers\Master\RoleMTController;
@@ -91,7 +92,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('hutangcust', HutangCustController::class);
     });
 
-    
     /**
      * Group yang bisa akses menu settings
      */
@@ -143,6 +143,11 @@ Route::group(['middleware' => ['auth']], function () {
         // Invoice PO Email Setting
         //================================
         Route::resource('poinvcemail', POInvcMTController::class);
+        //================================
+
+        // Customer Masters
+        //================================
+        Route::resource('custmstr', CustMstrController::class);
         //================================
 
     });
