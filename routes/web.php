@@ -4,11 +4,13 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Master\DepartmentController;
 use App\Http\Controllers\Master\AccessRoleMenuController;
 use App\Http\Controllers\Master\CustMstrController;
+use App\Http\Controllers\Master\LocMstrController;
 use App\Http\Controllers\Master\POInvcMTController;
 use App\Http\Controllers\Master\PrefixMTController;
 use App\Http\Controllers\Master\RoleMTController;
 use App\Http\Controllers\Master\UserMTController;
 use App\Http\Controllers\Master\QxWsaMTController;
+use App\Http\Controllers\Master\SiteMstrController;
 use App\Http\Controllers\Master\SiteMTController;
 use App\Http\Controllers\Transaksi\Report\StockItemController;
 use App\Http\Controllers\Transaksi\PO\POReceiptController;
@@ -125,10 +127,7 @@ Route::group(['middleware' => ['auth']], function () {
         //================================
 
         //================================
-        // Site Maintenance
-        //================================
-        Route::resource('sitemaint', SiteMTController::class);
-        //================================
+
 
         // QX WSA Master
         //================================
@@ -149,6 +148,21 @@ Route::group(['middleware' => ['auth']], function () {
         //================================
         Route::resource('custmstr', CustMstrController::class);
         //================================
+
+        // Location Masters
+        //================================
+        Route::resource('locmstr', LocMstrController::class);
+        //================================
+
+        // Location Masters
+        //================================
+        Route::resource('sitemstr', SiteMstrController::class);
+        //================================
+
+        // // Site Maintenance
+        // //================================
+        // Route::resource('sitemaint', SiteMTController::class);
+        // //================================
 
     });
 });

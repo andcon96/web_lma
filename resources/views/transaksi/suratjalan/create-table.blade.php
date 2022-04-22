@@ -20,6 +20,7 @@
                 <td>{{$show->sod_part}} - {{$show->sod_part_desc}}
                     <input type="hidden" name="sodpart[]" value="{{$show->sod_part}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                     <input type="hidden" name="soddesc[]" value="{{$show->sod_part_desc}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}}>
+                    <input type="hidden" name="sodloc[]" value="{{$show->sod_loc}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}}>
                 </td>
                 <td>
                     {{$show->sod_qty_ord}}
@@ -32,6 +33,7 @@
                 <td>
                     {{$show->sod_qty_ship}}
                     <input type="hidden" name="sodqtyship[]" value="{{$show->sod_qty_ship}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
+                    <input type="hidden" name="sodpricels[]" value="{{$show->sod_price_ls}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                 </td>
                 <td><input type="number" name="qtyinput[]" class="form-control" min="0" max="{{$show->sod_qty_ord - $show->sod_qty_ship - $show->sod_qty_ongoing}}" step="0.01" value="0" required {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} /></td>
             </tr>

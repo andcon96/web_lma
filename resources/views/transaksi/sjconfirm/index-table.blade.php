@@ -1,12 +1,12 @@
-<div class="table-responsive offset-lg-1 col-lg-10 col-md-12 mt-4 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
+<div class="table-responsive col-lg-12 col-md-12 mt-4 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>Surat Jalan</th>
                 <th>SO Number</th>
-                <th>Customer</th>
-                <th>Ship To</th>
-                <th>Bill To</th>
+                <th style="width: 20%;">Customer</th>
+                <th style="width: 20%;">Ship To</th>
+                <th style="width: 20%;">Bill To</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -16,9 +16,9 @@
                 <tr>
                     <td>{{$datas->sj_nbr}}</td>
                     <td>{{$datas->sj_so_nbr}}</td>
-                    <td>{{$datas->sj_so_cust}}</td>
-                    <td>{{$datas->sj_so_ship}}</td>
-                    <td>{{$datas->sj_so_bill}}</td>
+                    <td>{{$datas->sj_so_cust}} -- {{$datas->getDetailCust->cust_name}}</td>
+                    <td>{{$datas->sj_so_ship}} -- {{$datas->getDetailShip->cust_name}}</td>
+                    <td>{{$datas->sj_so_bill}} -- {{$datas->getDetailBill->cust_name}}</td>
                     <td>{{$datas->sj_status}}</td>
                     <td>
                         @if($datas->sj_status == 'New')

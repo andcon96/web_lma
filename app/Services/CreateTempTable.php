@@ -91,9 +91,11 @@ class CreateTempTable
             $table->string('sod_line');
             $table->string('sod_part');
             $table->string('sod_part_desc');
+            $table->string('sod_loc');
             $table->string('sod_qty_ord');
             $table->string('sod_qty_ship');
             $table->string('sod_qty_ongoing');
+            $table->string('sod_price_ls');
             $table->temporary();
         });
 
@@ -118,8 +120,10 @@ class CreateTempTable
                 'sod_line' => $datas->t_soline,
                 'sod_part' => $datas->t_sopart,
                 'sod_part_desc' => $datas->t_sopartdesc,
+                'sod_loc' => $datas->t_soloc,
                 'sod_qty_ord' => $datas->t_soqtyord,
                 'sod_qty_ship' => $datas->t_soqtyship,
+                'sod_price_ls' => $datas->t_listprc,
                 'sod_qty_ongoing' => $qtysj,
             ]);
         }

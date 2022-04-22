@@ -563,8 +563,8 @@ class QxtendServices
               xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
               <soapenv:Header>
                 <wsa:Action/>
-                <wsa:To>urn:services-qad-com:QX_DNP</wsa:To>
-                <wsa:MessageID>urn:services-qad-com::QX_DNP</wsa:MessageID>
+                <wsa:To>urn:services-qad-com:QADLMA</wsa:To>
+                <wsa:MessageID>urn:services-qad-com::QADLMA</wsa:MessageID>
                 <wsa:ReferenceParameters>
                   <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
                 </wsa:ReferenceParameters>
@@ -640,7 +640,8 @@ class QxtendServices
                   <lineDetail>
                           <line>'.$data.'</line>
                           <lotserialQty>'.$datas['qtyinp'][$key].'</lotserialQty>
-                          <pickLogic>false</pickLogic>    
+                          <location>'.$datas['loc'][$key].'</location>
+                          <pickLogic>false</pickLogic>
                           <yn>true</yn>
                           <yn1>true</yn1>        
                           </lineDetail>';
@@ -693,6 +694,8 @@ class QxtendServices
       }
       curl_close($curl);
     }
+
+    // dd($qdocResponse);
     if (is_bool($qdocResponse)) {
       return false;
     }

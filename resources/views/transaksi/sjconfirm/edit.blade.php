@@ -27,17 +27,17 @@
         <div class="form-group row col-md-12">
             <label for="socust" class="col-md-2 col-form-label text-md-right">Customer</label>
             <div class="col-md-3">
-                <input id="socust" type="text" class="form-control" name="socust" value="{{$data->sj_so_cust}}" autocomplete="off" maxlength="24" autofocus readonly>
+                <input id="socust" type="text" class="form-control" name="socust" value="{{$data->sj_so_cust}} -- {{$data->getDetailCust->cust_name}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
             <label for="shipto" class="col-md-3 col-form-label text-md-right">Ship To</label>
             <div class="col-md-3">
-                <input id="shipto" type="text" class="form-control" name="shipto" value="{{$data->sj_so_ship}}" autocomplete="off" maxlength="24" autofocus readonly>
+                <input id="shipto" type="text" class="form-control" name="shipto" value="{{$data->sj_so_ship}} -- {{$data->getDetailShip->cust_name}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
         </div>
         <div class="form-group row col-md-12">
             <label for="billto" class="col-md-2 col-form-label text-md-right">Bill To</label>
             <div class="col-md-3">
-                <input id="billto" type="text" class="form-control" name="billto" value="{{$data->sj_so_bill}}" autocomplete="off" maxlength="24" autofocus disabled>
+                <input id="billto" type="text" class="form-control" name="billto" value="{{$data->sj_so_bill}} -- {{$data->getDetailBill->cust_name}}" autocomplete="off" maxlength="24" autofocus disabled>
             </div>
             <label for="status" class="col-md-3 col-form-label text-md-right">Status</label>
             <div class="col-md-3">
@@ -53,7 +53,7 @@
         <div class="form-group row col-md-12">
             <label for="remarks" class="col-md-2 col-form-label text-md-right">Remarks</label>
             <div class="col-md-9">
-                <input id="remarks" type="text" class="form-control" name="remarks" value="" autocomplete="off">
+                <input id="remarks" type="text" class="form-control" name="remarks" value="{{$data->sj_nbr}}" maxlength="24" autocomplete="off">
             </div>
         </div>
         <div class="form-group row col-md-12">

@@ -4,7 +4,8 @@
             <tr>
                 <th>Line</th>
                 <th width="45%">Part</th>
-                <th>Qty Order</th>
+                <th>Qty Order QAD</th>
+                <th>Qty Open</th>
                 <th>Qty Input</th>
                 <th>Delete</th>
             </tr>
@@ -15,6 +16,10 @@
                     <td>{{$datas->sj_line}}</td>
                     <td>{{$datas->sj_part}} - {{$datas->sj_part_desc}}</td>
                     <td>{{$datas->sj_qty_ord}}</td>
+                    @php
+                        $totqtyinput = $listsjopen->where('sj_line',$datas->sj_line)->where('sj_part',$datas->sj_part)->sum('sj_qty_input');
+                    @endphp
+                    <td>{{number_format($datas->sj_qty_ord - $datas->sj_qty_ship - $totqtyinput ,2)}}</td>
                     <td>
                         <input type="number" class="form-control" name="qtyinp[]" value="{{$datas->sj_qty_input}}" 
                         max="{{$datas->sj_qty_input}}">

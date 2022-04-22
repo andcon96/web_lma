@@ -22,6 +22,7 @@ class SuratJalanController extends Controller
      */
     public function index()
     {
+
         $data = SuratJalan::paginate(10);
 
         return view('transaksi.suratjalan.index',compact('data'));
@@ -75,9 +76,11 @@ class SuratJalanController extends Controller
                 $sj_dets->sj_line = $datas;
                 $sj_dets->sj_part = $request->sodpart[$key];
                 $sj_dets->sj_part_desc = $request->soddesc[$key];
+                $sj_dets->sj_loc = $request->sodloc[$key];
                 $sj_dets->sj_qty_ord = $request->sodqtyord[$key];
                 $sj_dets->sj_qty_ship = $request->sodqtyship[$key];
                 $sj_dets->sj_qty_input = $request->qtyinput[$key];
+                $sj_dets->sj_price_ls = $request->sodpricels[$key];
                 $sj_dets->save();
             }
 
@@ -152,8 +155,8 @@ class SuratJalanController extends Controller
     }
 
     public function browsesj(Request $request){
-        $data = SuratJalan::query();
-        $cust = SuratJalan::groupBy('sj_so_cust')->select('sj_so_cust')->get();
+        $data = SuratJalan::with('getDetailCust','getDetailShip','getDetailBill');
+        $cust = SuratJalan::with('getDetailCust')->groupBy('sj_so_cust')->get();
         
         if($request->sjnbr){
             $data->where('sj_nbr',$request->sjnbr);
@@ -170,17 +173,23 @@ class SuratJalanController extends Controller
 
         $data = $data->orderBy('created_at','Desc')->paginate(10);
 
+        // dd($data);
+
         return view('transaksi.suratjalan.browse',compact('data','cust'));
     }
 
     public function editjsbrowse($id){
         $data = SuratJalan::with('getDetail')->findOrFail($id);
 
-        return view('transaksi.suratjalan.edit-browse',compact('data'));
+        $listsjopen = SuratJalanDetail::with('getMaster')->whereRelation('getMaster','sj_status','New')->get();
+
+        return view('transaksi.suratjalan.edit-browse',compact('data','listsjopen'));
     }
 
     public function viewjsbrowse($id){
         $data = SuratJalan::with('getDetail')->findOrFail($id);
+
+        $listsjopen = SuratJalanDetail::with('getMaster')->whereRelation('getMaster','sj_status','New')->get();
 
         return view('transaksi.suratjalan.show-browse',compact('data'));
     }

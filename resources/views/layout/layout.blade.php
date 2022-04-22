@@ -259,12 +259,6 @@
                     <p>Role Menu Maintenance</p>
                   </a>
                 </li>
-                <!-- <li class="nav-item">
-                  <a href="{{route('sitemaint.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Site Maintenance</p>
-                  </a>
-                </li> -->
                 <li class="nav-item">
                   <a href="{{url('qxwsa')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -287,6 +281,18 @@
                   <a href="{{route('custmstr.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Customer Master</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('locmstr.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Location Master</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('sitemstr.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Site Master</p>
                   </a>
                 </li>
 

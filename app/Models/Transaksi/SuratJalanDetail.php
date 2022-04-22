@@ -16,4 +16,6 @@ class SuratJalanDetail extends Model
     {
         return $this->belongsTo(SuratJalan::class, 'sj_mstr_id');
     }
+
+
 }
