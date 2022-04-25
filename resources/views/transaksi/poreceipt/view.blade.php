@@ -17,6 +17,21 @@
 
   @include('transaksi.poreceipt.table-view')
 
+
+  <div class="table-responsive col-lg-12 col-md-12 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
+    <table class="table table-bordered table-nopol" id="nopolTable" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Nomor Polisi</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="nopolDetail">
+      </tbody>
+    </table>
+  </div>
+
+
   <div class="form-group row md-form">
     <div class="col-md-12" style="text-align: center;">
       <div class="custom-control custom-checkbox">
@@ -45,116 +60,67 @@
 @section('scripts')
 
 <script>
-  $(function() {
-    $("#effdate").datepicker({
-      dateFormat: 'dd/mm/yy'
-    });
-    $("#shipdate").datepicker({
-      dateFormat: 'dd/mm/yy'
-    });
-  });
+  $("#addrow").on("click", function() {
 
-  $(document).on('hide.bs.modal', '#detailModal,#deleteModal', function() {
-    if (confirm("Are you sure, you want to close?")) return true;
-    else return false;
-  });
 
-  $('#update').submit(function(event) {
-    var regqty = /^(\s*|\d+\.\d*|\d+)$/;
-    var qtyreq = document.getElementById("m_qtyrec").value;
 
-    if (!regqty.test(qtyreq)) {
-      alert('Qty Requested Must be number or "." ');
-      return false;
-    } else {
-      document.getElementById('btnclose').style.display = 'none';
-      document.getElementById('btnconf').style.display = 'none';
-      document.getElementById('btnloading').style.display = '';
+    var rowCount = $('#nopolTable tr').length;
+
+    var currow = rowCount - 2;
+
+    // alert(currow);
+
+    var lastline = parseInt($('#nopolTable tr:eq(' + currow + ') td:eq(0) input[type="number"]').val()) + 1;
+
+    if (lastline !== lastline) {
+      // check apa NaN
+      lastline = 1;
     }
 
+    // alert(lastline);
+
+    var newRow = $("<tr>");
+    var cols = "";
+
+    cols += '<td>';
+    cols += '<input type="text" class="form-control nopol" name="nopol[]" required />';
+    cols += '</td>';
+
+    cols += '<td data-title="Action"><input type="button" class="ibtnDel btn btn-danger btn-focus"  value="Delete"></td>';
+    cols += '<input type="hidden" class="op" name="op[]" value="A"/>';
+    cols += '</tr>'
+    counter++;
+
+    newRow.append(cols);
+    $("#nopolDetail").append(newRow);
+
+    // selectRefresh();
   });
 
+  $("table.table-nopol").on("click", ".ibtnDel", function(event) {
+    var row = $(this).closest("tr");
+    var line = row.find(".line").val();
+    // var colCount = $("#createTable tr").length;
+
+
+    if (line == counter - 1) {
+      // kalo line terakhir delete kurangin counter
+      counter -= 1
+    }
+
+    $(this).closest("tr").remove();
+
+    // if(colCount == 2){
+    //   // Row table kosong. sisa header & footer
+    //   counter = 1;
+    // }
+
+  });
 
   $('#submit').submit(function(event) {
     document.getElementById('s_btnconf').style.display = 'none';
     document.getElementById('back_btn').style.display = 'none';
     document.getElementById('s_btnloading').style.display = '';
-  });
-
-  $(document).on('click', '.editUser', function() { // Click to only happen on announce links
-
-    var id = $(this).data('id');
-    var suratjalan = $(this).data('sj');
-    var ponbr = $(this).data('nbr');
-    var line = $(this).data('line');
-    var part = $(this).data('part');
-    var desc = $(this).data('desc');
-    var qtyord = $(this).data('qtyord');
-    var qtyship = $(this).data('qtyship');
-    var qtyopen = $(this).data('qtyopen');
-    var effdate = $(this).data('effdate');
-    var shipdate = $(this).data('shipdate');
-    //var um = $(this).data('um');
-    var site = $(this).data('site');
-    var loc = $(this).data('loc');
-    var lot = $(this).data('lot');
-    var ref = $(this).data('ref');
-    var qtyrec = $(this).data('qtyrcvd');
-
-
-    if (effdate == '') {
-      var new_shipdate = '';
-      var new_effdate = '';
-    } else {
-      var split_effdate = effdate.split('-');
-      var split_shipdate = shipdate.split('-');
-
-      var new_effdate = split_effdate[2].concat('/', split_effdate[1], '/', split_effdate[0]);
-      var new_shipdate = split_shipdate[2].concat('/', split_shipdate[1], '/', split_shipdate[0]);
-    }
-
-
-
-    document.getElementById('rcpid').value = id;
-    document.getElementById("m_sj").value = suratjalan;
-    document.getElementById("m_ponbr").value = ponbr;
-    document.getElementById("m_line").value = line;
-    document.getElementById("m_itemcode").value = part;
-    document.getElementById("m_itemdesc").value = desc;
-    document.getElementById("m_qtyord").value = qtyord;
-    //document.getElementById("m_qtyopen").value = qtyopen;
-    document.getElementById("m_qtyship").value = qtyship;
-    document.getElementById("m_qtyrec").value = qtyrec;
-
-    document.getElementById("effdate").value = new_effdate;
-    document.getElementById("shipdate").value = new_shipdate;
-    //document.getElementById("m_site").value = site;
-    document.getElementById("m_loc").value = loc;
-    document.getElementById("m_lot").value = lot;
-    document.getElementById("m_ref").value = ref;
-
-    $('#m_qtyrec').attr({
-      "max": qtyship,
-    });
-
-    jQuery.ajax({
-      type: "get",
-      url: "{{URL::to("
-      detailreceipt ") }}",
-      data: {
-        suratjalan: suratjalan,
-        ponbr: ponbr,
-        line: line
-      },
-      success: function(data) {
-        //$('tbody').html(data);
-        console.log(data);
-        document.getElementById("d_um").innerHTML = data[0]['xpod_um'];
-        document.getElementById("m_um").value = data[0]['xpod_um'];
-        document.getElementById("m_loc").value = data[0]['xpod_loc'];
-        document.getElementById("m_lot").value = data[0]['xpod_lot'];
-      }
-    });
   });
 </script>
 
