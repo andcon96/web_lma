@@ -15,6 +15,7 @@ class CreateLocMstrTable extends Migration
     {
         Schema::create('loc_mstr', function (Blueprint $table) {
             $table->id();
+            $table->string('loc_domain');
             $table->string('loc');
             $table->string('loc_desc');
             $table->string('loc_site');

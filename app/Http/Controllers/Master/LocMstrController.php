@@ -44,6 +44,7 @@ class LocMstrController extends Controller
                 foreach($locdata[0] as $datas){
     
                     DB::table('loc_mstr')->insert([
+                        'loc_domain' => $datas->t_domain,
                         'loc'  => $datas->t_loc,
                         'loc_desc' => $datas->t_locdesc,
                         'loc_site' => $datas->t_locsite,

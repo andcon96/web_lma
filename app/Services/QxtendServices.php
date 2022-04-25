@@ -712,7 +712,7 @@ class QxtendServices
 
       foreach($datas['line'] as $key => $data){
         $sj_dets = SuratJalanDetail::findOrFail($datas['iddetail'][$key]);
-        $sj_dets->sj_qty_input = $datas['qtyinp'][$key];
+        $sj_dets->sj_qty_rcvd = $datas['qtyinp'][$key];
         $sj_dets->save();
       }
       return true;

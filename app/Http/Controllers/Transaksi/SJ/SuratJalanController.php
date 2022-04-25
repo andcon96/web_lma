@@ -38,7 +38,7 @@ class SuratJalanController extends Controller
         $so = Session::get('tableso');
         
         if(is_null($so)){
-            alert()->error('Error', 'Silahkan Search Ulang');
+            alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
             return view('transaksi.suratjalan.index');
         }
         
@@ -88,11 +88,11 @@ class SuratJalanController extends Controller
             $prefix->save();
 
             DB::commit();
-            alert()->success('Success', 'Surat jalan Created, SJ Number : '.$newprefix);
+            alert()->success('Success', 'Surat jalan Created, SJ Number : '.$newprefix)->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
         }catch(Exception $err){
             DB::rollBack();
-            alert()->error('Error', 'Failed to Create SJ');
+            alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
         }
     }
@@ -118,11 +118,11 @@ class SuratJalanController extends Controller
                 }
             }
             DB::commit();
-            alert()->success('Success', 'Surat jalan Updated');
+            alert()->success('Success', 'Surat jalan Updated')->persistent('Dismiss');
             return back();
         }catch(Exception $e){
             DB::rollBack();
-            alert()->error('Error', 'Failed to Update SJ');
+            alert()->error('Error', 'Failed to Update SJ')->persistent('Dismiss');
             return redirect()->route('browseSJ');
         }
     }
@@ -141,11 +141,11 @@ class SuratJalanController extends Controller
     public function searchSO(Request $request){
         $getso = (new WSAServices())->wsagetso($request->sjnbr);
         if($getso === false){
-            alert()->error('Error', 'WSA Failed');
+            alert()->error('Error', 'WSA Failed')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
         }else{
             if($getso[1] == 'false'){
-                alert()->error('Error', 'SO Number : '.$request->sjnbr.' Not Found');
+                alert()->error('Error', 'SO Number : '.$request->sjnbr.' Not Found')->persistent('Dismiss');
                 return redirect()->route('suratjalan.index');
             }
             $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);
@@ -199,7 +199,7 @@ class SuratJalanController extends Controller
         $data->sj_status = 'Cancelled';
         $data->save();
 
-        alert()->success('Success', 'SJ Cancelled');
+        alert()->success('Success', 'SJ Cancelled')->persistent('Dismiss');
         return back();
     }
 }

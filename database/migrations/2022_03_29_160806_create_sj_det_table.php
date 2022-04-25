@@ -24,6 +24,7 @@ class CreateSjDetTable extends Migration
             $table->decimal('sj_qty_ord');
             $table->decimal('sj_qty_ship');
             $table->decimal('sj_qty_input');
+            $table->decimal('sj_qty_rcvd')->nullable();
             $table->decimal('sj_price_ls');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
