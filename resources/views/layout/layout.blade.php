@@ -51,37 +51,21 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
 
-        <!-- Notifications Dropdown Menu -->
-        <a class="nav-link mr-2" data-toggle="dropdown" id="alertsDropdown" href="javascript:void(0)" aria-expanded="false">
-          <i class="fas fa-bell"></i>
-          <span class="badge badge-primary">{{ auth()->user()->unreadNotifications->count() }}</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" aria-labelledby="alertsDropdown" style="overflow-y:scroll; max-height: 250px; max-width:500px !important;">
-          <a class="dropdown-item text-center small font-weight-bold mark-as-read-all" href="javascript:void(0)" data-id="{{ Session::get('userid') }}">Mark All as Read</a>
-          <div class="dropdown-divider"></div>
-          @forelse(Auth::User()->unreadNotifications as $notif)
-          <a id="bell" href="{{$notif->data['url']}}" data-id="{{$notif->id}}" data-link="{{$notif->data['url']}}" class="dropdown-item mark-as-read" style="text-warp:break-word">
-            <div class="media">
-              <i class="fas fa-envelope mr-2"></i>
-              <div class="media-body">
-                <h3 class="dropdown-item-title">{{$notif->data['data']}}</h3>
-                <p class="font-weight-bold">{{$notif->data['nbr']}}</p>
-                <p class="">{{$notif->data['note']}}</p>
-              </div>
-            </div>
-          </a>
-          <div class="dropdown-divider"></div>
-          @empty
-          <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">
-            <div class="mr-3">
-              <i class="fas fa-times"></i>
-            </div>
-            <div class="">
-              <span class="font-weight-bold">No New Notification</span>
-            </div>
-          </a>
-          @endforelse
-        </div>
+        <!-- Select Domain -->
+        <li>
+          <select name="headdomain" id="headdomain" class="form-control">
+            @php
+              $domain = DB::table('domains')->get();
+              foreach($domain as $domains){
+                if($domains->domain_code == Session::get('domain')){
+                  echo '<option value="'.$domains->domain_code.'" Selected >'.$domains->domain_code.'</option>';
+                }else{
+                  echo '<option value="'.$domains->domain_code.'" >'.$domains->domain_code.'</option>';
+                }
+              }
+            @endphp
+          </select>
+        </li>
 
         <li>
           <a class="nav-link" role="button" data-toggle="dropdown">
