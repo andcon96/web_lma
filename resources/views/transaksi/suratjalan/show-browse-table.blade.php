@@ -5,7 +5,8 @@
                 <th>Line</th>
                 <th width="45%">Part</th>
                 <th>Qty Order</th>
-                <th>Qty Input</th>
+                <th>Qty SJ</th>
+                <th>Location</th>
             </tr>
         </thead>
         <tbody>
@@ -16,8 +17,12 @@
                     <td>{{$datas->sj_qty_ord}}</td>
                     <td>
                         <input type="hidden" value="{{$datas->sj_line}}" name="line[]">
-                        <input type="number" class="form-control" name="qtyinp[]" value="{{$datas->sj_qty_input}}" 
+                        <input type="hidden" class="form-control" name="qtyinp[]" value="{{$datas->sj_qty_input}}" 
                         max="{{$datas->sj_qty_input}}" readonly>
+                        {{$datas->sj_qty_input}}
+                    </td>
+                    <td>
+                        {{$datas->sj_loc}}
                     </td>
                 </tr>
             @empty

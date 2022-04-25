@@ -15,8 +15,17 @@ class DomainTableSeeder extends Seeder
     public function run()
     {
         $data = [
-            'domain_code' => '10USA',
-            'domain_desc' => 'USACO',
+            'domain_code' => 'LMA',
+            'domain_desc' => 'LMA',
+            'created_at' => now(),
+            'updated_at' => now()
+        ];
+
+        DB::table('domains')->insert($data);
+
+        $data = [
+            'domain_code' => 'HMP',
+            'domain_desc' => 'Hamparan',
             'created_at' => now(),
             'updated_at' => now()
         ];

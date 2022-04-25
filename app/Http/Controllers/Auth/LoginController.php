@@ -8,7 +8,6 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -50,6 +49,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request)
     {
+        // dd($request->all(),$request->domain);
         // Ambil Username Session
         $username = $request->input('username');
         $id = Auth::id();
@@ -65,13 +65,14 @@ class LoginController extends Controller
         if ($users == '') {
             Auth::logout();
             return redirect()->back()->with(['error' => 'Pastikan Role User sudah dibuat, Silahkan kontak Admin']);
+        }else if(is_null($request->domain)){
+            Auth::logout();
+            return redirect()->back()->with(['error' => 'Terdapat Error, Silahkan dicoba lagi.']);
         } else {
             // Session::put('menu_flag', $users->xxrole_flag);
             Session::put('supp_code', $users->supp_id);
             Session::put('getRole', $users->getRole->role);
-            Session::put('domain',
-                $users->domain
-            );
+            $request->session()->put('domain', $request->domain);
             Session::put('department', $users->department);
             Session::put('name', $users->name);
 

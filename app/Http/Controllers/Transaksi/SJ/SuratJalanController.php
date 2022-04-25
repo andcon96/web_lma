@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi\SJ;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\LocMstr;
 use App\Models\Master\Prefix;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
@@ -25,7 +26,7 @@ class SuratJalanController extends Controller
 
         $data = SuratJalan::paginate(10);
 
-        return view('transaksi.suratjalan.index',compact('data'));
+        return view('transaksi.suratjalan.index', compact('data'));
     }
 
     /**
@@ -36,12 +37,12 @@ class SuratJalanController extends Controller
     public function create()
     {
         $so = Session::get('tableso');
-        
-        if(is_null($so)){
+
+        if (is_null($so)) {
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
             return view('transaksi.suratjalan.index');
         }
-        
+
         return view('transaksi.suratjalan.create', compact('so'));
     }
 
@@ -55,23 +56,24 @@ class SuratJalanController extends Controller
     {
         // dd($request->all()); 
         DB::beginTransaction();
-        try{
+        try {
             $prefix = Prefix::firstOrFail();
-            $newrn = str_pad($prefix->rn_sj + 1,6,'0',STR_PAD_LEFT);
+            $newrn = str_pad($prefix->rn_sj + 1, 6, '0', STR_PAD_LEFT);
             $newprefix = $prefix->prefix_sj . $newrn;
 
-            $sj_mstr = New SuratJalan();
+            $sj_mstr = new SuratJalan();
             $sj_mstr->sj_nbr = $newprefix;
             $sj_mstr->sj_so_nbr = $request->sonbr;
             $sj_mstr->sj_so_cust = $request->customer;
             $sj_mstr->sj_so_ship = $request->shipto;
             $sj_mstr->sj_so_bill = $request->billto;
             $sj_mstr->sj_status = 'New';
+            $sj_mstr->sj_nopol = $request->nopol;
             $sj_mstr->save();
 
             $id = $sj_mstr->id;
-            foreach($request->sodline as $key => $datas){
-                $sj_dets = New SuratJalanDetail();
+            foreach ($request->sodline as $key => $datas) {
+                $sj_dets = new SuratJalanDetail();
                 $sj_dets->sj_mstr_id = $id;
                 $sj_dets->sj_line = $datas;
                 $sj_dets->sj_part = $request->sodpart[$key];
@@ -88,9 +90,9 @@ class SuratJalanController extends Controller
             $prefix->save();
 
             DB::commit();
-            alert()->success('Success', 'Surat jalan Created, SJ Number : '.$newprefix)->persistent('Dismiss');
+            alert()->success('Success', 'Surat jalan Created, SJ Number : ' . $newprefix)->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
-        }catch(Exception $err){
+        } catch (Exception $err) {
             DB::rollBack();
             alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
@@ -107,20 +109,21 @@ class SuratJalanController extends Controller
     public function update(Request $request, SuratJalan $suratJalan)
     {
         DB::beginTransaction();
-        try{
-            foreach($request->iddetail as $key => $datas){
+        try {
+            foreach ($request->iddetail as $key => $datas) {
                 $detail = SuratJalanDetail::findOrFail($datas);
-                if($request->operation[$key] == 'R'){
+                if ($request->operation[$key] == 'R') {
                     $detail->delete();
-                }else{
+                } else {
                     $detail->sj_qty_input = $request->qtyinp[$key];
+                    $detail->sj_loc = $request->partloc[$key];
                     $detail->save();
                 }
             }
             DB::commit();
             alert()->success('Success', 'Surat jalan Updated')->persistent('Dismiss');
             return back();
-        }catch(Exception $e){
+        } catch (Exception $e) {
             DB::rollBack();
             alert()->error('Error', 'Failed to Update SJ')->persistent('Dismiss');
             return redirect()->route('browseSJ');
@@ -138,14 +141,15 @@ class SuratJalanController extends Controller
         //
     }
 
-    public function searchSO(Request $request){
+    public function searchSO(Request $request)
+    {
         $getso = (new WSAServices())->wsagetso($request->sjnbr);
-        if($getso === false){
+        if ($getso === false) {
             alert()->error('Error', 'WSA Failed')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
-        }else{
-            if($getso[1] == 'false'){
-                alert()->error('Error', 'SO Number : '.$request->sjnbr.' Not Found')->persistent('Dismiss');
+        } else {
+            if ($getso[1] == 'false') {
+                alert()->error('Error', 'SO Number : ' . $request->sjnbr . ' Not Found')->persistent('Dismiss');
                 return redirect()->route('suratjalan.index');
             }
             $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);
@@ -154,47 +158,62 @@ class SuratJalanController extends Controller
         return redirect()->route('suratjalan.create')->with(['tableso' => $tempPO]);
     }
 
-    public function browsesj(Request $request){
-        $data = SuratJalan::with('getDetailCust','getDetailShip','getDetailBill');
+    public function browsesj(Request $request)
+    {
+        $data = SuratJalan::with('getDetailCust', 'getDetailShip', 'getDetailBill');
         $cust = SuratJalan::with('getDetailCust')->groupBy('sj_so_cust')->get();
-        
-        if($request->sjnbr){
-            $data->where('sj_nbr',$request->sjnbr);
+
+        if ($request->sjnbr) {
+            $data->where('sj_nbr', $request->sjnbr);
         }
-        if($request->sonbr){
-            $data->where('sj_so_nbr',$request->sonbr);
+        if ($request->sonbr) {
+            $data->where('sj_so_nbr', $request->sonbr);
         }
-        if($request->cust){
-            $data->where('sj_so_cust',$request->cust);
+        if ($request->cust) {
+            $data->where('sj_so_cust', $request->cust);
         }
-        if($request->status){
-            $data->where('sj_status',$request->status);
+        if ($request->status) {
+            $data->where('sj_status', $request->status);
         }
 
-        $data = $data->orderBy('created_at','Desc')->paginate(10);
+        $data = $data->orderBy('created_at', 'Desc')->paginate(10);
 
         // dd($data);
 
-        return view('transaksi.suratjalan.browse',compact('data','cust'));
+        return view('transaksi.suratjalan.browse', compact('data', 'cust'));
     }
 
-    public function editjsbrowse($id){
+    public function editjsbrowse($id)
+    {
         $data = SuratJalan::with('getDetail')->findOrFail($id);
 
-        $listsjopen = SuratJalanDetail::with('getMaster')->whereRelation('getMaster','sj_status','New')->get();
+        $listsjopen = SuratJalanDetail::with('getMaster')
+            ->whereRelation('getMaster', 'sj_status', 'New')
+            ->whereRelation('getMaster', 'sj_so_nbr', $data->sj_so_nbr)
+            ->get();
+        $listsjship = SuratJalanDetail::with('getMaster')
+            ->whereRelation('getMaster', 'sj_status', 'Closed')
+            ->whereRelation('getMaster', 'sj_so_nbr', $data->sj_so_nbr)
+            ->get();
 
-        return view('transaksi.suratjalan.edit-browse',compact('data','listsjopen'));
+        // dd($listsjship);
+
+        $loc  = LocMstr::where('loc_domain', Session::get('domain'))->get();
+
+        return view('transaksi.suratjalan.edit-browse', compact('data', 'listsjopen', 'loc', 'listsjship'));
     }
 
-    public function viewjsbrowse($id){
+    public function viewjsbrowse($id)
+    {
         $data = SuratJalan::with('getDetail')->findOrFail($id);
 
-        $listsjopen = SuratJalanDetail::with('getMaster')->whereRelation('getMaster','sj_status','New')->get();
+        $listsjopen = SuratJalanDetail::with('getMaster')->whereRelation('getMaster', 'sj_status', 'New')->get();
 
-        return view('transaksi.suratjalan.show-browse',compact('data'));
+        return view('transaksi.suratjalan.show-browse', compact('data'));
     }
 
-    public function deletejsbrowse($id){
+    public function deletejsbrowse($id)
+    {
         $data = SuratJalan::with('getDetail')->findOrFail($id);
         $data->sj_status = 'Cancelled';
         $data->save();

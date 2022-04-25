@@ -11,7 +11,9 @@ use App\Models\Transaksi\POhist;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use Carbon\Carbon;
-use Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 class QxtendServices
 {
   private function httpHeader($req)
@@ -536,7 +538,7 @@ class QxtendServices
 
       foreach ($ponbr as $key => $a) {
 
-        if ($qtyinput[$key] > 0) {
+        if ($qtyfg[$key] > 0 || $qtyreject[$key] > 0) {
           $pohist = new POhist();
 
           $pohist->ph_ponbr = $a;
@@ -544,7 +546,8 @@ class QxtendServices
           $pohist->ph_part = $popart[$key];
           $pohist->ph_qty_order = $qtyord[$key];
           $pohist->ph_qty_rcvd = $qtyrcvd[$key];
-          $pohist->ph_qty_input = $qtyinput[$key];
+          $pohist->ph__qty_fg = $qtyfg[$key];
+          $pohist->ph__qty_rjct = $qtyreject[$key];
           $pohist->created_by = auth()->user()->username;
           $pohist->save();
         }
@@ -564,6 +567,8 @@ class QxtendServices
     $qxUrl          = $qxwsa->qx_url; // Edit Here
 
     $timeout        = 0;
+
+    $domain         = Session::get('domain');
 
     // XML Qextend ** Edit Here
     $qdocHead = '<?xml version="1.0" encoding="UTF-8"?>
@@ -587,7 +592,7 @@ class QxtendServices
                     <qcom:ttContext>
                       <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
                       <qcom:propertyName>domain</qcom:propertyName>
-                      <qcom:propertyValue/>
+                      <qcom:propertyValue>'.$domain.'</qcom:propertyValue>
                     </qcom:ttContext>
                     <qcom:ttContext>
                       <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
@@ -649,7 +654,7 @@ class QxtendServices
                   <lineDetail>
                           <line>'.$data.'</line>
                           <lotserialQty>'.$datas['qtyinp'][$key].'</lotserialQty>
-                          <location>'.$datas['loc'][$key].'</location>
+                          <location>'.$datas['partloc'][$key].'</location>
                           <pickLogic>false</pickLogic>
                           <yn>true</yn>
                           <yn1>true</yn1>        
@@ -722,6 +727,7 @@ class QxtendServices
       foreach($datas['line'] as $key => $data){
         $sj_dets = SuratJalanDetail::findOrFail($datas['iddetail'][$key]);
         $sj_dets->sj_qty_rcvd = $datas['qtyinp'][$key];
+        $sj_dets->sj_loc = $datas['partloc'][$key];
         $sj_dets->save();
       }
       return true;
