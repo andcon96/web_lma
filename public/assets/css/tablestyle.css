@@ -316,3 +316,8 @@ input[type="checkbox"]:focus {
 .bg-flat-color-2:hover {
   background: #830083; }
   
+.btn-custom {
+  color: #000000;
+  background-color: #ffffff;
+  border-color: #9c9fa0;
+}

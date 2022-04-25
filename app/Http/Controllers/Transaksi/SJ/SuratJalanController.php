@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi\SJ;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\LocMstr;
 use App\Models\Master\Prefix;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
@@ -114,6 +115,7 @@ class SuratJalanController extends Controller
                     $detail->delete();
                 }else{
                     $detail->sj_qty_input = $request->qtyinp[$key];
+                    $detail->sj_loc = $request->partloc[$key];
                     $detail->save();
                 }
             }
@@ -182,8 +184,10 @@ class SuratJalanController extends Controller
         $data = SuratJalan::with('getDetail')->findOrFail($id);
 
         $listsjopen = SuratJalanDetail::with('getMaster')->whereRelation('getMaster','sj_status','New')->get();
+        
+        $loc  = LocMstr::where('loc_domain',Session::get('domain'))->get();
 
-        return view('transaksi.suratjalan.edit-browse',compact('data','listsjopen'));
+        return view('transaksi.suratjalan.edit-browse',compact('data','listsjopen','loc'));
     }
 
     public function viewjsbrowse($id){

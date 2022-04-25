@@ -22,6 +22,12 @@
                   <span class="show">SHOW</span>
                   <label>Password</label>
             </div>
+            <div class="input-field">
+              <select name="domain" id="domain" style="width:100%;height:50px;font-size:16px;padding-left:10px;">
+                <option value="LMA">LMA</option>
+                <option value="HMP">HAMPARAN</option>
+              </select>
+            </div>
             <div class="button">
                 <div class="inner">
                 </div>

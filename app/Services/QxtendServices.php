@@ -640,7 +640,7 @@ class QxtendServices
                   <lineDetail>
                           <line>'.$data.'</line>
                           <lotserialQty>'.$datas['qtyinp'][$key].'</lotserialQty>
-                          <location>'.$datas['loc'][$key].'</location>
+                          <location>'.$datas['partloc'][$key].'</location>
                           <pickLogic>false</pickLogic>
                           <yn>true</yn>
                           <yn1>true</yn1>        
@@ -713,6 +713,7 @@ class QxtendServices
       foreach($datas['line'] as $key => $data){
         $sj_dets = SuratJalanDetail::findOrFail($datas['iddetail'][$key]);
         $sj_dets->sj_qty_rcvd = $datas['qtyinp'][$key];
+        $sj_dets->sj_loc = $datas['partloc'][$key];
         $sj_dets->save();
       }
       return true;
