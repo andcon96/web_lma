@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
     //================================
     Route::post('/mark-as-read', [NotificationController::class, 'notifread'])->name('notifread');
     Route::post('/mark-all-as-read', [NotificationController::class, 'notifreadall'])->name('notifreadall');
+    Route::get('/changedomain', [NotificationController::class, 'changedomain'])->name('changeDomain');
     //================================
 
 

@@ -28,4 +28,10 @@ class NotificationController extends Controller
 
         return response()->noContent();
     }
+
+    public function changedomain(Request $req){
+        $req->session()->put('domain',$req->domain);
+
+        return true;
+    }
 }
