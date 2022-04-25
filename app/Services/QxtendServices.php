@@ -12,6 +12,7 @@ use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class QxtendServices
 {
@@ -556,6 +557,8 @@ class QxtendServices
 
     $timeout        = 0;
 
+    $domain         = Session::get('domain');
+
     // XML Qextend ** Edit Here
     $qdocHead = '<?xml version="1.0" encoding="UTF-8"?>
             <soapenv:Envelope xmlns="urn:schemas-qad-com:xml-services"
@@ -578,7 +581,7 @@ class QxtendServices
                     <qcom:ttContext>
                       <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
                       <qcom:propertyName>domain</qcom:propertyName>
-                      <qcom:propertyValue/>
+                      <qcom:propertyValue>'.$domain.'</qcom:propertyValue>
                     </qcom:ttContext>
                     <qcom:ttContext>
                       <qcom:propertyQualifier>QAD</qcom:propertyQualifier>

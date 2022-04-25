@@ -38,13 +38,21 @@ class SuratJalanConfirmController extends Controller
     public function edit($id){
         $data = SuratJalan::with(['getDetail','getDetailCust','getDetailShip','getDetailBill'])->findOrFail($id);
 
-        $listsjopen = SuratJalanDetail::with('getMaster')->whereRelation('getMaster','sj_status','New')->get();
+
+        $listsjopen = SuratJalanDetail::with('getMaster')
+            ->whereRelation('getMaster', 'sj_status', 'New')
+            ->whereRelation('getMaster', 'sj_so_nbr', $data->sj_so_nbr)
+            ->get();
+        $listsjship = SuratJalanDetail::with('getMaster')
+            ->whereRelation('getMaster', 'sj_status', 'Closed')
+            ->whereRelation('getMaster', 'sj_so_nbr', $data->sj_so_nbr)
+            ->get();
 
         $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
         
         
         // dd($listsj);
-        return view('transaksi.sjconfirm.edit',compact('data','listsjopen','loc'));
+        return view('transaksi.sjconfirm.edit',compact('data','listsjopen','loc','listsjship'));
     }
 
     public function update(Request $request){

@@ -4,7 +4,8 @@
             <tr>
                 <th>Line</th>
                 <th width="25%">Part</th>
-                <th>Qty Order QAD</th>
+                <th>Qty Order</th>
+                <th>Qty Open</th>
                 <th>Qty SJ</th>
                 <th width="15%">Qty Input</th>
                 <th width="25%">Location</th>
@@ -17,9 +18,10 @@
                     <td>{{$datas->sj_part}}</td>
                     <td>{{$datas->sj_qty_ord}}</td>
                     @php
-                        $totqtyinput = $listsjopen->where('sj_line',$datas->sj_line)->where('sj_part',$datas->sj_part)->sum('sj_qty_input');
+                        $totqtyongoing = $listsjopen->where('sj_line',$datas->sj_line)->where('sj_part',$datas->sj_part)->sum('sj_qty_input');
+                        $totqtyshipped = $listsjship->where('sj_line',$datas->sj_line)->where('sj_part',$datas->sj_part)->sum('sj_qty_rcvd');
                     @endphp
-                    {{-- <td>{{number_format($datas->sj_qty_ord - $datas->sj_qty_ship - $totqtyinput ,2)}}</td> --}}
+                    <td>{{number_format($datas->sj_qty_ord - $totqtyshipped - $totqtyongoing ,2)}}</td>
                     <td>{{$datas->sj_qty_input}}</td>
                     <td>
                         <input type="hidden" value="{{$datas->id}}" name="iddetail[]">
