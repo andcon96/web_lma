@@ -16,8 +16,10 @@ class CreateTempTable
         Schema::create('temp_group', function ($table) {
             $table->string('po_nbr');
             $table->string('po_cust');
+            $table->string('po_custname');
             $table->string('pod_line');
             $table->string('pod_part');
+            $table->string('pod_partdesc');
             $table->string('pod_qty_ord');
             $table->string('pod_qty_rcvd');
             $table->temporary();
@@ -26,9 +28,11 @@ class CreateTempTable
         foreach($data as $datas){
             DB::table('temp_group')->insert([
                 'po_nbr' => $datas->t_ponbr,
-                'po_cust' => $datas->t_cust,
+                'po_cust' => $datas->t_suppnbr,
+                'po_custname' => $datas->t_suppname,
                 'pod_line' => $datas->t_line,
                 'pod_part' => $datas->t_part,
+                'pod_partdesc' => $datas->t_partdesc,
                 'pod_qty_ord' => $datas->t_ord,
                 'pod_qty_rcvd' => $datas->t_rcvd,
             ]);
