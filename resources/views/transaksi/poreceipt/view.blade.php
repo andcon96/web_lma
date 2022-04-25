@@ -12,11 +12,25 @@
 
 
 <form method="post" action="{{route('submitReceipt')}}" id='submit'>
+  <div class="row">
+    <label for="receiptdate" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Receipt Date') }}</label>
+    <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
+      <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ Carbon\Carbon::parse(now())->format('d-m-Y')  }}">
+    </div>
+  </div>
+
+
   @method('POST')
   @csrf
 
   @include('transaksi.poreceipt.table-view')
 
+  <div class="row">
+    <label for="remarkreceipt" class="col-form-label col-md-3">{{ __('Remark') }}</label>
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="remarkreceipt" maxlength="24"/>
+    </div>
+  </div>
 
   <div class="table-responsive col-lg-12 col-md-12 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
     <table class="table table-bordered table-nopol" id="nopolTable" width="100%" cellspacing="0">
@@ -60,6 +74,11 @@
 @section('scripts')
 
 <script>
+  $("#receiptdate").datepicker({
+    dateFormat: 'yy-mm-dd',
+    maxDate: 0,
+  });
+
   $("#addrow").on("click", function() {
 
 

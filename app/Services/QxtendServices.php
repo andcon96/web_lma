@@ -11,8 +11,7 @@ use App\Models\Transaksi\POhist;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-
+use Session;
 class QxtendServices
 {
   private function httpHeader($req)
@@ -358,7 +357,8 @@ class QxtendServices
     // dd($newrequest,'b');
     $ponbr = $datas['ponbr'];
     $poline = $datas['poline'];
-    $qtyinput = $datas['qtyinput'];
+    $qtyfg = $datas['qtyfg'];
+    $qtyreject = $datas['qtyreject'];
     $qtyord = $datas['poqtyord'];
     $qtyrcvd = $datas['poqtyrcvd'];
     $popart = $datas['popart'];
@@ -373,7 +373,9 @@ class QxtendServices
     // dd($qxtend);
     $qxUrl          = $qxwsa->qx_url;
 
-    $timeout        = 0;
+    $domain = Session::get('domain');
+
+    $timeout = 0;
 
     $qdocHead =
       '<?xml version="1.0" encoding="UTF-8"?>
@@ -382,8 +384,8 @@ class QxtendServices
         xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
         <soapenv:Header>
           <wsa:Action/>
-          <wsa:To>urn:services-qad-com:QX_DNP</wsa:To>
-          <wsa:MessageID>urn:services-qad-com::QX_DNP</wsa:MessageID>
+          <wsa:To>urn:services-qad-com:QADLMA</wsa:To>
+          <wsa:MessageID>urn:services-qad-com::QADLMA</wsa:MessageID>
           <wsa:ReferenceParameters>
             <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
           </wsa:ReferenceParameters>
@@ -397,7 +399,7 @@ class QxtendServices
               <qcom:ttContext>
                 <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
                 <qcom:propertyName>domain</qcom:propertyName>
-                <qcom:propertyValue>10USA</qcom:propertyValue>
+                <qcom:propertyValue>'.$domain.'</qcom:propertyValue>
               </qcom:ttContext>
               <qcom:ttContext>
                 <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
@@ -456,10 +458,17 @@ class QxtendServices
                     <yn1>true</yn1>';
     foreach ($poline as $key => $p) {
       // dd($index);
-      if ($qtyinput[$key] > 0) {
+      if ($qtyfg[$key] > 0) {
         $qdocBody .= ' <lineDetail>
                     <line>' . $p . '</line>
-                    <lotserialQty>' . $qtyinput[$key] . '</lotserialQty>
+                    <lotserialQty>' . $qtyfg[$key] . '</lotserialQty>
+                    </lineDetail>';
+      }
+
+      if ($qtyreject[$key] > 0) {
+        $qdocBody .= ' <lineDetail>
+                    <line>' . $p . '</line>
+                    <lotserialQty>' . $qtyreject[$key] . '</lotserialQty>
                     </lineDetail>';
       }
     }

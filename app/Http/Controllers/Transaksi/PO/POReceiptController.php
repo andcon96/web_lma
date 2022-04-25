@@ -25,6 +25,8 @@ class POReceiptController extends Controller
 
     public function searchPO(Request $req){
         // Validasi Web
+        $receiptdate = $req->receiptdate;
+
         if(is_null($req->sjnbr)){
             alert()->error('Error', 'PO tidak boleh kosong');
             return redirect()->back();
@@ -46,11 +48,13 @@ class POReceiptController extends Controller
         }
         
         
-        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO]);
+        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate]);
     }
 
     public function showReceipt(){
         $po = Session::get('tablepo');
+
+        $receiptdate = Session::get('receiptdate');
         
         if(is_null($po)){
             alert()->error('Error', 'Silahkan Search Ulang');
@@ -58,7 +62,7 @@ class POReceiptController extends Controller
             return redirect()->route('poreceipt.index');
         }
         
-        return view('transaksi.poreceipt.view', compact('po'));
+        return view('transaksi.poreceipt.view', compact('po','receiptdate'));
     }
 
     public function submitReceipt(Request $req){
