@@ -51,6 +51,7 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
 
+        <!-- Select Domain -->
         <li>
           <select name="headdomain" id="headdomain" class="form-control">
             @php
@@ -504,7 +505,7 @@
         });
       });
     });
-    
+
     $('#headdomain').on('change',function($e){
       let domain = $(this).val();
       
