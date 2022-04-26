@@ -1,15 +1,15 @@
 @forelse ($loc as $show)
   <tr>
-    <!-- <td>{{ $show->item_site }}</td> -->
+    <td>{{ $show->loc_domain }}</td>
     <td>{{ $show->loc }}</td>
     <td>{{ $show->loc_desc }}</td>
     <td>{{ $show->loc_site }}</td>
 
     @if($show->loc_type == "")
-      <td>{{ $show->loc_type }}</td>
-    @else
       <td>-</td>
-    @endif
+    @else
+      <td>{{ $show->loc_type }}</td>
+    @endif 
   </tr>
 @empty
 <tr>

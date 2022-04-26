@@ -1,6 +1,6 @@
 @forelse ($cust as $show)
   <tr>
-    <!-- <td>{{ $show->item_site }}</td> -->
+    <td>{{ $show->cust_dom }}</td>
     <td>{{ $show->cust_code }}</td>
     <td>{{ $show->cust_name }}</td>
     <td>{{ $show->cust_addr }}</td>

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Master\Domain;
 use App\Models\Master\ItemConversion;
 use App\Models\Master\Qxwsa;
 use App\Models\Master\UM;
@@ -1041,7 +1042,7 @@ class WSAServices
         return [$dataloop, $qdocResult];
     }
 
-    public function wsagetcust(){
+    public function wsagetcust($dom){
         $wsa = Qxwsa::first();
 
         // Validasi WSA
@@ -1054,13 +1055,13 @@ class WSAServices
         $dsName         = '';
         $timeout        = 0;
 
-        $domain         = $wsa->wsas_domain;
+        // $domain         = $wsa->wsas_domain;
 
         $qdocRequest =   
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
             <Body>
                 <LMA_cust_mstr xmlns="'. $wsa->wsas_path .'">
-                    <inpdomain>'.$domain.'</inpdomain>
+                    <inpdomain>'.$dom.'</inpdomain>
                 </LMA_cust_mstr>
             </Body>
         </Envelope>';
@@ -1116,7 +1117,7 @@ class WSAServices
         return [$dataloop, $qdocResult];
     }
 
-    public function wsagetloc(){
+    public function wsagetloc($dom){
         $wsa = Qxwsa::first();
 
         // Validasi WSA
@@ -1129,13 +1130,13 @@ class WSAServices
         $dsName         = '';
         $timeout        = 0;
 
-        $domain         = $wsa->wsas_domain;
+        // $domain         = $wsa->wsas_domain;
 
         $qdocRequest =   
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
             <Body>
                 <LMA_loc_mstr xmlns="'. $wsa->wsas_path .'">
-                    <inpdomain>'.$domain.'</inpdomain>
+                    <inpdomain>'.$dom.'</inpdomain>
                 </LMA_loc_mstr>
             </Body>
         </Envelope>';
@@ -1191,7 +1192,7 @@ class WSAServices
         return [$dataloop, $qdocResult];
     }
 
-    public function wsagetsite(){
+    public function wsagetsite($dom){
         $wsa = Qxwsa::first();
 
         // Validasi WSA
@@ -1210,7 +1211,7 @@ class WSAServices
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
             <Body>
                 <LMA_site_mstr xmlns="'. $wsa->wsas_path .'">
-                    <inpdomain>'.$domain.'</inpdomain>
+                    <inpdomain>'.$dom.'</inpdomain>
                 </LMA_site_mstr>
             </Body>
         </Envelope>';
