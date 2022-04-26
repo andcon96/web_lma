@@ -28,7 +28,7 @@ class POReceiptController extends Controller
         $receiptdate = $req->receiptdate;
 
         if(is_null($req->sjnbr)){
-            alert()->error('Error', 'PO tidak boleh kosong');
+            alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
             return redirect()->back();
         }
 
@@ -59,7 +59,7 @@ class POReceiptController extends Controller
         if(is_null($po)){
             alert()->error('Error', 'Silahkan Search Ulang');
             // return view('transaksi.poreceipt.index');
-            return redirect()->route('poreceipt.index');
+            return redirect()->route('poreceipt.index')->persistent('Dismiss');
         }
         
         return view('transaksi.poreceipt.view', compact('po','receiptdate'));
@@ -70,17 +70,17 @@ class POReceiptController extends Controller
 
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
         if($poreceipt_submit === 'qxtend_err'){
-            alert()->error('Error', 'Qxtend Error');
-            return redirect()->back();
+            alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
+            return redirect()->route('poreceipt.index');
         }
         
         if($poreceipt_submit === false){
-            alert()->error('Error', 'Terdapat masalah pada qxtend');
-            return redirect()->back();
+            alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
+            return redirect()->route('poreceipt.index');
         }
 
 
-        alert()->success('Success', 'PO berhasil di receipt');
+        alert()->success('Success', 'PO berhasil di receipt')->persistent('Dismiss');;
         return redirect()->route('poreceipt.index');
 
     }

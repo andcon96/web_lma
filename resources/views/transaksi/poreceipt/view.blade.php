@@ -12,10 +12,10 @@
 
 
 <form method="post" action="{{route('submitReceipt')}}" id='submit'>
-  <div class="row">
+  <div class="row mb-3">
     <label for="receiptdate" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Receipt Date') }}</label>
     <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
-      <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ Carbon\Carbon::parse(now())->format('d-m-Y')  }}">
+      <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ Carbon\Carbon::parse(now())->format('Y-m-d')  }}">
     </div>
   </div>
 
@@ -25,14 +25,14 @@
 
   @include('transaksi.poreceipt.table-view')
 
-  <div class="row">
-    <label for="remarkreceipt" class="col-form-label col-md-3">{{ __('Remark') }}</label>
+  <div class="row mb-3">
+    <label for="remarkreceipt" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Remark') }}</label>
     <div class="col-md-8">
-      <input type="text" class="form-control" name="remarkreceipt" maxlength="24"/>
+      <input type="text" class="form-control" name="remarkreceipt" maxlength="24" />
     </div>
   </div>
 
-  <div class="table-responsive col-lg-12 col-md-12 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
+  <div class="table-responsive col-lg-6 col-md-6 tag-container offset-3" style="overflow-x: auto; display: block;white-space: nowrap;">
     <table class="table table-bordered table-nopol" id="nopolTable" width="100%" cellspacing="0">
       <thead>
         <tr>
@@ -42,6 +42,13 @@
       </thead>
       <tbody id="nopolDetail">
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">
+            <input type="button" class="btn btn-lg btn-block btn-focus" id="addrow" value="Add Nomor Polisi" style="background-color:#1234A5; color:white; font-size:16px" />
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 
@@ -74,6 +81,7 @@
 @section('scripts')
 
 <script>
+  var counter = 1;
   $("#receiptdate").datepicker({
     dateFormat: 'yy-mm-dd',
     maxDate: 0,
@@ -102,7 +110,7 @@
     var cols = "";
 
     cols += '<td>';
-    cols += '<input type="text" class="form-control nopol" name="nopol[]" required />';
+    cols += '<input type="text" class="form-control nopol" name="nopol[]" maxlength="14" required />';
     cols += '</td>';
 
     cols += '<td data-title="Action"><input type="button" class="ibtnDel btn btn-danger btn-focus"  value="Delete"></td>';

@@ -356,7 +356,7 @@ class QxtendServices
 
   public function submitreceipt($datas)
   {
-    // dd($newrequest,'b');
+    // dd($datas,'b');
     $ponbr = $datas['ponbr'];
     $poline = $datas['poline'];
     $qtyfg = $datas['qtyfg'];
@@ -364,6 +364,10 @@ class QxtendServices
     $qtyord = $datas['poqtyord'];
     $qtyrcvd = $datas['poqtyrcvd'];
     $popart = $datas['popart'];
+    $receiptdate = $datas['receiptdate'];
+    $listnopol = implode(" , ", $datas['nopol']);
+
+    // dd($listnopol);
     // foreach($ponbr as $key => $p){
     //   dump($key,$poline[$key]);
     // }
@@ -386,8 +390,8 @@ class QxtendServices
         xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
         <soapenv:Header>
           <wsa:Action/>
-          <wsa:To>urn:services-qad-com:QADLMA</wsa:To>
-          <wsa:MessageID>urn:services-qad-com::QADLMA</wsa:MessageID>
+          <wsa:To>urn:services-qad-com:QX_DNP</wsa:To>
+          <wsa:MessageID>urn:services-qad-com::QX_DNP</wsa:MessageID>
           <wsa:ReferenceParameters>
             <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
           </wsa:ReferenceParameters>
@@ -455,24 +459,38 @@ class QxtendServices
       '<dsPurchaseOrderReceive>
                   <purchaseOrderReceive>
                     <ordernum>' . $ponbr[0] . '</ordernum>
-                    <move>true</move>
+                    <receiptDate>'.$receiptdate.'</receiptDate>
+                    <cmmtYn>true</cmmtYn>
                     <yn>true</yn>
-                    <yn1>true</yn1>';
+                    <yn1>true</yn1>
+                    <purchaseOrderReceiveTransComment>
+                      <cmtCmmt>'.$listnopol.'</cmtCmmt>
+                    </purchaseOrderReceiveTransComment>';
     foreach ($poline as $key => $p) {
+      $totalreceipt = 0;
+      $totalreceipt = $qtyfg[$key] + $qtyreject[$key];
       // dd($index);
+      $qdocBody .= ' <lineDetail>
+                        <line>' . $p . '</line>
+                        <lotserialQty>' . $totalreceipt  . '</lotserialQty>
+                        <multiEntry>true</multiEntry>';
       if ($qtyfg[$key] > 0) {
-        $qdocBody .= ' <lineDetail>
-                    <line>' . $p . '</line>
-                    <lotserialQty>' . $qtyfg[$key] . '</lotserialQty>
-                    </lineDetail>';
+          $qdocBody .= ' <receiptDetail>
+                          <location>FG</location>
+                          <lotserialQty>'.$qtyfg[$key].'</lotserialQty>
+                          <serialsYn>true</serialsYn>
+                        </receiptDetail>';
       }
 
       if ($qtyreject[$key] > 0) {
-        $qdocBody .= ' <lineDetail>
-                    <line>' . $p . '</line>
-                    <lotserialQty>' . $qtyreject[$key] . '</lotserialQty>
-                    </lineDetail>';
+          $qdocBody .= ' <receiptDetail>
+                          <location>Reject</location>
+                          <lotserialQty>'.$qtyreject[$key].'</lotserialQty>
+                          <serialsYn>true</serialsYn>
+                        </receiptDetail>';
       }
+
+        $qdocBody .= '</lineDetail>';
     }
     $qdocFoot = ' </purchaseOrderReceive>
                 </dsPurchaseOrderReceive>
@@ -546,8 +564,10 @@ class QxtendServices
           $pohist->ph_part = $popart[$key];
           $pohist->ph_qty_order = $qtyord[$key];
           $pohist->ph_qty_rcvd = $qtyrcvd[$key];
-          $pohist->ph__qty_fg = $qtyfg[$key];
-          $pohist->ph__qty_rjct = $qtyreject[$key];
+          $pohist->ph_qty_fg = $qtyfg[$key];
+          $pohist->ph_qty_rjct = $qtyreject[$key];
+          $pohist->ph_nopol = $listnopol;
+          $pohist->ph_receiptdate = $receiptdate;
           $pohist->created_by = auth()->user()->username;
           $pohist->save();
         }

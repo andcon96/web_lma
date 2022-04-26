@@ -8,6 +8,7 @@ use App\Models\Master\UM;
 use App\Models\RFPMaster;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class WSAServices
 {
@@ -583,6 +584,10 @@ class WSAServices
     public function wsagetpo($ponbr){
         $wsa = Qxwsa::first();
 
+        $domain = Session::get('domain');
+
+        // dd($domain);
+
         // Validasi WSA
         $qxUrl          = $wsa->wsas_url;
         $qxReceiver     = '';
@@ -597,7 +602,7 @@ class WSAServices
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">' .
             '<Body>' .
                 '<LMA_getPO xmlns="' . $wsa->wsas_path . '">' .
-                    '<inpdomain>' . $wsa->wsas_domain . '</inpdomain>' .
+                    '<inpdomain>' . $domain . '</inpdomain>' .
                     '<innbr>' . $ponbr . '</innbr>' .
                 '</LMA_getPO>' .
             '</Body>' .

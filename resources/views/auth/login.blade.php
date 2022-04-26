@@ -26,6 +26,7 @@
               <select name="domain" id="domain" style="width:100%;height:50px;font-size:16px;padding-left:10px;">
                 <option value="LMA">LMA</option>
                 <option value="HMP">HAMPARAN</option>
+                <option value="10USA">10USA - Local Test</option>
               </select>
             </div>
             <div class="button">
