@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Master\DepartmentController;
 use App\Http\Controllers\Master\AccessRoleMenuController;
 use App\Http\Controllers\Master\CustMstrController;
+use App\Http\Controllers\Master\DomainController;
 use App\Http\Controllers\Master\LocMstrController;
 use App\Http\Controllers\Master\POInvcMTController;
 use App\Http\Controllers\Master\PrefixMTController;
@@ -152,15 +153,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('locmstr', LocMstrController::class);
         //================================
 
-        // Location Masters
+        // Site Masters
         //================================
         Route::resource('sitemstr', SiteMstrController::class);
         //================================
 
-        // // Site Maintenance
-        // //================================
-        // Route::resource('sitemaint', SiteMTController::class);
-        // //================================
+        // Domain Masters
+        //================================
+        Route::resource('domainmstr', DomainController::class);
+        //================================
 
     });
 });

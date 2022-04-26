@@ -668,7 +668,7 @@ class QxtendServices
                   <SalesOrderShipment>
                       <soNbr>'.$datas['sonbr'].'</soNbr>
                       <effDate>'.$datas['effdate'].'</effDate>
-                      <document>'.$datas['remarks'].'</document>';
+                      <document>'.$datas['remarks'].';'.$datas['nopol'].'</document>';
                       foreach($datas['line'] as $key => $data){ 
                           $qdocBody.= '
                   <lineDetail>
@@ -742,6 +742,9 @@ class QxtendServices
       
       $sj_mstr = SuratJalan::findOrFail($datas['idmaster']);
       $sj_mstr->sj_status = 'Closed';
+      $sj_mstr->sj_remark = $datas['remarks'];
+      $sj_mstr->sj_eff_date = $datas['effdate'];
+      $sj_mstr->sj_nopol = $datas['nopol'];
       $sj_mstr->save();
 
       foreach($datas['line'] as $key => $data){

@@ -46,6 +46,10 @@
             <div class="col-md-3">
                 <input id="effdate" type="text" class="form-control" name="effdate" value="{{$data->sj_eff_date}}" autocomplete="off" maxlength="24" readonly>
             </div>
+            <label for="nopol" class="col-md-3 col-form-label text-md-right">No Polis</label>
+            <div class="col-md-3">
+                <input id="nopol" type="text" class="form-control" name="nopol" value="{{$data->sj_nopol}}" autocomplete="off" maxlength="24" readonly>
+            </div>
         </div>
         <div class="form-group row col-md-12">
             <label for="remarks" class="col-md-2 col-form-label text-md-right">Remarks</label>

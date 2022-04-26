@@ -2,12 +2,14 @@
 
 namespace App\Services;
 
+use App\Models\Master\Domain;
 use App\Models\Master\PoInvcEmail;
 use App\Models\Transaksi\POInvc;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Session;
 
 class CreateTempTable
 {
@@ -138,5 +140,18 @@ class CreateTempTable
         Schema::dropIfExists('temp_group');
 
         return $table_so;
+    }
+
+    public function getRNSJ(){
+        $prefix = Domain::where('domain_code',Session::get('domain'))->firstOrFail();
+        if(substr($prefix->domain_sj_rn,0,2) != date('y')){
+            $newrn = date('y').'0001';
+        }else{
+            $newrn = str_pad($prefix->domain_sj_rn + 1, 6, '0', STR_PAD_LEFT);
+        }
+
+        $newprefix = $prefix->domain_sj_prefix . $newrn;
+
+        return [$newprefix,$newrn];
     }
 }
