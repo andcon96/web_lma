@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi\SJ;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\Domain;
 use App\Models\Master\LocMstr;
 use App\Models\Master\Prefix;
 use App\Models\Transaksi\SuratJalan;
@@ -57,12 +58,10 @@ class SuratJalanController extends Controller
         // dd($request->all()); 
         DB::beginTransaction();
         try {
-            $prefix = Prefix::firstOrFail();
-            $newrn = str_pad($prefix->rn_sj + 1, 6, '0', STR_PAD_LEFT);
-            $newprefix = $prefix->prefix_sj . $newrn;
-
+            $newprefix = (new CreateTempTable())->getRNSJ();
+            
             $sj_mstr = new SuratJalan();
-            $sj_mstr->sj_nbr = $newprefix;
+            $sj_mstr->sj_nbr = $newprefix[0];
             $sj_mstr->sj_so_nbr = $request->sonbr;
             $sj_mstr->sj_so_cust = $request->customer;
             $sj_mstr->sj_so_ship = $request->shipto;
@@ -86,14 +85,16 @@ class SuratJalanController extends Controller
                 $sj_dets->save();
             }
 
-            $prefix->rn_sj = $newrn;
-            $prefix->save();
-
+            $domain = Domain::where('domain_code',Session::get('domain'))->firstOrFail();
+            $domain->domain_sj_rn = $newprefix[1];
+            $domain->save();
+            
             DB::commit();
-            alert()->success('Success', 'Surat jalan Created, SJ Number : ' . $newprefix)->persistent('Dismiss');
+            alert()->success('Success', 'Surat jalan Created, SJ Number : ' . $newprefix[0])->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
         } catch (Exception $err) {
             DB::rollBack();
+            dd($err);
             alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
         }
@@ -110,6 +111,10 @@ class SuratJalanController extends Controller
     {
         DB::beginTransaction();
         try {
+            $master = SuratJalan::findOrFail($request->idmaster);
+            $master->sj_nopol = $request->nopol;
+            $master->save();
+
             foreach ($request->iddetail as $key => $datas) {
                 $detail = SuratJalanDetail::findOrFail($datas);
                 if ($request->operation[$key] == 'R') {

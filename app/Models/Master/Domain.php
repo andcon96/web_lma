@@ -10,4 +10,8 @@ class Domain extends Model
     use HasFactory;
 
     public $table = 'domains';
+
+    protected $fillable = [
+        'id',
+    ];
 }

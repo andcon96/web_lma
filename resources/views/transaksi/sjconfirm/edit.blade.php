@@ -49,6 +49,10 @@
             <div class="col-md-3">
                 <input id="effdate" type="text" class="form-control" name="effdate" value="{{\Carbon\Carbon::now()->toDateString()}}" autocomplete="off" maxlength="24" required>
             </div>
+            <label for="nopol" class="col-md-3 col-form-label text-md-right">No Polis</label>
+            <div class="col-md-3">
+                <input id="nopol" type="text" class="form-control" name="nopol" value="{{$data->sj_nopol}}" autocomplete="off" maxlength="24" required>
+            </div>
         </div>
         <div class="form-group row col-md-12">
             <label for="remarks" class="col-md-2 col-form-label text-md-right">Remarks</label>
