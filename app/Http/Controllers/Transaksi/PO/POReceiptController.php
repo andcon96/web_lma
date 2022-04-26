@@ -68,6 +68,11 @@ class POReceiptController extends Controller
     public function submitReceipt(Request $req){
         $newrequest = $req->all();
 
+        if(is_null($req->nopol)){
+            alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
+            return redirect()->route('poreceipt.index');
+        }
+
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
         if($poreceipt_submit === 'qxtend_err'){
             alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
