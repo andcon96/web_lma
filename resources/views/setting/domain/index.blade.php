@@ -19,12 +19,16 @@
         <div class="modal-body">
 
             <div class="form-group row mr-5 ml-5">
-                <div class="col-md-8 offset-2">
+                <div class="col-md-12">
                     <table id="createTable" class="table order-list" style="table-layout: fixed;">
                         <thead>
                             <tr>
-                                <td style="text-align: center; width:'30px'">Domain Code</td>
-                                <td style="text-align: center;">Domain Desc</td>
+                                <td style="text-align: center; width:20%">Domain Code</td>
+                                <td style="text-align: center; width:30%">Domain Desc</td>
+                                <td>SO Prefix</td>
+                                <td>SO RN</td>
+                                <td>Kerusakan Prefix</td>
+                                <td>Kerusakan RN</td>
                                 <td style="text-align: center;">Action</td>
                             </tr>
                         </thead>
@@ -36,6 +40,18 @@
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" name="desc[]" value="{{$domains->domain_desc}}" required />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="sjprefix[]" value="{{$domains->domain_sj_prefix}}" maxlength="2" minlength="2" required />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="sjrn[]" value="{{$domains->domain_sj_rn}}" readonly maxlength="6" minlength="6" required />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="rcvprefix[]" value="{{$domains->domain_rcv_prefix}}" maxlength="2" minlength="2" required />
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" name="rcvrn[]" value="{{$domains->domain_rcv_rn}}" readonly maxlength="6" minlength="6" required />
                                 </td>
                                 <td style="vertical-align:middle;text-align:center;">
                                     <input type="checkbox" class="qaddel" value="">
@@ -49,7 +65,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="3">
+                                <td colspan="7">
                                     <input type="button" class="btn btn-lg btn-block btn-focus" id="addrow" value="Add Domain" style="background-color:#1234A5; color:white; font-size:16px" />
                                 </td>
                             </tr>
@@ -112,6 +128,22 @@
 
         cols += '<td>';
         cols += '<input type="text" class="form-control" name="desc[]" required />';
+        cols += '</td>';
+
+        cols += '<td>';
+        cols += '<input type="text" class="form-control" name="sjprefix[]" value="" maxlength="2" minlength="2" required />';
+        cols += '</td>';
+
+        cols += '<td>';
+        cols += '<input type="text" class="form-control" name="sjrn[]" value="{{$domains->domain_so_rn}}" readonly maxlength="6" minlength="6" required />';
+        cols += '</td>';
+
+        cols += '<td>';
+        cols += '<input type="text" class="form-control" name="rcvprefix[]" value="" maxlength="2" minlength="2" required />';
+        cols += '</td>';
+
+        cols += '<td>';
+        cols += '<input type="text" class="form-control" name="rcvrn[]" value="{{$domains->domain_kr_rn}}" readonly maxlength="6" minlength="6" required />';
         cols += '</td>';
 
         cols += '<td data-title="Action"><input type="button" class="ibtnDel btn btn-danger btn-focus"  value="Delete"></td>';

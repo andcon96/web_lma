@@ -20,13 +20,13 @@
 
             <input type="hidden" name="qxenable" id="qxenable" value="{{$data->qx_enable ?? ''}}">
 
-            <div class="form-group row">
+            {{-- <div class="form-group row">
                 <label for="domain" class="col-md-3 col-form-label text-md-right">{{ __('Domain') }}</label>
                 <div class="col-md-7">
                     <input id="domain" type="text" class="form-control" name="domain" autocomplete="off" value="{{$data->wsas_domain ?? ''}}" 
                     autofocus required>
                 </div>
-            </div>
+            </div> --}}
             <div class="form-group row">
                 <label for="wsaurl" class="col-md-3 col-form-label text-md-right">{{ __('WSA URL') }}</label>
                 <div class="col-md-7">
@@ -56,13 +56,13 @@
                     <input id="qxurl" type="text" class="form-control" name="qxurl" autocomplete="off" value="{{$data->qx_url ?? ''}}">
                 </div>
             </div>
-            <div class="form-group row" id='rowqxpath'>
+            {{-- <div class="form-group row" id='rowqxpath'>
                 <label for="qxpath" class="col-md-3 col-form-label text-md-right">{{ __('QX Path') }}</label>
                 <div class="col-md-7">
                     <input id="qxpath" type="text" class="form-control" name="qxpath" value="{{$data->qx_path ?? ''}}" autofocus autocomplete="off">
                     <span id="errorpo" style="color:red"></span>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
         <div class="modal-footer">

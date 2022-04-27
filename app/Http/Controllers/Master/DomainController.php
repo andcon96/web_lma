@@ -33,6 +33,10 @@ class DomainController extends Controller
                 }else{
                     $domain->domain_code = $request->code[$key];
                     $domain->domain_desc = $request->desc[$key];
+                    $domain->domain_sj_prefix = $request->sjprefix[$key];
+                    $domain->domain_sj_rn = $request->sjrn[$key];
+                    $domain->domain_rcv_prefix = $request->rcvprefix[$key];
+                    $domain->domain_rcv_rn = $request->rcvrn[$key];
                     $domain->save();
                 }
             }
