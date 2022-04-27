@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi\PO;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\LocMstr;
 use App\Models\Transaksi\POhist;
 use App\Models\Transaksi\PurchaseOrder;
 use App\Services\CreateTempTable;
@@ -55,6 +56,8 @@ class POReceiptController extends Controller
         $po = Session::get('tablepo');
 
         $receiptdate = Session::get('receiptdate');
+
+        $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
         
         if(is_null($po)){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
@@ -62,12 +65,13 @@ class POReceiptController extends Controller
             return redirect()->route('poreceipt.index');
         }
         
-        return view('transaksi.poreceipt.view', compact('po','receiptdate'));
+        return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
     }
 
     public function submitReceipt(Request $req){
         $newrequest = $req->all();
 
+        // dd($newrequest);
         if(is_null($req->nopol)){
             alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
             return redirect()->route('poreceipt.index');

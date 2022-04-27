@@ -24,6 +24,7 @@ class CreateTempTable
             $table->string('pod_partdesc');
             $table->string('pod_qty_ord');
             $table->string('pod_qty_rcvd');
+            $table->string('pod_loc');
             $table->temporary();
         });
 
@@ -37,6 +38,7 @@ class CreateTempTable
                 'pod_partdesc' => $datas->t_partdesc,
                 'pod_qty_ord' => $datas->t_ord,
                 'pod_qty_rcvd' => $datas->t_rcvd,
+                'pod_loc' => $datas->t_loc,
             ]);
         }
 

@@ -13,9 +13,19 @@
 
 <form method="post" action="{{route('submitReceipt')}}" id='submit'>
   <div class="row mb-3">
-    <label for="receiptdate" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Receipt Date') }}</label>
-    <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
+    <label for="receiptdate" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Receipt Date') }}</label>
+    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-xs-12">
       <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
+    </div>
+    <label for="po_nbr" class="col-form-label col-md-2" style="margin-left:25px">{{ __('PO No.') }}</label>
+    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-xs-12">
+      <input id="po_nbr" type="text" class="form-control" name="po_nbr" value="{{$po[0]->po_nbr}}" readonly>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="supp" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Supplier') }}</label>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+      <input id="supp" type="text" class="form-control" name="supp" value="{{$po[0]->po_cust}} -- {{$po[0]->po_custname}}" readonly>
     </div>
   </div>
 
@@ -86,6 +96,8 @@
     dateFormat: 'yy-mm-dd',
     maxDate: 0,
   });
+
+  
 
   $("#addrow").on("click", function() {
 
