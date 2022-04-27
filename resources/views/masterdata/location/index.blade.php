@@ -19,6 +19,9 @@
     {{ csrf_field() }}
     <div class="col-md-2">
       <input type="submit" class="btn bt-ref" id="btnload" value="Load Data" />
+      <button type="button" class="btn btn-info" id="s_btnloading" style="display:none;">
+        <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
+      </button>
       <!-- <button class="btn bt-action" id='btnrefresh' style="margin-left: 10px; width: 40px !important"><i class="fa fa-sync"></i></button> -->
     </div>
   </form>
@@ -60,9 +63,10 @@
     <thead>
       <tr>
         <!-- <th style="width: 15%;">Site</th> -->
+        <th style="width: 15%;">Domain</th>
         <th style="width: 10%;">Location</th>
         <th style="width: 30%;">Location Desc</th>
-        <th style="width: 35%;">Location Site</th>
+        <th style="width: 20%;">Location Site</th>
         <th style="width: 25%;">Location Type</th>
       </tr>
     </thead>
@@ -102,6 +106,11 @@
 
   $(document).on('click', '#btnrefresh', function() {
     resetSearch();
+  });
+
+  $('#submit').submit(function(event) {
+    document.getElementById('btnload').style.display = 'none';
+    document.getElementById('s_btnloading').style.display = '';
   });
 </script>
 

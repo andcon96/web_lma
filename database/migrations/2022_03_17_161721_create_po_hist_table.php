@@ -20,7 +20,10 @@ class CreatePoHistTable extends Migration
             $table->string('ph_part');
             $table->decimal('ph_qty_order',15,2);
             $table->decimal('ph_qty_rcvd',15,2);
-            $table->decimal('ph_qty_input',15,2);
+            $table->decimal('ph_qty_fg',15,2);
+            $table->decimal('ph_qty_rjct',15,2);
+            $table->longText('ph_nopol')->nullable();
+            $table->date('ph_receiptdate');
             $table->string('created_by');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

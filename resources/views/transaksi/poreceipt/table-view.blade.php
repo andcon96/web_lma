@@ -3,7 +3,7 @@
     <thead>
       <tr>
           <th style="width: 10%;">PO Nbr.</th>
-          <th style="width: 10%;">Customer</th>
+          <th style="width: 10%;">Supplier</th>
           <th style="width: 5%;">Line</th>
           <th style="width: 30%;">Part</th>
           <th style="width: 12%;">Qty Order</th>

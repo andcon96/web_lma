@@ -356,13 +356,18 @@ class QxtendServices
 
   public function submitreceipt($datas)
   {
-    // dd($newrequest,'b');
+    // dd($datas,'b');
     $ponbr = $datas['ponbr'];
     $poline = $datas['poline'];
-    $qtyinput = $datas['qtyinput'];
+    $qtyfg = $datas['qtyfg'];
+    $qtyreject = $datas['qtyreject'];
     $qtyord = $datas['poqtyord'];
     $qtyrcvd = $datas['poqtyrcvd'];
     $popart = $datas['popart'];
+    $receiptdate = $datas['receiptdate'];
+    $listnopol = implode(" , ", $datas['nopol']);
+
+    // dd($listnopol);
     // foreach($ponbr as $key => $p){
     //   dump($key,$poline[$key]);
     // }
@@ -374,7 +379,9 @@ class QxtendServices
     // dd($qxtend);
     $qxUrl          = $qxwsa->qx_url;
 
-    $timeout        = 0;
+    $domain = Session::get('domain');
+
+    $timeout = 0;
 
     $qdocHead =
       '<?xml version="1.0" encoding="UTF-8"?>
@@ -398,7 +405,7 @@ class QxtendServices
               <qcom:ttContext>
                 <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
                 <qcom:propertyName>domain</qcom:propertyName>
-                <qcom:propertyValue>10USA</qcom:propertyValue>
+                <qcom:propertyValue>'.$domain.'</qcom:propertyValue>
               </qcom:ttContext>
               <qcom:ttContext>
                 <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
@@ -452,17 +459,38 @@ class QxtendServices
       '<dsPurchaseOrderReceive>
                   <purchaseOrderReceive>
                     <ordernum>' . $ponbr[0] . '</ordernum>
-                    <move>true</move>
+                    <receiptDate>'.$receiptdate.'</receiptDate>
+                    <cmmtYn>true</cmmtYn>
                     <yn>true</yn>
-                    <yn1>true</yn1>';
+                    <yn1>true</yn1>
+                    <purchaseOrderReceiveTransComment>
+                      <cmtCmmt>'.$listnopol.'</cmtCmmt>
+                    </purchaseOrderReceiveTransComment>';
     foreach ($poline as $key => $p) {
+      $totalreceipt = 0;
+      $totalreceipt = $qtyfg[$key] + $qtyreject[$key];
       // dd($index);
-      if ($qtyinput[$key] > 0) {
-        $qdocBody .= ' <lineDetail>
-                    <line>' . $p . '</line>
-                    <lotserialQty>' . $qtyinput[$key] . '</lotserialQty>
-                    </lineDetail>';
+      $qdocBody .= ' <lineDetail>
+                        <line>' . $p . '</line>
+                        <lotserialQty>' . $totalreceipt  . '</lotserialQty>
+                        <multiEntry>true</multiEntry>';
+      if ($qtyfg[$key] > 0) {
+          $qdocBody .= ' <receiptDetail>
+                          <location>FG</location>
+                          <lotserialQty>'.$qtyfg[$key].'</lotserialQty>
+                          <serialsYn>true</serialsYn>
+                        </receiptDetail>';
       }
+
+      if ($qtyreject[$key] > 0) {
+          $qdocBody .= ' <receiptDetail>
+                          <location>Reject</location>
+                          <lotserialQty>'.$qtyreject[$key].'</lotserialQty>
+                          <serialsYn>true</serialsYn>
+                        </receiptDetail>';
+      }
+
+        $qdocBody .= '</lineDetail>';
     }
     $qdocFoot = ' </purchaseOrderReceive>
                 </dsPurchaseOrderReceive>
@@ -528,7 +556,7 @@ class QxtendServices
 
       foreach ($ponbr as $key => $a) {
 
-        if ($qtyinput[$key] > 0) {
+        if ($qtyfg[$key] > 0 || $qtyreject[$key] > 0) {
           $pohist = new POhist();
 
           $pohist->ph_ponbr = $a;
@@ -536,7 +564,10 @@ class QxtendServices
           $pohist->ph_part = $popart[$key];
           $pohist->ph_qty_order = $qtyord[$key];
           $pohist->ph_qty_rcvd = $qtyrcvd[$key];
-          $pohist->ph_qty_input = $qtyinput[$key];
+          $pohist->ph_qty_fg = $qtyfg[$key];
+          $pohist->ph_qty_rjct = $qtyreject[$key];
+          $pohist->ph_nopol = $listnopol;
+          $pohist->ph_receiptdate = $receiptdate;
           $pohist->created_by = auth()->user()->username;
           $pohist->save();
         }

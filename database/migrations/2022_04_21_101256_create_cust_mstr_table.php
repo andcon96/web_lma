@@ -15,6 +15,7 @@ class CreateCustMstrTable extends Migration
     {
         Schema::create('cust_mstr', function (Blueprint $table) {
             $table->id();
+            $table->string('cust_dom');
             $table->string('cust_code');
             $table->string('cust_name');
             $table->longText('cust_addr');

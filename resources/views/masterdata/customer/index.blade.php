@@ -19,6 +19,9 @@
     {{ csrf_field() }}
     <div class="col-md-2">
       <input type="submit" class="btn bt-ref" id="btnload" value="Load Data" />
+      <button type="button" class="btn btn-info" id="s_btnloading" style="display:none;">
+        <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
+      </button>
       <!-- <button class="btn bt-action" id='btnrefresh' style="margin-left: 10px; width: 40px !important"><i class="fa fa-sync"></i></button> -->
     </div>
   </form>
@@ -48,7 +51,6 @@
     <div class="col-md-3">
       <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
       <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
-
     </div>
   </div>
 </form>
@@ -59,8 +61,8 @@
   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>
       <tr>
-        <!-- <th style="width: 15%;">Site</th> -->
-        <th style="width: 10%;">Customer Code</th>
+        <th style="width: 15%;">Domain</th>
+        <th style="width: 15%;">Customer Code</th>
         <th style="width: 25%;">Customer Name</th>
         <th style="width: 35%;">Customer Address</th>
       </tr>
@@ -101,6 +103,11 @@
 
   $(document).on('click', '#btnrefresh', function() {
     resetSearch();
+  });
+
+  $('#submit').submit(function(event) {
+    document.getElementById('btnload').style.display = 'none';
+    document.getElementById('s_btnloading').style.display = '';
   });
 </script>
 
