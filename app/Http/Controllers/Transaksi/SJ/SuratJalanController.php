@@ -68,6 +68,7 @@ class SuratJalanController extends Controller
             $sj_mstr->sj_so_bill = $request->billto;
             $sj_mstr->sj_status = 'New';
             $sj_mstr->sj_nopol = $request->nopol;
+            $sj_mstr->sj_domain = Session::get('domain');
             $sj_mstr->save();
 
             $id = $sj_mstr->id;
