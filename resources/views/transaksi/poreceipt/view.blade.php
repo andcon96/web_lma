@@ -15,7 +15,7 @@
   <div class="row mb-3">
     <label for="receiptdate" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Receipt Date') }}</label>
     <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
-      <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ Carbon\Carbon::parse(now())->format('Y-m-d')  }} required">
+      <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
     </div>
   </div>
 

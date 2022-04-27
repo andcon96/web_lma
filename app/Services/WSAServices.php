@@ -743,6 +743,8 @@ class WSAServices
     public function getpoinvoice($ponbr){
         $wsa = Qxwsa::first();
 
+        $domain = Session::get('domain');
+
         // Validasi WSA
         $qxUrl          = $wsa->wsas_url;
         $qxReceiver     = '';
@@ -753,7 +755,7 @@ class WSAServices
         $dsName         = '';
         $timeout        = 0;
 
-        $domain         = $wsa->wsas_domain;
+        // $domain         = $wsa->wsas_domain;
 
         $qdocRequest =   
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
