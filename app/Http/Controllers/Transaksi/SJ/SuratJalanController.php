@@ -94,7 +94,6 @@ class SuratJalanController extends Controller
             return redirect()->route('suratjalan.index');
         } catch (Exception $err) {
             DB::rollBack();
-            dd($err);
             alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
         }
@@ -180,6 +179,8 @@ class SuratJalanController extends Controller
         if ($request->status) {
             $data->where('sj_status', $request->status);
         }
+
+        $data->where('sj_domain',Session::get('domain'));
 
         $data = $data->orderBy('created_at', 'Desc')->paginate(10);
 

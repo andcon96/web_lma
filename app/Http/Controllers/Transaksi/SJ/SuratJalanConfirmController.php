@@ -30,6 +30,8 @@ class SuratJalanConfirmController extends Controller
             $data->where('sj_status',$request->status);
         }
 
+        $data->where('sj_domain',Session::get('domain'));
+
         $data = $data->orderBy('created_at','DESC')->paginate(10);
 
         return view('transaksi.sjconfirm.index',compact('data','cust'));
