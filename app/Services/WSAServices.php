@@ -8,6 +8,7 @@ use App\Models\Master\UM;
 use App\Models\RFPMaster;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class WSAServices
 {
@@ -823,7 +824,7 @@ class WSAServices
         $dsName         = '';
         $timeout        = 0;
 
-        $domain         = $wsa->wsas_domain;
+        $domain         = Session::get('domain');
 
         $qdocRequest =   
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
