@@ -57,9 +57,9 @@ class POReceiptController extends Controller
         $receiptdate = Session::get('receiptdate');
         
         if(is_null($po)){
-            alert()->error('Error', 'Silahkan Search Ulang');
+            alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
             // return view('transaksi.poreceipt.index');
-            return redirect()->route('poreceipt.index')->persistent('Dismiss');
+            return redirect()->route('poreceipt.index');
         }
         
         return view('transaksi.poreceipt.view', compact('po','receiptdate'));
