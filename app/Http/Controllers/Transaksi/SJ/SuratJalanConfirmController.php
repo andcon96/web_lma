@@ -40,6 +40,7 @@ class SuratJalanConfirmController extends Controller
     public function edit($id){
         $data = SuratJalan::with(['getDetail','getDetailCust','getDetailShip','getDetailBill'])->findOrFail($id);
 
+        $this->authorize('update', [SuratJalan::class, $data]);
 
         $listsjopen = SuratJalanDetail::with('getMaster')
             ->whereRelation('getMaster', 'sj_status', 'New')
@@ -70,6 +71,8 @@ class SuratJalanConfirmController extends Controller
 
     public function show($id){
         $data = SuratJalan::with('getDetail')->findOrFail($id);
+        
+        $this->authorize('view', [SuratJalan::class, $data]);
 
         return view('transaksi.sjconfirm.show',compact('data'));
     }

@@ -109,6 +109,7 @@ class SuratJalanController extends Controller
      */
     public function update(Request $request, SuratJalan $suratJalan)
     {
+        $this->authorize('update', SuratJalan::class);
         DB::beginTransaction();
         try {
             $master = SuratJalan::findOrFail($request->idmaster);
@@ -194,6 +195,8 @@ class SuratJalanController extends Controller
     {
         $data = SuratJalan::with('getDetail')->findOrFail($id);
 
+        $this->authorize('update', [SuratJalan::class, $data]);
+
         $listsjopen = SuratJalanDetail::with('getMaster')
             ->whereRelation('getMaster', 'sj_status', 'New')
             ->whereRelation('getMaster', 'sj_so_nbr', $data->sj_so_nbr)
@@ -213,6 +216,8 @@ class SuratJalanController extends Controller
     public function viewjsbrowse($id)
     {
         $data = SuratJalan::with('getDetail')->findOrFail($id);
+
+        $this->authorize('view', [SuratJalan::class, $data]);
 
         $listsjopen = SuratJalanDetail::with('getMaster')->whereRelation('getMaster', 'sj_status', 'New')->get();
 
