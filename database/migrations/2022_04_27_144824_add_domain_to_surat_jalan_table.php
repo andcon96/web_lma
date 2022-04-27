@@ -13,7 +13,7 @@ class AddDomainToSuratJalanTable extends Migration
      */
     public function up()
     {
-        Schema::table('surat_jalan', function (Blueprint $table) {
+        Schema::table('sj_mstr', function (Blueprint $table) {
             $table->string('sj_domain',8);
         });
     }
@@ -25,7 +25,7 @@ class AddDomainToSuratJalanTable extends Migration
      */
     public function down()
     {
-        Schema::table('surat_jalan', function (Blueprint $table) {
+        Schema::table('sj_mstr', function (Blueprint $table) {
             $table->dropColumn('sj_domain');
         });
     }
