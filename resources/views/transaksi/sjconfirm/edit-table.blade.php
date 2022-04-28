@@ -16,13 +16,13 @@
                 <tr>
                     <td>{{$datas->sj_line}}</td>
                     <td>{{$datas->sj_part}}</td>
-                    <td>{{$datas->sj_qty_ord}}</td>
+                    <td>{{number_format($datas->sj_qty_ord,2)}}</td>
                     @php
                         $totqtyongoing = $listsjopen->where('sj_line',$datas->sj_line)->where('sj_part',$datas->sj_part)->sum('sj_qty_input');
                         $totqtyshipped = $listsjship->where('sj_line',$datas->sj_line)->where('sj_part',$datas->sj_part)->sum('sj_qty_rcvd');
                     @endphp
                     <td>{{number_format($datas->sj_qty_ord - $totqtyshipped - $totqtyongoing ,2)}}</td>
-                    <td>{{$datas->sj_qty_input}}</td>
+                    <td>{{number_format($datas->sj_qty_input,2)}}</td>
                     <td>
                         <input type="hidden" value="{{$datas->id}}" name="iddetail[]">
                         <input type="hidden" value="{{$datas->sj_line}}" name="line[]">
