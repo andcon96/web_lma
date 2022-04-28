@@ -81,7 +81,7 @@ class POReceiptController extends Controller
 
         // dd($newrequest);
         if(is_null($req->nopol)){
-            dd('aaa');
+            // dd('aaa');
             alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
             // return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
         }
@@ -89,14 +89,14 @@ class POReceiptController extends Controller
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
         if($poreceipt_submit === 'qxtend_err'){
             alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
-            // return redirect()->route('poreceipt.index');
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
+            return redirect()->route('poreceipt.index');
+            // return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
         }
         
         if($poreceipt_submit === false){
             alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
-            // return redirect()->route('poreceipt.index');
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
+            return redirect()->route('poreceipt.index');
+            // return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
         }
 
 
