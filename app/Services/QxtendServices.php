@@ -357,7 +357,8 @@ class QxtendServices
   public function submitreceipt($datas)
   {
     // dd($datas,'b');
-    $ponbr = $datas['ponbr'];
+    $ponbr = $datas['po_nbr'];
+    $partloc = $datas['partloc'];
     $poline = $datas['poline'];
     $qtyfg = $datas['qtyfg'];
     $qtyreject = $datas['qtyreject'];
@@ -458,7 +459,7 @@ class QxtendServices
     $qdocBody =
       '<dsPurchaseOrderReceive>
                   <purchaseOrderReceive>
-                    <ordernum>' . $ponbr[0] . '</ordernum>
+                    <ordernum>' . $ponbr . '</ordernum>
                     <receiptDate>'.$receiptdate.'</receiptDate>
                     <cmmtYn>true</cmmtYn>
                     <yn>true</yn>
@@ -473,6 +474,7 @@ class QxtendServices
       $qdocBody .= ' <lineDetail>
                         <line>' . $p . '</line>
                         <lotserialQty>' . $totalreceipt  . '</lotserialQty>
+                        <location>'.$partloc[$key].'</location>
                         <multiEntry>true</multiEntry>';
       if ($qtyfg[$key] > 0) {
           $qdocBody .= ' <receiptDetail>
