@@ -81,6 +81,7 @@ class POReceiptController extends Controller
 
         // dd($newrequest);
         if(is_null($req->nopol)){
+            dd('aaa');
             alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
             // return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
         }
