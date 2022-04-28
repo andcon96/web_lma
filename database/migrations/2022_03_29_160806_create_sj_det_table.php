@@ -21,11 +21,11 @@ class CreateSjDetTable extends Migration
             $table->string('sj_part');
             $table->string('sj_part_desc',255)->nullable();
             $table->string('sj_loc')->nullable();
-            $table->decimal('sj_qty_ord');
-            $table->decimal('sj_qty_ship');
-            $table->decimal('sj_qty_input');
-            $table->decimal('sj_qty_rcvd')->nullable();
-            $table->decimal('sj_price_ls');
+            $table->decimal('sj_qty_ord',15,2);
+            $table->decimal('sj_qty_ship',15,2);
+            $table->decimal('sj_qty_input',15,2);
+            $table->decimal('sj_qty_rcvd',15,2)->nullable();
+            $table->decimal('sj_price_ls',15,2);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });
