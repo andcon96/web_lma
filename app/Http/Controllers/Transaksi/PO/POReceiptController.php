@@ -27,7 +27,7 @@ class POReceiptController extends Controller
     public function searchPO(Request $req){
         // Validasi Web
         $receiptdate = $req->receiptdate;
-        // Session::get('statserror');
+        $errorcode = Session::get('errors');
 
         if(is_null($req->sjnbr)){
             $ponbrtampung = Session::get('ponbr');
@@ -54,7 +54,7 @@ class POReceiptController extends Controller
         }
         
         
-        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate]);
+        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate,'errorcode'=>$errorcode]);
     }
 
     public function showReceipt(){
@@ -63,12 +63,19 @@ class POReceiptController extends Controller
 
         $receiptdate = Session::get('receiptdate');
 
+        $errorcode = Session::get('errorcode');
+
         $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
         
         if(is_null($po)){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
             // return view('transaksi.poreceipt.index');
             return redirect()->route('poreceipt.index');
+        }
+
+        if($errorcode === 1){
+            alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
+            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
         }
 
 
@@ -83,8 +90,8 @@ class POReceiptController extends Controller
         if(is_null($req->nopol)){
             // dd('aaa');
             alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
-            dd('aaa');
+            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1]);
+            // dd('aaa');
         }
 
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
