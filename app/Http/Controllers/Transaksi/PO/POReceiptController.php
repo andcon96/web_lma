@@ -31,10 +31,12 @@ class POReceiptController extends Controller
         if(is_null($req->sjnbr)){
             alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
             return redirect()->back();
+        }else{
+            $ponbrtampung = Session::get('ponbr');
         }
 
         // WSA QAD
-        $po_receipt = (new WSAServices())->wsagetpo($req->sjnbr);
+        $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung);
 
         if($po_receipt === false){
             alert()->error('Error', 'WSA Failed');
@@ -74,7 +76,7 @@ class POReceiptController extends Controller
         // dd($newrequest);
         if(is_null($req->nopol)){
             alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
-            return redirect()->back();
+            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
         }
 
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
@@ -89,7 +91,7 @@ class POReceiptController extends Controller
         }
 
 
-        alert()->success('Success', 'PO berhasil di receipt')->persistent('Dismiss');;
+        alert()->success('Success', 'PO berhasil di receipt')->persistent('Dismiss');
         return redirect()->route('poreceipt.index');
 
     }

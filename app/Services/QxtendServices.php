@@ -367,7 +367,8 @@ class QxtendServices
     $qtyrcvd = $datas['poqtyrcvd'];
     $popart = $datas['popart'];
     $receiptdate = $datas['receiptdate'];
-    $listnopol = implode(" , ", $datas['nopol']);
+    // $listnopol = implode(" , ", $datas['nopol']);
+    $nopol = $datas['nopol'];
 
     // dd($listnopol);
     // foreach($ponbr as $key => $p){
@@ -468,7 +469,7 @@ class QxtendServices
                     <yn>true</yn>
                     <yn1>true</yn1>
                     <purchaseOrderReceiveTransComment>
-                      <cmtCmmt>'.$listnopol.'</cmtCmmt>
+                      <cmtCmmt>'.$nopol.'</cmtCmmt>
                     </purchaseOrderReceiveTransComment>';
     foreach ($poline as $key => $p) {
       $totalreceipt = 0;
@@ -572,7 +573,7 @@ class QxtendServices
           $pohist->ph_qty_rcvd = $qtyrcvd[$key];
           $pohist->ph_qty_fg = $qtyfg[$key];
           $pohist->ph_qty_rjct = $qtyreject[$key];
-          $pohist->ph_nopol = $listnopol;
+          $pohist->ph_nopol = $nopol;
           $pohist->ph_receiptdate = $receiptdate;
           $pohist->ph_loc = $partloc[$key];
           $pohist->created_by = auth()->user()->username;
