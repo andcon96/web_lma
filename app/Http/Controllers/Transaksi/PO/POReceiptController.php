@@ -82,7 +82,7 @@ class POReceiptController extends Controller
         // dd($newrequest);
         if(is_null($req->nopol)){
             alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
+            // return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr]);
         }
 
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
