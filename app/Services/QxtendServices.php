@@ -358,7 +358,7 @@ class QxtendServices
   {
     // dd($datas,'b');
     $ponbr = $datas['po_nbr'];
-    $supp = $datas['supp'];
+    $supp = $datas['supphidden'];
     $partloc = $datas['partloc'];
     $poline = $datas['poline'];
     $qtyfg = $datas['qtyfg'];
