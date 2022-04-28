@@ -14,12 +14,12 @@
                 <tr>
                     <td>{{$datas->sj_line}}</td>
                     <td>{{$datas->sj_part}}</td>
-                    <td>{{$datas->sj_qty_ord}}</td>
+                    <td>{{number_format($datas->sj_qty_ord,2)}}</td>
                     <td>
                         <input type="hidden" value="{{$datas->sj_line}}" name="line[]">
                         <input type="hidden" class="form-control" name="qtyinp[]" value="{{$datas->sj_qty_input}}" 
                         max="{{$datas->sj_qty_input}}" readonly>
-                        {{$datas->sj_qty_input}}
+                        {{number_format($datas->sj_qty_input,2)}}
                     </td>
                     <td>
                         {{$datas->sj_loc}}

@@ -17,7 +17,7 @@
                 <tr>
                     <td>{{$datas->sj_line}}</td>
                     <td>{{$datas->sj_part}} - {{$datas->sj_part_desc}}</td>
-                    <td>{{number_format($datas->sj_qty_ord,2)}</td>
+                    <td>{{number_format($datas->sj_qty_ord,2)}}</td>
                     @php
                         $totqtyongoing = $listsjopen->where('sj_line',$datas->sj_line)->where('sj_part',$datas->sj_part)->sum('sj_qty_input');
                         $totqtyshipped = $listsjship->where('sj_line',$datas->sj_line)->where('sj_part',$datas->sj_part)->sum('sj_qty_rcvd');
