@@ -380,6 +380,8 @@ class QxtendServices
     // dd($qxtend);
     $qxUrl          = $qxwsa->qx_url;
 
+    $qxRcv = $qxwsa->qx_rcv;
+
     $domain = Session::get('domain');
 
     $timeout = 0;
@@ -391,8 +393,8 @@ class QxtendServices
         xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
         <soapenv:Header>
           <wsa:Action/>
-          <wsa:To>urn:services-qad-com:QX_DNP</wsa:To>
-          <wsa:MessageID>urn:services-qad-com::QX_DNP</wsa:MessageID>
+          <wsa:To>urn:services-qad-com:'.$qxRcv.'</wsa:To>
+          <wsa:MessageID>urn:services-qad-com::'.$qxRcv.'</wsa:MessageID>
           <wsa:ReferenceParameters>
             <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
           </wsa:ReferenceParameters>
@@ -588,6 +590,8 @@ class QxtendServices
     // Var Qxtend
     $qxUrl          = $qxwsa->qx_url; // Edit Here
 
+    $qxRcv = $qxwsa->qx_rcv;
+
     $timeout        = 0;
 
     $domain         = Session::get('domain');
@@ -599,8 +603,8 @@ class QxtendServices
               xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
               <soapenv:Header>
                 <wsa:Action/>
-                <wsa:To>urn:services-qad-com:QADLMA</wsa:To>
-                <wsa:MessageID>urn:services-qad-com::QADLMA</wsa:MessageID>
+                <wsa:To>urn:services-qad-com:'.$qxRcv.'</wsa:To>
+                <wsa:MessageID>urn:services-qad-com::'.$qxRcv.'</wsa:MessageID>
                 <wsa:ReferenceParameters>
                   <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
                 </wsa:ReferenceParameters>
