@@ -23,15 +23,15 @@
                     <input type="hidden" name="sodloc[]" value="{{$show->sod_loc}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}}>
                 </td>
                 <td>
-                    {{$show->sod_qty_ord}}
+                    {{number_format($show->sod_qty_ord,2)}}
                     <input type="hidden" name="sodqtyord[]" value="{{$show->sod_qty_ord}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                 </td>
                 <td>
-                    {{$show->sod_qty_ord - $show->sod_qty_ongoing - $show->sod_qty_ship}}
+                    {{number_format($show->sod_qty_ord - $show->sod_qty_ongoing - $show->sod_qty_ship,2)}}
                     <input type="hidden" name="sodqtyongoing[]" value="{{$show->sod_qty_ongoing}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                 </td>
                 <td>
-                    {{$show->sod_qty_ship}}
+                    {{number_format($show->sod_qty_ship,2)}}
                     <input type="hidden" name="sodqtyship[]" value="{{$show->sod_qty_ship}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                     <input type="hidden" name="sodpricels[]" value="{{$show->sod_price_ls}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                 </td>
