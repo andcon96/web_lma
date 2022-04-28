@@ -358,6 +358,7 @@ class QxtendServices
   {
     // dd($datas,'b');
     $ponbr = $datas['po_nbr'];
+    $supp = $datas['supp'];
     $partloc = $datas['partloc'];
     $poline = $datas['poline'];
     $qtyfg = $datas['qtyfg'];
@@ -558,13 +559,14 @@ class QxtendServices
 
     if ($qdocResult == "success" or $qdocResult == "warning") {
 
-      foreach ($ponbr as $key => $a) {
+      foreach ($poline as $key => $a) {
 
         if ($qtyfg[$key] > 0 || $qtyreject[$key] > 0) {
           $pohist = new POhist();
 
-          $pohist->ph_ponbr = $a;
-          $pohist->ph_line = $poline[$key];
+          $pohist->ph_ponbr = $ponbr;
+          $pohist->ph_supp = $supp;
+          $pohist->ph_line = $a;
           $pohist->ph_part = $popart[$key];
           $pohist->ph_qty_order = $qtyord[$key];
           $pohist->ph_qty_rcvd = $qtyrcvd[$key];
@@ -572,6 +574,7 @@ class QxtendServices
           $pohist->ph_qty_rjct = $qtyreject[$key];
           $pohist->ph_nopol = $listnopol;
           $pohist->ph_receiptdate = $receiptdate;
+          $pohist->ph_loc = $partloc[$key];
           $pohist->created_by = auth()->user()->username;
           $pohist->save();
         }
