@@ -109,7 +109,6 @@ class SuratJalanController extends Controller
      */
     public function update(Request $request, SuratJalan $suratJalan)
     {
-        $this->authorize('update', SuratJalan::class);
         DB::beginTransaction();
         try {
             $master = SuratJalan::findOrFail($request->idmaster);
