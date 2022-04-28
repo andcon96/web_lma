@@ -14,7 +14,7 @@
     <div class="form-group row">
         <label for="sjnbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('PO Number') }}</label>
         <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
-            <input id="sjnbr" type="text" class="form-control" name="sjnbr">
+            <input id="sjnbr" type="text" class="form-control" name="sjnbr" required>
         </div>
 
         <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>

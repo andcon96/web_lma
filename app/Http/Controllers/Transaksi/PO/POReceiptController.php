@@ -29,10 +29,12 @@ class POReceiptController extends Controller
         $receiptdate = $req->receiptdate;
 
         if(is_null($req->sjnbr)){
-            alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
-            return redirect()->back();
-        }else{
             $ponbrtampung = Session::get('ponbr');
+
+            // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
+            // return redirect()->back();
+        }else{
+            $ponbrtampung = $req->sjnbr;
         }
 
         // WSA QAD
