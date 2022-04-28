@@ -5,7 +5,7 @@
                 <th>Line</th>
                 <th width="50%">Part</th>
                 <th>Qty Order</th>
-                <th>Qty Ongoing</th>
+                <th>Qty Open</th>
                 <th>Qty Ship</th>
                 <th>Qty Input</th>
             </tr>
@@ -27,7 +27,7 @@
                     <input type="hidden" name="sodqtyord[]" value="{{$show->sod_qty_ord}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                 </td>
                 <td>
-                    {{$show->sod_qty_ongoing}}
+                    {{$show->sod_qty_ord - $show->sod_qty_ongoing - $show->sod_qty_ship}}
                     <input type="hidden" name="sodqtyongoing[]" value="{{$show->sod_qty_ongoing}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                 </td>
                 <td>
