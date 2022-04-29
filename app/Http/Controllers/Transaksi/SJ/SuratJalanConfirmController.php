@@ -10,6 +10,7 @@ use App\Services\CreateTempTable;
 use App\Services\QxtendServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as Session;
+use Symfony\Component\Console\Input\Input;
 
 class SuratJalanConfirmController extends Controller
 {
@@ -60,17 +61,18 @@ class SuratJalanConfirmController extends Controller
     }
 
     public function update(Request $request){
+        
         $sendqxtend = (new QxtendServices())->qxSOShipment($request->all());
         if($sendqxtend === false){
             alert()->error('Error', 'Failed to Ship SJ')->persistent('Dismiss');
-            return back();
+            return back()->withInput($request->only('qtyinp'));
         }else{
             $createNewLine = (new CreateTempTable())->createNewLineSO($request->all());
             if(count($createNewLine) > 0){
                 $qxSOMT = (new QxtendServices())->qxSOMT($createNewLine);
                 if($qxSOMT == 'false' || $qxSOMT === false){
                     alert()->error('Error', 'Shipment Berhasil, SO gagal diupdate untuk Qty Input yang tidak sama dengan Qty SJ')->persistent('Dismiss');
-                    return back();
+                    return back()->withInput($request->only('qtyinp'));
                 }
             }
         }

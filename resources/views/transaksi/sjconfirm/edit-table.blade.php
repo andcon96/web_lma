@@ -30,7 +30,7 @@
                         <input type="hidden" value="{{$datas->sj_part}}" name="part[]">
                         <input type="hidden" value="{{$datas->sj_qty_input}}" name="qtysj[]">
                         <input type="hidden" value="{{$datas->sj_price_ls}}" name="price[]">
-                        <input type="number" class="form-control" name="qtyinp[]" value="{{$datas->sj_qty_input}}">
+                        <input type="number" class="form-control" name="qtyinp[]" value="{{ old('qtyinp.'.$index) ? old('qtyinp.'.$index) : $datas->sj_qty_input}}">
                     </td>
                     <td>
                         <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='4' data-live-search="true">
