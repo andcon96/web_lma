@@ -13,12 +13,12 @@ class SuratJalanPolicy
 
     public function view(User $user, SuratJalan $suratJalan)
     {
-        return $suratJalan->sj_domain == Session::get('domain');
+        return $suratJalan->sj_domain == Session::get('domain') && $suratJalan->sj_status != 'New';
     }
 
     public function update(User $user, SuratJalan $suratJalan)
     {
-        return $suratJalan->sj_domain == Session::get('domain');
+        return $suratJalan->sj_domain == Session::get('domain') && $suratJalan->sj_status == 'New';
     }
 
     
