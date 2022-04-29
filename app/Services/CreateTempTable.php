@@ -64,6 +64,7 @@ class CreateTempTable
         $receiptdate = $data['receiptdate'];
         // $listnopol = implode(" , ", $datas['nopol']);
         $nopol = $data['nopol'];
+
         $remark = $data['remarkreceipt'];
 
         Schema::create('po_session', function ($table) {
@@ -93,7 +94,7 @@ class CreateTempTable
                 'pod_qty_fg' => $qtyfg[$datas],
                 'pod_qty_rjct' => $qtyreject[$datas],
                 'pod_remarks' => $remark[$datas],
-                'pod_nopol' => $nopol[$datas],
+                'pod_nopol' => $nopol,
             ]);
         }
 
