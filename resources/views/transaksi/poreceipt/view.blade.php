@@ -26,6 +26,7 @@
     <label for="supp" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Supplier') }}</label>
     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
       <input id="supp" type="text" class="form-control" name="supp" value="{{$po[0]->po_cust}} -- {{$po[0]->po_custname}}" readonly>
+      <input type="hidden" name="supphidden" value="{{$po[0]->po_cust}}"/>
     </div>
   </div>
 
@@ -41,8 +42,14 @@
       <input type="text" class="form-control" name="remarkreceipt" maxlength="24" />
     </div>
   </div>
+  <div class="row mb-3">
+    <label for="nopol" class="col-form-label col-md-3" style="margin-left:25px">{{ __('No. Polisi') }}</label>
+    <div class="col-md-8">
+      <textarea type="text" class="form-control" name="nopol" rows="3" maxlength="30"></textarea>
+    </div>
+  </div>
 
-  <div class="table-responsive col-lg-6 col-md-6 tag-container offset-3" style="overflow-x: auto; display: block;white-space: nowrap;">
+  <!-- <div class="table-responsive col-lg-6 col-md-6 tag-container offset-3" style="overflow-x: auto; display: block;white-space: nowrap;">
     <table class="table table-bordered table-nopol" id="nopolTable" width="100%" cellspacing="0">
       <thead>
         <tr>
@@ -60,7 +67,7 @@
         </tr>
       </tfoot>
     </table>
-  </div>
+  </div> -->
 
 
   <div class="form-group row md-form">
@@ -99,62 +106,62 @@
 
   
 
-  $("#addrow").on("click", function() {
+  // $("#addrow").on("click", function() {
 
 
 
-    var rowCount = $('#nopolTable tr').length;
+  //   var rowCount = $('#nopolTable tr').length;
 
-    var currow = rowCount - 2;
+  //   var currow = rowCount - 2;
 
-    // alert(currow);
+  //   // alert(currow);
 
-    var lastline = parseInt($('#nopolTable tr:eq(' + currow + ') td:eq(0) input[type="number"]').val()) + 1;
+  //   var lastline = parseInt($('#nopolTable tr:eq(' + currow + ') td:eq(0) input[type="number"]').val()) + 1;
 
-    if (lastline !== lastline) {
-      // check apa NaN
-      lastline = 1;
-    }
+  //   if (lastline !== lastline) {
+  //     // check apa NaN
+  //     lastline = 1;
+  //   }
 
-    // alert(lastline);
+  //   // alert(lastline);
 
-    var newRow = $("<tr>");
-    var cols = "";
+  //   var newRow = $("<tr>");
+  //   var cols = "";
 
-    cols += '<td>';
-    cols += '<input type="text" class="form-control nopol" name="nopol[]" maxlength="14" required />';
-    cols += '</td>';
+  //   cols += '<td>';
+  //   cols += '<input type="text" class="form-control nopol" name="nopol[]" maxlength="14" required />';
+  //   cols += '</td>';
 
-    cols += '<td data-title="Action"><input type="button" class="ibtnDel btn btn-danger btn-focus"  value="Delete"></td>';
-    cols += '<input type="hidden" class="op" name="op[]" value="A"/>';
-    cols += '</tr>'
-    counter++;
+  //   cols += '<td data-title="Action"><input type="button" class="ibtnDel btn btn-danger btn-focus"  value="Delete"></td>';
+  //   cols += '<input type="hidden" class="op" name="op[]" value="A"/>';
+  //   cols += '</tr>'
+  //   counter++;
 
-    newRow.append(cols);
-    $("#nopolDetail").append(newRow);
+  //   newRow.append(cols);
+  //   $("#nopolDetail").append(newRow);
 
-    // selectRefresh();
-  });
+  //   // selectRefresh();
+  // });
 
-  $("table.table-nopol").on("click", ".ibtnDel", function(event) {
-    var row = $(this).closest("tr");
-    var line = row.find(".line").val();
-    // var colCount = $("#createTable tr").length;
+  // $("table.table-nopol").on("click", ".ibtnDel", function(event) {
+  //   var row = $(this).closest("tr");
+  //   var line = row.find(".line").val();
+  //   // var colCount = $("#createTable tr").length;
 
 
-    if (line == counter - 1) {
-      // kalo line terakhir delete kurangin counter
-      counter -= 1
-    }
+  //   if (line == counter - 1) {
+  //     // kalo line terakhir delete kurangin counter
+  //     counter -= 1
+  //   }
 
-    $(this).closest("tr").remove();
+  //   $(this).closest("tr").remove();
 
-    // if(colCount == 2){
-    //   // Row table kosong. sisa header & footer
-    //   counter = 1;
-    // }
+  //   // if(colCount == 2){
+  //   //   // Row table kosong. sisa header & footer
+  //   //   counter = 1;
+  //   // }
 
-  });
+  // });
 
   $('#submit').submit(function(event) {
     document.getElementById('s_btnconf').style.display = 'none';

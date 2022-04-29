@@ -358,6 +358,7 @@ class QxtendServices
   {
     // dd($datas,'b');
     $ponbr = $datas['po_nbr'];
+    $supp = $datas['supphidden'];
     $partloc = $datas['partloc'];
     $poline = $datas['poline'];
     $qtyfg = $datas['qtyfg'];
@@ -366,7 +367,8 @@ class QxtendServices
     $qtyrcvd = $datas['poqtyrcvd'];
     $popart = $datas['popart'];
     $receiptdate = $datas['receiptdate'];
-    $listnopol = implode(" , ", $datas['nopol']);
+    // $listnopol = implode(" , ", $datas['nopol']);
+    $nopol = $datas['nopol'];
 
     // dd($listnopol);
     // foreach($ponbr as $key => $p){
@@ -380,6 +382,8 @@ class QxtendServices
     // dd($qxtend);
     $qxUrl          = $qxwsa->qx_url;
 
+    $qxRcv = $qxwsa->qx_rcv;
+
     $domain = Session::get('domain');
 
     $timeout = 0;
@@ -391,8 +395,8 @@ class QxtendServices
         xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
         <soapenv:Header>
           <wsa:Action/>
-          <wsa:To>urn:services-qad-com:QX_DNP</wsa:To>
-          <wsa:MessageID>urn:services-qad-com::QX_DNP</wsa:MessageID>
+          <wsa:To>urn:services-qad-com:'.$qxRcv.'</wsa:To>
+          <wsa:MessageID>urn:services-qad-com::'.$qxRcv.'</wsa:MessageID>
           <wsa:ReferenceParameters>
             <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
           </wsa:ReferenceParameters>
@@ -465,7 +469,7 @@ class QxtendServices
                     <yn>true</yn>
                     <yn1>true</yn1>
                     <purchaseOrderReceiveTransComment>
-                      <cmtCmmt>'.$listnopol.'</cmtCmmt>
+                      <cmtCmmt>'.$nopol.'</cmtCmmt>
                     </purchaseOrderReceiveTransComment>';
     foreach ($poline as $key => $p) {
       $totalreceipt = 0;
@@ -556,20 +560,22 @@ class QxtendServices
 
     if ($qdocResult == "success" or $qdocResult == "warning") {
 
-      foreach ($ponbr as $key => $a) {
+      foreach ($poline as $key => $a) {
 
         if ($qtyfg[$key] > 0 || $qtyreject[$key] > 0) {
           $pohist = new POhist();
 
-          $pohist->ph_ponbr = $a;
-          $pohist->ph_line = $poline[$key];
+          $pohist->ph_ponbr = $ponbr;
+          $pohist->ph_supp = $supp;
+          $pohist->ph_line = $a;
           $pohist->ph_part = $popart[$key];
           $pohist->ph_qty_order = $qtyord[$key];
           $pohist->ph_qty_rcvd = $qtyrcvd[$key];
           $pohist->ph_qty_fg = $qtyfg[$key];
           $pohist->ph_qty_rjct = $qtyreject[$key];
-          $pohist->ph_nopol = $listnopol;
+          $pohist->ph_nopol = $nopol;
           $pohist->ph_receiptdate = $receiptdate;
+          $pohist->ph_loc = $partloc[$key];
           $pohist->created_by = auth()->user()->username;
           $pohist->save();
         }
@@ -588,6 +594,8 @@ class QxtendServices
     // Var Qxtend
     $qxUrl          = $qxwsa->qx_url; // Edit Here
 
+    $qxRcv = $qxwsa->qx_rcv;
+
     $timeout        = 0;
 
     $domain         = Session::get('domain');
@@ -599,8 +607,8 @@ class QxtendServices
               xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
               <soapenv:Header>
                 <wsa:Action/>
-                <wsa:To>urn:services-qad-com:QADLMA</wsa:To>
-                <wsa:MessageID>urn:services-qad-com::QADLMA</wsa:MessageID>
+                <wsa:To>urn:services-qad-com:'.$qxRcv.'</wsa:To>
+                <wsa:MessageID>urn:services-qad-com::'.$qxRcv.'</wsa:MessageID>
                 <wsa:ReferenceParameters>
                   <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
                 </wsa:ReferenceParameters>

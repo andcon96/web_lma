@@ -27,14 +27,19 @@ class POReceiptController extends Controller
     public function searchPO(Request $req){
         // Validasi Web
         $receiptdate = $req->receiptdate;
+        $errorcode = Session::get('errors');
 
         if(is_null($req->sjnbr)){
-            alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
-            return redirect()->back();
+            $ponbrtampung = Session::get('ponbr');
+
+            // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
+            // return redirect()->back();
+        }else{
+            $ponbrtampung = $req->sjnbr;
         }
 
         // WSA QAD
-        $po_receipt = (new WSAServices())->wsagetpo($req->sjnbr);
+        $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung);
 
         if($po_receipt === false){
             alert()->error('Error', 'WSA Failed');
@@ -49,13 +54,16 @@ class POReceiptController extends Controller
         }
         
         
-        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate]);
+        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate,'errorcode'=>$errorcode]);
     }
 
     public function showReceipt(){
+        // dd('aa');
         $po = Session::get('tablepo');
 
         $receiptdate = Session::get('receiptdate');
+
+        $errorcode = Session::get('errorcode');
 
         $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
         
@@ -64,7 +72,18 @@ class POReceiptController extends Controller
             // return view('transaksi.poreceipt.index');
             return redirect()->route('poreceipt.index');
         }
-        
+
+        if($errorcode === 1){
+            alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
+            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
+        }elseif($errorcode === 2){
+            alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
+            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
+        }elseif($errorcode === 3){
+            alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
+            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
+        }
+
         return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
     }
 
@@ -73,23 +92,27 @@ class POReceiptController extends Controller
 
         // dd($newrequest);
         if(is_null($req->nopol)){
+            // dd('aaa');
             alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
-            return redirect()->back()->withInput($req->po_nbr);
+            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1]);
+            // dd('aaa');
         }
 
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
         if($poreceipt_submit === 'qxtend_err'){
-            alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
-            return redirect()->route('poreceipt.index');
+            // alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
+            // return redirect()->route('poreceipt.index');
+            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>2]);
         }
         
         if($poreceipt_submit === false){
-            alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
-            return redirect()->route('poreceipt.index');
+            // alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
+            // return redirect()->route('poreceipt.index');
+            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>3]);
         }
 
 
-        alert()->success('Success', 'PO berhasil di receipt')->persistent('Dismiss');;
+        alert()->success('Success', 'PO : '.$req->po_nbr.' berhasil di receipt')->persistent('Dismiss');
         return redirect()->route('poreceipt.index');
 
     }
