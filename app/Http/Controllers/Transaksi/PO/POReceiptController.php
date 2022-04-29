@@ -84,10 +84,10 @@ class POReceiptController extends Controller
             return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
         }elseif($errorcode === 2){
             alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
-            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
+            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
         }elseif($errorcode === 3){
             alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
-            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
+            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
         }
 
         return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));

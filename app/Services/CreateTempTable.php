@@ -77,8 +77,9 @@ class CreateTempTable
             $table->string('pod_loc');
             $table->decimal('pod_qty_fg');
             $table->decimal('pod_qty_rjct');
-            $table->string('pod_remarks');
+            $table->string('pod_remarks')->nullable();
             $table->longText('pod_nopol')->nullable();
+            $table->date('pod_receiptdate');
             $table->temporary();
         });
 
@@ -95,6 +96,7 @@ class CreateTempTable
                 'pod_qty_rjct' => $qtyreject[$datas],
                 'pod_remarks' => $remark,
                 'pod_nopol' => $nopol,
+                'pod_receiptdate' => $receiptdate,
             ]);
         }
 

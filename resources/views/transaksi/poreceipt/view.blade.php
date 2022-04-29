@@ -15,7 +15,7 @@
   <div class="row mb-3">
     <label for="receiptdate" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Receipt Date') }}</label>
     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-xs-12">
-      <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
+      <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ ($sessionpo!=null) ? $sessionpo[0]->pod_receiptdate : Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
     </div>
     <label for="po_nbr" class="col-form-label col-md-2" style="margin-left:25px">{{ __('PO No.') }}</label>
     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-xs-12">
