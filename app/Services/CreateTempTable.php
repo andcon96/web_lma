@@ -50,7 +50,7 @@ class CreateTempTable
     }
 
     public function createPOSessionTemp($data){
-        dd($data);
+        // dd($data);
 
         $ponbr = $data['po_nbr'];
         $supp = $data['supphidden'];
@@ -64,14 +64,13 @@ class CreateTempTable
         $receiptdate = $data['receiptdate'];
         // $listnopol = implode(" , ", $datas['nopol']);
         $nopol = $data['nopol'];
+        $remark = $data['remarkreceipt'];
 
         Schema::create('po_session', function ($table) {
             $table->string('po_nbr');
             $table->string('po_cust');
-            $table->string('po_custname');
             $table->string('pod_line');
             $table->string('pod_part');
-            $table->string('pod_partdesc');
             $table->string('pod_qty_ord');
             $table->string('pod_qty_rcvd');
             $table->string('pod_loc');
@@ -82,17 +81,19 @@ class CreateTempTable
             $table->temporary();
         });
 
-        foreach($data as $datas){
+        foreach($poline as $datas => $a){
             DB::table('po_session')->insert([
-                'po_nbr' => $datas->t_ponbr,
-                'po_cust' => $datas->t_suppnbr,
-                'po_custname' => $datas->t_suppname,
-                'pod_line' => $datas->t_line,
-                'pod_part' => $datas->t_part,
-                'pod_partdesc' => $datas->t_partdesc,
-                'pod_qty_ord' => $datas->t_ord,
-                'pod_qty_rcvd' => $datas->t_rcvd,
-                'pod_loc' => $datas->t_loc,
+                'po_nbr' => $ponbr,
+                'po_cust' => $supp,
+                'pod_line' => $a,
+                'pod_part' => $popart[$datas],
+                'pod_qty_ord' => $qtyord[$datas],
+                'pod_qty_rcvd' => $qtyrcvd[$datas],
+                'pod_loc' => $partloc[$datas],
+                'pod_qty_fg' => $qtyfg[$datas],
+                'pod_qty_rjct' => $qtyreject[$datas],
+                'pod_remarks' => $remark[$datas],
+                'pod_nopol' => $nopol[$datas],
             ]);
         }
 
