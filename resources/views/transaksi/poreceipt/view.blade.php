@@ -36,10 +36,12 @@
 
   @include('transaksi.poreceipt.table-view')
 
+  {{$sessionpo}}
+
   <div class="row mb-3">
     <label for="remarkreceipt" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Remark') }}</label>
     <div class="col-md-8">
-      <input type="text" class="form-control" name="remarkreceipt" maxlength="24"/>
+      <input type="text" class="form-control" name="remarkreceipt" maxlength="24" />
     </div>
   </div>
   <div class="row mb-3">

@@ -28,6 +28,7 @@ class POReceiptController extends Controller
         // Validasi Web
         $receiptdate = $req->receiptdate;
         $errorcode = Session::get('errors');
+        $sessionpo = Session::get('session_po');
 
         if(is_null($req->sjnbr)){
             $ponbrtampung = Session::get('ponbr');
@@ -54,7 +55,7 @@ class POReceiptController extends Controller
         }
         
         
-        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate,'errorcode'=>$errorcode]);
+        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate,'errorcode'=>$errorcode, 'sessionpo'=>$sessionpo]);
     }
 
     public function showReceipt(){
@@ -64,6 +65,8 @@ class POReceiptController extends Controller
         $receiptdate = Session::get('receiptdate');
 
         $errorcode = Session::get('errorcode');
+
+        $sessionpo = Session::get('sessionpo');
 
 
         $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
@@ -76,7 +79,7 @@ class POReceiptController extends Controller
 
         if($errorcode === 1){
             alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
-            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
+            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
         }elseif($errorcode === 2){
             alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
             return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
@@ -95,7 +98,8 @@ class POReceiptController extends Controller
         if(is_null($req->nopol)){
             // alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1]);
+            // $remarkreceipt = $req->old('remarkreceipt');
+            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1,'session_po'=>$poSession]);
         }
 
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
