@@ -48,6 +48,60 @@ class CreateTempTable
 
         return $table_po;
     }
+
+    public function createPOSessionTemp($data){
+        dd($data);
+
+        $ponbr = $data['po_nbr'];
+        $supp = $data['supphidden'];
+        $partloc = $data['partloc'];
+        $poline = $data['poline'];
+        $qtyfg = $data['qtyfg'];
+        $qtyreject = $data['qtyreject'];
+        $qtyord = $data['poqtyord'];
+        $qtyrcvd = $data['poqtyrcvd'];
+        $popart = $data['popart'];
+        $receiptdate = $data['receiptdate'];
+        // $listnopol = implode(" , ", $datas['nopol']);
+        $nopol = $data['nopol'];
+
+        Schema::create('po_session', function ($table) {
+            $table->string('po_nbr');
+            $table->string('po_cust');
+            $table->string('po_custname');
+            $table->string('pod_line');
+            $table->string('pod_part');
+            $table->string('pod_partdesc');
+            $table->string('pod_qty_ord');
+            $table->string('pod_qty_rcvd');
+            $table->string('pod_loc');
+            $table->decimal('pod_qty_fg');
+            $table->decimal('pod_qty_rjct');
+            $table->string('pod_remarks');
+            $table->longText('pod_nopol');
+            $table->temporary();
+        });
+
+        foreach($data as $datas){
+            DB::table('po_session')->insert([
+                'po_nbr' => $datas->t_ponbr,
+                'po_cust' => $datas->t_suppnbr,
+                'po_custname' => $datas->t_suppname,
+                'pod_line' => $datas->t_line,
+                'pod_part' => $datas->t_part,
+                'pod_partdesc' => $datas->t_partdesc,
+                'pod_qty_ord' => $datas->t_ord,
+                'pod_qty_rcvd' => $datas->t_rcvd,
+                'pod_loc' => $datas->t_loc,
+            ]);
+        }
+
+        $po_session = DB::table('po_session')->get();
+
+        Schema::dropIfExists('po_session');
+
+        return $po_session;
+    }
     
     public function createPOInvcTemp($data){
         Schema::dropIfExists('temp_poinvc');

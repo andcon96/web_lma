@@ -28,6 +28,7 @@ class POReceiptController extends Controller
         // Validasi Web
         $receiptdate = $req->receiptdate;
         $errorcode = Session::get('errors');
+        $remarkcache = Session::get('remarks');
 
         if(is_null($req->sjnbr)){
             $ponbrtampung = Session::get('ponbr');
@@ -54,7 +55,7 @@ class POReceiptController extends Controller
         }
         
         
-        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate,'errorcode'=>$errorcode]);
+        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate,'errorcode'=>$errorcode,'remarks'=>$remarkcache]);
     }
 
     public function showReceipt(){
@@ -64,6 +65,8 @@ class POReceiptController extends Controller
         $receiptdate = Session::get('receiptdate');
 
         $errorcode = Session::get('errorcode');
+
+        $remarks = Session::get('remarks');
 
         $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
         
@@ -75,7 +78,7 @@ class POReceiptController extends Controller
 
         if($errorcode === 1){
             alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
-            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
+            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','remarks'));
         }elseif($errorcode === 2){
             alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
             return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
@@ -92,13 +95,13 @@ class POReceiptController extends Controller
 
         // dd($newrequest);
         if(is_null($req->nopol)){
-            // dd('aaa');
-            alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1]);
-            // dd('aaa');
+            // alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
+            // $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1,'remarks'=>$req->remarkreceipt]);
         }
 
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
+        
         if($poreceipt_submit === 'qxtend_err'){
             // alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
