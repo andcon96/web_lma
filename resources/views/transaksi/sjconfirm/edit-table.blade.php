@@ -35,7 +35,15 @@
                     <td>
                         <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='4' data-live-search="true">
                             @foreach ($loc as $locs)
-                                <option value="{{$locs->loc}}" {{$locs->loc == $datas->sj_loc ? 'Selected' : ''}} >{{$locs->loc}} -- {{$locs->loc_desc}}</option>
+                                @if(old('partloc'))
+                                <option value="{{$locs->loc}}" {{ old('partloc.'.$index) == $locs->loc ? 'Selected' : '' }} >
+                                    {{$locs->loc}} -- {{$locs->loc_desc}}
+                                </option>
+                                @else
+                                <option value="{{$locs->loc}}" {{$locs->loc == $datas->sj_loc ? 'Selected' : ''}}>
+                                    {{$locs->loc}} -- {{$locs->loc_desc}}
+                                </option>
+                                @endif
                             @endforeach
                         </select>
                     </td>
