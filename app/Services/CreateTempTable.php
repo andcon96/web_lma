@@ -50,6 +50,8 @@ class CreateTempTable
     }
 
     public function createPOSessionTemp($data){
+        dd($data);
+
         Schema::create('po_session', function ($table) {
             $table->string('po_nbr');
             $table->string('po_cust');
