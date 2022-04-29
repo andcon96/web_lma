@@ -68,6 +68,8 @@ class POReceiptController extends Controller
 
         $sessionpo = Session::get('sessionpo');
 
+        // dd($sessionpo);
+
 
         $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
         
@@ -88,7 +90,7 @@ class POReceiptController extends Controller
             return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
         }
 
-        return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
+        return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
     }
 
     public function submitReceipt(Request $req){
