@@ -90,9 +90,10 @@ class POReceiptController extends Controller
     public function submitReceipt(Request $req){
         $newrequest = $req->all();
 
-        // dd($newrequest);
+        dd($newrequest);
         if(is_null($req->nopol)){
             // alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
+            $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
             return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1]);
         }
 
