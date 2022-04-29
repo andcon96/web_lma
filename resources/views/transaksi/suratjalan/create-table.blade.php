@@ -3,12 +3,12 @@
         <thead>
             <tr>
                 <th>Line</th>
-                <th width="40%">Barang</th>
+                <th width="25%">Barang</th>
                 <th>Qty Pesanan</th>
                 <th>Qty Belum Dikirim</th>
                 <th>Qty Dalam Perjalanan</th>
                 <th>Qty Sudah Sampai</th>
-                <th>Qty Input</th>
+                <th width="10%">Qty Input</th>
             </tr>
         </thead>
         <tbody>
