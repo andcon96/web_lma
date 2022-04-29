@@ -36,7 +36,7 @@
 
   @include('transaksi.poreceipt.table-view')
 
-  {{isnull($sessionpo) ? 'ini kosong':' ini ada session'}}
+  {{is_null($sessionpo) ? 'ini kosong':' ini ada session'}}
 
   <div class="row mb-3">
     <label for="remarkreceipt" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Remark') }}</label>
