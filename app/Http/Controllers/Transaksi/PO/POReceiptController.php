@@ -95,6 +95,7 @@ class POReceiptController extends Controller
         if(is_null($req->nopol)){
             // alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+            $remarkreceipt = $req->old('remarkreceipt');
             return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1]);
         }
 
