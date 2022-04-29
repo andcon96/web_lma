@@ -68,6 +68,8 @@ class POReceiptController extends Controller
 
         $sessionpo = Session::get('sessionpo');
 
+        dd($sessionpo);
+
 
         $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
         
