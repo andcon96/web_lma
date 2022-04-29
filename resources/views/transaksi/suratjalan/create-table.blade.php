@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>Line</th>
-                <th width="50%">Barang</th>
+                <th width="40%">Barang</th>
                 <th>Qty Pesanan</th>
                 <th>Qty Belum Dikirim</th>
                 <th>Qty Dalam Perjalanan</th>
