@@ -627,7 +627,7 @@ class QxtendServices
                     <qcom:ttContext>
                       <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
                       <qcom:propertyName>scopeTransaction</qcom:propertyName>
-                      <qcom:propertyValue>false</qcom:propertyValue>
+                      <qcom:propertyValue>true</qcom:propertyValue>
                     </qcom:ttContext>
                     <qcom:ttContext>
                       <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
@@ -810,7 +810,7 @@ class QxtendServices
                       <qcom:ttContext>
                         <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
                         <qcom:propertyName>scopeTransaction</qcom:propertyName>
-                        <qcom:propertyValue>false</qcom:propertyValue>
+                        <qcom:propertyValue>true</qcom:propertyValue>
                       </qcom:ttContext>
                       <qcom:ttContext>
                         <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
