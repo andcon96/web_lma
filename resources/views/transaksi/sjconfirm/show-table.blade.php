@@ -5,7 +5,8 @@
                 <th>Line</th>
                 <th width="25%">Part</th>
                 <th>Qty Order</th>
-                <th>Qty Input</th>
+                <th>Qty SJ</th>
+                <th>Qty Received</th>
                 <th width="25%">Location</th>
             </tr>
         </thead>
@@ -20,6 +21,9 @@
                         <input type="hidden" class="form-control" name="qtyinp[]" value="{{$datas->sj_qty_input}}" 
                         max="{{$datas->sj_qty_input}}" readonly>
                         {{number_format($datas->sj_qty_input,2)}}
+                    </td>
+                    <td>
+                        {{number_format($datas->sj_qty_rcv)}}
                     </td>
                     <td>
                         {{$datas->sj_loc}}
