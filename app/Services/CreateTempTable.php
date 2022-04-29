@@ -212,7 +212,7 @@ class CreateTempTable
                 DB::table('temp_group')->insert([
                     'sod_nbr' => $data['sonbr'],
                     'sod_part' => 'Reject - '.$data['part'][$key],
-                    'sod_qty_sj' => (int)$data['qtysj'][$key] - (int)$data['qtyinp'][$key],
+                    'sod_qty_sj' => (int)$data['qtyinp'][$key] - (int)$data['qtysj'][$key],
                     'sod_price_ls' => $data['price'][$key]
                 ]);
             }
