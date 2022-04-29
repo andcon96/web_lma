@@ -77,7 +77,7 @@ class CreateTempTable
             $table->decimal('pod_qty_fg');
             $table->decimal('pod_qty_rjct');
             $table->string('pod_remarks');
-            $table->longText('pod_nopol');
+            $table->longText('pod_nopol')->nullable();
             $table->temporary();
         });
 
