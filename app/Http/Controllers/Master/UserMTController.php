@@ -79,7 +79,7 @@ class UserMTController extends Controller
         ]);
 
         $users = User::where('isActive', 1)->get();
-        if ($users->count() >= 2) {
+        if ($users->count() >= 5) {
             alert()->error('Error', 'Exceeded Maximum Allowed User');
             // $request->session()->flash('error', 'Exceeded Maximum Allowed User');
             return back();
