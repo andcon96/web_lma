@@ -39,13 +39,13 @@
   <div class="row mb-3">
     <label for="remarkreceipt" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Remark') }}</label>
     <div class="col-md-8">
-      <input type="text" class="form-control" name="remarkreceipt" maxlength="24" value="{{($sessionpo!=null) ? $sessionpo[0]->pod_remarks : 'ini kosong'}}" />
+      <input type="text" class="form-control" name="remarkreceipt" maxlength="24" value="{{($sessionpo!=null) ? $sessionpo[0]->pod_remarks : ''}}" />
     </div>
   </div>
   <div class="row mb-3">
     <label for="nopol" class="col-form-label col-md-3" style="margin-left:25px">{{ __('No. Polisi') }}</label>
     <div class="col-md-8">
-      <textarea type="text" class="form-control" name="nopol" rows="3" maxlength="30"></textarea>
+      <textarea type="text" class="form-control" name="nopol" rows="3" maxlength="30">{{($sessionpo!=null) ? $sessionpo[0]->pod_nopol : ''}}</textarea>
     </div>
   </div>
 
