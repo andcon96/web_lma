@@ -93,7 +93,7 @@ class CreateTempTable
                 'pod_loc' => $partloc[$datas],
                 'pod_qty_fg' => $qtyfg[$datas],
                 'pod_qty_rjct' => $qtyreject[$datas],
-                'pod_remarks' => $remark[$datas],
+                'pod_remarks' => $remark,
                 'pod_nopol' => $nopol,
             ]);
         }
