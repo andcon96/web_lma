@@ -97,25 +97,27 @@ class POReceiptController extends Controller
         $newrequest = $req->all();
 
         // dd($newrequest);
-        if(is_null($req->nopol)){
-            // alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
-            $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
-            // $remarkreceipt = $req->old('remarkreceipt');
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1,'session_po'=>$poSession]);
-        }
+        // if(is_null($req->nopol)){
+        //     alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
+        //     $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+        //     $remarkreceipt = $req->old('remarkreceipt');
+        //     return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>1,'session_po'=>$poSession]);
+        // }
 
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
         
         if($poreceipt_submit === 'qxtend_err'){
             // alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>2]);
+            $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>2,'session_po'=>$poSession]);
         }
         
         if($poreceipt_submit === false){
             // alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>3]);
+            $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>3,'session_po'=>$poSession]);
         }
 
 
