@@ -32,7 +32,7 @@
             <td>
               <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='4' data-live-search="true" data-width="100%" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}>
                   @foreach ($loc as $locs)
-                      <option value="{{$locs->loc}}" {{$locs->loc == $show->pod_loc ? 'Selected' : ''}} >{{$locs->loc}} -- {{$locs->loc_desc}}</option>
+                      <option value="{{$locs->loc}}" {{$locs->loc == (($sessionpo!=null) ? $sessionpo[$index]->pod_loc : $show->pod_loc) ? 'Selected' : ''}} >{{$locs->loc}} -- {{$locs->loc_desc}}</option>
                   @endforeach
               </select>
             </td>
