@@ -482,7 +482,7 @@ class QxtendServices
                         <multiEntry>true</multiEntry>';
       if ($qtyfg[$key] > 0) {
           $qdocBody .= ' <receiptDetail>
-                          <location>FG</location>
+                          <location>'.$partloc[$key].'</location>
                           <lotserialQty>'.$qtyfg[$key].'</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
