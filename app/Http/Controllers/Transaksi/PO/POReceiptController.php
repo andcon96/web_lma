@@ -90,7 +90,7 @@ class POReceiptController extends Controller
             return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
         }
 
-        return view('transaksi.poreceipt.view', compact('po','receiptdate','loc'));
+        return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
     }
 
     public function submitReceipt(Request $req){
