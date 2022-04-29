@@ -683,7 +683,7 @@ class QxtendServices
                           $qdocBody.= '
                   <lineDetail>
                           <line>'.$data.'</line>
-                          <lotserialQty>'.$datas['qtyinp'][$key].'</lotserialQty>
+                          <lotserialQty>'.$datas['qtysj'][$key].'</lotserialQty>
                           <location>'.$datas['partloc'][$key].'</location>
                           <pickLogic>false</pickLogic>
                           <yn>true</yn>
