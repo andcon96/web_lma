@@ -52,6 +52,19 @@ class CreateTempTable
     public function createPOSessionTemp($data){
         dd($data);
 
+        $ponbr = $data['po_nbr'];
+        $supp = $data['supphidden'];
+        $partloc = $data['partloc'];
+        $poline = $data['poline'];
+        $qtyfg = $data['qtyfg'];
+        $qtyreject = $data['qtyreject'];
+        $qtyord = $data['poqtyord'];
+        $qtyrcvd = $data['poqtyrcvd'];
+        $popart = $data['popart'];
+        $receiptdate = $data['receiptdate'];
+        // $listnopol = implode(" , ", $datas['nopol']);
+        $nopol = $data['nopol'];
+
         Schema::create('po_session', function ($table) {
             $table->string('po_nbr');
             $table->string('po_cust');

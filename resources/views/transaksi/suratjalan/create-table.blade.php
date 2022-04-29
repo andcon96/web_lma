@@ -3,10 +3,11 @@
         <thead>
             <tr>
                 <th>Line</th>
-                <th width="50%">Part</th>
-                <th>Qty Order</th>
-                <th>Qty Open</th>
-                <th>Qty Ship</th>
+                <th width="50%">Barang</th>
+                <th>Qty Pesanan</th>
+                <th>Qty Belum Dikirim</th>
+                <th>Qty Dalam Perjalanan</th>
+                <th>Qty Sudah Sampai</th>
                 <th>Qty Input</th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                     {{number_format($show->sod_qty_ord - $show->sod_qty_ongoing - $show->sod_qty_ship,2)}}
                     <input type="hidden" name="sodqtyongoing[]" value="{{$show->sod_qty_ongoing}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                 </td>
+                <td>{{number_format($show->sod_qty_ongoing,2)}}</td>
                 <td>
                     {{number_format($show->sod_qty_ship,2)}}
                     <input type="hidden" name="sodqtyship[]" value="{{$show->sod_qty_ship}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
