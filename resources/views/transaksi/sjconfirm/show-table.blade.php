@@ -23,7 +23,7 @@
                         {{number_format($datas->sj_qty_input,2)}}
                     </td>
                     <td>
-                        {{number_format($datas->sj_qty_rcv)}}
+                        {{number_format($datas->sj_qty_rcvd)}}
                     </td>
                     <td>
                         {{$datas->sj_loc}}
