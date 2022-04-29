@@ -27,7 +27,9 @@
                         <input type="hidden" value="{{$datas->id}}" name="iddetail[]">
                         <input type="hidden" value="{{$datas->sj_line}}" name="line[]">
                         <input type="hidden" value="{{$datas->sj_loc}}" name="loc[]">
-                        <input type="hidden" value="{{$datas->sj_qty_ord}}" name="qtyord[]">
+                        <input type="hidden" value="{{$datas->sj_part}}" name="part[]">
+                        <input type="hidden" value="{{$datas->sj_qty_input}}" name="qtysj[]">
+                        <input type="hidden" value="{{$datas->sj_price_ls}}" name="price[]">
                         <input type="number" class="form-control" name="qtyinp[]" value="{{$datas->sj_qty_input}}">
                     </td>
                     <td>

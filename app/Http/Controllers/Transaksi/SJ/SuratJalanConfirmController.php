@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Master\LocMstr;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
+use App\Services\CreateTempTable;
 use App\Services\QxtendServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as Session;
@@ -63,6 +64,15 @@ class SuratJalanConfirmController extends Controller
         if($sendqxtend === false){
             alert()->error('Error', 'Failed to Ship SJ')->persistent('Dismiss');
             return back();
+        }else{
+            $createNewLine = (new CreateTempTable())->createNewLineSO($request->all());
+            if(count($createNewLine) > 0){
+                $qxSOMT = (new QxtendServices())->qxSOMT($createNewLine);
+                if($qxSOMT == 'false' || $qxSOMT === false){
+                    alert()->error('Error', 'Shipment Berhasil, SO gagal diupdate untuk Qty Input yang tidak sama dengan Qty SJ')->persistent('Dismiss');
+                    return back();
+                }
+            }
         }
 
         alert()->success('Success', 'Surat jalan Succesfully Shipped')->persistent('Dismiss');

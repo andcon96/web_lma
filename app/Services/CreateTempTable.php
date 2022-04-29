@@ -198,6 +198,34 @@ class CreateTempTable
         return $table_so;
     }
 
+    public function createNewLineSO($data){
+        Schema::create('temp_group', function ($table) {
+            $table->string('sod_nbr');
+            $table->string('sod_part');
+            $table->string('sod_qty_sj');
+            $table->string('sod_price_ls');
+            $table->temporary();
+        });
+
+        foreach($data['iddetail'] as $key => $datas){
+            if($data['qtysj'][$key] != $data['qtyinp'][$key]){
+                DB::table('temp_group')->insert([
+                    'sod_nbr' => $data['sonbr'],
+                    'sod_part' => 'Reject - '.$data['part'][$key],
+                    'sod_qty_sj' => (int)$data['qtyinp'][$key] - (int)$data['qtysj'][$key],
+                    'sod_price_ls' => $data['price'][$key]
+                ]);
+            }
+        }
+
+        $tableso = DB::table('temp_group')->get();
+
+        Schema::dropIfExists('temp_group');
+
+        return $tableso;
+        
+    }
+
     public function getRNSJ(){
         $prefix = Domain::where('domain_code',Session::get('domain'))->firstOrFail();
         if(substr($prefix->domain_sj_rn,0,2) != date('y')){
