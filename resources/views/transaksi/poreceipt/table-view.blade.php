@@ -1,4 +1,4 @@
-<div class="table-responsive col-lg-12 col-md-12 mb-4 tag-container" style="overflow-x: auto; overflow-y: hidden; display: block;white-space: nowrap;">
+<div class="table-responsive col-lg-12 col-md-12 mb-4 tag-container" style="overflow-x: auto; overflow-y: hidden; display: inline-table;white-space: nowrap;">
   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>
       <tr>
@@ -6,7 +6,8 @@
           <th style="width: 30%;">Part</th>
           <th style="width: 10%;">Qty Order</th>
           <th style="width: 10%;">Qty Received</th>
-          <th style="width: 25%;">Location</th>
+          <th style="width: 10%;">Qty Open</th>
+          <th style="width: 15%;">Location</th>
           <th style="width: 10%;">Qty FG</th>
           <th style="width: 10%;">Qty Reject</th>
       </tr>
@@ -30,7 +31,10 @@
               <input type="hidden" name="poqtyrcvd[]" value="{{$show->pod_qty_rcvd}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/>
             </td>
             <td>
-              <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='4' data-live-search="true" data-width="100%" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}>
+              {{number_format($show->pod_qty_ord - $show->pod_qty_rcvd,2)}}
+            </td>
+            <td>
+              <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='3' data-live-search="true" data-width="100%" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}>
                   @foreach ($loc as $locs)
                       <option value="{{$locs->loc}}" {{$locs->loc == (($sessionpo!=null) ? $sessionpo[$index]->pod_loc : $show->pod_loc) ? 'Selected' : ''}} >{{$locs->loc}} -- {{$locs->loc_desc}}</option>
                   @endforeach
