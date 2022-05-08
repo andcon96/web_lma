@@ -56,15 +56,15 @@ class SuratJalanController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $checkqtyinput = 0;
-        foreach($request->qtyinput as $qtyinput){
-            $checkqtyinput += $qtyinput;
-        }
+        // $checkqtyinput = 0;
+        // foreach($request->qtyinput as $qtyinput){
+        //     $checkqtyinput += $qtyinput;
+        // }
 
-        if($checkqtyinput == 0){
-            alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
-            return redirect()->route('suratjalan.index');
-        }
+        // if($checkqtyinput == 0){
+        //     alert()->error('Error', 'Tidak ada qty input yang dimasukan')->persistent('Dismiss');
+        //     return redirect()->route('suratjalan.index');
+        // }
 
         DB::beginTransaction();
         try {
