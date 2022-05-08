@@ -55,7 +55,17 @@ class SuratJalanController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $checkqtyinput = 0;
+        foreach($request->qtyinput as $qtyinput){
+            $checkqtyinput += $qtyinput;
+        }
+
+        if($checkqtyinput == 0){
+            alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
+            return redirect()->route('suratjalan.index');
+        }
+
         DB::beginTransaction();
         try {
             $newprefix = (new CreateTempTable())->getRNSJ();
@@ -73,17 +83,19 @@ class SuratJalanController extends Controller
 
             $id = $sj_mstr->id;
             foreach ($request->sodline as $key => $datas) {
-                $sj_dets = new SuratJalanDetail();
-                $sj_dets->sj_mstr_id = $id;
-                $sj_dets->sj_line = $datas;
-                $sj_dets->sj_part = $request->sodpart[$key];
-                $sj_dets->sj_part_desc = $request->soddesc[$key];
-                $sj_dets->sj_loc = $request->sodloc[$key];
-                $sj_dets->sj_qty_ord = $request->sodqtyord[$key];
-                $sj_dets->sj_qty_ship = $request->sodqtyship[$key];
-                $sj_dets->sj_qty_input = $request->qtyinput[$key];
-                $sj_dets->sj_price_ls = $request->sodpricels[$key];
-                $sj_dets->save();
+                if($request->qtyinput[$key] > 0 ){
+                    $sj_dets = new SuratJalanDetail();
+                    $sj_dets->sj_mstr_id = $id;
+                    $sj_dets->sj_line = $datas;
+                    $sj_dets->sj_part = $request->sodpart[$key];
+                    $sj_dets->sj_part_desc = $request->soddesc[$key];
+                    $sj_dets->sj_loc = $request->sodloc[$key];
+                    $sj_dets->sj_qty_ord = $request->sodqtyord[$key];
+                    $sj_dets->sj_qty_ship = $request->sodqtyship[$key];
+                    $sj_dets->sj_qty_input = $request->qtyinput[$key];
+                    $sj_dets->sj_price_ls = $request->sodpricels[$key];
+                    $sj_dets->save();
+                } 
             }
 
             $domain = Domain::where('domain_code',Session::get('domain'))->firstOrFail();
