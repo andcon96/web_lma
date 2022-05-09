@@ -30,7 +30,7 @@
     @if ($lastrun =="")
     <label style="display: flex; align-items: center;">Last Load : - </label>
     @else
-    <label style="display: flex; align-items: center;">Last Load : {{ $lastrun->created_at }}</label>
+    <label style="display: flex; align-items: center;">Last Load : {{ $lastrun->updated_at }}</label>
     @endif
   </div>
 
