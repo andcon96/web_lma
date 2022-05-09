@@ -204,7 +204,7 @@ class SuratJalanController extends Controller
 
     public function editjsbrowse($id)
     {
-        $data = SuratJalan::with('getDetail')->findOrFail($id);
+        $data = SuratJalan::with(['getDetail','getDetailCust','getDetailShip','getDetailBill'])->findOrFail($id);
 
         $this->authorize('update', [SuratJalan::class, $data]);
 

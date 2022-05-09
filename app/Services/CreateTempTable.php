@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Master\CustMstr;
 use App\Models\Master\Domain;
 use App\Models\Master\PoInvcEmail;
 use App\Models\Transaksi\POInvc;
@@ -152,8 +153,11 @@ class CreateTempTable
         Schema::create('temp_group', function ($table) {
             $table->string('so_nbr');
             $table->string('so_cust');
+            $table->string('so_cust_name');
             $table->string('so_ship');
+            $table->string('so_ship_name');
             $table->string('so_bill');
+            $table->string('so_bill_name');
             $table->string('sod_line');
             $table->string('sod_part');
             $table->string('sod_part_desc');
@@ -177,12 +181,19 @@ class CreateTempTable
             foreach($listsj as $lists){
                 $qtysj += $lists->sj_qty_input;
             }
+
+            $cust_name = CustMstr::where('cust_code','=',$datas->t_socust)->first();
+            $ship_name = CustMstr::where('cust_code','=',$datas->t_soship)->first();
+            $bill_name = CustMstr::where('cust_code','=',$datas->t_sobill)->first();
             
             DB::table('temp_group')->insert([
                 'so_nbr' => $datas->t_sonbr,
                 'so_cust' => $datas->t_socust,
+                'so_cust_name' => $cust_name->cust_name ?? '',
                 'so_ship' => $datas->t_soship,
+                'so_ship_name' => $ship_name->cust_name ?? '',
                 'so_bill' => $datas->t_sobill,
+                'so_bill_name' => $bill_name->cust_name ?? '',
                 'sod_line' => $datas->t_soline,
                 'sod_part' => $datas->t_sopart,
                 'sod_part_desc' => $datas->t_sopartdesc,
