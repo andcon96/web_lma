@@ -18,7 +18,7 @@ class CustMstrController extends Controller
 
         $custsearch = CustMstr::groupBy('cust_code')->select('cust_code','cust_name')->get();
 
-        $lastrun = CustMstr::select('created_at')->first();
+        $lastrun = CustMstr::select('updated_at')->first();
 
         if($req->cust){
             $cust->where('cust_code',$req->cust);

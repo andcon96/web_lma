@@ -20,7 +20,7 @@ class SiteMstrController extends Controller
 
         // $custsearch = SiteMstr::groupBy('cust_code')->select('cust_code','cust_name')->get();
 
-        $lastrun = SiteMstr::select('created_at')->first();
+        $lastrun = SiteMstr::select('updated_at')->first();
 
         // if($req->site){
         //     $site->where('cust_code',$req->cust);

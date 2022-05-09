@@ -19,7 +19,7 @@ class LocMstrController extends Controller
 
         $locsearch = LocMstr::groupBy('loc')->select('loc', 'loc_desc')->get();
 
-        $lastrun = LocMstr::select('created_at')->first();
+        $lastrun = LocMstr::select('updated_at')->first();
 
         if ($req->loc) {
             $loc->where('loc', $req->loc);
