@@ -249,12 +249,12 @@
                     <p>WSA Qxtend Maintenance</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a href="{{url('prefixmaint')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Prefix Maintenance</p>
                   </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                   <a href="{{route('poinvcemail.index')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>

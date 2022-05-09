@@ -27,8 +27,8 @@
                                 <td style="text-align: center; width:30%">Domain Desc</td>
                                 <td>SO Prefix</td>
                                 <td>SO RN</td>
-                                <td>Kerusakan Prefix</td>
-                                <td>Kerusakan RN</td>
+                                <td>Receiver Prefix</td>
+                                <td>Receiver RN</td>
                                 <td style="text-align: center;">Action</td>
                             </tr>
                         </thead>
