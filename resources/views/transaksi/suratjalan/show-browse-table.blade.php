@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>Line</th>
-                <th width="45%">Part</th>
+                <th width="45%">Item</th>
                 <th>Qty Order</th>
                 <th>Qty SJ</th>
                 <th>Qty Received</th>

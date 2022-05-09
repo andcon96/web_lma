@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Master\DepartmentController;
 use App\Http\Controllers\Master\AccessRoleMenuController;
 use App\Http\Controllers\Master\CustMstrController;
 use App\Http\Controllers\Master\DomainController;
@@ -106,11 +105,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/adminchangepass', [UserMTController::class, 'adminchangepass']);
         //================================
 
-        //================================
-        // Department Maintenance
-        //================================
-        Route::resource('deptmaint', DepartmentController::class);
-        //================================
 
         //================================
         // Role Maintenance
