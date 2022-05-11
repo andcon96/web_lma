@@ -114,7 +114,7 @@ class CreateTempTable
         Schema::create('temp_poinvc',function ($table){
             $table->string('po_nbr');
             $table->string('invoice_nbr');
-            $table->float('invoice_amt');
+            $table->float('invoice_amt',15,2);
             $table->string('invoice_status');
             $table->string('email_status')->nullable();
         });
