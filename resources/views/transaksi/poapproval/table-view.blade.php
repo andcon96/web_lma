@@ -2,11 +2,13 @@
   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>
       <tr>
-          <th style="width: 15%;">PO No.</th>
+          <th style="width: 10%;">PO No.</th>
+          <th style="width: 15%;">Supplier</th>
           <th style="width: 25%;">Invoice No.</th>
+          <th style="width: 10%;">Posting Date</th>
           <th style="width: 15%;">Amount</th>
-          <th style="width: 10%;">Status</th>
-          <th style="width: 15%;">Email Status</th>
+          <th style="width: 5%;">Status</th>
+          <th style="width: 10%;">Email Status</th>
           <th style="width: 10%; text-align: center;">Send Email</th>
       </tr>
    </thead>
@@ -16,6 +18,14 @@
             <td>
               {{$show->po_nbr}}
               <input type="hidden" name="ponbr[]" value="{{$show->po_nbr}}"/>  
+            </td>
+            <td>
+              {{$show->supp}}
+              <input type="hidden" name="supp[]" value="{{$show->supp}}"/>  
+            </td>
+            <td>
+              {{$show->posting_date}}
+              <input type="hidden" name="posting_date[]" value="{{$show->posting_date}}"/>  
             </td>
             <td>
               {{$show->invoice_nbr}}

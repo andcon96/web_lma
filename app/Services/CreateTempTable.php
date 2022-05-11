@@ -113,9 +113,11 @@ class CreateTempTable
 
         Schema::create('temp_poinvc',function ($table){
             $table->string('po_nbr');
+            $table->longText('supp');
             $table->string('invoice_nbr');
             $table->float('invoice_amt',15,2);
             $table->string('invoice_status');
+            $table->date('posting_date');
             $table->string('email_status')->nullable();
         });
 
@@ -125,17 +127,21 @@ class CreateTempTable
             if(is_null($checksendemail)){
                 DB::table('temp_poinvc')->insert([
                     'po_nbr' => $datas->t_ponbr,
+                    'supp' => $datas->t_suppcode.' - '.$datas->t_suppname,
                     'invoice_nbr' => $datas->t_invcnbr,
                     'invoice_amt' => $datas->t_bcinvcamt,
                     'invoice_status' => $datas->t_invcstatus,
+                    'posting_date' => $datas->t_posdate,
                     'email_status' => 'Not Send'
                 ]);
             }else{
                 DB::table('temp_poinvc')->insert([
                     'po_nbr' => $datas->t_ponbr,
+                    'supp' => $datas->t_suppcode.' - '.$datas->t_suppname,
                     'invoice_nbr' => $datas->t_invcnbr,
                     'invoice_amt' => $datas->t_bcinvcamt,
                     'invoice_status' => $datas->t_invcstatus,
+                    'posting_date' => $datas->t_posdate,
                     'email_status' => 'Send'
                 ]);
             }

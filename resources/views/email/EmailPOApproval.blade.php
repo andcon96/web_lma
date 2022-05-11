@@ -149,6 +149,22 @@
             </td>
           </tr>
           <tr>
+            <td style="width: 15%; background-color: #aaa;" >
+              Supplier
+            </td>
+            <td style="width: 20%;">
+              {{$note4}}
+            </td>
+          </tr>
+          <tr>
+            <td style="width: 15%; background-color: #aaa;" >
+              Posting Date
+            </td>
+            <td style="width: 20%;">
+              {{$note5}}
+            </td>
+          </tr>
+          <tr>
             <td style="width: 15%; background-color: #aaa;">
               Invoice No.
             </td>

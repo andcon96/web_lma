@@ -83,6 +83,8 @@ class POApprovalController extends Controller
 
                     $pesan = 'New PO Invoice Approval';
                     $ponbr = $req->ponbr[$key];
+                    $supplier = $req->supp[$key];
+                    $posdate = $req->posting_date[$key];
                     $invcnbr = $req->invoice_nbr[$key];
                     $invcamt = $req->invoice_amt[$key];
                     $penerima = $emailto->name_invc;
@@ -91,6 +93,8 @@ class POApprovalController extends Controller
                     EmailPOInvcApproval::dispatch(
                         $pesan,
                         $ponbr,
+                        $supplier,
+                        $posdate,
                         $invcnbr,
                         $invcamt,
                         $penerima,

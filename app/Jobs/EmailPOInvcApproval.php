@@ -23,16 +23,20 @@ class EmailPOInvcApproval
 
     protected $pesan;
     protected $ponbr;
+    protected $supplier;
+    protected $posdate;
     protected $invcnbr;
     protected $invcamt;
     protected $penerima;
     protected $alamatemail;
 
-    public function __construct($pesan, $ponbr, $invcnbr, $invcamt, $penerima, $alamatemail)
+    public function __construct($pesan, $ponbr, $supplier, $posdate, $invcnbr, $invcamt, $penerima, $alamatemail)
     {
         //
         $this->pesan = $pesan;
         $this->ponbr = $ponbr;
+        $this->supplier = $supplier;
+        $this->posdate = $posdate;
         $this->invcnbr = $invcnbr;
         $this->invcamt = $invcamt;
         $this->penerima = $penerima;
@@ -50,6 +54,8 @@ class EmailPOInvcApproval
         //
         $pesan = $this->pesan;
         $ponbr = $this->ponbr;
+        $supplier = $this->supplier;
+        $posdate = $this->posdate;
         $invcnbr = $this->invcnbr;
         $invcamt = $this->invcamt;
         $penerima = $this->penerima;
@@ -67,6 +73,8 @@ class EmailPOInvcApproval
                 'note1' => $ponbr,
                 'note2' => $invcnbr,
                 'note3' => $invcamt,
+                'note4' => $supplier,
+                'note5' => $posdate,
                 'param1' => $param1,
                 'param2' => $param2, 
             ],
