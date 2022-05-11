@@ -22,7 +22,7 @@
               <input type="hidden" name="invoice_nbr[]" value="{{$show->invoice_nbr}}"/>
             </td>
             <td>
-              {{number_format($show->invoice_amt,2)}}
+              {{$show->invoice_amt}}
               <input type="hidden" name="invoice_amt[]" value="{{$show->invoice_amt}}"/>
             </td>
             <td>
