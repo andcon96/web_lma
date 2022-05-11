@@ -2,7 +2,7 @@
   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>
       <tr>
-          <th style="width: 15%;">PO Nbr.</th>
+          <th style="width: 15%;">PO No.</th>
           <th style="width: 25%;">Invoice Nbr.</th>
           <th style="width: 15%;">Amount</th>
           <th style="width: 10%;">Status</th>
