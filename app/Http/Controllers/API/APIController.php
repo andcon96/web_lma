@@ -100,23 +100,23 @@ class APIController extends Controller
 
                 $poinvc2->save();
 
-                $pesan = 'PO Invoice Information';
-                $pesan2 = 'Invoice sudah direject';
-                $ponbr =  $param1;
-                $invcnbr = $param2;
-                $supp = $param3;
-                $postingdate = $param4;
-                $amt = $param5;
+                // $pesan = 'PO Invoice Information';
+                // $pesan2 = 'Invoice sudah direject';
+                // $ponbr =  $param1;
+                // $invcnbr = $param2;
+                // $supp = $param3;
+                // $postingdate = $param4;
+                // $amt = $param5;
 
-                EmailtoReceiver::dispatch(
-                    $pesan,
-                    $pesan2,
-                    $ponbr,
-                    $invcnbr,
-                    $supp,
-                    $postingdate,
-                    $amt,
-                );
+                // EmailtoReceiver::dispatch(
+                //     $pesan,
+                //     $pesan2,
+                //     $ponbr,
+                //     $invcnbr,
+                //     $supp,
+                //     $postingdate,
+                //     $amt,
+                // );
 
                 return view('Invc_no');
             }else{
