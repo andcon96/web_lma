@@ -3,7 +3,7 @@
     <thead>
       <tr>
           <th style="width: 15%;">PO No.</th>
-          <th style="width: 25%;">Invoice Nbr.</th>
+          <th style="width: 25%;">Invoice No.</th>
           <th style="width: 15%;">Amount</th>
           <th style="width: 10%;">Status</th>
           <th style="width: 15%;">Email Status</th>
