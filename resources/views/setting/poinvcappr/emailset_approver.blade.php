@@ -36,7 +36,8 @@
                     <table id="createTable" class="table order-list" style="table-layout: fixed;">
                         <thead>
                             <tr>
-                                <td colspan="2" style="text-align: center;">Email Receiver</td>
+                                <td style="text-align: center;">Email Receiver</td>
+                                <td style="text-align: center;">Delete</td>
                             </tr>
                         </thead>
                         <tbody id='detailapp'>
