@@ -24,12 +24,12 @@
               <input type="hidden" name="supp[]" value="{{$show->supp}}"/>  
             </td>
             <td>
-              {{$show->posting_date}}
-              <input type="hidden" name="posting_date[]" value="{{$show->posting_date}}"/>  
-            </td>
-            <td>
               {{$show->invoice_nbr}}
               <input type="hidden" name="invoice_nbr[]" value="{{$show->invoice_nbr}}"/>
+            </td>
+            <td>
+              {{$show->posting_date}}
+              <input type="hidden" name="posting_date[]" value="{{$show->posting_date}}"/>  
             </td>
             <td>
               {{number_format($show->invoice_amt,2)}}
