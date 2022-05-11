@@ -137,13 +137,59 @@
   <div class="header" style="text-align: center;">
     <h1>{{$pesan}}</h1>
   </div>
-
+  <div class="row">
+    <h3>{{$pesan2}}</h3>
+  </div>
   <div class="row">
     <div class="leftcolumn">
       <div class="card" style="text-align:center;">
-        <h2>{{$pesan2}}</h2>
+        <table>
+          <tbody>
+            <tr>
+              <td style="width: 15%; background-color: #aaa;">
+                PO No.
+              </td>
+              <td style="width: 20%;">
+                {{$ponbr}}
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15%; background-color: #aaa;">
+                Supplier
+              </td>
+              <td style="width: 20%;">
+                {{$supp}}
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15%; background-color: #aaa;">
+                Posting Date
+              </td>
+              <td style="width: 20%;">
+                {{$postingdate}}
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15%; background-color: #aaa;">
+                Invoice No.
+              </td>
+              <td style="width: 20%;">
+                {{$invcnbr}}
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15%; background-color: #aaa;">
+                Amount
+              </td>
+              <td style="width: 20%;">
+                {{number_format($amt,2)}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
   </div>
   </div>
 

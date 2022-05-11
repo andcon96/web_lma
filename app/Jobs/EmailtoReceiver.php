@@ -25,14 +25,20 @@ class EmailtoReceiver
     protected $pesan2;
     protected $ponbr;
     protected $invcnbr;
+    protected $supp;
+    protected $postingdate;
+    protected $amt;
 
-    public function __construct($pesan, $pesan2, $ponbr, $invcnbr)
+    public function __construct($pesan, $pesan2, $ponbr, $invcnbr, $supp, $postingdate, $amt)
     {
         //
         $this->pesan = $pesan;
         $this->pesan2 = $pesan2;
         $this->ponbr = $ponbr;
         $this->invcnbr = $invcnbr;
+        $this->supp = $supp;
+        $this->postingdate = $postingdate;
+        $this->amt = $amt;
     }
 
     /**
@@ -47,6 +53,9 @@ class EmailtoReceiver
         $pesan2 = $this->pesan2;
         $ponbr = $this->ponbr;
         $invcnbr = $this->invcnbr;
+        $supp = $this->supp;
+        $postingdate = $this->postingdate;
+        $amt = $this->amt;
 
         // dd($this->emailto);
 
@@ -58,9 +67,13 @@ class EmailtoReceiver
             'email.EmailtoReceiver',
             [
                 'pesan' => $pesan,
-                'note1' => $ponbr,
-                'note2' => $invcnbr,
                 'pesan2' => $pesan2,
+                'ponbr' => $ponbr,
+                'invcnbr' => $invcnbr,
+                'supp' => $supp,
+                'postingdate' => $postingdate,
+                'amt' => $amt,
+
             ],
             function ($message) use ($emailto) {
                 $message->subject('Purchase Order Invoice Approval Information');

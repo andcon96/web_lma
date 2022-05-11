@@ -16,7 +16,7 @@ class APIController extends Controller
 {
     //
 
-    public function approvedInvcYes($ponbr, $invcnbr)
+    public function approvedInvcYes($ponbr, $invcnbr, $supp, $postingdate, $amt)
     {
 
         try {
@@ -25,6 +25,9 @@ class APIController extends Controller
 
             $param1 = Crypt::decrypt($ponbr);
             $param2 = Crypt::decrypt($invcnbr);
+            $param3 = Crypt::decrypt($supp);
+            $param4 = Crypt::decrypt($postingdate);
+            $param5 = Crypt::decrypt($amt);
             // dd($param1);
 
             $poinvc_hist = POInvcApprHist::where('ponbr','=',$param1)->where('invcnbr','=',$param2)->first();
@@ -43,16 +46,21 @@ class APIController extends Controller
                 // dd($emailto);
 
                 $pesan = 'PO Invoice Information';
-                $pesan2 =  'PO '.$param1.' dengan invoice '.$param2.' sudah diapprove';
-
-                $ponbr = $param1;
+                $pesan2 = 'Invoice sudah diapprove';
+                $ponbr =  $param1;
                 $invcnbr = $param2;
+                $supp = $param3;
+                $postingdate = $param4;
+                $amt = $param5;
 
                 EmailtoReceiver::dispatch(
                     $pesan,
                     $pesan2,
                     $ponbr,
                     $invcnbr,
+                    $supp,
+                    $postingdate,
+                    $amt,
                 );
 
 
@@ -70,12 +78,15 @@ class APIController extends Controller
         }
     }
 
-    public function approvedInvcNo($ponbr, $invcnbr)
+    public function approvedInvcNo($ponbr, $invcnbr, $supp, $postingdate, $amt)
     {
         try {
 
             $param1 = Crypt::decrypt($ponbr);
             $param2 = Crypt::decrypt($invcnbr);
+            $param3 = Crypt::decrypt($supp);
+            $param4 = Crypt::decrypt($postingdate);
+            $param5 = Crypt::decrypt($amt);
 
             $poinvc_hist = POInvcApprHist::where('ponbr','=',$param1)->where('invcnbr','=',$param2)->first();
             
@@ -90,16 +101,21 @@ class APIController extends Controller
                 $poinvc2->save();
 
                 $pesan = 'PO Invoice Information';
-                $pesan2 =  'PO '.$param1.' dengan invoice '.$param2.' sudah direject';
-
-                $ponbr = $param1;
+                $pesan2 = 'Invoice sudah direject';
+                $ponbr =  $param1;
                 $invcnbr = $param2;
+                $supp = $param3;
+                $postingdate = $param4;
+                $amt = $param5;
 
                 EmailtoReceiver::dispatch(
                     $pesan,
                     $pesan2,
                     $ponbr,
                     $invcnbr,
+                    $supp,
+                    $postingdate,
+                    $amt,
                 );
 
                 return view('Invc_no');
