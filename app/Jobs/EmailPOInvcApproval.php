@@ -63,6 +63,9 @@ class EmailPOInvcApproval
 
         $param1 = Crypt::encrypt($ponbr);
         $param2 = Crypt::encrypt($invcnbr);
+        $param3 = Crypt::encrypt($supplier);
+        $param4 = Crypt::encrypt($posdate);
+        $param5 = Crypt::encrypt($invcamt);
 
         // dump($pesan,$ponbr,$invcnbr,$invcamt, $penerima, $alamatemail);
 
@@ -76,7 +79,10 @@ class EmailPOInvcApproval
                 'note4' => $supplier,
                 'note5' => $posdate,
                 'param1' => $param1,
-                'param2' => $param2, 
+                'param2' => $param2,
+                'param3' => $param3,
+                'param4' => $param4,
+                'param5' => $param5, 
             ],
             function ($message) use ($alamatemail) {
                 $message->subject('Purchase Order Invoice Approval Task');
