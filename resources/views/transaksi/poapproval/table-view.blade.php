@@ -51,6 +51,8 @@
                 Approved
               @elseif ($approvalstatus->status == 'rejected')
                 Rejected
+              @else
+                -
               @endif
             </td>
             <td>

@@ -37,7 +37,7 @@ class APIController extends Controller
                 // dd($param1);
 
                 $poinvc1 = new POInvcApprHist();
-                $poinvc1->ponbr = $param1;
+                $poinvc1->ponbr = $param1 ?? '-';
                 $poinvc1->invcnbr = $param2;
                 $poinvc1->status = 'approved';
 
@@ -94,7 +94,7 @@ class APIController extends Controller
 
 
                 $poinvc2 = new POInvcApprHist();
-                $poinvc2->ponbr = $param1;
+                $poinvc2->ponbr = $param1 ?? '-';
                 $poinvc2->invcnbr = $param2;
                 $poinvc2->status = 'rejected';
 
