@@ -761,8 +761,7 @@ class WSAServices
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
             <Body>
                 <LMA_poappr xmlns="'. $wsa->wsas_path .'">
-                    <inpdomain>'.$domain.'</inpdomain>
-                    <inpponbr>'.$ponbr.'</inpponbr>
+                    <inpref>'.$ponbr.'</inpref>
                 </LMA_poappr>
             </Body>
         </Envelope>';

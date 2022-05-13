@@ -112,7 +112,7 @@ class CreateTempTable
         Schema::dropIfExists('temp_poinvc');
 
         Schema::create('temp_poinvc',function ($table){
-            $table->string('po_nbr');
+            $table->string('po_nbr')->nullable();
             $table->longText('supp');
             $table->string('invoice_nbr');
             $table->float('invoice_amt',15,2);
