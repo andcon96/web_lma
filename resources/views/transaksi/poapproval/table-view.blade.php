@@ -44,7 +44,8 @@
               @endif
             </td>
               @php
-                $approvalstatus = $statusappr->where('invcnbr')->select('status')->first();
+                $approvalstatus = $statusappr->where('invcnbr')->first();
+                dd($approvalstatus);
               @endphp
             <td>
               @if ($approvalstatus == 'approved')
