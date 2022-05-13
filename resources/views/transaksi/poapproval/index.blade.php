@@ -10,7 +10,7 @@
 
 @section('content')
 
-<form action="{{route('searchpoinvc')}}" method="GET">
+<form id="searchinvc" action="{{route('searchpoinvc')}}" method="GET">
     <div class="form-group row">
         <label for="ponbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Invoice Reference') }}</label>
         <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
@@ -24,6 +24,9 @@
 
         <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
             <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="margin-left:15px;" />
+            <button type="button" class="btn btn-info" id="s_btnloading" style="display:none;margin-top: 10px;">
+                <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
+            </button>
         </div>
     </div>
 </form>
@@ -34,31 +37,30 @@
 
 <script>
     $("#sjnbr").select2({
-        width : '100%'
+        width: '100%'
     });
     $("#sjnbr").select2('open');
 
-    $( "#effdate" ).datepicker({
-        dateFormat : 'dd/mm/yy'
+    $("#effdate").datepicker({
+        dateFormat: 'dd/mm/yy'
     });
 
-    $( "#shipdate" ).datepicker({
-        dateFormat : 'dd/mm/yy'
+    $("#shipdate").datepicker({
+        dateFormat: 'dd/mm/yy'
     });
 
-    $(document).on('hide.bs.modal','#detailModal',function(){
-        if(confirm("Are you sure, you want to close?")) return true;
+    $(document).on('hide.bs.modal', '#detailModal', function() {
+        if (confirm("Are you sure, you want to close?")) return true;
         else return false;
     });
 
-    $('#update').submit(function(event) {
-        document.getElementById('btnclose').style.display = 'none';
-        document.getElementById('btnconf').style.display = 'none';
-        document.getElementById('btnloading').style.display = ''; 
+    $('#searchinvc').submit(function(event) {
+        document.getElementById('btnsearch').style.display = 'none';
+        document.getElementById('s_btnloading').style.display = '';
     });
 
 
-    $(document).on('click','.editUser',function(){ // Click to only happen on announce links
+    $(document).on('click', '.editUser', function() { // Click to only happen on announce links
         var suratjalan = $(this).data('sj');
         var ponbr = $(this).data('nbr');
         var line = $(this).data('line');
@@ -83,17 +85,18 @@
         document.getElementById("m_itemdesc").value = desc;
         document.getElementById("m_qtyord").value = qtyord;
         document.getElementById("m_qtyrec").value = qtyrcvd;
-         
+
         jQuery.ajax({
-            type : "get",
-            url : "{{URL::to("detailreceipt") }}",
-            data:{
-                suratjalan : suratjalan,
-                ponbr : ponbr,
-                line : line
+            type: "get",
+            url: "{{URL::to("
+            detailreceipt ") }}",
+            data: {
+                suratjalan: suratjalan,
+                ponbr: ponbr,
+                line: line
             },
-            success:function(data){
-            //$('tbody').html(data);
+            success: function(data) {
+                //$('tbody').html(data);
                 console.log(data);
                 document.getElementById("m_um").value = data[0]['xpod_um'];
                 document.getElementById("m_loc").value = data[0]['xpod_loc'];
@@ -105,17 +108,17 @@
     });
 
 
-    $(document).on('change','#m_qtyrec',function(){
+    $(document).on('change', '#m_qtyrec', function() {
         var qtyship = document.getElementById("m_qtyship").value;
         var qtyrec = document.getElementById("m_qtyrec").value
-        
-        
-        if(parseInt(qtyrec) > parseInt(qtyship)){
-            setTimeout(function(){
-                    alert("Qty Received is greater than Qty Ship");
-                    document.getElementById("m_qtyrec").focus();
-                    return false;
-            },1);
+
+
+        if (parseInt(qtyrec) > parseInt(qtyship)) {
+            setTimeout(function() {
+                alert("Qty Received is greater than Qty Ship");
+                document.getElementById("m_qtyrec").focus();
+                return false;
+            }, 1);
         }
     });
 </script>
