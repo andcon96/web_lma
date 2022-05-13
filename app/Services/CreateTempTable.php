@@ -6,6 +6,7 @@ use App\Models\Master\CustMstr;
 use App\Models\Master\Domain;
 use App\Models\Master\PoInvcEmail;
 use App\Models\Transaksi\POInvc;
+use App\Models\Transaksi\POInvcApprHist;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use Illuminate\Support\Facades\DB;
@@ -122,7 +123,8 @@ class CreateTempTable
         });
 
         foreach($data as $datas){
-            $checksendemail =  POInvc::where('eh_ponbr','=',$datas->t_ponbr)->where('eh_invcnbr','=',$datas->t_invcnbr)->first();
+            $checksendemail =  POInvc::where('eh_invcnbr','=',$datas->t_invcnbr)->first();
+            $checkstatusappr = POInvcApprHist::where('invcnbr',$datas->t_invcnbr)->frist();
 
             if(is_null($checksendemail)){
                 DB::table('temp_poinvc')->insert([

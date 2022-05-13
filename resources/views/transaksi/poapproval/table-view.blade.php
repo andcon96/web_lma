@@ -2,12 +2,13 @@
   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
     <thead>
       <tr>
-          <th style="width: 10%;">PO No.</th>
+          <th style="width: 7%;">PO No.</th>
           <th style="width: 15%;">Supplier</th>
-          <th style="width: 25%;">Invoice No.</th>
+          <th style="width: 20%;">Invoice No.</th>
           <th style="width: 10%;">Posting Date</th>
           <th style="width: 15%;">Amount</th>
           <th style="width: 5%;">Status</th>
+          <th style="width: 8%;">Appr. Status</th>
           <th style="width: 10%;">Email Status</th>
           <th style="width: 10%; text-align: center;">Send Email</th>
       </tr>
@@ -40,6 +41,16 @@
                 Open
               @else
                 Close
+              @endif
+            </td>
+              @php
+                $approvalstatus = $statusappr->where('invcnbr')->select('status')->first();
+              @endphp
+            <td>
+              @if ($approvalstatus == 'approved')
+                Approved
+              @elseif ($approvalstatus == 'rejected')
+                Rejected
               @endif
             </td>
             <td>

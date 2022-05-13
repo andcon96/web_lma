@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\EmailPOInvcApproval;
 use App\Models\Master\PoInvcEmail;
 use App\Models\Transaksi\POInvc;
+use App\Models\Transaksi\POInvcApprHist;
 use App\Services\CreateTempTable;
 use App\Services\WSAServices;
 use Illuminate\Http\Request;
@@ -44,13 +45,14 @@ class POApprovalController extends Controller
 
     public function showInvoice(){
         $poinvoice = Session::get('tablepo');
+        $statusappr = POInvcApprHist::get();
         
         if(is_null($poinvoice)){
             alert()->error('Error', 'Silahkan Search Ulang');
             return redirect()->route('poapproval.index');
         }
         
-        return view('transaksi.poapproval.view', compact('poinvoice'));
+        return view('transaksi.poapproval.view', compact('poinvoice','statusappr'));
     }
 
     public function sendMailApproval(Request $req){

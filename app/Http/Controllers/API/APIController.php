@@ -30,7 +30,7 @@ class APIController extends Controller
             $param5 = Crypt::decrypt($amt);
             // dd($param1);
 
-            $poinvc_hist = POInvcApprHist::where('ponbr','=',$param1)->where('invcnbr','=',$param2)->first();
+            $poinvc_hist = POInvcApprHist::where('invcnbr','=',$param2)->first();
             // dd($poinvc_hist);
 
             if(!$poinvc_hist){
@@ -88,7 +88,7 @@ class APIController extends Controller
             $param4 = Crypt::decrypt($postingdate);
             $param5 = Crypt::decrypt($amt);
 
-            $poinvc_hist = POInvcApprHist::where('ponbr','=',$param1)->where('invcnbr','=',$param2)->first();
+            $poinvc_hist = POInvcApprHist::where('invcnbr','=',$param2)->first();
             
             if(!$poinvc_hist){
 
@@ -96,7 +96,7 @@ class APIController extends Controller
                 $poinvc2 = new POInvcApprHist();
                 $poinvc2->ponbr = $param1;
                 $poinvc2->invcnbr = $param2;
-                $poinvc2->status = 'reject';
+                $poinvc2->status = 'rejected';
 
                 $poinvc2->save();
 
