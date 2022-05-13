@@ -16,9 +16,9 @@
                 <tr>
                     <td>{{$datas->sj_nbr}}</td>
                     <td>{{$datas->sj_so_nbr}}</td>
-                    <td>{{$datas->sj_so_cust}} -- {{$datas->getDetailCust->cust_name}}</td>
-                    <td>{{$datas->sj_so_ship}} -- {{$datas->getDetailShip->cust_name}}</td>
-                    <td>{{$datas->sj_so_bill}} -- {{$datas->getDetailBill->cust_name}}</td>
+                    <td>{{$datas->sj_so_cust}} -- {{$datas->getDetailCust->cust_name ?? ''}}</td>
+                    <td>{{$datas->sj_so_ship}} -- {{$datas->getDetailShip->cust_name ?? ''}}</td>
+                    <td>{{$datas->sj_so_bill}} -- {{$datas->getDetailBill->cust_name ?? ''}}</td>
                     <td>{{$datas->sj_status}}</td>
                     <td>
                         @if($datas->sj_status == 'New')
