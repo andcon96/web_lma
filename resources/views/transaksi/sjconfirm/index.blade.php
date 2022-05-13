@@ -33,7 +33,7 @@
             <select name="cust" id="cust" class="form-control">
                 <option value="">Select Data</option>
                 @foreach($cust as $custs)
-                <option value="{{$custs->sj_so_cust}}">{{$custs->sj_so_cust}} -- {{$custs->getDetailCust->cust_name}}</option>
+                <option value="{{$custs->sj_so_cust}}">{{$custs->sj_so_cust}} -- {{$custs->getDetailCust->cust_name ?? ''}}</option>
                 @endforeach
             </select>
         </div>
