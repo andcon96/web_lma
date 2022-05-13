@@ -45,12 +45,11 @@
             </td>
               @php
                 $approvalstatus = $statusappr->where('invcnbr')->first();
-                dd($approvalstatus);
               @endphp
             <td>
-              @if ($approvalstatus == 'approved')
+              @if ($approvalstatus->status == 'approved')
                 Approved
-              @elseif ($approvalstatus == 'rejected')
+              @elseif ($approvalstatus->status == 'rejected')
                 Rejected
               @endif
             </td>
