@@ -124,7 +124,6 @@ class CreateTempTable
 
         foreach($data as $datas){
             $checksendemail =  POInvc::where('eh_invcnbr','=',$datas->t_invcnbr)->first();
-            $checkstatusappr = POInvcApprHist::where('invcnbr',$datas->t_invcnbr)->frist();
 
             if(is_null($checksendemail)){
                 DB::table('temp_poinvc')->insert([
