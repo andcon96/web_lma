@@ -7,7 +7,6 @@
 </ol>
 @endsection
 
-
 @section('content')
 
 <form action="{{route('browseSJ')}}" method="GET">
@@ -56,7 +55,7 @@
     </div>
 </form>
 
-<div class="row col-12">
+<div id="tabledata">
     @include('transaksi.suratjalan.browse-table')
 </div>
 
@@ -75,6 +74,13 @@
         $('#status').val('');
     }
 
+    $( function () {
+        if (sessionStorage.getItem('show_message')) {
+            Swal.fire('Surat Jalan Cancelled', '', 'success');
+            sessionStorage.removeItem('show_message');
+        }
+    });
+
     $(document).ready(function() {
         var cur_url = window.location.href;
 
@@ -90,23 +96,45 @@
     
     $(document).on('click', '#btndel', function(e){
         e.preventDefault();
-        let url = $(this).data('url');
+        let curl = $(this).data('url');
 
         Swal.fire({
-            title: "Delete Surat Jalan ?",
-            text: "Cannot be undone",
-            type: "warning",
             icon: 'warning',
-            showCancelButton: true,
+            title: 'Cancel Surat Jalan',
+            html: `<input type="text" id="reason" class="swal2-input" placeholder="Reason">`,
+            confirmButtonText: 'Submit',
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Delete",
-            closeOnConfirm: false
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                window.location = url;
+            focusConfirm: false,
+            preConfirm: () => {
+                const reason = Swal.getPopup().querySelector('#reason').value
+                if (!reason) {
+                Swal.showValidationMessage(`Reason Cannot be Empty`)
+                }
+                return { reason: reason }
             }
-        })
+            }).then((result) => {
+                let reasons = `${result.value.reason}`
+                $.ajax({
+                    type: "POST",
+                    url: curl,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "reason": reasons
+                    },
+                    beforeSend: function() {
+						$('#loader').removeClass('hidden');
+					},
+                    success: function (data) {
+                        // $('#tabledata').html('').append(data);
+                        // sessionStorage.reloadAfterPageLoad = true;
+                        sessionStorage.setItem('show_message',true);
+                        window.location.reload();
+                    },complete: function() {
+                        $('#loader').addClass('hidden');
+                    },         
+                });
+                
+            })
         
     });
     

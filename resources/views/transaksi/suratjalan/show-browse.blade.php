@@ -26,7 +26,7 @@
             <div class="col-md-3">
                 <input id="socust" type="text" class="form-control" name="socust" value="{{$data->sj_so_cust}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
-            <label for="shipto" class="col-md-3 col-form-label text-md-right">Ship To</label>
+            {{-- <label for="shipto" class="col-md-3 col-form-label text-md-right">Ship To</label>
             <div class="col-md-3">
                 <input id="shipto" type="text" class="form-control" name="shipto" value="{{$data->sj_so_ship}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
@@ -35,7 +35,7 @@
             <label for="billto" class="col-md-2 col-form-label text-md-right">Bill To</label>
             <div class="col-md-3">
                 <input id="billto" type="text" class="form-control" name="billto" value="{{$data->sj_so_bill}}" autocomplete="off" maxlength="24" autofocus disabled>
-            </div>
+            </div> --}}
             <label for="status" class="col-md-3 col-form-label text-md-right">Status</label>
             <div class="col-md-3">
                 <input id="status" type="text" class="form-control" name="status" value="{{$data->sj_status}}" autocomplete="off" maxlength="24" autofocus readonly>
@@ -49,6 +49,12 @@
             <label for="nopol" class="col-md-3 col-form-label text-md-right">No Polis</label>
             <div class="col-md-3">
                 <input id="nopol" type="text" class="form-control" name="nopol" value="{{$data->sj_nopol}}" autocomplete="off" maxlength="24" readonly>
+            </div>
+        </div>
+        <div class="form-group row col-md-12">
+            <label for="sopo" class="col-md-2 col-form-label text-md-right">SO PO</label>
+            <div class="col-md-3">
+                <input id="sopo" type="text" class="form-control" name="sopo" value="{{$data->sj_so_po}}" autocomplete="off" readonly>
             </div>
         </div>
         <div class="form-group row col-md-12">

@@ -26,20 +26,24 @@
             <input id="customer" type="hidden" class="form-control" name="customer" value="{{$so[0]->so_cust}}" readonly>
         </div>
     </div>
+    <input id="shipto" type="hidden" class="form-control" name="shipto" value="{{$so[0]->so_ship}}" readonly>
+    <input id="billto" type="hidden" class="form-control" name="billto" value="{{$so[0]->so_bill}}" readonly>
 
-    <div class="form-group row md-form offset-lg-1">
+    {{-- <div class="form-group row md-form offset-lg-1">
         <label for="shipto" class="col-md-2 col-form-label text-md-right">{{ __('Ship To') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
             <input id="shipto" type="text" class="form-control" value="{{$so[0]->so_ship}} -- {{$so[0]->so_ship_name}}" readonly>
-            <input id="shipto" type="hidden" class="form-control" name="shipto" value="{{$so[0]->so_ship}}" readonly>
         </div>
         <label for="billto" class="col-md-2 col-form-label text-md-right">{{ __('Bill To') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
             <input id="billto" type="text" class="form-control" value="{{$so[0]->so_bill}} -- {{$so[0]->so_bill_name}}" readonly>
-            <input id="billto" type="hidden" class="form-control" name="billto" value="{{$so[0]->so_bill}}" readonly>
         </div>
-    </div>
+    </div> --}}
     <div class="form-group row md-form offset-lg-1">
+        <label for="sopo" class="col-md-2 col-form-label text-md-right">{{ __('SO PO') }}</label>
+        <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
+            <input id="sopo" type="text" class="form-control" name="sopo" value="{{$so[0]->so_po}}" readonly>
+        </div>
         <label for="nopol" class="col-md-2 col-form-label text-md-right">{{ __('No Polis') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
             <input id="nopol" type="text" class="form-control" name="nopol" value="" required>

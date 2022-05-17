@@ -165,6 +165,7 @@ class CreateTempTable
             $table->string('so_ship_name');
             $table->string('so_bill');
             $table->string('so_bill_name');
+            $table->string('so_po'); // * 170522
             $table->string('sod_line');
             $table->string('sod_part');
             $table->string('sod_part_desc');
@@ -201,6 +202,7 @@ class CreateTempTable
                 'so_ship_name' => $ship_name->cust_name ?? '',
                 'so_bill' => $datas->t_sobill,
                 'so_bill_name' => $bill_name->cust_name ?? '',
+                'so_po' => $datas->t_sopo, // *170522
                 'sod_line' => $datas->t_soline,
                 'sod_part' => $datas->t_sopart,
                 'sod_part_desc' => $datas->t_sopartdesc,

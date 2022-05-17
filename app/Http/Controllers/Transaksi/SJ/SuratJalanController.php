@@ -55,17 +55,6 @@ class SuratJalanController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        // $checkqtyinput = 0;
-        // foreach($request->qtyinput as $qtyinput){
-        //     $checkqtyinput += $qtyinput;
-        // }
-
-        // if($checkqtyinput == 0){
-        //     alert()->error('Error', 'Tidak ada qty input yang dimasukan')->persistent('Dismiss');
-        //     return redirect()->route('suratjalan.index');
-        // }
-
         DB::beginTransaction();
         try {
             $newprefix = (new CreateTempTable())->getRNSJ();
@@ -78,6 +67,7 @@ class SuratJalanController extends Controller
             $sj_mstr->sj_so_bill = $request->billto;
             $sj_mstr->sj_status = 'New';
             $sj_mstr->sj_nopol = $request->nopol;
+            $sj_mstr->sj_so_po = $request->sopo;
             $sj_mstr->sj_domain = Session::get('domain');
             $sj_mstr->save();
 
@@ -235,13 +225,104 @@ class SuratJalanController extends Controller
         return view('transaksi.suratjalan.show-browse', compact('data'));
     }
 
-    public function deletejsbrowse($id)
+    public function deletejsbrowse($id, Request $request)
+    {
+        // dd($id, $request->all());
+
+        $datas = SuratJalan::with('getDetail')->findOrFail($id);
+        $datas->sj_status = 'Cancelled';
+        $datas->sj_reject_reason = $request->reason;
+        $datas->save();
+
+        $data = SuratJalan::where('sj_domain',Session::get('domain'))->orderBy('created_at', 'Desc')->paginate(10);
+        return view('transaksi.suratjalan.browse-table', compact('data'));
+
+
+        // alert()->success('Success', 'SJ Cancelled')->persistent('Dismiss');
+        // return back();
+
+    }
+
+    public function changesjbrowse($id)
     {
         $data = SuratJalan::with('getDetail')->findOrFail($id);
-        $data->sj_status = 'Cancelled';
-        $data->save();
+        $so = [];
 
-        alert()->success('Success', 'SJ Cancelled')->persistent('Dismiss');
-        return back();
+        $this->authorize('redo', [SuratJalan::class, $data]);
+        
+        return view('transaksi.suratjalan.redosj.index', compact('data','so'));
+    }
+
+    public function searchchangesj(Request $request){
+        $getso = (new WSAServices())->wsagetso($request->sonbr);
+        if ($getso === false) {
+            alert()->error('Error', 'WSA Failed')->persistent('Dismiss');
+            return redirect()->route('changeSJBrowse',['id'=>$request->idsj]);
+        } else {
+            if ($getso[1] == 'false') {
+                alert()->error('Error', 'SO Number : ' . $request->sonbr . ' Not Found')->persistent('Dismiss');
+                return redirect()->route('changeSJBrowse',['id'=>$request->idsj]);
+            }
+            $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);
+        }
+
+        return redirect()->route('dispChangeSJ')->with(['tableso' => $tempPO,'sjnbr' => $request->sj]);
+    }
+
+    public function dispchangesj(Request $request){
+        $so = Session::get('tableso');
+        $sjnbr = Session::get('sjnbr');
+
+        if (is_null($so) || is_null($sjnbr)) {
+            alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
+            return redirect()->route('browseSJ');
+        }
+
+        return view('transaksi.suratjalan.redosj.create', compact('so','sjnbr'));
+    }
+
+    public function updatechangesj(Request $request){
+        // dd($request->all(),$request->sodline);
+        
+        DB::beginTransaction();
+        try {
+            $sj_mstr = new SuratJalan();
+            $sj_mstr->sj_nbr = $request->sj;
+            $sj_mstr->sj_so_nbr = $request->sonbr;
+            $sj_mstr->sj_so_cust = $request->customer;
+            $sj_mstr->sj_so_ship = $request->shipto;
+            $sj_mstr->sj_so_bill = $request->billto;
+            $sj_mstr->sj_status = 'New';
+            $sj_mstr->sj_nopol = $request->nopol;
+            $sj_mstr->sj_so_po = $request->sopo;
+            $sj_mstr->sj_domain = Session::get('domain');
+            $sj_mstr->save();
+
+            $id = $sj_mstr->id;
+            foreach ($request->sodline as $key => $datas) {
+                if($request->qtyinput[$key] > 0 ){
+                    $sj_dets = new SuratJalanDetail();
+                    $sj_dets->sj_mstr_id = $id;
+                    $sj_dets->sj_line = $datas;
+                    $sj_dets->sj_part = $request->sodpart[$key];
+                    $sj_dets->sj_part_desc = $request->soddesc[$key];
+                    $sj_dets->sj_loc = $request->sodloc[$key];
+                    $sj_dets->sj_qty_ord = $request->sodqtyord[$key];
+                    $sj_dets->sj_qty_ship = $request->sodqtyship[$key];
+                    $sj_dets->sj_qty_input = $request->qtyinput[$key];
+                    $sj_dets->sj_price_ls = $request->sodpricels[$key];
+                    $sj_dets->save();
+                } 
+            }
+            
+            DB::commit();
+            alert()->success('Success', 'Surat jalan Created, SJ Number : ' . $request->sj)->persistent('Dismiss');
+            return redirect()->route('browseSJ');
+        } catch (Exception $err) {
+            DB::rollBack();
+            dd($err);
+            alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
+            return redirect()->route('browseSJ');
+        }
     }
 }

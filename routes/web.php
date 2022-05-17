@@ -18,6 +18,7 @@ use App\Http\Controllers\Transaksi\PO\POApprovalController;
 use App\Http\Controllers\Transaksi\Report\HutangCustController;
 use App\Http\Controllers\Transaksi\SJ\SuratJalanConfirmController;
 use App\Http\Controllers\Transaksi\SJ\SuratJalanController;
+use App\Models\Transaksi\SuratJalan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -76,8 +77,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware'=>'can:sj_browse'],function(){
         Route::get('browsesj',[SuratJalanController::class, 'browsesj'])->name('browseSJ');
         Route::get('browsesj/editjsbrowse/{id}',[SuratJalanController::class, 'editjsbrowse'])->name('editSJBrowse');
-        Route::get('browsesj/deletejsbrowse/{id}',[SuratJalanController::class, 'deletejsbrowse'])->name('deleteSJBrowse');
+        Route::post('browsesj/deletejsbrowse/{id}',[SuratJalanController::class, 'deletejsbrowse'])->name('deleteSJBrowse');
         Route::get('browsesj/viewjsbrowse/{id}',[SuratJalanController::class, 'viewjsbrowse'])->name('viewSJBrowse');
+
+        Route::get('browsesj/changesjbrowse/{id}', [SuratJalanController::class, 'changesjbrowse'])->name('changeSJBrowse');
+        Route::get('browsesj/searchchangesj', [SuratJalanController::class, 'searchchangesj'])->name('searchChangeSJ');
+        Route::get('browsesj/dispchangesj', [SuratJalanController::class, 'dispchangesj'])->name('dispChangeSJ');
+        Route::post('browsesj/updatechangesj', [SuratJalanController::class, 'updatechangesj'])->name('updateChangeSJ');
     });
 
     Route::group(['middleware'=>'can:sj_confirm'],function(){

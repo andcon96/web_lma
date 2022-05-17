@@ -4,9 +4,10 @@
             <tr>
                 <th>Surat Jalan</th>
                 <th>SO Number</th>
-                <th style="width: 20%;">Customer</th>
-                <th style="width: 20%;">Ship To</th>
-                <th style="width: 20%;">Bill To</th>
+                <th>Tanggal SJ</th>
+                <th style="width: 35%;">Customer</th>
+                {{-- <th style="width: 20%;">Ship To</th>
+                <th style="width: 20%;">Bill To</th> --}}
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -16,9 +17,10 @@
                 <tr>
                     <td>{{$datas->sj_nbr}}</td>
                     <td>{{$datas->sj_so_nbr}}</td>
+                    <td>{{$datas->created_at->format('d-m-Y')}}</td>
                     <td>{{$datas->sj_so_cust}} -- {{$datas->getDetailCust->cust_name ?? ''}}</td>
-                    <td>{{$datas->sj_so_ship}} -- {{$datas->getDetailShip->cust_name ?? ''}}</td>
-                    <td>{{$datas->sj_so_bill}} -- {{$datas->getDetailBill->cust_name ?? ''}}</td>
+                    {{-- <td>{{$datas->sj_so_ship}} -- {{$datas->getDetailShip->cust_name ?? ''}}</td>
+                    <td>{{$datas->sj_so_bill}} -- {{$datas->getDetailBill->cust_name ?? ''}}</td> --}}
                     <td>{{$datas->sj_status}}</td>
                     <td>
                         @if($datas->sj_status == 'New')

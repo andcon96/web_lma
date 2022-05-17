@@ -29,7 +29,7 @@
             <div class="col-md-3">
                 <input id="socust" type="text" class="form-control" name="socust" value="{{$data->sj_so_cust}} -- {{$data->getDetailCust->cust_name ?? ''}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
-            <label for="shipto" class="col-md-3 col-form-label text-md-right">Ship To</label>
+            {{-- <label for="shipto" class="col-md-3 col-form-label text-md-right">Ship To</label>
             <div class="col-md-3">
                 <input id="shipto" type="text" class="form-control" name="shipto" value="{{$data->sj_so_ship}} -- {{$data->getDetailShip->cust_name ?? ''}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
@@ -38,14 +38,14 @@
             <label for="billto" class="col-md-2 col-form-label text-md-right">Bill To</label>
             <div class="col-md-3">
                 <input id="billto" type="text" class="form-control" name="billto" value="{{$data->sj_so_bill}} -- {{$data->getDetailBill->cust_name ?? ''}}" autocomplete="off" maxlength="24" autofocus disabled>
-            </div>
-            <label for="status" class="col-md-3 col-form-label text-md-right">Status</label>
+            </div> --}}
+            <label for="sopo" class="col-md-3 col-form-label text-md-right">SO PO</label>
             <div class="col-md-3">
-                <input id="status" type="text" class="form-control" name="status" value="{{$data->sj_status}}" autocomplete="off" maxlength="24" autofocus readonly>
+                <input id="sopo" type="text" class="form-control" name="sopo" value="{{$data->sj_so_po}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
         </div>
         <div class="form-group row col-md-12">
-            <label for="effdate" class="col-md-2 col-form-label text-md-right">Eff Date</label>
+            <label for="effdate" class="col-md-2 col-form-label text-md-right">Date</label>
             <div class="col-md-3">
                 <input id="effdate" type="text" class="form-control" name="effdate" value="{{\Carbon\Carbon::now()->toDateString()}}" autocomplete="off" maxlength="24" required>
             </div>

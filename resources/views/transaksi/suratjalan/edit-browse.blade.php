@@ -29,7 +29,7 @@
             <div class="col-md-3">
                 <input id="socust" type="text" class="form-control" name="socust" value="{{$data->sj_so_cust}} -- {{$data->getDetailCust->cust_name}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
-            <label for="shipto" class="col-md-3 col-form-label text-md-right">Ship To</label>
+            {{-- <label for="shipto" class="col-md-3 col-form-label text-md-right">Ship To</label>
             <div class="col-md-3">
                 <input id="shipto" type="text" class="form-control" name="shipto" value="{{$data->sj_so_ship}} -- {{$data->getDetailShip->cust_name}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
@@ -38,14 +38,18 @@
             <label for="billto" class="col-md-2 col-form-label text-md-right">Bill To</label>
             <div class="col-md-3">
                 <input id="billto" type="text" class="form-control" name="billto" value="{{$data->sj_so_bill}} -- {{$data->getDetailBill->cust_name}}" autocomplete="off" maxlength="24" autofocus disabled>
-            </div>
+            </div> --}}
             <label for="status" class="col-md-3 col-form-label text-md-right">Status</label>
             <div class="col-md-3">
                 <input id="status" type="text" class="form-control" name="status" value="{{$data->sj_status}}" autocomplete="off" maxlength="24" autofocus readonly>
             </div>
         </div>
         <div class="form-group row col-md-12">
-            <label for="nopol" class="col-md-2 col-form-label text-md-right">{{ __('No Polis') }}</label>
+            <label for="sopo" class="col-md-2 col-form-label text-md-right">{{ __('SO PO') }}</label>
+            <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
+                <input id="sopo" type="text" class="form-control" name="sopo" value="{{$data->sj_so_po}}" readonly>
+            </div>
+            <label for="nopol" class="col-md-3 col-form-label text-md-right">{{ __('No Polis') }}</label>
             <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
                 <input id="nopol" type="text" class="form-control" name="nopol" value="{{$data->sj_nopol}}" required>
             </div>

@@ -4,9 +4,10 @@
             <tr>
                 <th>Surat Jalan</th>
                 <th>SO Number</th>
-                <th style="width: 20%;">Customer</th>
-                <th style="width: 20%;">Ship To</th>
-                <th style="width: 20%;">Bill To</th>
+                <th>Tanggal SJ</th>
+                <th style="width: 35%;">Customer</th>
+                {{-- <th style="width: 20%;">Ship To</th>
+                <th style="width: 20%;">Bill To</th> --}}
                 <th>Status</th>
                 <th>Action</th>
             </tr>
@@ -16,16 +17,21 @@
                 <tr>
                     <td>{{$datas->sj_nbr}}</td>
                     <td>{{$datas->sj_so_nbr}}</td>
+                    <td>{{$datas->created_at->format('d-m-Y')}}</td>
                     <td>{{$datas->sj_so_cust}} -- {{$datas->getDetailCust->cust_name}}</td>
-                    <td>{{$datas->sj_so_ship}} -- {{$datas->getDetailShip->cust_name}}</td>
-                    <td>{{$datas->sj_so_bill}} -- {{$datas->getDetailBill->cust_name}}</td>
+                    {{-- <td>{{$datas->sj_so_ship}} -- {{$datas->getDetailShip->cust_name}}</td>
+                    <td>{{$datas->sj_so_bill}} -- {{$datas->getDetailBill->cust_name}}</td> --}}
                     <td>{{$datas->sj_status}}</td>
                     <td>
                         @if($datas->sj_status == 'New')
                         <a href="{{route('editSJBrowse',$datas->id) }}"><i class="fas fa-edit"></i></a>
-                        <a href="{{route('deleteSJBrowse',$datas->id) }}" id="btndel" data-url="{{route('deleteSJBrowse',$datas->id) }}"><i class="fas fa-trash"></i></a>
+                        <a href="{{route('deleteSJBrowse',$datas->id) }}" id="btndel" 
+                            data-url="{{route('deleteSJBrowse',$datas->id) }}"><i class="fas fa-trash"></i></a>
                         @else
                         <a href="{{route('viewSJBrowse',$datas->id) }}"><i class="fas fa-eye"></i></a>
+                            @if($datas->sj_status == 'Cancelled')
+                                <a href="{{route('changeSJBrowse',$datas->id) }}"><i class="fas fa-redo"></i></a>
+                            @endif
                         @endif
                     </td>
                 </tr>

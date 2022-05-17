@@ -21,5 +21,10 @@ class SuratJalanPolicy
         return $suratJalan->sj_domain == Session::get('domain') && $suratJalan->sj_status == 'New';
     }
 
+    public function redo(User $user, SuratJalan $suratJalan)
+    {
+        return $suratJalan->sj_domain == Session::get('domain') && $suratJalan->sj_status == 'Cancelled';
+    }
+
     
 }
