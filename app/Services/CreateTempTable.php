@@ -19,6 +19,7 @@ class CreateTempTable
         // WSA -> LMA_getPO
         Schema::create('temp_group', function ($table) {
             $table->string('po_nbr');
+            $table->string('po_contract');
             $table->string('po_cust');
             $table->string('po_custname');
             $table->string('pod_line');
@@ -33,6 +34,7 @@ class CreateTempTable
         foreach($data as $datas){
             DB::table('temp_group')->insert([
                 'po_nbr' => $datas->t_ponbr,
+                'po_contract' => $datas->t_pokontrak,
                 'po_cust' => $datas->t_suppnbr,
                 'po_custname' => $datas->t_suppname,
                 'pod_line' => $datas->t_line,
@@ -58,8 +60,8 @@ class CreateTempTable
         $supp = $data['supphidden'];
         $partloc = $data['partloc'];
         $poline = $data['poline'];
+        $qtyterima = $data['qtyterima'];
         $qtyfg = $data['qtyfg'];
-        $qtyreject = $data['qtyreject'];
         $qtyord = $data['poqtyord'];
         $qtyrcvd = $data['poqtyrcvd'];
         $popart = $data['popart'];
@@ -77,8 +79,8 @@ class CreateTempTable
             $table->string('pod_qty_ord');
             $table->string('pod_qty_rcvd');
             $table->string('pod_loc');
+            $table->decimal('pod_qty_terima');
             $table->decimal('pod_qty_fg');
-            $table->decimal('pod_qty_rjct');
             $table->string('pod_remarks')->nullable();
             $table->longText('pod_nopol')->nullable();
             $table->date('pod_receiptdate');
@@ -94,8 +96,8 @@ class CreateTempTable
                 'pod_qty_ord' => $qtyord[$datas],
                 'pod_qty_rcvd' => $qtyrcvd[$datas],
                 'pod_loc' => $partloc[$datas],
+                'pod_qty_terima' => $qtyterima[$datas],
                 'pod_qty_fg' => $qtyfg[$datas],
-                'pod_qty_rjct' => $qtyreject[$datas],
                 'pod_remarks' => $remark,
                 'pod_nopol' => $nopol,
                 'pod_receiptdate' => $receiptdate,

@@ -36,91 +36,12 @@
 @section('scripts')
 
 <script>
-    $("#sjnbr").select2({
-        width: '100%'
-    });
-    $("#sjnbr").select2('open');
-
-    $("#effdate").datepicker({
-        dateFormat: 'dd/mm/yy'
-    });
-
-    $("#shipdate").datepicker({
-        dateFormat: 'dd/mm/yy'
-    });
-
-    $(document).on('hide.bs.modal', '#detailModal', function() {
-        if (confirm("Are you sure, you want to close?")) return true;
-        else return false;
-    });
 
     $('#searchinvc').submit(function(event) {
         document.getElementById('btnsearch').style.display = 'none';
         document.getElementById('s_btnloading').style.display = '';
     });
 
-
-    $(document).on('click', '.editUser', function() { // Click to only happen on announce links
-        var suratjalan = $(this).data('sj');
-        var ponbr = $(this).data('nbr');
-        var line = $(this).data('line');
-        var part = $(this).data('part');
-        var desc = $(this).data('desc');
-        //alert('123');
-        var suratjalan = $(this).data('sj');
-        var ponbr = $(this).data('nbr');
-        var line = $(this).data('line');
-        var part = $(this).data('part');
-        var desc = $(this).data('desc');
-        var qtyord = $(this).data('qtyord');
-        var qtyship = $(this).data('qtyship');
-        var qtyrcvd = $(this).data('qtyrcvd');
-
-        //var qtyopen = $(this).data('qtyopen');
-
-        document.getElementById("m_sj").value = suratjalan;
-        document.getElementById("m_ponbr").value = ponbr;
-        document.getElementById("m_line").value = line;
-        document.getElementById("m_itemcode").value = part;
-        document.getElementById("m_itemdesc").value = desc;
-        document.getElementById("m_qtyord").value = qtyord;
-        document.getElementById("m_qtyrec").value = qtyrcvd;
-
-        jQuery.ajax({
-            type: "get",
-            url: "{{URL::to("
-            detailreceipt ") }}",
-            data: {
-                suratjalan: suratjalan,
-                ponbr: ponbr,
-                line: line
-            },
-            success: function(data) {
-                //$('tbody').html(data);
-                console.log(data);
-                document.getElementById("m_um").value = data[0]['xpod_um'];
-                document.getElementById("m_loc").value = data[0]['xpod_loc'];
-                document.getElementById("m_lot").value = data[0]['xpod_lot'];
-            }
-        });
-
-
-    });
-
-
-    $(document).on('change', '#m_qtyrec', function() {
-        var qtyship = document.getElementById("m_qtyship").value;
-        var qtyrec = document.getElementById("m_qtyrec").value
-
-
-        if (parseInt(qtyrec) > parseInt(qtyship)) {
-            setTimeout(function() {
-                alert("Qty Received is greater than Qty Ship");
-                document.getElementById("m_qtyrec").focus();
-                return false;
-            }, 1);
-        }
-    });
 </script>
 
 @endsection
