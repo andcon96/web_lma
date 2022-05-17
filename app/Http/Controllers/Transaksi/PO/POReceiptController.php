@@ -47,7 +47,7 @@ class POReceiptController extends Controller
             return redirect()->route('poreceipt.index');
         }else{
             if($po_receipt[1] == "false"){
-                alert()->error('Error', 'PO tidak ditemukan');
+                alert()->error('Error', 'PO Contract tidak ditemukan');
                 return redirect()->back();
             }else{
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
@@ -61,7 +61,7 @@ class POReceiptController extends Controller
     public function showReceipt(){
         // dd('aa');
         $po = Session::get('tablepo');
-        $polist = $po->unique();
+        $polist = $po->groupBy('po_nbr');
 
         $receiptdate = Session::get('receiptdate');
 
