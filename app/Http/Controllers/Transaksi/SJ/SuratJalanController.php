@@ -13,6 +13,7 @@ use App\Services\WSAServices;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class SuratJalanController extends Controller
@@ -97,6 +98,7 @@ class SuratJalanController extends Controller
             return redirect()->route('suratjalan.index');
         } catch (Exception $err) {
             DB::rollBack();
+            Log::channel('shipment')->info($err);
             alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
         }
