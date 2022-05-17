@@ -48,9 +48,11 @@ class CreateTempTable
 
         $table_po = DB::table('temp_group')->get();
 
+        $grouppo = DB::table('temp_group')->groupBy('po_nbr')->get();
+
         Schema::dropIfExists('temp_group');
 
-        return $table_po;
+        return [$table_po,$grouppo];
     }
 
     public function createPOSessionTemp($data){
