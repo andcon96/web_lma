@@ -17,11 +17,9 @@
         </td>
         <td>
           {{$show->po_contract}}
-          <!-- <input type="hidden" name="supp[]" value="{{$show->supp}}" /> -->
         </td>
         <td>
           {{$show->po_cust}} -- {{$show->po_custname}}
-          <!-- <input type="hidden" name="invoice_nbr[]" value="{{$show->invoice_nbr}}" /> -->
         </td>
         <td>
             <a href=""><i class="fas fa-eye"></i></a>
