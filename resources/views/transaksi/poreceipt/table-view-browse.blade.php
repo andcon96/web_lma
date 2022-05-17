@@ -9,27 +9,22 @@
       </tr>
     </thead>
     <tbody>
-      @forelse ($poinvoice as $index => $show)
+      @forelse ($polist as $index => $show)
       <tr>
         <td>
           {{$show->po_nbr}}
           <input type="hidden" name="ponbr[]" value="{{$show->po_nbr}}" />
         </td>
         <td>
-          {{$show->supp}}
+          {{$show->po_contract}}
           <input type="hidden" name="supp[]" value="{{$show->supp}}" />
         </td>
         <td>
-          {{$show->invoice_nbr}}
+          {{$show->po_cust}} -- {{$show->po_custname}}
           <input type="hidden" name="invoice_nbr[]" value="{{$show->invoice_nbr}}" />
         </td>
         <td>
-          {{$show->posting_date}}
-          <input type="hidden" name="posting_date[]" value="{{$show->posting_date}}" />
-        </td>
-        <td>
-          {{number_format($show->invoice_amt,2)}}
-          <input type="hidden" name="invoice_amt[]" value="{{$show->invoice_amt}}" />
+            <a href=""><i class="fas fa-eye"></i></a>
         </td>
         <td>
           @if($show->invoice_status == 'true')

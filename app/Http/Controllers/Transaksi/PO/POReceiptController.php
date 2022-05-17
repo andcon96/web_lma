@@ -61,7 +61,7 @@ class POReceiptController extends Controller
     public function showReceipt(){
         // dd('aa');
         $po = Session::get('tablepo');
-        dd($po->unique());
+        $polist = $po->unique();
 
         $receiptdate = Session::get('receiptdate');
 
@@ -91,7 +91,7 @@ class POReceiptController extends Controller
             return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
         }
 
-        return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
+        return view('transaksi.poreceipt.view-browse', compact('polist'));
     }
 
     public function submitReceipt(Request $req){
