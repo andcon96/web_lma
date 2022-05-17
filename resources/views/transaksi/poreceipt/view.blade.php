@@ -32,7 +32,6 @@
       <input id="supp" type="text" class="form-control" name="supp" value="{{$po[0]->po_cust}} -- {{$po[0]->po_custname}}" readonly>
       <input type="hidden" name="supphidden" value="{{$po[0]->po_cust}}"/>
     </div>
-    
   </div>
 
 

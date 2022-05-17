@@ -361,8 +361,8 @@ class QxtendServices
     $supp = $datas['supphidden'];
     $partloc = $datas['partloc'];
     $poline = $datas['poline'];
+    $qtyterima = $datas['qtyterima'];
     $qtyfg = $datas['qtyfg'];
-    $qtyreject = $datas['qtyreject'];
     $qtyord = $datas['poqtyord'];
     $qtyrcvd = $datas['poqtyrcvd'];
     $popart = $datas['popart'];
@@ -472,12 +472,13 @@ class QxtendServices
                       <cmtCmmt>'.$nopol.'</cmtCmmt>
                     </purchaseOrderReceiveTransComment>';
     foreach ($poline as $key => $p) {
-      $totalreceipt = 0;
-      $totalreceipt = $qtyfg[$key] + $qtyreject[$key];
+      $qtyreject = 0;
+
+      $qtyreject = $qtyterima[$key] - $qtyfg[$key];
       // dd($index);
       $qdocBody .= ' <lineDetail>
                         <line>' . $p . '</line>
-                        <lotserialQty>' . $totalreceipt  . '</lotserialQty>
+                        <lotserialQty>' . $qtyterima[$key]  . '</lotserialQty>
                         <location>'.$partloc[$key].'</location>
                         <multiEntry>true</multiEntry>';
       if ($qtyfg[$key] > 0) {
@@ -488,10 +489,10 @@ class QxtendServices
                         </receiptDetail>';
       }
 
-      if ($qtyreject[$key] > 0) {
+      if ($qtyreject > 0) {
           $qdocBody .= ' <receiptDetail>
                           <location>Reject</location>
-                          <lotserialQty>'.$qtyreject[$key].'</lotserialQty>
+                          <lotserialQty>'.$qtyreject.'</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
       }
