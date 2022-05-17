@@ -73,7 +73,7 @@ class POReceiptController extends Controller
 
         $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
         
-        if(is_null($polist)){
+        if(is_null($po)){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
             // return view('transaksi.poreceipt.index');
             return redirect()->route('poreceipt.index');
