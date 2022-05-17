@@ -34,7 +34,7 @@
               {{number_format($show->pod_qty_ord - $show->pod_qty_rcvd,2)}}
             </td>
             <td>
-              <input type="text" class="form-control" name="partloc[]" value="$show->pod_loc" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':'readonly'}}>
+              <input type="text" class="form-control" name="partloc[]" value="{{$show->pod_loc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':'readonly'}}>
               <!-- <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='3' data-live-search="true" data-width="100%" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}>
                   @foreach ($loc as $locs)
                       <option value="{{$locs->loc}}" {{$locs->loc == (($sessionpo!=null) ? $sessionpo[$index]->pod_loc : $show->pod_loc) ? 'Selected' : ''}} >{{$locs->loc}} -- {{$locs->loc_desc}}</option>

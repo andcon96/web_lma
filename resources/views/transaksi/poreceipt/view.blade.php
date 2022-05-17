@@ -14,15 +14,15 @@
 <form method="post" action="{{route('submitReceipt')}}" id='submit'>
   <div class="row mb-3">
     <label for="receiptdate" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Receipt Date') }}</label>
-    <div class="col-md-1">
+    <div class="col-md-2">
       <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ ($sessionpo!=null) ? $sessionpo[0]->pod_receiptdate : Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
     </div>
-    <label for="po_nbr" class="col-form-label col-md-2" style="margin-left:25px">{{ __('PO No.') }}</label>
-    <div class="col-md-1">
+    <label for="po_nbr" class="col-form-label col-md-1" style="margin-left:25px">{{ __('PO No.') }}</label>
+    <div class="col-md-2">
       <input id="po_nbr" type="text" class="form-control" name="po_nbr" value="{{$po[0]->po_nbr}}" readonly>
     </div>
     <label for="po_kontrak" class="col-form-label col-md-2" style="margin-left:25px">{{ __('PO Contract') }}</label>
-    <div class="col-md-3">
+    <div class="col-md-2">
       <input id="po_kontrak" type="text" class="form-control" name="po_kontrak" value="{{$po[0]->po_contract}}" readonly>
     </div>
   </div>
