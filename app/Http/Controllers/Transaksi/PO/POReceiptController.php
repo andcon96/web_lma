@@ -51,17 +51,17 @@ class POReceiptController extends Controller
                 return redirect()->back();
             }else{
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
-                dd($tempPO[1]);
+                // dd($tempPO[1]);
             }
         }
         
         
-        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO,'receiptdate'=> $receiptdate,'errorcode'=>$errorcode, 'sessionpo'=>$sessionpo]);
+        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO[1],'receiptdate'=> $receiptdate,'errorcode'=>$errorcode, 'sessionpo'=>$sessionpo]);
     }
 
     public function showReceipt(){
         // dd('aa');
-        $po = Session::get('tablepo')->groupBy('po_nbr');
+        $po = Session::get('tablepo');
 
         $receiptdate = Session::get('receiptdate');
 
