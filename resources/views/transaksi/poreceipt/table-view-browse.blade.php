@@ -17,42 +17,15 @@
         </td>
         <td>
           {{$show->po_contract}}
-          <input type="hidden" name="supp[]" value="{{$show->supp}}" />
+          <!-- <input type="hidden" name="supp[]" value="{{$show->supp}}" /> -->
         </td>
         <td>
           {{$show->po_cust}} -- {{$show->po_custname}}
-          <input type="hidden" name="invoice_nbr[]" value="{{$show->invoice_nbr}}" />
+          <!-- <input type="hidden" name="invoice_nbr[]" value="{{$show->invoice_nbr}}" /> -->
         </td>
         <td>
             <a href=""><i class="fas fa-eye"></i></a>
         </td>
-        <td>
-          @if($show->invoice_status == 'true')
-          Open
-          @else
-          Close
-          @endif
-        </td>
-        @php
-        $approvalstatus = $statusappr->where('invcnbr')->first();
-        @endphp
-        <td>
-          @if (is_null($approvalstatus))
-            -
-          @else
-            @if ($approvalstatus->status == 'approved')
-            Approved
-            @elseif ($approvalstatus->status == 'rejected')
-            Rejected
-            @endif
-          @endif
-
-        </td>
-        <td>
-          {{$show->email_status}}
-          <input type="hidden" value="R" name="hide_check[]" class="hide_check" />
-        </td>
-        <td style="text-align: center;"><input class="sendmail" type="checkbox" name="sendmail[]" {{$show->invoice_status == 'true' ? '':'disabled'}} /></td>
       </tr>
       @empty
       <td colspan='7' class='text-danger'><b>No Data Available</b></td>
