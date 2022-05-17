@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      @forelse ($polist as $index => $show)
+      @forelse ($po as $index => $show)
       <tr>
         <td>
           {{$show->po_nbr}}
