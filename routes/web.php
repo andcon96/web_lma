@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('poreceipt/showreceipt', [POReceiptController::class, 'showReceipt'])->name('showReceipt');
         Route::resource('poreceipt', POReceiptController::class);
         Route::get('searchpo', [POReceiptController::class, 'searchPO'])->name('searchPO');
+        Route::get('viewpo',[POReceiptController::class, 'viewPO'])->name('viewPO');
         Route::post('submitreceipt', [POReceiptController::class, 'submitReceipt'])->name('submitReceipt');
     });
 
