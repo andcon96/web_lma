@@ -61,7 +61,7 @@ class POReceiptController extends Controller
     public function showReceipt(){
         // dd('aa');
         $po = Session::get('tablepo');
-        dd($po->po_nbr);
+        dd($po[0]->po_nbr);
         $polist = $po->groupBy('po_nbr');
 
         $receiptdate = Session::get('receiptdate');
