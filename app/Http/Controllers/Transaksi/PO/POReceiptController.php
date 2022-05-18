@@ -32,7 +32,7 @@ class POReceiptController extends Controller
 
         if(is_null($req->sjnbr)){
             $ponbrtampung = Session::get('ponbr');
-
+            dd($ponbrtampung);
             // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
             // return redirect()->back();
         }else{
