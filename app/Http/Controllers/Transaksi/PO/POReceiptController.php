@@ -114,6 +114,7 @@ class POReceiptController extends Controller
         }
 
         if(Session::get('errorcode')){
+            dd(Session::get('errorcode'));
             if(Session::get('errorcode' == 1)){
                 dd('error code 1');
             }elseif(Session::get('errorcode' == 2)){
