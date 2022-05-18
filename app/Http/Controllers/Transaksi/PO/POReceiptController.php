@@ -31,7 +31,7 @@ class POReceiptController extends Controller
         $sessionpo = Session::get('session_po');
 
         if(is_null($req->sjnbr)){
-            $ponbrtampung = Session::get('ponbr');
+            $ponbrtampung = $req->ponbr;
             dd($ponbrtampung);
             // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
             // return redirect()->back();
