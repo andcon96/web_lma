@@ -115,6 +115,7 @@ class POReceiptController extends Controller
         // dd($receiptdetail);
 
         $sessionpo = Session::get('session_po');
+        dd($sessionpo);
         return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
     }
 
