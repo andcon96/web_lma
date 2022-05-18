@@ -15,7 +15,7 @@
   <div class="row mb-3">
     <label for="receiptdate" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Receipt Date') }}</label>
     <div class="col-md-2">
-      <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ ($sessionpo!=null) ? $sessionpo[0]->pod_receiptdate : Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
+      <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ ($sessionpo!=null) ? $sessionpo->first()->pod_receiptdate : Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
     </div>
     <label for="po_nbr" class="col-form-label col-md-1" style="margin-left:25px">{{ __('PO No.') }}</label>
     <div class="col-md-2">
@@ -43,13 +43,13 @@
   <div class="row mb-3">
     <label for="remarkreceipt" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Remark') }}</label>
     <div class="col-md-8">
-      <input type="text" class="form-control" name="remarkreceipt" maxlength="24" value="{{($sessionpo!=null) ? $sessionpo[0]->pod_remarks : ''}}" />
+      <input type="text" class="form-control" name="remarkreceipt" maxlength="24" value="{{($sessionpo!=null) ? $sessionpo->first()->pod_remarks : ''}}" />
     </div>
   </div>
   <div class="row mb-3">
     <label for="nopol" class="col-form-label col-md-3" style="margin-left:25px">{{ __('No. Polisi') }}</label>
     <div class="col-md-3">
-      <textarea type="text" class="form-control" name="nopol" rows="2" maxlength="30">{{($sessionpo!=null) ? $sessionpo[0]->pod_nopol : ''}}</textarea>
+      <textarea type="text" class="form-control" name="nopol" rows="2" maxlength="30">{{($sessionpo!=null) ? $sessionpo->first()->pod_nopol : ''}}</textarea>
     </div>
   </div>
 
