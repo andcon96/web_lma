@@ -585,7 +585,8 @@ class QxtendServices
 
       return true;
     } else {
-      return 'qxtend_err';
+      // return 'qxtend_err';
+      return false;
     }
   }
 
