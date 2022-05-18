@@ -107,7 +107,7 @@ class POReceiptController extends Controller
         $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id)->values()->all();
 
         
-        if($receiptdetail->count() == 0){
+        if(count($receiptdetail) == 0){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
 
             return redirect()->route('poreceipt.index');
