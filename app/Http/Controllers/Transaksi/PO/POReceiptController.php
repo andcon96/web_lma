@@ -99,6 +99,9 @@ class POReceiptController extends Controller
 
         // dd(Session::get('allporeceipt')->where('po_nbr','=',$id));
         $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id);
+        if(!$receiptdetail){
+            abort('404');
+        }
 
         $sessionpo = Session::get('session_po');
         return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
