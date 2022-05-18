@@ -463,7 +463,7 @@ class QxtendServices
     $qdocBody =
       '<dsPurchaseOrderReceive>
                   <purchaseOrderReceive>
-                    <ordernum>' . $ponbr . '</ordernum>
+                    <ordernum>qqqqqq</ordernum>
                     <receiptDate>'.$receiptdate.'</receiptDate>
                     <cmmtYn>true</cmmtYn>
                     <yn>true</yn>
