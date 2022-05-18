@@ -93,7 +93,7 @@ class POReceiptController extends Controller
         return view('transaksi.poreceipt.view-browse', compact('po'));
     }
 
-    public function detailReceipt($id){
+    public function edit($id){
         dd($id);
     }
 
