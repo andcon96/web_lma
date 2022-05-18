@@ -97,14 +97,14 @@ class POReceiptController extends Controller
 
     public function edit($id){
 
-        dd(Session::get('allporeceipt')->where('po_nbr','=',$id)->values()->all(),Session::get('session_po'));
+        // dd(Session::get('allporeceipt')->where('po_nbr','=',$id),Session::get('session_po'));
         if(!Session::get('allporeceipt')){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
 
             return redirect()->route('poreceipt.index');
         }
 
-        $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id);
+        $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id)->values()->all();
 
         
         if($receiptdetail->count() == 0){
