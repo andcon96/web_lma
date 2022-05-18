@@ -26,9 +26,9 @@ class POReceiptController extends Controller
 
     public function searchPO(Request $req){
         // Validasi Web
-        $receiptdate = $req->receiptdate;
-        $errorcode = Session::get('errors');
-        $sessionpo = Session::get('session_po');
+        // $receiptdate = $req->receiptdate;
+        // $errorcode = Session::get('errors');
+        // $sessionpo = Session::get('session_po');
 
         if(is_null($req->sjnbr)){
             $ponbrtampung = $req->ponbr;
@@ -73,7 +73,7 @@ class POReceiptController extends Controller
         // dd($sessionpo);
 
 
-        $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
+        // $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
         
         if(is_null($po)){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
