@@ -119,7 +119,7 @@ class POReceiptController extends Controller
         Session::forget('session_po');
 
         if(Session::get('errorcode')){
-            // dd(Session::get('errorcode'));
+            dd(Session::get('errorcode'));
             if(Session::get('errorcode') === 1){
                 dd('error code 1');
                 alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
