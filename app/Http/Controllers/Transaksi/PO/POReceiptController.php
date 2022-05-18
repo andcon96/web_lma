@@ -96,7 +96,7 @@ class POReceiptController extends Controller
     }
 
     public function edit($id){
-        dd(Session::get('allporeceipt'));
+        dd(Session::get('allporeceipt')->where('po_nbr','=',$id));
         dd($id);
     }
 
