@@ -51,7 +51,6 @@ class POReceiptController extends Controller
                 return redirect()->back();
             }else{
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
-                // dd($tempPO[1]);
             }
         }
         
@@ -92,6 +91,10 @@ class POReceiptController extends Controller
         }
 
         return view('transaksi.poreceipt.view-browse', compact('po'));
+    }
+
+    public function detailReceipt($id){
+        dd($id);
     }
 
     public function submitReceipt(Request $req){
