@@ -80,7 +80,7 @@ class CreateTempTable
             $table->string('pod_part');
             $table->string('pod_qty_ord');
             $table->string('pod_qty_rcvd');
-            $table->string('pod_loc');
+            $table->string('pod_loc')->nullable();
             $table->decimal('pod_qty_terima');
             $table->decimal('pod_qty_fg');
             $table->string('pod_remarks')->nullable();
