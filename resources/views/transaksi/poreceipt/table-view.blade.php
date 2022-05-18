@@ -35,11 +35,6 @@
             </td>
             <td>
               <input type="text" class="form-control" name="partloc[]" value="{{$show->pod_loc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':'readonly'}}>
-              <!-- <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='3' data-live-search="true" data-width="100%" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}>
-                  @foreach ($loc as $locs)
-                      <option value="{{$locs->loc}}" {{$locs->loc == (($sessionpo!=null) ? $sessionpo[$index]->pod_loc : $show->pod_loc) ? 'Selected' : ''}} >{{$locs->loc}} -- {{$locs->loc_desc}}</option>
-                  @endforeach
-              </select> -->
             </td>
             <td><input type="number" class="form-control" name="qtyterima[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_terima : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>
             <td><input type="number" class="form-control" name="qtyfg[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_fg : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>
