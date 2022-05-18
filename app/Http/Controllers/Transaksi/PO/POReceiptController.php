@@ -98,13 +98,17 @@ class POReceiptController extends Controller
     public function edit($id){
 
         // dd(Session::get('allporeceipt')->where('po_nbr','=',$id));
+        if(!Session::get('allporeceipt')){
+            abort('404');
+        }
+
         $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id);
 
         
         if($receiptdetail->count() == 0){
             abort('404');
         }
-        dd($receiptdetail);
+        // dd($receiptdetail);
 
         $sessionpo = Session::get('session_po');
         return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
