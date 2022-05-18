@@ -96,7 +96,7 @@ class POReceiptController extends Controller
     }
 
     public function edit($id){
-        dd($id);
+        // dd($id);
         // dd(Session::get('allporeceipt')->where('po_nbr','=',$id),Session::get('session_po'));
         if(!Session::get('allporeceipt')){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
@@ -112,6 +112,17 @@ class POReceiptController extends Controller
 
             return redirect()->route('poreceipt.index');
         }
+
+        if(Session::get('errorcode')){
+            if(Session::get('errorcode' == 1)){
+                dd('error code 1');
+            }elseif(Session::get('errorcode' == 2)){
+                dd('error code 2');
+            }
+        }
+
+        Session::forget('errorcode');
+        
         // dd($receiptdetail);
 
         $sessionpo = Session::get('session_po');
@@ -137,6 +148,7 @@ class POReceiptController extends Controller
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
             Session::put('session_po',$poSession);
+            Session::put('errorcode',1);
             return redirect()->route('poreceipt.edit',$req->po_nbr);
         }
         
@@ -145,6 +157,7 @@ class POReceiptController extends Controller
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
             Session::put('session_po',$poSession);
+            Session::put('errorcode',2);
             return redirect()->route('poreceipt.edit',$req->po_nbr);
         }
 

@@ -22,7 +22,7 @@
           {{$show->po_cust}} -- {{$show->po_custname}}
         </td>
         <td>
-            <a href="{{route('poreceipt.edit',[$show->po_nbr,'a']) }}"><i class="fas fa-edit"></i></a>
+            <a href="{{route('poreceipt.edit',$show->po_nbr) }}"><i class="fas fa-edit"></i></a>
         </td>
       </tr>
       @empty
