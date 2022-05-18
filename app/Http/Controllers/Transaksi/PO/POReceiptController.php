@@ -95,8 +95,8 @@ class POReceiptController extends Controller
         return view('transaksi.poreceipt.view-browse', compact('po'));
     }
 
-    public function edit($id,$a){
-        dd($a);
+    public function edit($id){
+        dd($id);
         // dd(Session::get('allporeceipt')->where('po_nbr','=',$id),Session::get('session_po'));
         if(!Session::get('allporeceipt')){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
