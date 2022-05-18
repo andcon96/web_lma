@@ -36,8 +36,8 @@
             <td>
               <input type="text" class="form-control" name="partloc[]" value="{{$show->pod_loc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':'readonly'}}>
             </td>
-            <td><input type="number" class="form-control" name="qtyterima[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_terima : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>
-            <td><input type="number" class="form-control" name="qtyfg[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_fg : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>
+            <td><input type="number" class="form-control" name="qtyterima[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo->where('pod_line',$show->pod_line)->pod_qty_terima : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>
+            <td><input type="number" class="form-control" name="qtyfg[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo->where('pod_line',$show->pod_line)->pod_qty_fg : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>
         </tr>
         @empty
             <td colspan='7' class='text-danger'><b>No Data Available</b></td>

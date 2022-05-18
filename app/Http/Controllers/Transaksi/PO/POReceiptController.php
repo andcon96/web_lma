@@ -112,10 +112,10 @@ class POReceiptController extends Controller
 
             return redirect()->route('poreceipt.index');
         }
-        dd($receiptdetail);
+        // dd($receiptdetail);
 
         $sessionpo = Session::get('session_po');
-        dd($sessionpo);
+        // dd($sessionpo);
         return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
     }
 
