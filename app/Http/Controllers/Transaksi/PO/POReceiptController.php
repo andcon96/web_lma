@@ -97,7 +97,7 @@ class POReceiptController extends Controller
 
     public function edit($id){
 
-        // dd(Session::get('allporeceipt')->where('po_nbr','=',$id));
+        dd(Session::get('allporeceipt')->where('po_nbr','=',$id),Session::get('session_po'));
         if(!Session::get('allporeceipt')){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
 
