@@ -113,19 +113,19 @@ class POReceiptController extends Controller
             return redirect()->route('poreceipt.index');
         }
 
-        Session::forget('errorcode');
-
         $sessionpo = Session::get('session_po');
         Session::forget('session_po');
 
         if(Session::get('errorcode')){
             dd(Session::get('errorcode'));
             if(Session::get('errorcode') === 1){
-                dd('error code 1');
+                // dd('error code 1');
+                Session::forget('errorcode');
                 alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
                 return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
             }elseif(Session::get('errorcode') === 2){
                 // dd('error code 2');
+                Session::forget('errorcode');
                 alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
                 return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
             }
