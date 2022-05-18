@@ -53,6 +53,8 @@ class POReceiptController extends Controller
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
             }
         }
+
+        Session::put('allporeceipt', $tempPO[0]);
         
         
         return redirect()->route('showReceipt')->with(['tablepo' => $tempPO[1],'receiptdate'=> $receiptdate,'errorcode'=>$errorcode, 'sessionpo'=>$sessionpo]);
@@ -94,6 +96,7 @@ class POReceiptController extends Controller
     }
 
     public function edit($id){
+        dd(Session::get('allporeceipt'));
         dd($id);
     }
 
