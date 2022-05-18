@@ -13,7 +13,7 @@
       </tr>
    </thead>
     <tbody>         
-        @forelse ($po as $index => $show)
+        @forelse ($receiptdetail as $index => $show)
         <tr>
             <td>
               {{$show->pod_line}}

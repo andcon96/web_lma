@@ -96,8 +96,12 @@ class POReceiptController extends Controller
     }
 
     public function edit($id){
-        dd(Session::get('allporeceipt')->where('po_nbr','=',$id));
-        dd($id);
+        $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id);
+
+        return view('transaksi.poreceipt.view', compact('receiptdetail'));
+
+        // dd(Session::get('allporeceipt')->where('po_nbr','=',$id));
+        // dd($id);
     }
 
     public function submitReceipt(Request $req){
