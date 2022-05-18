@@ -57,18 +57,18 @@ class POReceiptController extends Controller
         Session::put('allporeceipt', $tempPO[0]);
         
         
-        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO[1],'receiptdate'=> $receiptdate,'errorcode'=>$errorcode, 'sessionpo'=>$sessionpo]);
+        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO[1]]);
     }
 
     public function showReceipt(){
         // dd('aa');
         $po = Session::get('tablepo');
 
-        $receiptdate = Session::get('receiptdate');
+        // $receiptdate = Session::get('receiptdate');
 
-        $errorcode = Session::get('errorcode');
+        // $errorcode = Session::get('errorcode');
 
-        $sessionpo = Session::get('sessionpo');
+        // $sessionpo = Session::get('sessionpo');
 
         // dd($sessionpo);
 
@@ -81,16 +81,16 @@ class POReceiptController extends Controller
             return redirect()->route('poreceipt.index');
         }
 
-        if($errorcode === 1){
-            alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
-            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
-        }elseif($errorcode === 2){
-            alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
-            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
-        }elseif($errorcode === 3){
-            alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
-            return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
-        }
+        // if($errorcode === 1){
+        //     alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
+        //     return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
+        // }elseif($errorcode === 2){
+        //     alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
+        //     return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
+        // }elseif($errorcode === 3){
+        //     alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
+        //     return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
+        // }
 
         return view('transaksi.poreceipt.view-browse', compact('po'));
     }
