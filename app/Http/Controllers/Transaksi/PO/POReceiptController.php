@@ -121,7 +121,6 @@ class POReceiptController extends Controller
     public function submitReceipt(Request $req){
         $newrequest = $req->all();
 
-        dd(Session::get('allporeceipt'));
         // dd($newrequest);
         // if(is_null($req->nopol)){
         //     alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
@@ -137,7 +136,7 @@ class POReceiptController extends Controller
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
             Session::put('session_po',$poSession);
-            return redirect()->route('poreceipt.edit')->with(['ponbr' => $req->po_nbr,'errors'=>2,'session_po'=>$poSession]);
+            return redirect()->route('poreceipt.edit',$req->po_nbr);
         }
         
         if($poreceipt_submit === false){
@@ -145,7 +144,7 @@ class POReceiptController extends Controller
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
             Session::put('session_po',$poSession);
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>3,'session_po'=>$poSession]);
+            return redirect()->route('poreceipt.edit',$req->po_nbr);
         }
 
 

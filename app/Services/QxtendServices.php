@@ -478,7 +478,7 @@ class QxtendServices
       // dd($index);
       $qdocBody .= ' <lineDetail>
                         <line>' . $p . '</line>
-                        <lotserialQty>' . $qtyterima[$key]  . '</lotserialQty>
+                        <lotserialQt>' . $qtyterima[$key]  . '</lotserialQty>
                         <location>'.$partloc[$key].'</location>
                         <multiEntry>true</multiEntry>';
       if ($qtyfg[$key] > 0) {
