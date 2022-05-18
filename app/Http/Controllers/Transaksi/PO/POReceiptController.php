@@ -98,7 +98,7 @@ class POReceiptController extends Controller
     public function edit($id){
         $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id);
         $sessionpo = Session::get('session_po')->where('po_nbr','=',$id);
-
+        dd($sessionpo);
         return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
 
         // dd(Session::get('allporeceipt')->where('po_nbr','=',$id));
@@ -130,6 +130,7 @@ class POReceiptController extends Controller
             // alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+            Session::put('session_po',$poSession);
             return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>3,'session_po'=>$poSession]);
         }
 
