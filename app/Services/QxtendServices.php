@@ -563,7 +563,7 @@ class QxtendServices
 
       foreach ($poline as $key => $a) {
 
-        if ($qtyfg[$key] > 0 || $qtyreject[$key] > 0) {
+        if ($qtyfg[$key] > 0 || $qtyreject > 0) {
           $pohist = new POhist();
 
           $pohist->ph_ponbr = $ponbr;
@@ -572,8 +572,9 @@ class QxtendServices
           $pohist->ph_part = $popart[$key];
           $pohist->ph_qty_order = $qtyord[$key];
           $pohist->ph_qty_rcvd = $qtyrcvd[$key];
+          $pohist->ph_qty_terima = $qtyterima[$key];
           $pohist->ph_qty_fg = $qtyfg[$key];
-          $pohist->ph_qty_rjct = $qtyreject[$key];
+          $pohist->ph_qty_rjct = $qtyreject;
           $pohist->ph_nopol = $nopol;
           $pohist->ph_receiptdate = $receiptdate;
           $pohist->ph_loc = $partloc[$key];
