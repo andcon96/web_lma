@@ -32,7 +32,7 @@ class POReceiptController extends Controller
 
         if(is_null($req->sjnbr)){
             $ponbrtampung = $req->ponbr;
-            dd($ponbrtampung);
+            // dd($ponbrtampung);
             // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
             // return redirect()->back();
         }else{
