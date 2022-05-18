@@ -77,7 +77,7 @@ class POReceiptController extends Controller
         
         if(is_null($po)){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
-            // return view('transaksi.poreceipt.index');
+
             return redirect()->route('poreceipt.index');
         }
 
@@ -99,14 +99,18 @@ class POReceiptController extends Controller
 
         // dd(Session::get('allporeceipt')->where('po_nbr','=',$id));
         if(!Session::get('allporeceipt')){
-            abort('404');
+            alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
+
+            return redirect()->route('poreceipt.index');
         }
 
         $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id);
 
         
         if($receiptdetail->count() == 0){
-            abort('404');
+            alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
+
+            return redirect()->route('poreceipt.index');
         }
         // dd($receiptdetail);
 
@@ -117,6 +121,7 @@ class POReceiptController extends Controller
     public function submitReceipt(Request $req){
         $newrequest = $req->all();
 
+        dd(Session::get('allporeceipt'));
         // dd($newrequest);
         // if(is_null($req->nopol)){
         //     alert()->error('Error', 'Nomor Polisi tidak boleh kosong')->persistent('Dismiss');
@@ -132,7 +137,7 @@ class POReceiptController extends Controller
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
             Session::put('session_po',$poSession);
-            return redirect()->route('searchPO')->with(['ponbr' => $req->po_nbr,'errors'=>2,'session_po'=>$poSession]);
+            return redirect()->route('poreceipt.edit')->with(['ponbr' => $req->po_nbr,'errors'=>2,'session_po'=>$poSession]);
         }
         
         if($poreceipt_submit === false){
@@ -144,7 +149,7 @@ class POReceiptController extends Controller
         }
 
 
-        alert()->success('Success', 'PO : '.$req->po_nbr.' berhasil di receipt')->persistent('Dismiss');
+        alert()->success('Success', 'PO : '.$req->po_nbr.' dengan PO Contract : '.$req->po_kontrak.' berhasil di receipt')->persistent('Dismiss');
         return redirect()->route('poreceipt.index');
 
     }
