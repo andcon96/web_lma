@@ -14,7 +14,7 @@
 
   <div class="form-group col-md-12 p-0">
     <div class="col-md-12" style="float: right;">
-      <a id="back_btn" class="btn btn-danger float-right" href="{{url()->previous()}}" style="margin-top:10px; margin-left:5px;">Back</a>
+      <a id="back_btn" class="btn btn-danger float-right" href="{{route('poreceipt.index)}}" style="margin-top:10px; margin-left:5px;">Back</a>
     </div>
   </div>
 
