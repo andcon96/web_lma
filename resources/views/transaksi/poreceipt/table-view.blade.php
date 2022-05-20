@@ -38,7 +38,7 @@
               <input type="text" class="form-control" name="partloc[]" value="{{$show->pod_loc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':'readonly'}}>
             </td>
             <td>
-              <input type="text" class="form-control" name="partlot[]" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}>
+              <input type="text" class="form-control" name="partlot[]" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_lot : ''}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}>
             </td>
             <td><input type="number" class="form-control" name="qtyterima[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_terima : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>
             <td><input type="number" class="form-control" name="qtyfg[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_fg : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>
