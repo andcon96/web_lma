@@ -97,6 +97,15 @@
                   required>
               </div>
             </div>
+            <div class="form-group row">
+              <label for="usertype" class="col-md-3 col-form-label text-md-right">{{ __('User Type') }}</label>
+              <div class="col-md-7">
+                <select name="usertype" id="usertype" class="form-control" required>
+                  <option value="office">Office</option>
+                  <option value="notoffice">Lapangan</option>
+                </select>
+              </div>
+            </div>
           </div>
 
           <div class="modal-footer">
@@ -141,6 +150,15 @@
               <label for="e_roleType" class="col-md-3 col-form-label text-md-right">{{ __('Role Type') }}</label>
               <div class="col-md-7">
                 <input id="e_roleType" type="text" class="form-control" name="e_roleType" value="" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="e_usertype" class="col-md-3 col-form-label text-md-right">{{ __('User Type') }}</label>
+              <div class="col-md-7">
+                <select name="e_usertype" id="e_usertype" class="form-control" required>
+                  <option value="office">Office</option>
+                  <option value="notoffice">Lapangan</option>
+                </select>
               </div>
             </div>
           </div>
