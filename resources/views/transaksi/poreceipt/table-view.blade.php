@@ -4,11 +4,11 @@
       <tr>
           <th style="width: 5%;">Line</th>
           <th style="width: 28%;">Item</th>
-          <th style="width: 10%;">Qty Order</th>
-          <th style="width: 10%;">Qty Received</th>
-          <th style="width: 10%;">Qty Open</th>
+          <th style="width: 9%;">Qty Order</th>
+          <th style="width: 9%;">Qty Received</th>
+          <th style="width: 9%;">Qty Open</th>
           <th style="width: 10%;">Location</th>
-          <th style="width: 7%;">Lot/Ser</th>
+          <th style="width: 10%;">Lot/Ser</th>
           <th style="width: 10%;">Qty Diterima</th>
           <th style="width: 10%;">Qty FG</th>
       </tr>
