@@ -61,6 +61,7 @@ class CreateTempTable
         $ponbr = $data['po_nbr'];
         $supp = $data['supphidden'];
         $partloc = $data['partloc'];
+        $partlot = $data['partlot'];
         $poline = $data['poline'];
         $qtyterima = $data['qtyterima'];
         $qtyfg = $data['qtyfg'];
@@ -81,6 +82,7 @@ class CreateTempTable
             $table->string('pod_qty_ord');
             $table->string('pod_qty_rcvd');
             $table->string('pod_loc')->nullable();
+            $table->string('pod_lot')->nullable();
             $table->decimal('pod_qty_terima');
             $table->decimal('pod_qty_fg');
             $table->string('pod_remarks')->nullable();
@@ -98,6 +100,7 @@ class CreateTempTable
                 'pod_qty_ord' => $qtyord[$datas],
                 'pod_qty_rcvd' => $qtyrcvd[$datas],
                 'pod_loc' => $partloc[$datas],
+                'pod_lot' => $partlot[$datas],
                 'pod_qty_terima' => $qtyterima[$datas],
                 'pod_qty_fg' => $qtyfg[$datas],
                 'pod_remarks' => $remark,

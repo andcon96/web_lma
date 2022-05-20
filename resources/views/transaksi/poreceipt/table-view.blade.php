@@ -7,9 +7,10 @@
           <th style="width: 10%;">Qty Order</th>
           <th style="width: 10%;">Qty Received</th>
           <th style="width: 10%;">Qty Open</th>
-          <th style="width: 15%;">Location</th>
-          <th style="width: 10%;">Qty Diterima</th>
-          <th style="width: 10%;">Qty FG</th>
+          <th style="width: 10%;">Location</th>
+          <th style="width: 9%;">Lot/Ser</th>
+          <th style="width: 12%;">Qty Diterima</th>
+          <th style="width: 12%;">Qty FG</th>
       </tr>
    </thead>
     <tbody>         
@@ -35,6 +36,9 @@
             </td>
             <td>
               <input type="text" class="form-control" name="partloc[]" value="{{$show->pod_loc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':'readonly'}}>
+            </td>
+            <td>
+              <input type="text" class="form-control" name="partlot[]" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}>
             </td>
             <td><input type="number" class="form-control" name="qtyterima[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_terima : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>
             <td><input type="number" class="form-control" name="qtyfg[]" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_fg : 0}}" required  {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}}/></td>

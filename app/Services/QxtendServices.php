@@ -360,6 +360,7 @@ class QxtendServices
     $ponbr = $datas['po_nbr'];
     $supp = $datas['supphidden'];
     $partloc = $datas['partloc'];
+    $partlot = $datas['partlot'];
     $poline = $datas['poline'];
     $qtyterima = $datas['qtyterima'];
     $qtyfg = $datas['qtyfg'];
@@ -480,6 +481,7 @@ class QxtendServices
                         <line>' . $p . '</line>
                         <lotserialQty>' . $qtyterima[$key]  . '</lotserialQty>
                         <location>'.$partloc[$key].'</location>
+                        <lotserial>'.$partlot[$key].'</lotserial>
                         <multiEntry>true</multiEntry>';
       if ($qtyfg[$key] > 0) {
           $qdocBody .= ' <receiptDetail>
@@ -578,6 +580,7 @@ class QxtendServices
           $pohist->ph_nopol = $nopol;
           $pohist->ph_receiptdate = $receiptdate;
           $pohist->ph_loc = $partloc[$key];
+          $pohist->ph_lot = $partlot[$key];
           $pohist->created_by = auth()->user()->username;
           $pohist->save();
         }
