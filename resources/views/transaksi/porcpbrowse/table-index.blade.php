@@ -2,14 +2,14 @@
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>PO No.</th>
-                <th style="width: 35%;">Supplier</th>
-                <th>Item</th>
-                <th>Total Qty Receipt</th>
-                <th>Qty FG</th>
-                <th>Qty Reject</th>
-                <th>Receipt Date</th>
-                <th>Receipt By</th>
+                <th style="width: 10%;">PO No.</th>
+                <th style="width: 20%;">Supplier</th>
+                <th style="width: 20%;">Item</th>
+                <th style="width: 10%;">Qty Receipt</th>
+                <th style="width: 10%;">Qty FG</th>
+                <th style="width: 10%;">Qty Reject</th>
+                <th style="width: 10%;">Receipt Date</th>
+                <th style="width: 10%;">Receipt By</th>
             </tr>
         </thead>
         <tbody>
