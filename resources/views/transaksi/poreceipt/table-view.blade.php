@@ -3,14 +3,14 @@
     <thead>
       <tr>
           <th style="width: 5%;">Line</th>
-          <th style="width: 30%;">Item</th>
+          <th style="width: 28%;">Item</th>
           <th style="width: 10%;">Qty Order</th>
           <th style="width: 10%;">Qty Received</th>
           <th style="width: 10%;">Qty Open</th>
           <th style="width: 10%;">Location</th>
-          <th style="width: 9%;">Lot/Ser</th>
-          <th style="width: 12%;">Qty Diterima</th>
-          <th style="width: 12%;">Qty FG</th>
+          <th style="width: 7%;">Lot/Ser</th>
+          <th style="width: 10%;">Qty Diterima</th>
+          <th style="width: 10%;">Qty FG</th>
       </tr>
    </thead>
     <tbody>         
