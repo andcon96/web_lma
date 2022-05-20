@@ -48,7 +48,7 @@
         @else
         <td>
           <a href="" class="editModal" data-userid="{{$show->id}}" data-role="{{$show->getRole->role}}"
-            data-role_type="{{$show->role_type}}" data-toggle='modal' data-target="#editModal"><i
+            data-role_type="{{$show->role_type}}" data-usertype="{{$show->usertype}}" data-toggle='modal' data-target="#editModal"><i
               class="fas fa-edit"></i></button>
         </td>
         <td>
@@ -277,11 +277,12 @@
        var role = 'User';
      }
      var role_type = $(this).data('role_type');
-
+     var usertype = $(this).data('usertype');
      
      document.getElementById("e_id").value = uid;
      document.getElementById('e_role').value = role;
      document.getElementById("e_roleType").value = role_type;
+     document.getElementById('e_usertype').value = usertype;
 
   });
 </script>
