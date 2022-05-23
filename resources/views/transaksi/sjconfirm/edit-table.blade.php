@@ -9,6 +9,7 @@
                 <th>Qty SJ</th>
                 <th width="15%">Qty Input</th>
                 <th width="25%">Location</th>
+                <th>Lot</th>
             </tr>
         </thead>
         <tbody>
@@ -46,6 +47,9 @@
                                 @endif
                             @endforeach
                         </select>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="lot[]">
                     </td>
                 </tr>
             @empty

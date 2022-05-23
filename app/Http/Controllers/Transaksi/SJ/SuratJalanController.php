@@ -268,19 +268,20 @@ class SuratJalanController extends Controller
             $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);
         }
 
-        return redirect()->route('dispChangeSJ')->with(['tableso' => $tempPO,'sjnbr' => $request->sj]);
+        return redirect()->route('dispChangeSJ')->with(['tableso' => $tempPO,'sjnbr' => $request->sj, 'nopol' => $request->nopol]);
     }
 
     public function dispchangesj(Request $request){
         $so = Session::get('tableso');
         $sjnbr = Session::get('sjnbr');
+        $nopol = Session::get('nopol');
 
         if (is_null($so) || is_null($sjnbr)) {
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
             return redirect()->route('browseSJ');
         }
 
-        return view('transaksi.suratjalan.redosj.create', compact('so','sjnbr'));
+        return view('transaksi.suratjalan.redosj.create', compact('so','sjnbr','nopol'));
     }
 
     public function updatechangesj(Request $request){
