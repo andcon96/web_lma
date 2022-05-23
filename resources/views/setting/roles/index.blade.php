@@ -48,7 +48,7 @@
         @else
         <td>
           <a href="" class="editModal" data-userid="{{$show->id}}" data-role="{{$show->getRole->role}}"
-            data-role_type="{{$show->role_type}}" data-toggle='modal' data-target="#editModal"><i
+            data-role_type="{{$show->role_type}}" data-usertype="{{$show->usertype}}" data-toggle='modal' data-target="#editModal"><i
               class="fas fa-edit"></i></button>
         </td>
         <td>
@@ -97,6 +97,15 @@
                   required>
               </div>
             </div>
+            <div class="form-group row">
+              <label for="usertype" class="col-md-3 col-form-label text-md-right">{{ __('User Type') }}</label>
+              <div class="col-md-7">
+                <select name="usertype" id="usertype" class="form-control" required>
+                  <option value="office">Office</option>
+                  <option value="notoffice">Lapangan</option>
+                </select>
+              </div>
+            </div>
           </div>
 
           <div class="modal-footer">
@@ -141,6 +150,15 @@
               <label for="e_roleType" class="col-md-3 col-form-label text-md-right">{{ __('Role Type') }}</label>
               <div class="col-md-7">
                 <input id="e_roleType" type="text" class="form-control" name="e_roleType" value="" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="e_usertype" class="col-md-3 col-form-label text-md-right">{{ __('User Type') }}</label>
+              <div class="col-md-7">
+                <select name="e_usertype" id="e_usertype" class="form-control" required>
+                  <option value="office">Office</option>
+                  <option value="notoffice">Lapangan</option>
+                </select>
               </div>
             </div>
           </div>
@@ -259,11 +277,12 @@
        var role = 'User';
      }
      var role_type = $(this).data('role_type');
-
+     var usertype = $(this).data('usertype');
      
      document.getElementById("e_id").value = uid;
      document.getElementById('e_role').value = role;
      document.getElementById("e_roleType").value = role_type;
+     document.getElementById('e_usertype').value = usertype;
 
   });
 </script>

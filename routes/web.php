@@ -15,6 +15,7 @@ use App\Http\Controllers\Transaksi\Report\StockItemController;
 use App\Http\Controllers\Transaksi\PO\POReceiptController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Transaksi\PO\POApprovalController;
+use App\Http\Controllers\Transaksi\PO\POBrowseController;
 use App\Http\Controllers\Transaksi\Report\HutangCustController;
 use App\Http\Controllers\Transaksi\SJ\SuratJalanConfirmController;
 use App\Http\Controllers\Transaksi\SJ\SuratJalanController;
@@ -68,6 +69,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('searchpoinvc', [POApprovalController::class, 'searchpoinvc'])->name('searchpoinvc');
         Route::post('sendmailapproval', [POApprovalController::class, 'sendMailApproval'])->name('sendMailApproval');
     });
+
+        Route::resource('poreceiptbrw', POBrowseController::class);
 
     Route::group(['middleware'=>'can:sj_create'],function(){
         Route::resource('suratjalan', SuratJalanController::class);

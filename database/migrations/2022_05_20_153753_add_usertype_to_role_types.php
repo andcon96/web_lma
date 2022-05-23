@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPhSuppToPoHist extends Migration
+class AddUsertypeToRoleTypes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddPhSuppToPoHist extends Migration
      */
     public function up()
     {
-        Schema::table('po_hist', function (Blueprint $table) {
+        Schema::table('role_types', function (Blueprint $table) {
             //
-            $table->string('ph_supp');
+            $table->string('usertype');
         });
     }
 
@@ -26,8 +26,9 @@ class AddPhSuppToPoHist extends Migration
      */
     public function down()
     {
-        Schema::table('po_hist', function (Blueprint $table) {
-            $table->dropColumn('ph_supp');
+        Schema::table('role_types', function (Blueprint $table) {
+            //
+            $table->dropColumn('usertype');
         });
     }
 }

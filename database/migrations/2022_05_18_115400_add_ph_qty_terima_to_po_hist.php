@@ -28,7 +28,7 @@ class AddPhQtyTerimaToPoHist extends Migration
     {
         Schema::table('po_hist', function (Blueprint $table) {
             //
-            $table->decimal('ph_qty_terima',15,2);
+            $table->dropColumn('ph_qty_terima');
         });
     }
 }

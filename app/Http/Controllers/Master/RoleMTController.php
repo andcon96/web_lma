@@ -43,6 +43,7 @@ class RoleMTController extends Controller
         $request->validate([
             'role' => 'required',
             'role_type' => 'required',
+            'usertype' => 'required',
         ]);
 
         $role = $request->role;
@@ -55,6 +56,7 @@ class RoleMTController extends Controller
             $roleType = new RoleType();
             $roleType->role_type = ucwords($request->role_type);
             $roleType->role_id = $role_id;
+            $roleType->usertype = $request->usertype;
             $roleType->save();
 
             DB::commit();
@@ -102,6 +104,7 @@ class RoleMTController extends Controller
         $request->validate([
             'e_role' => 'required',
             'e_roleType' => 'required',
+            'e_usertype' => 'required',
         ]);
 
         $roleType = RoleType::where('id', $request->e_id)->first();
@@ -110,6 +113,7 @@ class RoleMTController extends Controller
 
         try {
             $roleType->role_type = $request->e_roleType;
+            $roleType->usertype = $request->e_usertype;
             $roleType->save();
 
             DB::commit();

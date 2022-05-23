@@ -28,7 +28,7 @@ class AddPhLotToPoHist extends Migration
     {
         Schema::table('po_hist', function (Blueprint $table) {
             //
-            $table->string('ph_lot')->nullable();
+            $table->dropColumn('ph_lot');
         });
     }
 }
