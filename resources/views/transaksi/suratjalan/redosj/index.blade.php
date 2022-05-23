@@ -16,6 +16,7 @@
         <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
             <input type="text" name="sj" class="form-control" value="{{$data->sj_nbr}}" readonly>
             <input type="hidden" name="idsj" value="{{$data->id}}">
+            <input type="hidden" name="nopol" value="{{$data->sj_nopol}}">
         </div>
         <label for="sonbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('SO Number') }}</label>
         <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">

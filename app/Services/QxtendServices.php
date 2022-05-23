@@ -690,6 +690,7 @@ class QxtendServices
                           <line>'.$data.'</line>
                           <lotserialQty>'.$datas['qtysj'][$key].'</lotserialQty>
                           <location>'.$datas['partloc'][$key].'</location>
+                          <lotserial>'.$datas['lot'][$key].'</lotserial>
                           <pickLogic>false</pickLogic>
                           <yn>true</yn>
                           <yn1>true</yn1>        
@@ -702,8 +703,6 @@ class QxtendServices
                           </soapenv:Envelope>';
 
     $qdocRequest = $qdocHead . $qdocBody . $qdocfooter;
-
-    // dd($qdocRequest);
 
     $curlOptions = array(
       CURLOPT_URL => $qxUrl,
@@ -766,6 +765,7 @@ class QxtendServices
         $sj_dets = SuratJalanDetail::findOrFail($datas['iddetail'][$key]);
         $sj_dets->sj_qty_rcvd = $datas['qtyinp'][$key];
         $sj_dets->sj_loc = $datas['partloc'][$key];
+        $sj_dets->sj_lot = $datas['lot'][$key];
         $sj_dets->save();
       }
       return true;
