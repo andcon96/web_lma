@@ -27,8 +27,7 @@ class AddPhSuppToPoHist extends Migration
     public function down()
     {
         Schema::table('po_hist', function (Blueprint $table) {
-            //
-            $table->string('ph_supp');
+            $table->dropColumn('ph_supp');
         });
     }
 }

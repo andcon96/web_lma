@@ -28,7 +28,7 @@ class AddUsertypeToRoleTypes extends Migration
     {
         Schema::table('role_types', function (Blueprint $table) {
             //
-            $table->string('usertype');
+            $table->dropColumn('usertype');
         });
     }
 }
