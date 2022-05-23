@@ -19,7 +19,7 @@ class POBrowseController extends Controller
         //
 
         // dd(Session::get('usertype'));
-        $datas = POhist::with(['getUser.getRoleType'])->query();
+        $datas = POhist::query()->with(['getUser.getRoleType']);
 
 
 
