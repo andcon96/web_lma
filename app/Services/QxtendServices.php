@@ -370,6 +370,7 @@ class QxtendServices
     $popart = $datas['popart'];
     $popartname = $datas['popartdesc'];
     $receiptdate = $datas['receiptdate'];
+    $pokontrak = $datas['po_kontrak'];
     // $listnopol = implode(" , ", $datas['nopol']);
     $nopol = $datas['nopol'];
 
@@ -587,6 +588,7 @@ class QxtendServices
           $pohist->ph_lot = $partlot[$key];
           $pohist->created_by = auth()->user()->id;
           $pohist->ph_domain = $domain;
+          $pohist->ph_pokontrak = $pokontrak;
           $pohist->save();
         }
       }
