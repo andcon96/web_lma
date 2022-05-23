@@ -69,6 +69,7 @@
         $('#ponbr').val('');
         $('#supp').val('');
         $('#pocon').val('');
+        $('#receiptdate').val('');
     }
 
     $(document).ready(function() {
