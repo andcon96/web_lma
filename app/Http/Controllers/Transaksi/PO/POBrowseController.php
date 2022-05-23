@@ -19,6 +19,8 @@ class POBrowseController extends Controller
 
         $datas = POhist::query();
 
+        $datas = $datas->paginate(10);
+
         return view('transaksi.porcpbrowse.index',compact('datas'));
     }
 
