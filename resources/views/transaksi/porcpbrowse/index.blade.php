@@ -14,7 +14,7 @@
         <div class="col-lg-2 col-md-4">
             <label for="ponbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('PO No.') }}</label>
         </div>
-        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <input id="ponbr" type="text" class="form-control" name="ponbr" value="{{ request()->input('ponbr') }}">
         </div>
         <div class="col-lg-2 col-md-4">
