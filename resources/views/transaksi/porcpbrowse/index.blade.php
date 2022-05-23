@@ -20,7 +20,7 @@
         <div class="col-lg-2 col-md-4">
             <label for="pocon" class="col-form-label text-md-right" style="margin-left:25px">{{ __('PO Contract') }}</label>
         </div>
-        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <input id="pocon" type="text" class="form-control" name="pocon" value="{{ request()->input('pocon') }}">
         </div>
     </div>
@@ -28,7 +28,7 @@
         <div class="col-lg-2 col-md-4">
             <label for="supp" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Supplier') }}</label>
         </div>
-        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <select name="supp" id="supp" class="form-control">
                 <option value="">Select Data</option>
                 @foreach ($supps as $supp )
@@ -39,7 +39,7 @@
         <div class="col-lg-2 col-md-4">
             <label for="receiptdate" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Receipt Date') }}</label>
         </div>
-        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
         <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{Carbon\Carbon::parse(now())->format('Y-m-d') }}">
         </div>
         <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
