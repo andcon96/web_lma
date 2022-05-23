@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Transaksi\PO;
 use App\Http\Controllers\Controller;
 use App\Models\Transaksi\POhist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session as Session;
 
 class POBrowseController extends Controller
 {
@@ -16,7 +17,8 @@ class POBrowseController extends Controller
     public function index()
     {
         //
-        dd(auth()->user());
+
+        dd(Session::get('usertype'));
         $datas = POhist::query();
 
         $datas = $datas->where('created_by',auth()->user()->username)->paginate(10);
