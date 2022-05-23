@@ -10,7 +10,7 @@
 @section('content')
 
 <form action="{{route('poreceiptbrw.index')}}" method="GET">
-    <div class="form-group row offset-lg-1">
+    <div class="form-group row">
         <div class="col-lg-2 col-md-4">
             <label for="ponbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('PO No.') }}</label>
         </div>
@@ -24,7 +24,7 @@
             <input id="pocon" type="text" class="form-control" name="pocon" value="{{ request()->input('pocon') }}">
         </div>
     </div>
-    <div class="form-group row offset-lg-1">
+    <div class="form-group row">
         <div class="col-lg-2 col-md-4">
             <label for="supp" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Supplier') }}</label>
         </div>
@@ -60,6 +60,10 @@
     $("#supp").select2({
         width: '100%'
     });
+
+    $("#receiptdate").datepicker({
+        dateFormat: 'yy-mm-dd',
+  });
     
     function resetSearch(){
         $('#ponbr').val('');

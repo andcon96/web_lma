@@ -28,6 +28,12 @@ class POBrowseController extends Controller
         if($req->supp){
             $datas->where('ph_supp',$req->supp);
         }
+        if($req->receiptdate){
+            $datas->where('ph_receiptdate',$req->receiptdate);
+        }
+        if($req->pocon){
+            $datas->where('ph_pokontrak',$req->pocon);
+        }
 
 
         $datas = $datas->whereRelation('getUser.getRoleType','usertype', 'office')->orderBy('id','desc')->paginate(10);
