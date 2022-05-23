@@ -68,6 +68,8 @@
     function resetSearch(){
         $('#ponbr').val('');
         $('#supp').val('');
+        $('#pocon').val('');
+        $('#receiptdate').val(new Date());
     }
 
     $(document).ready(function() {
