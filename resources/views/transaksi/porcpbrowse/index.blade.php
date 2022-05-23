@@ -40,7 +40,7 @@
             <label for="receiptdate" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Receipt Date') }}</label>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
-        <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{Carbon\Carbon::parse(now())->format('Y-m-d') }}">
+        <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{request()->input('receiptdate') ? request()->input('receiptdate'):Carbon\Carbon::parse(now())->format('Y-m-d') }}">
         </div>
         <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
             <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
@@ -69,7 +69,6 @@
         $('#ponbr').val('');
         $('#supp').val('');
         $('#pocon').val('');
-        $('#receiptdate').val(new Date());
     }
 
     $(document).ready(function() {
