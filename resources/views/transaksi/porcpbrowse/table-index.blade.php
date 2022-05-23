@@ -13,7 +13,32 @@
             </tr>
         </thead>
         <tbody>
+            @forelse ($datas as $show)
+                <tr>
+                    <td>{{$show->ph_ponbr}}</td>
+                    <td>{{$show->ph_supp}}</td>
+                    <td>{{$show->ph_part}}</td>
+                    <td>{{$show->ph_qty_terima}}</td>
+                    <td>{{$show->ph_qty_fg}}</td>
+                    <td>{{$show->ph_qty_terima-$show->ph_qty_fg}}</td>
+                    <td>{{$show->ph_receiptdate}}</td>
+                    <td>{{$show->created_by}}
+                </tr>                
+            @empty
+            <tr>
+                <td class="text-danger" colspan='12'>
+                    <center><b>No Data Available</b></center>
+                </td>
+            </tr>
+            @endforelse
             
         </tbody>
+        <tfoot>
+            <tr style="border:0 !important">
+                <td colspan="12">
+                    {{ $datas->withQueryString()->links() }}
+                </td>
+            </tr>
+        </tfoot>
     </table>
 </div>

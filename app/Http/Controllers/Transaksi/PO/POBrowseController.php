@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi\PO;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaksi\POhist;
 use Illuminate\Http\Request;
 
 class POBrowseController extends Controller
@@ -16,7 +17,9 @@ class POBrowseController extends Controller
     {
         //
 
-        return view('transaksi.porcpbrowse.index');
+        $datas = POhist::query();
+
+        return view('transaksi.porcpbrowse.index',compact('datas'));
     }
 
     /**
