@@ -17,6 +17,8 @@ class POBrowseController extends Controller
     {
         //
 
+        dd(auth()->user()->name);
+
         $datas = POhist::query();
 
         $datas = $datas->paginate(10);
