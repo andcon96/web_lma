@@ -20,6 +20,8 @@ class POBrowseController extends Controller
 
         $datas = POhist::query()->with(['getUser.getRoleType']);
 
+        $supps = POhist::groupBy('ph_supp')->select('ph_supp','ph_suppname')->get();
+
         if($req->ponbr){
             $datas->where('ph_ponbr',$req->ponbr);
         }
@@ -30,9 +32,7 @@ class POBrowseController extends Controller
 
         $datas = $datas->whereRelation('getUser.getRoleType','usertype', 'office')->paginate(10);
 
-
-
-        return view('transaksi.porcpbrowse.index',compact('datas'));
+        return view('transaksi.porcpbrowse.index',compact('datas','supps'));
     }
 
     /**

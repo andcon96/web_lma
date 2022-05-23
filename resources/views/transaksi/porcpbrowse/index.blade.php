@@ -9,13 +9,13 @@
 
 @section('content')
 
-<form action="{{route('browseSJ')}}" method="GET">
+<form action="{{route('poreceiptbrw.index')}}" method="GET">
     <div class="form-group row offset-lg-1">
         <div class="col-lg-2 col-md-4">
             <label for="ponbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('PO No.') }}</label>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
-            <input id="ponbr" type="text" class="form-control" name="ponbr" value="">
+            <input id="ponbr" type="text" class="form-control" name="ponbr" value="{{ request()->input('ponbr') }}">
         </div>
 
     </div>
@@ -26,6 +26,9 @@
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
             <select name="supp" id="supp" class="form-control">
                 <option value="">Select Data</option>
+                @foreach ($supps as $supp )
+                    <option value="{{$supp->ph_supp}}">{{$supp->ph_supp}} - {{$supp->ph_suppname}}</option>
+                @endforeach
             </select>
         </div>
         <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
@@ -52,68 +55,15 @@
         $('#supp').val('');
     }
 
-    $( function () {
-        if (sessionStorage.getItem('show_message')) {
-            Swal.fire('Surat Jalan Cancelled', '', 'success');
-            sessionStorage.removeItem('show_message');
-        }
-    });
-
     $(document).ready(function() {
         var cur_url = window.location.href;
 
         let paramString = cur_url.split('?')[1];
         let queryString = new URLSearchParams(paramString);
 
-        let customer = queryString.get('cust');
-        let status = queryString.get('status');
+        let supp = queryString.get('supp');
 
-        $('#cust').val(customer).trigger('change');
-        $('#status').val(status).trigger('change');
-    });
-    
-    $(document).on('click', '#btndel', function(e){
-        e.preventDefault();
-        let curl = $(this).data('url');
-
-        Swal.fire({
-            icon: 'warning',
-            title: 'Cancel Surat Jalan',
-            html: `<input type="text" id="reason" class="swal2-input" placeholder="Reason">`,
-            confirmButtonText: 'Submit',
-            confirmButtonColor: "#DD6B55",
-            focusConfirm: false,
-            preConfirm: () => {
-                const reason = Swal.getPopup().querySelector('#reason').value
-                if (!reason) {
-                Swal.showValidationMessage(`Reason Cannot be Empty`)
-                }
-                return { reason: reason }
-            }
-            }).then((result) => {
-                let reasons = `${result.value.reason}`
-                $.ajax({
-                    type: "POST",
-                    url: curl,
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "reason": reasons
-                    },
-                    beforeSend: function() {
-						$('#loader').removeClass('hidden');
-					},
-                    success: function (data) {
-                        // $('#tabledata').html('').append(data);
-                        // sessionStorage.reloadAfterPageLoad = true;
-                        sessionStorage.setItem('show_message',true);
-                        window.location.reload();
-                    },complete: function() {
-                        $('#loader').addClass('hidden');
-                    },         
-                });
-                
-            })
-        
+        $('#supp').val(supp).trigger('change');
     });
     
     $(document).on('click', '#btnrefresh', function(){
