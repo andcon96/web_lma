@@ -280,6 +280,11 @@
             }else{
               document.getElementById("cbPOApproval").checked = false;
             }
+            if(totmenu.search("PO03") >= 0){
+              document.getElementById("cbPOBrowse").checked = true;  
+            }else{
+              document.getElementById("cbPOBrowse").checked = false;
+            }
 
             //SJ
             if(totmenu.search("SJ01") >= 0){

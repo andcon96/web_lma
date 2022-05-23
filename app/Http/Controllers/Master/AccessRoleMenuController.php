@@ -76,6 +76,7 @@ class AccessRoleMenuController extends Controller
         //Menu PO
         $cbPOReceipt = $request->input('cbPOReceipt');
         $cbPOApproval = $request->input('cbPOApproval');
+        $cbPOBrowse = $request->input('cbPOBrowse');
 
         // Menu SJ
         $cbCreateSJ = $request->input('cbCreateSJ');
@@ -86,7 +87,7 @@ class AccessRoleMenuController extends Controller
         $cbStockItem = $request->input('cbStockItem');
         $cbHutangCust = $request->input('cbHutangCust');
 
-        $data = 'TR'. $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbStockItem . $cbHutangCust;
+        $data = 'TR'. $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbPOBrowse . $cbStockItem . $cbHutangCust;
 
         DB::beginTransaction();
 
