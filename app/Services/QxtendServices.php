@@ -584,6 +584,7 @@ class QxtendServices
           $pohist->ph_loc = $partloc[$key];
           $pohist->ph_lot = $partlot[$key];
           $pohist->created_by = auth()->user()->username;
+          $pohist->ph_domain = $domain;
           $pohist->save();
         }
       }
