@@ -16,10 +16,10 @@ class POBrowseController extends Controller
     public function index()
     {
         //
-
+        dd(auth()->user());
         $datas = POhist::query();
 
-        $datas = $datas->paginate(10);
+        $datas = $datas->where('created_by',auth()->user()->username)->paginate(10);
 
         return view('transaksi.porcpbrowse.index',compact('datas'));
     }
