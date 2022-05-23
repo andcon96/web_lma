@@ -106,6 +106,16 @@
             </div>
           </div>
 
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('PO Receipt Browse') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbPOBrowse">
+                <input type="checkbox" id="cbPOBrowse" name="cbPOBrowse" value="PO03" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
           <!-- <div class="form-group row">
             <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('PO Approval Utility') }}</label>
             <div class="col-md-6">

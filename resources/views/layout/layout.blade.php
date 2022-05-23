@@ -135,12 +135,14 @@
                     </a>
                   </li>
                   @endcan
+                  @can('po_browse')
                   <li class="nav-item">
                     <a href="{{route('poreceiptbrw.index')}}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Purchase Order Receipt Browse</p>
                     </a>
                   </li>
+                  @endcan
                 </ul>
               </li>
               @endcan
