@@ -14,18 +14,23 @@ class POBrowseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         //
 
-        // dd(Session::get('usertype'));
         $datas = POhist::query()->with(['getUser.getRoleType']);
 
+        if($req->ponbr){
+            $datas->where('ph_ponbr',$req->ponbr);
+        }
+        if($req->supp){
+            $datas->where('ph_supp',$req->supp);
+        }
 
 
-        $datas = $datas->paginate(10);
+        $datas = $datas->whereRelation('getUser.getRoleType','usertype', 'office')->paginate(10);
 
-        dd($datas);
+
 
         return view('transaksi.porcpbrowse.index',compact('datas'));
     }

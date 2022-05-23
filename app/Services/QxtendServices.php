@@ -571,9 +571,11 @@ class QxtendServices
           $pohist = new POhist();
 
           $pohist->ph_ponbr = $ponbr;
-          $pohist->ph_supp = $supp.' - '.$suppname;
+          $pohist->ph_supp = $supp;
+          $pohist->ph_suppname = $suppname;
           $pohist->ph_line = $a;
-          $pohist->ph_part = $popart[$key] .' - '.$popartname[$key];
+          $pohist->ph_part = $popart[$key];
+          $pohist->ph_partname = $popartname[$key];
           $pohist->ph_qty_order = $qtyord[$key];
           $pohist->ph_qty_rcvd = $qtyrcvd[$key];
           $pohist->ph_qty_terima = $qtyterima[$key];
