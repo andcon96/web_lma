@@ -20,7 +20,7 @@
                     <td>{{$show->ph_part}}</td>
                     <td>{{$show->ph_qty_terima}}</td>
                     <td>{{$show->ph_qty_fg}}</td>
-                    <td>{{$show->ph_qty_terima-$show->ph_qty_fg}}</td>
+                    <td>{{number_format($show->ph_qty_terima-$show->ph_qty_fg,2)}}</td>
                     <td>{{$show->ph_receiptdate}}</td>
                     <td>{{$show->created_by}}
                 </tr>                
