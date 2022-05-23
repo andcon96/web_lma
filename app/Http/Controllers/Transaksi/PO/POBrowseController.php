@@ -18,10 +18,12 @@ class POBrowseController extends Controller
     {
         //
 
-        dd(Session::get('usertype'));
-        $datas = POhist::query();
+        // dd(Session::get('usertype'));
+        $datas = POhist::with('getUser')->query();
 
-        $datas = $datas->where('created_by',auth()->user()->username)->paginate(10);
+        $datas = $datas->where('ph_domain',Session::get('domain'))->paginate(10);
+
+        dd($datas);
 
         return view('transaksi.porcpbrowse.index',compact('datas'));
     }

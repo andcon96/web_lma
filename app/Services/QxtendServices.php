@@ -583,7 +583,7 @@ class QxtendServices
           $pohist->ph_receiptdate = $receiptdate;
           $pohist->ph_loc = $partloc[$key];
           $pohist->ph_lot = $partlot[$key];
-          $pohist->created_by = auth()->user()->username;
+          $pohist->created_by = auth()->user()->id;
           $pohist->ph_domain = $domain;
           $pohist->save();
         }
