@@ -31,6 +31,7 @@
     <div class="col-md-4">
       <input id="supp" type="text" class="form-control" name="supp" value="{{$receiptdetail->first()->po_cust}} -- {{$receiptdetail->first()->po_custname}}" readonly>
       <input type="hidden" name="supphidden" value="{{$receiptdetail->first()->po_cust}}"/>
+      <input type="hidden" name="suppnamehidden" value="{{$receiptdetail->first()->po_custname}}"/>
     </div>
   </div>
 

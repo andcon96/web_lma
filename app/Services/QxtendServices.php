@@ -359,6 +359,7 @@ class QxtendServices
     // dd($datas,'b');
     $ponbr = $datas['po_nbr'];
     $supp = $datas['supphidden'];
+    $suppname = $datas['suppnamehidden'];
     $partloc = $datas['partloc'];
     $partlot = $datas['partlot'];
     $poline = $datas['poline'];
@@ -367,6 +368,7 @@ class QxtendServices
     $qtyord = $datas['poqtyord'];
     $qtyrcvd = $datas['poqtyrcvd'];
     $popart = $datas['popart'];
+    $popartname = $datas['popartdesc'];
     $receiptdate = $datas['receiptdate'];
     // $listnopol = implode(" , ", $datas['nopol']);
     $nopol = $datas['nopol'];
@@ -569,9 +571,9 @@ class QxtendServices
           $pohist = new POhist();
 
           $pohist->ph_ponbr = $ponbr;
-          $pohist->ph_supp = $supp;
+          $pohist->ph_supp = $supp.' - '.$suppname;
           $pohist->ph_line = $a;
-          $pohist->ph_part = $popart[$key];
+          $pohist->ph_part = $popart[$key] .' - '.$popartname[$key];
           $pohist->ph_qty_order = $qtyord[$key];
           $pohist->ph_qty_rcvd = $qtyrcvd[$key];
           $pohist->ph_qty_terima = $qtyterima[$key];
