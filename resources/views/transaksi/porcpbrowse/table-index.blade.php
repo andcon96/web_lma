@@ -16,13 +16,13 @@
             @forelse ($datas as $show)
                 <tr>
                     <td>{{$show->ph_ponbr}}</td>
-                    <td>{{$show->ph_supp}}</td>
-                    <td>{{$show->ph_part}}</td>
+                    <td>{{$show->ph_supp}} -- {{$show->ph_suppname}}</td>
+                    <td>{{$show->ph_part}} -- {{$show->ph_partname}}</td>
                     <td>{{$show->ph_qty_terima}}</td>
                     <td>{{$show->ph_qty_fg}}</td>
                     <td>{{number_format($show->ph_qty_terima-$show->ph_qty_fg,2)}}</td>
                     <td>{{$show->ph_receiptdate}}</td>
-                    <td>{{$show->created_by}}
+                    <td>{{$show->getUser->name}}
                 </tr>                
             @empty
             <tr>
