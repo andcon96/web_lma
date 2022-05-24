@@ -26,10 +26,11 @@
         </td>
       </tr>
       <tr>
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="font-size: 12px;">
           @forelse ( $podetail as $showdetail )
             @if ( $showdetail->po_nbr == $show->po_nbr )
               <tr>
+                <td>{{ $showdetail->pod_line }}</td>
                 <td>{{ $showdetail->pod_part }} -- {{ $showdetail->pod_partdesc }}</td>
               </tr>
             @endif
