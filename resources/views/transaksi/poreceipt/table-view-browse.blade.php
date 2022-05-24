@@ -26,20 +26,22 @@
         </td>
       </tr>
       <tr>
-        <table class="table table-sm" style="font-size: 12px;">
-          @forelse ( $podetail as $showdetail )
-            @if ( $showdetail->po_nbr == $show->po_nbr )
+        <td colspan="4">
+          <table class="table table-sm" style="font-size: 12px;">
+            @forelse ( $podetail as $showdetail )
+              @if ( $showdetail->po_nbr == $show->po_nbr )
+                <tr>
+                  <td>{{ $showdetail->pod_line }}</td>
+                  <td>{{ $showdetail->pod_part }} -- {{ $showdetail->pod_partdesc }}</td>
+                </tr>
+              @endif
+            @empty
               <tr>
-                <td>{{ $showdetail->pod_line }}</td>
-                <td>{{ $showdetail->pod_part }} -- {{ $showdetail->pod_partdesc }}</td>
+                <td>no item</td>
               </tr>
-            @endif
-          @empty
-            <tr>
-              <td>no item</td>
-            </tr>
-          @endforelse
-        </table>
+            @endforelse
+          </table>
+        </td>
       </tr>
       @empty
       <td colspan='7' class='text-danger'><b>No Data Available</b></td>
