@@ -28,12 +28,6 @@
       <tr>
         <td colspan="4">
           <table class="table table-sm table-bordered" width="100%" style="font-size: 12px;">
-            <thead>
-              <tr>
-                <th>Line</th>
-                <th>Item</th>
-              </tr>
-            </thead>
             <tbody>
             @forelse ( $podetail as $showdetail )
               @if ( $showdetail->po_nbr == $show->po_nbr )
