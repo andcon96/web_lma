@@ -22,6 +22,7 @@
       <tr>
         <th>Role</th>
         <th>Role Type</th>
+        <th>User Type</th>
         <th width="8%">Edit</th>
         <th width="8%">Delete</th>
       </tr>
@@ -41,6 +42,13 @@
           Super User
           @else
           {{$show->role_type}}
+          @endif
+        </td>
+        <td>
+          @if ($show->usertype == "office")
+            Office
+          @else
+            Lapangan
           @endif
         </td>
         @if($show->getRole->role == 'Super_User' && $show->role_type == 'Super_User')
