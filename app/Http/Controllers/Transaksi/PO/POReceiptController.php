@@ -63,6 +63,7 @@ class POReceiptController extends Controller
     public function showReceipt(){
         // dd('aa');
         $po = Session::get('tablepo');
+        $podetail = Session::get('allporeceipt');
 
         // $receiptdate = Session::get('receiptdate');
 
@@ -92,7 +93,7 @@ class POReceiptController extends Controller
         //     return view('transaksi.poreceipt.view', compact('po','receiptdate','loc','sessionpo'));
         // }
 
-        return view('transaksi.poreceipt.view-browse', compact('po'));
+        return view('transaksi.poreceipt.view-browse', compact('po','podetail'));
     }
 
     public function edit($id){

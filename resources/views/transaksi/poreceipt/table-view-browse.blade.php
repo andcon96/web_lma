@@ -25,6 +25,21 @@
             <a href="{{route('poreceipt.edit',$show->po_nbr) }}"><i class="fas fa-edit"></i></a>
         </td>
       </tr>
+      <tr>
+        <table class="table table-bordered">
+          @forelse ( $podetail as $showdetail )
+            @if ( $showdetail->po_nbr == $show->po_nbr )
+              <tr>
+                <td>{{ $showdetail->pod_part }} -- {{ $showdetail->pod_partdesc }}</td>
+              </tr>
+            @endif
+          @empty
+            <tr>
+              <td>no item</td>
+            </tr>
+          @endforelse
+        </table>
+      </tr>
       @empty
       <td colspan='7' class='text-danger'><b>No Data Available</b></td>
       @endforelse
