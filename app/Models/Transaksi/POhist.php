@@ -24,8 +24,11 @@ class POhist extends Model
 
         self::addGlobalScope(function(Builder $builder){
             // $builder->where('user_id', '=', Auth()->user()->id);
-            $builder->where('ph_domain', Session::get('domain'));
-            $builder->where('created_by', auth()->user()->id);
+            if(auth()->user()->getRole->role != "Super_User"){
+                $builder->where('ph_domain', Session::get('domain'));
+                $builder->where('created_by', auth()->user()->id);
+            }
+
         });
     }
 
