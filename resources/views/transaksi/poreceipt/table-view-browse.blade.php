@@ -27,7 +27,7 @@
       </tr>
       <tr>
         <td colspan="4">
-          <table class="table table-sm table-bordered mb-0" width="100%" style="font-size: 12px;">
+          <table class="table table-sm table-bordered mb-0" width="100%" style="font-size: 12px;" cellspacing="0">
             <tbody>
             @forelse ( $podetail as $showdetail )
               @if ( $showdetail->po_nbr == $show->po_nbr )
