@@ -26,7 +26,7 @@
         </td>
       </tr>
       <tr>
-        <table class="table table-bordered" style="font-size: 12px;">
+        <table class="table table-bordered" width="50%" style="font-size: 12px;">
           @forelse ( $podetail as $showdetail )
             @if ( $showdetail->po_nbr == $show->po_nbr )
               <tr>
