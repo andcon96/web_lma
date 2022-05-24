@@ -36,7 +36,7 @@ class POBrowseController extends Controller
         }
 
 
-        $datas = $datas->whereRelation('getUser.getRoleType','usertype', 'office')->orderBy('id','desc')->paginate(10);
+        $datas = $datas->whereRelation('getUser.getRoleType','usertype', 'office')->orWhereRelation('getUser.getRoleType','usertype','all')->orderBy('id','desc')->paginate(10);
 
         return view('transaksi.porcpbrowse.index',compact('datas','supps'));
     }

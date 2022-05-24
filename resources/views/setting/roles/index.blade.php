@@ -45,7 +45,7 @@
           @endif
         </td>
         <td>
-          @if ($show->usertype == "office")
+          @if ($show->usertype == "office" || $show->usertype == "all")
             @if($show->getRole->role == 'Super_User' && $show->role_type == 'Super_User')
 
             @else
