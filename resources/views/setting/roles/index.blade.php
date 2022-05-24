@@ -46,7 +46,11 @@
         </td>
         <td>
           @if ($show->usertype == "office")
-            Office
+            @if($show->getRole->role == 'Super_User' && $show->role_type == 'Super_User')
+
+            @else
+              Office
+            @endif
           @else
             Lapangan
           @endif
