@@ -72,8 +72,8 @@ class UserMTController extends Controller
             'username' => 'required|unique:users',
             'name' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|max:20',
-            'password_confirmation' => 'required|min:8|max:20|same:password',
+            'password' => 'required',
+            'password_confirmation' => 'requireds|same:password',
         ], [
             'unique' => 'Email Must Be Unique',
         ]);
@@ -231,8 +231,8 @@ class UserMTController extends Controller
     public function adminchangepass(Request $request)
     {
         $this->validate($request, [
-            'c_password' => 'required|min:8',
-            'password_confirmation' => 'required|min:8|same:c_password',
+            'c_password' => 'required',
+            'password_confirmation' => 'required|same:c_password',
         ]);
 
 
