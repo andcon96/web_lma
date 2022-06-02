@@ -73,7 +73,7 @@ class UserMTController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
-            'password_confirmation' => 'requireds|same:password',
+            'password_confirmation' => 'required|same:password',
         ], [
             'unique' => 'Email Must Be Unique',
         ]);
