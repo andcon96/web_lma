@@ -65,14 +65,14 @@ class SuratJalanConfirmController extends Controller
         $sendqxtend = (new QxtendServices())->qxSOShipment($request->all());
         if($sendqxtend === false){
             alert()->error('Error', 'Failed to Ship SJ')->persistent('Dismiss');
-            return back()->withInput($request->only('qtyinp','partloc'));
+            return back()->withInput($request->only('qtyinp','partloc','potongdp'));
         }else{
             $createNewLine = (new CreateTempTable())->createNewLineSO($request->all());
             if(count($createNewLine) > 0){
                 $qxSOMT = (new QxtendServices())->qxSOMT($createNewLine);
                 if($qxSOMT == 'false' || $qxSOMT === false){
                     alert()->error('Error', 'Shipment Berhasil, SO gagal diupdate untuk Qty Input yang tidak sama dengan Qty SJ')->persistent('Dismiss');
-                    return back()->withInput($request->only('qtyinp','partloc'));
+                    return back()->withInput($request->only('qtyinp','partloc','potongdp'));
                 }
             }
         }

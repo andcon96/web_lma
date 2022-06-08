@@ -703,7 +703,8 @@ class QxtendServices
                           <yn1>true</yn1>        
                           </lineDetail>';
                       }
-    $qdocfooter =   '</SalesOrderShipment> 
+    $qdocfooter =   '<soTrl1Amt>-'.$datas['potongdp'].'</soTrl1Amt>
+                    </SalesOrderShipment> 
                   </dsSalesOrderShipment>
                           </shipSalesOrder>
                           </soapenv:Body>
