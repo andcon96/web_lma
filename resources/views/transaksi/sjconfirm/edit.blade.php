@@ -32,55 +32,54 @@
             {{-- <label for="shipto" class="col-md-3 col-form-label text-md-right">Ship To</label>
             <div class="col-md-3">
                 <input id="shipto" type="text" class="form-control" name="shipto" value="{{$data->sj_so_ship}} -- {{$data->getDetailShip->cust_name ?? ''}}" autocomplete="off" maxlength="24" autofocus readonly>
+        </div>
+    </div>
+    <div class="form-group row col-md-12">
+        <label for="billto" class="col-md-2 col-form-label text-md-right">Bill To</label>
+        <div class="col-md-3">
+            <input id="billto" type="text" class="form-control" name="billto" value="{{$data->sj_so_bill}} -- {{$data->getDetailBill->cust_name ?? ''}}" autocomplete="off" maxlength="24" autofocus disabled>
+        </div> --}}
+        <label for="sopo" class="col-md-3 col-form-label text-md-right">SO PO</label>
+        <div class="col-md-3">
+            <input id="sopo" type="text" class="form-control" name="sopo" value="{{$data->sj_so_po}}" autocomplete="off" maxlength="24" autofocus readonly>
+        </div>
+    </div>
+    <div class="form-group row col-md-12">
+        <label for="effdate" class="col-md-2 col-form-label text-md-right">Date</label>
+        <div class="col-md-3">
+            <input id="effdate" type="text" class="form-control" name="effdate" value="{{\Carbon\Carbon::now()->toDateString()}}" autocomplete="off" maxlength="24" required>
+        </div>
+        <label for="nopol" class="col-md-3 col-form-label text-md-right">No Polis</label>
+        <div class="col-md-3">
+            <input id="nopol" type="text" class="form-control" name="nopol" value="{{$data->sj_nopol}}" autocomplete="off" maxlength="24" required>
+        </div>
+    </div>
+    <div class="form-group row col-md-12">
+        <label for="remarks" class="col-md-2 col-form-label text-md-right">Remarks</label>
+        <div class="col-md-9">
+            <input id="remarks" type="text" class="form-control" name="remarks" value="{{$data->sj_nbr}}" maxlength="24" autocomplete="off">
+        </div>
+    </div>
+    <div class="form-group row col-md-12">
+        @include('transaksi.sjconfirm.edit-table')
+    </div>
+    <div class="row col-md-12 mt-3">
+        <label for="potongdp" class="col-form-label col-md-4" style="margin-left:25px">{{ __('Potong DP') }}</label>
+        <div class="col-md-4">
+            <input id="potongdp" type="number" class="form-control" name="potongdp" min="0" step="0.01" value="{{ old('potongdp') ? old('potongdp') : 0 }}" maxlength="24" autocomplete="off">
+        </div>
+    </div>
+    <div class="form-group row col-md-12">
+        <div class="offset-md-1 col-md-10" style="margin-top:90px;">
+            <div class="float-right">
+                <a href="{{route('sjconfirm.index')}}" id="btnback" class="btn btn-success bt-action">Back</a>
+                <button type="submit" class="btn btn-success bt-action btn-focus" id="btnconf">Save</button>
+                <button type="button" class="btn bt-action" id="btnloading" style="display:none">
+                    <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
+                </button>
             </div>
         </div>
-        <div class="form-group row col-md-12">
-            <label for="billto" class="col-md-2 col-form-label text-md-right">Bill To</label>
-            <div class="col-md-3">
-                <input id="billto" type="text" class="form-control" name="billto" value="{{$data->sj_so_bill}} -- {{$data->getDetailBill->cust_name ?? ''}}" autocomplete="off" maxlength="24" autofocus disabled>
-            </div> --}}
-            <label for="sopo" class="col-md-3 col-form-label text-md-right">SO PO</label>
-            <div class="col-md-3">
-                <input id="sopo" type="text" class="form-control" name="sopo" value="{{$data->sj_so_po}}" autocomplete="off" maxlength="24" autofocus readonly>
-            </div>
-        </div>
-        <div class="form-group row col-md-12">
-            <label for="effdate" class="col-md-2 col-form-label text-md-right">Date</label>
-            <div class="col-md-3">
-                <input id="effdate" type="text" class="form-control" name="effdate" value="{{\Carbon\Carbon::now()->toDateString()}}" autocomplete="off" maxlength="24" required>
-            </div>
-            <label for="nopol" class="col-md-3 col-form-label text-md-right">No Polis</label>
-            <div class="col-md-3">
-                <input id="nopol" type="text" class="form-control" name="nopol" value="{{$data->sj_nopol}}" autocomplete="off" maxlength="24" required>
-            </div>
-        </div>
-        <div class="form-group row col-md-12">
-            <label for="remarks" class="col-md-2 col-form-label text-md-right">Remarks</label>
-            <div class="col-md-9">
-                <input id="remarks" type="text" class="form-control" name="remarks" value="{{$data->sj_nbr}}" maxlength="24" autocomplete="off">
-            </div>
-        </div>
-        <div class="form-group row col-md-12">
-            @include('transaksi.sjconfirm.edit-table')
-            <div class="row mb-3">
-                <label for="potongdp" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Potong DP') }}</label>
-                <div class="col-md-3">
-                    <input id="potongdp" type="number" class="form-control" name="potongdp" min="0" step="0.01" value="{{ old('potongdp') ? old('potongdp') : 0 }}" maxlength="24" autocomplete="off">
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group row col-md-12">
-            <div class="offset-md-1 col-md-10" style="margin-top:90px;">
-                <div class="float-right">
-                    <a href="{{route('sjconfirm.index')}}" id="btnback" class="btn btn-success bt-action">Back</a>
-                    <button type="submit" class="btn btn-success bt-action btn-focus" id="btnconf">Save</button>
-                    <button type="button" class="btn bt-action" id="btnloading" style="display:none">
-                        <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
-                    </button>
-                </div>
-            </div>
-        </div>
+    </div>
     </div>
 
 </form>
@@ -89,8 +88,8 @@
 
 @section('scripts')
 <script>
-    $( "#effdate" ).datepicker({
-        dateFormat : 'yy-mm-dd'
+    $("#effdate").datepicker({
+        dateFormat: 'yy-mm-dd'
     });
 
     $(document).on('submit', '#submit', function(e) {
