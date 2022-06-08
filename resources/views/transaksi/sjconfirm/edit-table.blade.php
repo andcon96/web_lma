@@ -9,7 +9,7 @@
                 <th>Qty SJ</th>
                 <th width="15%">Qty Input</th>
                 <th width="25%">Location</th>
-                <th>Lot</th>
+                <th width="10%">Lot</th>
             </tr>
         </thead>
         <tbody>
