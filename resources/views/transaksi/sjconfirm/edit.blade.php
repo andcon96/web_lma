@@ -63,7 +63,7 @@
     <div class="form-group row col-md-12">
         @include('transaksi.sjconfirm.edit-table')
     </div>
-    <div class="form-group row col-md-12 mt-3">
+    <div class="form-group row col-md-12 mt-1">
         <label for="potongdp" class="col-form-label col-md-3" style="margin-left:95px">{{ __('Potong DP') }}</label>
         <div class="col-md-3">
             <input id="potongdp" type="number" class="form-control" name="potongdp" min="0" step="0.01" value="{{ old('potongdp') ? old('potongdp') : 0 }}" maxlength="24" autocomplete="off">
