@@ -61,7 +61,7 @@ class SuratJalanConfirmController extends Controller
     }
 
     public function update(Request $request){
-        
+        dd($request->all());
         $sendqxtend = (new QxtendServices())->qxSOShipment($request->all());
         if($sendqxtend === false){
             alert()->error('Error', 'Failed to Ship SJ')->persistent('Dismiss');
