@@ -712,7 +712,7 @@ class QxtendServices
 
     $qdocRequest = $qdocHead . $qdocBody . $qdocfooter;
 
-    // dd($qdocRequest);
+    dd($qdocRequest);
 
     $curlOptions = array(
       CURLOPT_URL => $qxUrl,
