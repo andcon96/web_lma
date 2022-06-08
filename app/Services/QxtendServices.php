@@ -513,7 +513,7 @@ class QxtendServices
 
     $qdocRequest = $qdocHead . $qdocBody . $qdocFoot;
 
-    dd($qdocRequest);
+    // dd($qdocRequest);
     $curlOptions = array(
       CURLOPT_URL => $qxUrl,
       CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
@@ -710,6 +710,8 @@ class QxtendServices
                           </soapenv:Envelope>';
 
     $qdocRequest = $qdocHead . $qdocBody . $qdocfooter;
+
+    dd($qdocRequest);
 
     $curlOptions = array(
       CURLOPT_URL => $qxUrl,
