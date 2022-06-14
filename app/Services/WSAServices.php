@@ -1182,12 +1182,12 @@ class WSAServices
             curl_close($curl);
         }
 
+        dd($qdocResponse);
         if(is_bool($qdocResponse)){
             return false;
         }
 
         
-        dd($qdocResponse);
 
         $xmlResp = simplexml_load_string($qdocResponse);
 
