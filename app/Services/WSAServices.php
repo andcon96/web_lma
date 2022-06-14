@@ -1045,7 +1045,7 @@ class WSAServices
 
     public function wsagetcust($dom){
         $wsa = Qxwsa::first();
-
+        
         // Validasi WSA
         $qxUrl          = $wsa->wsas_url;
         $qxReceiver     = '';
@@ -1182,6 +1182,9 @@ class WSAServices
         if(is_bool($qdocResponse)){
             return false;
         }
+
+        
+        dd($qdocResponse);
 
         $xmlResp = simplexml_load_string($qdocResponse);
 
