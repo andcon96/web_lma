@@ -1067,7 +1067,7 @@ class WSAServices
             </Body>
         </Envelope>';
 
-        dd($qdocRequest);
+        // dd($qdocRequest);
 
         $curlOptions = array(
             CURLOPT_URL => $qxUrl,
@@ -1105,6 +1105,7 @@ class WSAServices
             }
             curl_close($curl);
         }
+        dd($qdocResponse);
 
         if(is_bool($qdocResponse)){
             return false;
