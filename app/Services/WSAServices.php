@@ -1182,7 +1182,7 @@ class WSAServices
             curl_close($curl);
         }
 
-        dd($qdocResponse);
+        dd($qdocResponse,$qdocRequest);
         if(is_bool($qdocResponse)){
             return false;
         }
