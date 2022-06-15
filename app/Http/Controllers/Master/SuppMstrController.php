@@ -30,7 +30,7 @@ class SuppMstrController extends Controller
 
         $supp = $supp->orderByRaw('supp_dom,supp_code,supp_name')->paginate(10);
 
-        return view('masterdata.customer.index', compact('supp','suppsearch','lastrun'));
+        return view('masterdata.supplier.index', compact('supp','suppsearch','lastrun'));
     }
 
     /**
@@ -85,7 +85,7 @@ class SuppMstrController extends Controller
         }
 
         alert()->success('Success','Data Customer berhasil diload');
-        return redirect()->route('custmstr.index');
+        return redirect()->route('suppmstr.index');
     }
 
     /**
