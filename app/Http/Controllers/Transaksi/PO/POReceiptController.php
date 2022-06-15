@@ -30,11 +30,11 @@ class POReceiptController extends Controller
 
     public function searchPO(Request $req){
 
-        // if(is_null($req->sjnbr) && is_null($req->suppcode)){
+        // 
+        // Validasi Webif(is_null($req->sjnbr) && is_null($req->suppcode)){
         //     alert()->error('Error', 'Harap isi salah satu dari PO No. atau Supplier Name')->persistent('Dismiss');
         //     return redirect()->back();
         // }
-        // Validasi Web
         // $receiptdate = $req->receiptdate;
         // $errorcode = Session::get('errors');
         // $sessionpo = Session::get('session_po');

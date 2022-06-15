@@ -14,11 +14,11 @@
     <div class="form-group row">
         <label for="sjnbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('PO No.') }}</label>
         <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
-            <input id="sjnbr" type="text" class="form-control" name="sjnbr">
+            <input id="sjnbr" type="text" class="form-control" name="sjnbr" required>
         </div>
         <label for="suppcode" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Supplier Name') }}</label>
         <div class="col-xl-4 col-lg-4 col-md-10 col-sm-12 col-xs-12">
-            <select name="suppcode" id="suppcode" class="form-control">
+            <select name="suppcode" id="suppcode" class="form-control" required>
                 <option value="">Select Data</option>
                 @foreach ($suppdat as $supps )
                 <option value="{{$supps->supp_code}}">{{$supps->supp_code}} - {{$supps->supp_name}}</option>
