@@ -22,7 +22,7 @@ class POReceiptController extends Controller
      */
     public function index()
     {
-        $suppdat = SuppMstr::get();
+        $suppdat = SuppMstr::where('supp_dom',session::get('domain'))->get();
 
         return view('transaksi.poreceipt.index', compact('suppdat'));
     }
