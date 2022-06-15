@@ -46,10 +46,11 @@ class POReceiptController extends Controller
             // return redirect()->back();
         }else{
             $ponbrtampung = $req->sjnbr;
+            $supptampung = $req->suppcode;
         }
 
         // WSA QAD
-        $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung);
+        $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung);
 
         if($po_receipt === false){
             alert()->error('Error', 'WSA Failed');
