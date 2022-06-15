@@ -483,7 +483,7 @@ class QxtendServices
       $qdocBody .= ' <lineDetail>
                         <line>' . $p . '</line>
                         <lotserialQty>' . $qtyterima[$key]  . '</lotserialQty>
-                        <location>'.$partloc[$key].'</location>
+                        <locaion>'.$partloc[$key].'</location>
                         <lotserial>'.$partlot[$key].'</lotserial>
                         <multiEntry>true</multiEntry>';
       if ($qtyfg[$key] > 0) {
