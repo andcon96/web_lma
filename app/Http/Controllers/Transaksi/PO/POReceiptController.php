@@ -39,7 +39,7 @@ class POReceiptController extends Controller
         // $errorcode = Session::get('errors');
         // $sessionpo = Session::get('session_po');
 
-        if(is_null($req->sjnbr) || is_null($req->suppcode)){
+        if(is_null($req->sjnbr) && is_null($req->suppcode)){
             $ponbrtampung = $req->ponbr;
             $supptampung = $req->supp;
             // dd($ponbrtampung);
