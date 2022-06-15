@@ -37,6 +37,7 @@
 @section('scripts')
 
 <script>
+
     $("#suppcode").select2({
         width: '100%'
     });
@@ -50,6 +51,10 @@
         document.getElementById('btnconf').style.display = 'none';
         document.getElementById('btnloading').style.display = '';
     });
+
+    $(document).on('change','#suppcode',function(e){
+        document.findElementById('sjnbr').required = false;
+    })
 </script>
 
 @endsection

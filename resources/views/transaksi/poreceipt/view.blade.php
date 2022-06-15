@@ -86,7 +86,7 @@
 
   <div class="form-group col-md-12">
     <div class="col-md-12" style="float: right;">
-      <a id="back_btn" class="btn btn-danger float-right" href="{{route('searchPO',['ponbr'=>$receiptdetail->first()->po_contract])}}" style="margin-top:10px; margin-left:5px;">Cancel</a>
+      <a id="back_btn" class="btn btn-danger float-right" href="{{route('searchPO',['ponbr'=>$receiptdetail->first()->po_contract,'supp'=>$receiptdetail->first()->po_cust])}}" style="margin-top:10px; margin-left:5px;">Cancel</a>
       <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn btn-info float-right" style="margin-top:10px">
       <button type="button" class="btn btn-info float-right" id="s_btnloading" style="display:none;margin-top: 10px;">
         <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
