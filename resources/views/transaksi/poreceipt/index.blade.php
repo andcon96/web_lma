@@ -52,8 +52,9 @@
         document.getElementById('btnloading').style.display = '';
     });
 
-    $(document).on('change','#suppcode',function(e){
+    $(document).on('change','#suppcode,sjnbr',function(e){
         var val = document.getElementById('suppcode').value;
+        var valsj = document.getElementById('sjnbr').value;
         
         if(val === ""){
             document.getElementById('sjnbr').required = true;
@@ -61,6 +62,13 @@
         else{
             document.getElementById('sjnbr').required = false;
         }
+        if(valsj === ""){
+            document.getElementById('suppcode').required = true;
+        }
+        else{
+            document.getElementById('suppcode').required = false;
+        }
+        
         
     })
 </script>
