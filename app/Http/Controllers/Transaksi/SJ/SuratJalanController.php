@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi\SJ;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\CustMstr;
 use App\Models\Master\Domain;
 use App\Models\Master\LocMstr;
 use App\Models\Master\Prefix;
@@ -28,7 +29,9 @@ class SuratJalanController extends Controller
 
         $data = SuratJalan::paginate(10);
 
-        return view('transaksi.suratjalan.index', compact('data'));
+        $custdat = CustMstr::where('cust_dom','=',Session::get('domain'))->get();
+
+        return view('transaksi.suratjalan.index', compact('custdat'));
     }
 
     /**
