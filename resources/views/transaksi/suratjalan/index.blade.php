@@ -13,7 +13,7 @@
 <form action="{{route('searchSO')}}" method="GET">
     <div class="form-group row">
         <label for="sjnbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Customer') }}</label>
-        <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
+        <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
             <select id="sjnbr" class="form-control" name="sjnbr" required>
                     <option value="">Select Data</option>
                 @foreach ( $custdat as $show )
