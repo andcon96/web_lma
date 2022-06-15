@@ -52,7 +52,7 @@
         document.getElementById('btnloading').style.display = '';
     });
 
-    $(document).on('change','#suppcode,sjnbr',function(e){
+    $(document).on('change','#suppcode,#sjnbr',function(e){
         var val = document.getElementById('suppcode').value;
         var valsj = document.getElementById('sjnbr').value;
         
