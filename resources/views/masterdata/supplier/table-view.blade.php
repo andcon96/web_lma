@@ -13,6 +13,6 @@
 @endforelse
 <tr style="border:0 !important">
   <td colspan="12">
-    {{ $cust->withQueryString()->links() }}
+    {{ $supp->withQueryString()->links() }}
   </td>
 </tr>        
