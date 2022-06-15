@@ -53,7 +53,7 @@
     });
 
     $(document).on('change','#suppcode',function(e){
-        document.findElementById('sjnbr').required = false;
+        document.getElementById('sjnbr').required = false;
     })
 </script>
 
