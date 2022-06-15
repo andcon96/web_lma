@@ -17,7 +17,7 @@
             <input id="sjnbr" type="text" class="form-control" name="sjnbr">
         </div>
         <label for="suppcode" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Supplier Name') }}</label>
-        <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
+        <div class="col-xl-4 col-lg-4 col-md-10 col-sm-12 col-xs-12">
             <select name="suppcode" id="suppcode" class="form-control">
                 <option value="">Select Data</option>
                 @foreach ($suppdat as $supps )

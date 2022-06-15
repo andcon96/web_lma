@@ -28,7 +28,11 @@ class POReceiptController extends Controller
     }
 
     public function searchPO(Request $req){
-        dd($req->all());
+
+        if(is_null($req->sjnbr && $req->suppcode)){
+            alert()->error('Error', 'Harap isi salah satu dari PO No. atau Supplier Name')->persistent('Dismiss');
+            return redirect()->back();
+        }
         // Validasi Web
         // $receiptdate = $req->receiptdate;
         // $errorcode = Session::get('errors');
