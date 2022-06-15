@@ -63,7 +63,7 @@
       <tr>
         <th style="width: 15%;">Domain</th>
         <th style="width: 15%;">Supplier Code</th>
-        <th style="width: 25%;">Supplier Name</th>
+        <th style="width: 20%;">Supplier Name</th>
       </tr>
     </thead>
     <tbody>

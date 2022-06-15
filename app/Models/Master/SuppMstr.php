@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class SuppMstr extends Model
 {
     use HasFactory;
+    
     public $table = 'supp_mstr';
+
+    protected $fillable = [
+        'id'
+    ];
 }
