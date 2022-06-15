@@ -54,12 +54,12 @@
 
     $(document).on('change','#suppcode',function(e){
         var val = document.getElementById('suppcode').value;
-        alert(val.empty);
-        if(val.empty == false){
-            document.getElementById('sjnbr').required = false;
+        
+        if(val === ""){
+            document.getElementById('sjnbr').required = true;
         }
         else{
-            document.getElementById('sjnbr').required = true;
+            document.getElementById('sjnbr').required = false;
         }
         
     })
