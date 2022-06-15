@@ -555,7 +555,7 @@ class QxtendServices
 
     // dd($qdocResponse);
 
-    if (!is_bool($qdocResponse)) {
+    if (is_bool($qdocResponse)) {
       return false;
     }
 
