@@ -293,6 +293,12 @@
                     <p>Site Master</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{route('suppmstr.index')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Supplier Master</p>
+                  </a>
+                </li>
 
               </ul>
             </li>
