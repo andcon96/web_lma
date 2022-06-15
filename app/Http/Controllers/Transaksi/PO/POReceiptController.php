@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Transaksi\PO;
 
 use App\Http\Controllers\Controller;
 use App\Models\Master\LocMstr;
+use App\Models\Master\SuppMstr;
 use App\Models\Transaksi\POhist;
 use App\Models\Transaksi\PurchaseOrder;
 use App\Services\CreateTempTable;
@@ -21,10 +22,13 @@ class POReceiptController extends Controller
      */
     public function index()
     {
-        return view('transaksi.poreceipt.index');
+        $suppdat = SuppMstr::get();
+
+        return view('transaksi.poreceipt.index', compact('suppdat'));
     }
 
     public function searchPO(Request $req){
+        dd($req->all());
         // Validasi Web
         // $receiptdate = $req->receiptdate;
         // $errorcode = Session::get('errors');
@@ -47,7 +51,7 @@ class POReceiptController extends Controller
             return redirect()->route('poreceipt.index');
         }else{
             if($po_receipt[1] == "false"){
-                alert()->error('Error', 'PO Contract tidak ditemukan');
+                alert()->error('Error', 'Data PO No. atau Supplier Name tidak ditemukan');
                 return redirect()->back();
             }else{
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);

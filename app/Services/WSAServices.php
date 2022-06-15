@@ -605,6 +605,7 @@ class WSAServices
                 '<LMA_getPO xmlns="' . $wsa->wsas_path . '">' .
                     '<inpdomain>' . $domain . '</inpdomain>' .
                     '<innbr>' . $ponbr . '</innbr>' .
+                    '<insupp>[string]</insupp>' .
                 '</LMA_getPO>' .
             '</Body>' .
         '</Envelope>';
