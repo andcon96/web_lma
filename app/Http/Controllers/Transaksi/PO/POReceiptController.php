@@ -22,8 +22,8 @@ class POReceiptController extends Controller
      */
     public function index()
     {
-        dd(Session::get('domain'));
-        $suppdat = SuppMstr::where('supp_dom',Session::get('domain'))->get();
+        // dd(Session::get('domain'));
+        $suppdat = SuppMstr::where('supp_dom','=',Session::get('domain'))->get();
 
         return view('transaksi.poreceipt.index', compact('suppdat'));
     }
