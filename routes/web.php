@@ -11,6 +11,7 @@ use App\Http\Controllers\Master\RoleMTController;
 use App\Http\Controllers\Master\UserMTController;
 use App\Http\Controllers\Master\QxWsaMTController;
 use App\Http\Controllers\Master\SiteMstrController;
+use App\Http\Controllers\Master\SuppMstrController;
 use App\Http\Controllers\Transaksi\Report\StockItemController;
 use App\Http\Controllers\Transaksi\PO\POReceiptController;
 use App\Http\Controllers\NotificationController;
@@ -149,6 +150,11 @@ Route::group(['middleware' => ['auth']], function () {
         // Customer Masters
         //================================
         Route::resource('custmstr', CustMstrController::class);
+        //================================
+
+        // Supplier Masters
+        //================================
+        Route::resource('suppmstr', SuppMstrController::class);
         //================================
 
         // Location Masters
