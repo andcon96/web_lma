@@ -50,7 +50,7 @@ class POReceiptController extends Controller
             $supptampung = $req->suppcode;
         }
 
-        dd($ponbrtampung,$supptampung);
+        // dd($ponbrtampung,$supptampung);
 
         // WSA QAD
         $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung);
