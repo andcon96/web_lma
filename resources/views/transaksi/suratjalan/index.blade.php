@@ -29,3 +29,13 @@
 </form>
 
 @endsection
+
+@section('scripts')
+
+<script>
+    $("#sjnbr").select2({
+        width: '100%'
+    });
+</script>
+
+@endsection

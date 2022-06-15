@@ -41,6 +41,7 @@
     $("#suppcode").select2({
         width: '100%'
     });
+    
     $(document).on('hide.bs.modal', '#detailModal', function() {
         if (confirm("Are you sure, you want to close?")) return true;
         else return false;
