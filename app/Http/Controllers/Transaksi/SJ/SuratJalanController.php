@@ -179,7 +179,7 @@ class SuratJalanController extends Controller
         if(is_null($so)){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
 
-            return redirect()->route('poreceipt.index');
+            return redirect()->route('suratjalan.index');
         }
 
         return view('transaksi.suratjalan.view-browse', compact('so','sodetail'));
