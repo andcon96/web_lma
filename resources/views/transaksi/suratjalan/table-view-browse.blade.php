@@ -34,9 +34,9 @@
           <table class="table table-sm table-bordered mb-0" style="font-size: 12px; table-layout: fixed; width: 50%;" cellspacing="0">
             <thead>
               <tr>
-                <th style="width: 20px;">Line</th>
-                <th style="width: 20px;">Item</th>
-                <th style="width: 20px;">Qty Order</th>
+                <th style="width: 5%;">Line</th>
+                <th style="width: 20%;">Item</th>
+                <th style="width: 10%;">Qty Order</th>
               </tr>
             </thead>
             <tbody>
