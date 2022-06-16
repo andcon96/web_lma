@@ -223,10 +223,12 @@ class CreateTempTable
 
         $table_so = DB::table('temp_group')->get();
 
+        $groupso = DB::table('temp_group')->groupBy('so_nbr')->get();
+
 
         Schema::dropIfExists('temp_group');
 
-        return $table_so;
+        return [$table_so,$groupso];
     }
 
     public function createNewLineSO($data){

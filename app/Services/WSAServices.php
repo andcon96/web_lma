@@ -838,7 +838,7 @@ class WSAServices
             <Body>
                 <LMA_sosearch xmlns="'. $wsa->wsas_path .'">
                     <inpdomain>'.$domain.'</inpdomain>
-                    <inpsonbr>'.$sonbr.'</inpsonbr>
+                    <inpsocust>'.$sonbr.'</inpsocust>
                 </LMA_sosearch>
             </Body>
         </Envelope>';

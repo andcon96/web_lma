@@ -74,6 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('poreceiptbrw', POBrowseController::class);
 
     Route::group(['middleware'=>'can:sj_create'],function(){
+        Route::get('suratjalan/createbrowse', [SuratJalanController::class, 'createBrowse'])->name('createBrowse');
         Route::resource('suratjalan', SuratJalanController::class);
         Route::get('searchso',[SuratJalanController::class, 'searchso'])->name('searchSO');
     });

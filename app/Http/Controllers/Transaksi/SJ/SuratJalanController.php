@@ -167,7 +167,41 @@ class SuratJalanController extends Controller
             $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);
         }
 
-        return redirect()->route('suratjalan.create')->with(['tableso' => $tempPO]);
+        session::put('allso', $tempPO[0]);
+
+        return redirect()->route('createBrowse')->with(['tableso' => $tempPO[1]]);
+    }
+
+    public function createBrowse(Request $req){
+        $so = Session::get('tableso');
+
+        if(is_null($so)){
+            alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
+
+            return redirect()->route('poreceipt.index');
+        }
+
+        return view('transaksi.suratjalan.view-browse', compact('so'));
+        
+    }
+
+    public function edit($id){
+        if(!Session::get('allso')){
+            alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
+
+            return redirect()->route('suratjalan.index');
+        }
+
+        $sodetail = Session::get('allso')->where('so_nbr','=',$id)->values()->all();
+        $sodetail = collect($sodetail);
+        
+        if($sodetail->count() == 0){
+            alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
+
+            return redirect()->route('suratjalan.index');
+        }
+
+        return view('transaksi.suratjalan.create', compact('sodetail'));
     }
 
     public function browsesj(Request $request)
