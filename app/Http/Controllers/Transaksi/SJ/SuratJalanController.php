@@ -192,16 +192,16 @@ class SuratJalanController extends Controller
             return redirect()->route('suratjalan.index');
         }
 
-        $sodetail = Session::get('allso')->where('so_nbr','=',$id)->values()->all();
-        $sodetail = collect($sodetail);
+        $so = Session::get('allso')->where('so_nbr','=',$id)->values()->all();
+        $so = collect($so);
         
-        if($sodetail->count() == 0){
+        if($so->count() == 0){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
 
             return redirect()->route('suratjalan.index');
         }
 
-        return view('transaksi.suratjalan.create', compact('sodetail'));
+        return view('transaksi.suratjalan.create', compact('so'));
     }
 
     public function browsesj(Request $request)
