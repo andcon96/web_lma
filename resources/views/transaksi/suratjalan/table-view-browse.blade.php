@@ -30,7 +30,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="4">
+        <td colspan="5">
           <table class="table table-sm table-bordered mb-0" width="100%" style="font-size: 12px;" cellspacing="0">
             <tbody>
               @forelse ( $sodetail as $showdetail )
