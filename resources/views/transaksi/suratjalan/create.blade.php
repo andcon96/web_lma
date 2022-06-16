@@ -172,8 +172,7 @@
 
         jQuery.ajax({
             type: "get",
-            url: "{{URL::to("
-            detailreceipt ") }}",
+            url: "{{URL::to("detailreceipt") }}",
             data: {
                 suratjalan: suratjalan,
                 ponbr: ponbr,
