@@ -174,6 +174,7 @@ class SuratJalanController extends Controller
 
     public function createBrowse(Request $req){
         $so = Session::get('tableso');
+        $sodetail = Session::get('allso');
 
         if(is_null($so)){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
@@ -181,7 +182,7 @@ class SuratJalanController extends Controller
             return redirect()->route('poreceipt.index');
         }
 
-        return view('transaksi.suratjalan.view-browse', compact('so'));
+        return view('transaksi.suratjalan.view-browse', compact('so','sodetail'));
         
     }
 

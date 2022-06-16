@@ -26,8 +26,29 @@
           {{$show->so_duedate}}
         </td>
         <td>
-            <a href="{{route('suratjalan.edit',$show->so_nbr) }}"><i class="fas fa-edit"></i></a>
-        </td> 
+          <a href="{{route('suratjalan.edit',$show->so_nbr) }}"><i class="fas fa-edit"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <table class="table table-sm table-bordered mb-0" width="100%" style="font-size: 12px;" cellspacing="0">
+            <tbody>
+              @forelse ( $sodetail as $showdetail )
+              @if ( $showdetail->so_nbr == $show->so_nbr )
+              <tr>
+                <td>{{ $showdetail->sod_line }}</td>
+                <td>{{ $showdetail->sod_part }} -- {{ $showdetail->sod_part_desc }}</td>
+                <td>{{ $showdetail->sod_qty_ord }}</td>
+              </tr>
+              @endif
+              @empty
+              <tr>
+                <td>no item</td>
+              </tr>
+              @endforelse
+            </tbody>
+          </table>
+        </td>
       </tr>
       @empty
       <td colspan='7' class='text-danger'><b>No Data Available</b></td>
