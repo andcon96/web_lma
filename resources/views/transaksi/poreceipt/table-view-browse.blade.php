@@ -34,6 +34,7 @@
                 <tr>
                   <td>{{ $showdetail->pod_line }}</td>
                   <td>{{ $showdetail->pod_part }} -- {{ $showdetail->pod_partdesc }}</td>
+                  <td>{{ number_format($showdetail->pod_qty_ord - $showdetail->pod_qty_rcvd,2) }}</td>
                 </tr>
               @endif
             @empty

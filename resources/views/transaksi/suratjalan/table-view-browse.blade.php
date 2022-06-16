@@ -31,7 +31,7 @@
       </tr>
       <tr>
         <td colspan="5">
-          <table class="table table-sm table-bordered mb-0" width="25%" style="font-size: 12px;" cellspacing="0">
+          <table class="table table-sm table-bordered mb-0" width="100%" style="font-size: 12px;" cellspacing="0">
             <!-- <thead>
               <tr>
                 <th style="width: 5%;">Line</th>
