@@ -33,17 +33,17 @@
         <td width="10%" colspan="5">
           <table class="table table-sm table-bordered mb-0" style="font-size: 12px; table-layout: fixed;" cellspacing="0">
             <thead>
-              <th>Line</th>
-              <th>Item</th>
-              <th>Qty Order</th>
+              <th style="width: 20px;">Line</th>
+              <th style="width: 20px;">Item</th>
+              <th style="width: 20px;">Qty Order</th>
             </thead>
             <tbody>
               @forelse ( $sodetail as $showdetail )
               @if ( $showdetail->so_nbr == $show->so_nbr )
               <tr>
-                <td style="width: 5%;">{{ $showdetail->sod_line }}</td>
-                <td style="width: 20%;">{{ $showdetail->sod_part }} -- {{ $showdetail->sod_part_desc }}</td>
-                <td style="width: 10%;">{{ $showdetail->sod_qty_ord }}</td>
+                <td>{{ $showdetail->sod_line }}</td>
+                <td>{{ $showdetail->sod_part }} -- {{ $showdetail->sod_part_desc }}</td>
+                <td>{{ $showdetail->sod_qty_ord }}</td>
               </tr>
               @endif
               @empty
