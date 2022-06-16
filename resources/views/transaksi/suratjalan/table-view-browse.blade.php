@@ -31,14 +31,14 @@
       </tr>
       <tr>
         <td colspan="5">
-          <table class="table table-sm table-bordered mb-0" style="font-size: 12px; table-layout: fixed; width: 50%; text-align: center;" cellspacing="0">
-            <thead>
+          <table class="table table-sm table-bordered mb-0" width="100%" style="font-size: 12px;" cellspacing="0">
+            <!-- <thead>
               <tr>
                 <th style="width: 5%;">Line</th>
                 <th style="width: 20%;">Item</th>
                 <th style="width: 10%;">Qty Order</th>
               </tr>
-            </thead>
+            </thead> -->
             <tbody>
               @forelse ( $sodetail as $showdetail )
               @if ( $showdetail->so_nbr == $show->so_nbr )
