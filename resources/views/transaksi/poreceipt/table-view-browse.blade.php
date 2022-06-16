@@ -32,9 +32,9 @@
             @forelse ( $podetail as $showdetail )
               @if ( $showdetail->po_nbr == $show->po_nbr )
                 <tr>
-                  <td>{{ $showdetail->pod_line }}</td>
-                  <td>{{ $showdetail->pod_part }} -- {{ $showdetail->pod_partdesc }}</td>
-                  <td>{{ number_format($showdetail->pod_qty_ord - $showdetail->pod_qty_rcvd,2) }}</td>
+                  <td style="width: 5%">{{ $showdetail->pod_line }}</td>
+                  <td style="width: 10%">{{ $showdetail->pod_part }} -- {{ $showdetail->pod_partdesc }}</td>
+                  <td style="width: 8%">{{ number_format($showdetail->pod_qty_ord - $showdetail->pod_qty_rcvd,2) }}</td>
                 </tr>
               @endif
             @empty
