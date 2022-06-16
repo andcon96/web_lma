@@ -4,6 +4,8 @@
       <tr>
         <th style="width: 15%;">SO No.</th>
         <th style="width: 15%;">PO No.</th>
+        <th style="width: 15%;">Customer</th>
+        <th style="width: 15%;">Due Date</th>
         <th style="width: 10%;">Action</th>
       </tr>
     </thead>
@@ -16,6 +18,12 @@
         </td>
         <td>
           {{$show->so_po}}
+        </td>
+        <td>
+          {{$show->so_cust_name}}
+        </td>
+        <td>
+          {{$show->so_duedate}}
         </td>
         <td>
             <a href="{{route('suratjalan.edit',$show->so_nbr) }}"><i class="fas fa-edit"></i></a>

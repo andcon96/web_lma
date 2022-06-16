@@ -68,7 +68,6 @@
             <button type="button" class="btn btn-info float-right mt-3" id="s_btnloading" style="display:none;">
                 <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
             </button>
-
         </div>
     </div>
 </form>
