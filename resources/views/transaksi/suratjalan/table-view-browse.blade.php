@@ -31,7 +31,7 @@
       </tr>
       <tr>
         <td colspan="5">
-          <table class="table table-sm table-bordered mb-0" width="100%" style="font-size: 12px;" cellspacing="0">
+          <table class="table table-sm table-bordered mb-0" width="25%" style="font-size: 12px;" cellspacing="0">
             <!-- <thead>
               <tr>
                 <th style="width: 5%;">Line</th>
@@ -44,7 +44,7 @@
               @if ( $showdetail->so_nbr == $show->so_nbr )
               <tr>
                 <td style="width: 5%;">{{ $showdetail->sod_line }}</td>
-                <td style="width: 20%;">{{ $showdetail->sod_part }} -- {{ $showdetail->sod_part_desc }}</td>
+                <td style="width: 10%;">{{ $showdetail->sod_part }} -- {{ $showdetail->sod_part_desc }}</td>
                 <td style="width: 10%;">{{ $showdetail->sod_qty_ord }}</td>
               </tr>
               @endif
