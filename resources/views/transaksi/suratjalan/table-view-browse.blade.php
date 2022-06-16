@@ -30,7 +30,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="5">
+        <td style="width: 50%;" colspan="5">
           <table class="table table-sm table-bordered mb-0" width="60%" style="font-size: 12px;" cellspacing="0">
             <thead>
               <th>Line</th>
