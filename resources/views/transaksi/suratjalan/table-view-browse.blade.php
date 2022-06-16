@@ -32,6 +32,11 @@
       <tr>
         <td colspan="5">
           <table class="table table-sm table-bordered mb-0" width="100%" style="font-size: 12px;" cellspacing="0">
+            <thead>
+              <td>Line</td>
+              <td>Item</td>
+              <td>Qty Order</td>
+            </thead>
             <tbody>
               @forelse ( $sodetail as $showdetail )
               @if ( $showdetail->so_nbr == $show->so_nbr )
