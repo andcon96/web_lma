@@ -62,7 +62,7 @@
     </div>
 
 
-    <div class="float-right row col-lg-12">
+    <div class="row col-lg-12">
         <div class="col-sm-12">
             <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action float-right mt-3">
         </div>
