@@ -62,7 +62,7 @@
     </div>
 
 
-    <div class="form-group row">
+    <div class="row">
         <div class="col-md-6 col-sm-12">
             <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action float-right" style="width: 100% !important;">
         </div>
