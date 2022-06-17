@@ -30,8 +30,8 @@
     <label for="supp" class="col-form-label col-md-2 text-md-right">{{ __('Supplier') }}</label>
     <div class="col-md-4">
       <input id="supp" type="text" class="form-control" name="supp" value="{{$receiptdetail->first()->po_cust}} -- {{$receiptdetail->first()->po_custname}}" readonly>
-      <input type="hidden" name="supphidden" value="{{$receiptdetail->first()->po_cust}}"/>
-      <input type="hidden" name="suppnamehidden" value="{{$receiptdetail->first()->po_custname}}"/>
+      <input type="hidden" name="supphidden" value="{{$receiptdetail->first()->po_cust}}" />
+      <input type="hidden" name="suppnamehidden" value="{{$receiptdetail->first()->po_custname}}" />
     </div>
   </div>
 
@@ -73,7 +73,6 @@
     </table>
   </div> -->
 
-
   <div class="form-group row md-form">
     <div class="col-md-12" style="text-align: center;">
       <div class="custom-control custom-checkbox">
@@ -83,9 +82,11 @@
     </div>
   </div>
 
-  <div class="form-group col-md-12">
-    <div class="col-md-12" style="float: right;">
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
       <a id="back_btn" class="btn btn-danger float-right" href="{{route('searchPO',['ponbr'=>$receiptdetail->first()->po_contract,'supp'=>$receiptdetail->first()->po_cust])}}" style="margin-top:10px; margin-left:5px;">Cancel</a>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
       <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn btn-info float-right" style="margin-top:10px">
       <button type="button" class="btn btn-info float-right" id="s_btnloading" style="display:none;margin-top: 10px;">
         <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
@@ -108,7 +109,7 @@
     maxDate: 0,
   });
 
-  
+
 
   // $("#addrow").on("click", function() {
 
