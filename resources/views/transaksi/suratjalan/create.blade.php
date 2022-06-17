@@ -62,9 +62,9 @@
     </div>
 
 
-    <div class="row col-lg-12">
+    <div class="form-group row">
         <div class="col-sm-12">
-            <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action float-right mt-3">
+            <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action float-right" style="width: 100% !important;">
         </div>
         <div class="col-sm-12">
             <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust])}}" class="btn bt-action float-right mt-3 mr-3">Cancel</a>
