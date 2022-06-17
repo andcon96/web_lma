@@ -31,13 +31,13 @@
 
     {{-- <div class="form-group row md-form offset-lg-1">
         <label for="shipto" class="col-md-2 col-form-label text-md-right">{{ __('Ship To') }}</label>
-        <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
-            <input id="shipto" type="text" class="form-control" value="{{$so[0]->so_ship}} -- {{$so[0]->so_ship_name}}" readonly>
-        </div>
-        <label for="billto" class="col-md-2 col-form-label text-md-right">{{ __('Bill To') }}</label>
-        <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
-            <input id="billto" type="text" class="form-control" value="{{$so[0]->so_bill}} -- {{$so[0]->so_bill_name}}" readonly>
-        </div>
+    <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
+        <input id="shipto" type="text" class="form-control" value="{{$so[0]->so_ship}} -- {{$so[0]->so_ship_name}}" readonly>
+    </div>
+    <label for="billto" class="col-md-2 col-form-label text-md-right">{{ __('Bill To') }}</label>
+    <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
+        <input id="billto" type="text" class="form-control" value="{{$so[0]->so_bill}} -- {{$so[0]->so_bill_name}}" readonly>
+    </div>
     </div> --}}
     <div class="form-group row md-form offset-lg-1">
         <label for="sopo" class="col-md-2 col-form-label text-md-right">{{ __('SO PO') }}</label>
@@ -61,19 +61,19 @@
         </div>
     </div>
 
-    <div class="form-group row offset-lg-1 col-lg-12 col-col-md-12 col-sm-12 col-xs-12">
-        <div class="float-right row col-lg-12">
-            <div class="col-sm-12">
-                <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action float-right mt-3">
-            </div>
-            <div class="col-sm-12">
-                <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust])}}" class="btn bt-action float-right mt-3 mr-3">Cancel</a>
-                <button type="button" class="btn btn-info float-right mt-3" id="s_btnloading" style="display:none;">
-                    <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
-                </button>
-            </div>
+
+    <div class="float-right row col-lg-12">
+        <div class="col-sm-12">
+            <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action float-right mt-3">
+        </div>
+        <div class="col-sm-12">
+            <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust])}}" class="btn bt-action float-right mt-3 mr-3">Cancel</a>
+            <button type="button" class="btn btn-info float-right mt-3" id="s_btnloading" style="display:none;">
+                <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
+            </button>
         </div>
     </div>
+
 </form>
 
 
@@ -176,7 +176,8 @@
 
         jQuery.ajax({
             type: "get",
-            url: "{{URL::to("detailreceipt") }}",
+            url: "{{URL::to("
+            detailreceipt ") }}",
             data: {
                 suratjalan: suratjalan,
                 ponbr: ponbr,
