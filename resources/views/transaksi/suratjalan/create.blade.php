@@ -61,20 +61,19 @@
         </div>
     </div>
 
-    <div class="d-flex">
-        <div class="row">
-            <div class="col-lg-2 col-md-2 col-sm-12 py-2">
-                <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action" style="width: 100% !important;">
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-12 py-2">
-                <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust])}}" class="btn bt-action" style="width: 100% !important;">Cancel</a>
-                <button type="button" class="btn btn-info float-right mt-3" id="s_btnloading" style="display:none;">
-                    <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
-                </button>
-            </div>
+
+    <div class="d-flex row">
+        <div class="col-lg-2 col-md-2 col-sm-12 py-2">
+            <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action" style="width: 100% !important;">
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 py-2">
+            <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust])}}" class="btn bt-action" style="width: 100% !important;">Cancel</a>
+            <button type="button" class="btn btn-info float-right mt-3" id="s_btnloading" style="display:none;">
+                <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
+            </button>
         </div>
     </div>
-    
+
 
 </form>
 
@@ -119,7 +118,6 @@
         document.getElementById('s_btnconf').style.display = 'none';
         document.getElementById('s_btnloading').style.display = '';
     });
-
 </script>
 
 @endsection
