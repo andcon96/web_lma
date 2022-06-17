@@ -52,7 +52,7 @@
 
     @include('transaksi.suratjalan.create-table')
 
-    <div class="form-group row md-form offset-lg-1">
+    <div class="row md-form offset-lg-1">
         <div class="col-md-10" style="text-align: center;">
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="cbsubmit" required>
