@@ -15,7 +15,7 @@
     @method('POST')
     @csrf
 
-    <div class="row md-form offset-lg-1">
+    <div class="row md-form offset-lg-1 py-2">
         <label for="sonbr" class="col-md-2 col-form-label text-md-right">{{ __('SO Number') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
             <input id="sonbr" type="text" class="form-control" name="sonbr" value="{{$so[0]->so_nbr}}" readonly>
@@ -39,7 +39,7 @@
         <input id="billto" type="text" class="form-control" value="{{$so[0]->so_bill}} -- {{$so[0]->so_bill_name}}" readonly>
     </div>
     </div> --}}
-    <div class="row md-form offset-lg-1">
+    <div class="row md-form offset-lg-1 py-2">
         <label for="sopo" class="col-md-2 col-form-label text-md-right">{{ __('SO PO') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
             <input id="sopo" type="text" class="form-control" name="sopo" value="{{$so[0]->so_po}}" readonly>
