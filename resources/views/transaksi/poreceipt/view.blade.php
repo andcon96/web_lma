@@ -12,7 +12,7 @@
 
 
 <form method="post" action="{{route('submitReceipt')}}" id='submit'>
-  <div class="row py-2">
+  <div class="row md-form offset-lg-1 py-2">
     <label for="receiptdate" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Receipt Date') }}</label>
     <div class="col-md-2">
       <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ ($sessionpo!=null) ? $sessionpo->first()->pod_receiptdate : Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
@@ -26,7 +26,7 @@
       <input id="po_kontrak" type="text" class="form-control" name="po_kontrak" value="{{$receiptdetail->first()->po_contract}}" readonly>
     </div>
   </div>
-  <div class="row py-2">
+  <div class="row md-form offset-lg-1 py-2">
     <label for="supp" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Supplier') }}</label>
     <div class="col-md-4">
       <input id="supp" type="text" class="form-control" name="supp" value="{{$receiptdetail->first()->po_cust}} -- {{$receiptdetail->first()->po_custname}}" readonly>
