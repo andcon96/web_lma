@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <div class="form-group row offset-lg-1 col-lg-10">
+    <div class="form-group row offset-lg-1 col-lg-12 col-col-md-12 col-sm-12 col-xs-12">
         <div class="float-right col-lg-12">
             <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action float-right mt-3">
             <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust])}}" class="btn bt-action float-right mt-3 mr-3">Cancel</a>
