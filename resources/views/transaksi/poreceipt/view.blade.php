@@ -12,7 +12,7 @@
 
 
 <form method="post" action="{{route('submitReceipt')}}" id='submit'>
-  <div class="row mb-3">
+  <div class="row py-2">
     <label for="receiptdate" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Receipt Date') }}</label>
     <div class="col-md-2">
       <input id="receiptdate" type="text" class="form-control" name="receiptdate" value="{{ ($sessionpo!=null) ? $sessionpo->first()->pod_receiptdate : Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
@@ -26,7 +26,7 @@
       <input id="po_kontrak" type="text" class="form-control" name="po_kontrak" value="{{$receiptdetail->first()->po_contract}}" readonly>
     </div>
   </div>
-  <div class="row mb-3">
+  <div class="row py-2">
     <label for="supp" class="col-form-label col-md-2" style="margin-left:25px">{{ __('Supplier') }}</label>
     <div class="col-md-4">
       <input id="supp" type="text" class="form-control" name="supp" value="{{$receiptdetail->first()->po_cust}} -- {{$receiptdetail->first()->po_custname}}" readonly>
@@ -35,19 +35,18 @@
     </div>
   </div>
 
-  <div class="row">
   @method('POST')
   @csrf
 
   @include('transaksi.poreceipt.table-view')
   </div>
-  <div class="row mb-3">
+  <div class="row py-2">
     <label for="remarkreceipt" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Remark') }}</label>
     <div class="col-md-8">
       <input type="text" class="form-control" name="remarkreceipt" maxlength="24" value="{{($sessionpo!=null) ? $sessionpo->first()->pod_remarks : ''}}" />
     </div>
   </div>
-  <div class="row mb-3">
+  <div class="row py-2">
     <label for="nopol" class="col-form-label col-md-3" style="margin-left:25px">{{ __('No. Polisi') }}</label>
     <div class="col-md-3">
       <textarea type="text" class="form-control" name="nopol" rows="2" maxlength="30">{{($sessionpo!=null) ? $sessionpo->first()->pod_nopol : ''}}</textarea>
