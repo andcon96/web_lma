@@ -63,11 +63,11 @@
 
 
     <div class="form-group row">
-        <div class="col-sm-12">
+        <div class="col-md-6 col-sm-12">
             <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action float-right" style="width: 100% !important;">
         </div>
-        <div class="col-sm-12">
-            <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust])}}" class="btn bt-action float-right mt-3 mr-3">Cancel</a>
+        <div class="col-md-6 col-sm-12">
+            <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust])}}" class="btn bt-action float-right mt-3 mr-3" style="width: 100% !important;">Cancel</a>
             <button type="button" class="btn btn-info float-right mt-3" id="s_btnloading" style="display:none;">
                 <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
             </button>
