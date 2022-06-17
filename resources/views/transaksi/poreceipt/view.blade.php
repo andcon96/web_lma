@@ -26,7 +26,7 @@
       <input id="po_kontrak" type="text" class="form-control" name="po_kontrak" value="{{$receiptdetail->first()->po_contract}}" readonly>
     </div>
   </div>
-  <div class="row py-2">
+  <div class="row py-2 py-sm-0">
     <label for="supp" class="col-form-label col-md-2">{{ __('Supplier') }}</label>
     <div class="col-md-4">
       <input id="supp" type="text" class="form-control" name="supp" value="{{$receiptdetail->first()->po_cust}} -- {{$receiptdetail->first()->po_custname}}" readonly>
