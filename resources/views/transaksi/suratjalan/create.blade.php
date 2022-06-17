@@ -62,7 +62,7 @@
     </div>
 
 
-    <div class="row pull-right">
+    <div class="row float-right">
         <div class="col-lg-2 col-md-2 col-sm-12 py-2">
             <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action" style="width: 100% !important;">
         </div>
