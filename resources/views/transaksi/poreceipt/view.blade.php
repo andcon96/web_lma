@@ -86,7 +86,7 @@
     <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
       <a id="back_btn" class="btn btn-danger float-right" href="{{route('searchPO',['ponbr'=>$receiptdetail->first()->po_contract,'supp'=>$receiptdetail->first()->po_cust])}}" style="margin-top:10px; margin-left:5px;">Cancel</a>
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
+    <div class="col-lg-2 col-md-2 col-sm-12 py-2">
       <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn btn-info float-right" style="margin-top:10px">
       <button type="button" class="btn btn-info float-right" id="s_btnloading" style="display:none;margin-top: 10px;">
         <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
