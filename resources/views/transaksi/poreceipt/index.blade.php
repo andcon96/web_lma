@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-xl-7 col-lg-7 col-md-3 col-sm-12 col-xs-12">
             <input type="submit" class="btn bt-ref col-md-12" id="btnsearch" value="Search" />
         </div>
     </div>
