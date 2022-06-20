@@ -60,14 +60,19 @@ class POReceiptController extends Controller
         $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung,$kontraktampung);
 
         if($po_receipt === false){
+
+            dd('wsa failed');
             alert()->error('Error', 'WSA Failed');
             return redirect()->route('poreceipt.index');
         }else{
             if($po_receipt[1] == "false"){
-                alert()->error('Error', 'Data PO No. atau Supplier Name tidak ditemukan');
+                dd('data po tidak ditemukan');
+                alert()->error('Error', 'Data PO tidak ditemukan');
                 return redirect()->back();
             }else{
+                ;
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
+                dd('data po ditemukan');
             }
         }
 
