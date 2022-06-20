@@ -77,6 +77,7 @@
             document.getElementById('sjnbr').required = true;
             document.getElementById('pokontrak').required = true;
         } else {
+            alert('a');
             document.getElementById('sjnbr').required = false;
             document.getElementById('pokontrak').required = false;
         }
