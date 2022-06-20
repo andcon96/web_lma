@@ -123,7 +123,7 @@
                   <li class="nav-item">
                     <a href="{{route('poreceipt.index')}}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Purchase Order Receipt</p>
+                      <p>PO Receipt</p>
                     </a>
                   </li>
                   @endcan
@@ -131,7 +131,7 @@
                   <li class="nav-item">
                     <a href="{{route('poapproval.index')}}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Purchase Order Invoice Approval</p>
+                      <p>PO Invoice Approval</p>
                     </a>
                   </li>
                   @endcan
@@ -139,7 +139,7 @@
                   <li class="nav-item">
                     <a href="{{route('poreceiptbrw.index')}}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Purchase Order Receipt Browse</p>
+                      <p>PO Receipt Browse</p>
                     </a>
                   </li>
                   @endcan
