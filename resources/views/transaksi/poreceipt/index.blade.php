@@ -16,6 +16,17 @@
         <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
             <input id="sjnbr" type="text" class="form-control" name="sjnbr" required>
         </div>
+        <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
+            <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="margin-left:15px;" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="pokontrak" class="col-form-label text-md-right" style="margin-left:25px">{{ __('PO Kontrak') }}</label>
+        <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
+            <input id="pokontrak" type="text" class="form-control" name="pokontrak" required>
+        </div>
+    </div>
+    <div class="form-group row">
         <label for="suppcode" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Supplier Name') }}</label>
         <div class="col-xl-4 col-lg-4 col-md-10 col-sm-12 col-xs-12">
             <select name="suppcode" id="suppcode" class="form-control" required>
@@ -25,10 +36,6 @@
                 @endforeach
             </select>
         </div>
-
-        <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
-            <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="margin-left:15px;" />
-        </div>
     </div>
 </form>
 
@@ -37,11 +44,10 @@
 @section('scripts')
 
 <script>
-
     $("#suppcode").select2({
         width: '100%'
     });
-    
+
     $(document).on('hide.bs.modal', '#detailModal', function() {
         if (confirm("Are you sure, you want to close?")) return true;
         else return false;
@@ -53,24 +59,22 @@
         document.getElementById('btnloading').style.display = '';
     });
 
-    $(document).on('change','#suppcode,#sjnbr',function(e){
+    $(document).on('change', '#suppcode,#sjnbr', function(e) {
         var val = document.getElementById('suppcode').value;
         var valsj = document.getElementById('sjnbr').value;
-        
-        if(val === ""){
+
+        if (val === "") {
             document.getElementById('sjnbr').required = true;
-        }
-        else{
+        } else {
             document.getElementById('sjnbr').required = false;
         }
-        if(valsj === ""){
+        if (valsj === "") {
             document.getElementById('suppcode').required = true;
-        }
-        else{
+        } else {
             document.getElementById('suppcode').required = false;
         }
-        
-        
+
+
     })
 </script>
 
