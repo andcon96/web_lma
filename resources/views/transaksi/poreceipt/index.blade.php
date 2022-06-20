@@ -33,7 +33,7 @@
     <div class="form-group row">
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <label for="suppcode" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Supplier Name') }}</label>
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        </div>
         <div class="col-xl-4 col-lg-4 col-md-10 col-sm-12 col-xs-12">
             <select name="suppcode" id="suppcode" class="form-control" required>
                 <option value="">Select Data</option>
