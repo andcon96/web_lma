@@ -819,7 +819,7 @@ class WSAServices
         return [$dataloop, $qdocResult];
     }
 
-    public function wsagetso($sonbr){
+    public function wsagetso($socust,$sonbr){
         $wsa = Qxwsa::first();
 
         // Validasi WSA
@@ -839,7 +839,8 @@ class WSAServices
             <Body>
                 <LMA_sosearch xmlns="'. $wsa->wsas_path .'">
                     <inpdomain>'.$domain.'</inpdomain>
-                    <inpsocust>'.$sonbr.'</inpsocust>
+                    <inpsonbr>'.$sonbr.'</inpsonbr>
+                    <inpsocust>'.$socust.'</inpsocust>
                 </LMA_sosearch>
             </Body>
         </Envelope>';

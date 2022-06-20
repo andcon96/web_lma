@@ -91,7 +91,7 @@
     });
 
     $(document).on('change', '#suppcode', function(e) {
-        console.log('masuk');
+        
         var val = document.getElementById('suppcode').value;
         var valsj = document.getElementById('sjnbr').value;
         var valkon = document.getElementById('pokontrak').value;

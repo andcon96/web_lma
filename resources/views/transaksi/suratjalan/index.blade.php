@@ -12,6 +12,10 @@
 
 <form action="{{route('searchSO')}}" method="GET">
     <div class="form-group row">
+        <label for="sonbr" class="col-form-label text-md-right">{{ __('SO No.') }}</label>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <input type="text" id="sonbr" name="sonbr" class="form-control" value="" required /> 
+        </div>
         <label for="sjnbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Customer') }}</label>
         <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
             <select id="sjnbr" class="form-control" name="sjnbr" required>
@@ -35,6 +39,30 @@
 <script>
     $("#sjnbr").select2({
         width: '100%'
+    });
+
+    $(document).on('change', '#sonbr', function(e) {
+        
+        var sonbr = document.getElementById('sonbr').value;
+
+        if (sonbr === "") {
+            document.getElementById('sjnbr').required = true;
+        } else {
+            document.getElementById('sjnbr').required = false;
+        }
+        
+    });
+
+    $(document).on('change', '#sjnbr', function(e) {
+        
+        var sjnbr = document.getElementById('sjnbr').value;
+
+        if (sjnbr === "") {
+            document.getElementById('sonbr').required = true;
+        } else {
+            document.getElementById('sonbr').required = false;
+        }
+        
     });
 </script>
 

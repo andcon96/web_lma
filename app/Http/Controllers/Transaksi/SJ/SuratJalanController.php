@@ -155,13 +155,24 @@ class SuratJalanController extends Controller
 
     public function searchSO(Request $request)
     {
-        $getso = (new WSAServices())->wsagetso($request->sjnbr);
+        if(is_null($request->sjnbr) && is_null($request->sonbr)){
+            $socust = $request->sjnbr;
+            $sonbr = $request->sonbr;
+            // dd($ponbrtampung);
+            // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
+            // return redirect()->back();
+        }else{
+            $socust = $request->sjnbr;
+            $sonbr = $request->sonbr;
+        }
+
+        $getso = (new WSAServices())->wsagetso($socust,$sonbr);
         if ($getso === false) {
             alert()->error('Error', 'WSA Failed')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
         } else {
             if ($getso[1] == 'false') {
-                alert()->error('Error', 'SO Number : ' . $request->sjnbr . ' Not Found')->persistent('Dismiss');
+                alert()->error('Error', 'SO Number or Customer Not Found')->persistent('Dismiss');
                 return redirect()->route('suratjalan.index');
             }
             $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);

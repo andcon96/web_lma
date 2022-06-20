@@ -67,7 +67,7 @@
             <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn bt-action" style="width: 100% !important;">
         </div>
         <div class="col-lg-2 col-md-2 col-sm-12 py-2">
-            <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust])}}" class="btn bt-action" style="width: 100% !important;">Cancel</a>
+            <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust,'sonbr'=>$so[0]->so_nbr])}}" class="btn bt-action" style="width: 100% !important;">Cancel</a>
             <button type="button" class="btn btn-info" id="s_btnloading" style="display:none;">
                 <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
             </button>
