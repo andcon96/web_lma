@@ -40,6 +40,7 @@ class POReceiptController extends Controller
         // $sessionpo = Session::get('session_po');
 
         if(is_null($req->sjnbr) && is_null($req->suppcode) && is_null($req->pokontrak)){
+            dd('semua null');
             $ponbrtampung = $req->ponbr;
             $supptampung = $req->supp;
             $kontraktampung = $req->kontrak;
@@ -47,6 +48,7 @@ class POReceiptController extends Controller
             // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
             // return redirect()->back();
         }else{
+            dd('salah satu ada isi');
             $ponbrtampung = $req->sjnbr;
             $supptampung = $req->suppcode;
             $kontraktampung = $req->pokontrak;
