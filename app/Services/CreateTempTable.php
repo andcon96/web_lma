@@ -17,6 +17,7 @@ class CreateTempTable
 {
     public function createPOTemp($data){
         // WSA -> LMA_getPO
+        Schema::dropIfExists('temp_group');
         Schema::create('temp_group', function ($table) {
             $table->string('po_nbr');
             $table->string('po_contract');
