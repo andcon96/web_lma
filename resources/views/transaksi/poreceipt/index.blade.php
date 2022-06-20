@@ -67,7 +67,30 @@
         document.getElementById('btnloading').style.display = '';
     });
 
-    $(document).on('change', '#suppcode,#sjnbr,#pokontrak', function(e) {
+    $(document).on('change', '#sjnbr', function(e) {
+        var valsj = document.getElementById('sjnbr').value;
+        if (valsj === "") {
+            
+            document.getElementById('pokontrak').required = true;
+            document.getElementById('suppcode').required = true;
+        } else {
+            document.getElementById('pokontrak').required = false;
+            document.getElementById('suppcode').required = false;
+        }
+    });
+    $(document).on('change', '#pokontrak', function(e) {
+        var valkon = document.getElementById('pokontrak').value;
+        if (valkon === "") {
+            
+            document.getElementById('sjnbr').required = true;
+            document.getElementById('suppcode').required = true;
+        } else {
+            document.getElementById('sjnbr').required = false;
+            document.getElementById('suppcode').required = false;
+        }
+    });
+
+    $(document).on('change', '#suppcode', function(e) {
         console.log('masuk');
         var val = document.getElementById('suppcode').value;
         var valsj = document.getElementById('sjnbr').value;
@@ -77,30 +100,12 @@
             document.getElementById('sjnbr').required = true;
             document.getElementById('pokontrak').required = true;
         } else {
-            alert('a');
+            
             document.getElementById('sjnbr').required = false;
             document.getElementById('pokontrak').required = false;
-        }
-
-        if (valsj === "") {
-            alert('b');
-            document.getElementById('pokontrak').required = true;
-            document.getElementById('suppcode').required = true;
-        } else {
-            document.getElementById('pokontrak').required = false;
-            document.getElementById('suppcode').required = false;
-        }
-
-        if (valkon === "") {
-            alert('c');
-            document.getElementById('sjnbr').required = true;
-            document.getElementById('suppcode').required = true;
-        } else {
-            document.getElementById('sjnbr').required = false;
-            document.getElementById('suppcode').required = false;
         }
         
-    })
+    });
 
 
 </script>
