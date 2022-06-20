@@ -83,6 +83,7 @@
         }
 
         if (valsj === "") {
+            alert('b');
             document.getElementById('pokontrak').required = true;
             document.getElementById('suppcode').required = true;
         } else {
@@ -91,6 +92,7 @@
         }
 
         if (valkon === "") {
+            alert('c');
             document.getElementById('sjnbr').required = true;
             document.getElementById('suppcode').required = true;
         } else {
