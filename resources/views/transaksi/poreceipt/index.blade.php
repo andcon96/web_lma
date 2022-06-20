@@ -67,30 +67,21 @@
         document.getElementById('btnloading').style.display = '';
     });
 
-    $(document).on('change', '#suppcode,#sjnbr,#pokontrak', function(e) {
-        console.log('masuk');
-        var val = document.getElementById('suppcode').value;
-        var valsj = document.getElementById('sjnbr').value;
-        var valkon = document.getElementById('pokontrak').value;
+    document.addEventListener('DOMContentLoaded', function() {
+        const inputs = Array.from(
+            document.querySelectorAll('input[name=sjnbr], input[name=pokontrak], select[name=suppcode]')
+        );
 
-        if (val === "") {
-            document.getElementById('sjnbr').required = true;
-        } else {
-            document.getElementById('sjnbr').required = false;
-        }
-        if (valsj === "") {
-            document.getElementById('suppcode').required = true;
-        } else {
-            document.getElementById('suppcode').required = false;
-        }
-        if (valkon === "") {
-            document.getElementById('pokontrak').required = true;
-        } else {
-            document.getElementById('pokontrak').required = false;
-        }
+        const inputListener = e => {
+            inputs
+                .filter(i => i !== e.target)
+                .forEach(i => (i.required = !e.target.value.length));
+        };
+        
+        console.log(inputListener);
 
-
-    })
+        inputs.forEach(i => i.addEventListener('input', inputListener));
+    });
 </script>
 
 @endsection
