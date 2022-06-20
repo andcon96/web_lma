@@ -42,7 +42,7 @@
     </div>
     <div class="form-group row">
         <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
-            <input type="submit" class="btn bt-ref offset-md-1 col-md-3" id="btnsearch" value="Search" />
+            <input type="submit" class="btn bt-ref col-md-3" id="btnsearch" value="Search" />
         </div>
     </div>
 </form>
@@ -67,9 +67,10 @@
         document.getElementById('btnloading').style.display = '';
     });
 
-    $(document).on('change', '#suppcode,#sjnbr', function(e) {
+    $(document).on('change', '#suppcode,#sjnbr,#pokontrak', function(e) {
         var val = document.getElementById('suppcode').value;
         var valsj = document.getElementById('sjnbr').value;
+        var valkon = document.getElementById('pokontrak').value;
 
         if (val === "") {
             document.getElementById('sjnbr').required = true;
@@ -80,6 +81,11 @@
             document.getElementById('suppcode').required = true;
         } else {
             document.getElementById('suppcode').required = false;
+        }
+        if (valkon === "") {
+            document.getElementById('pokontrak').required = true;
+        } else {
+            document.getElementById('pokontrak').required = false;
         }
 
 

@@ -39,21 +39,23 @@ class POReceiptController extends Controller
         // $errorcode = Session::get('errors');
         // $sessionpo = Session::get('session_po');
 
-        if(is_null($req->sjnbr) && is_null($req->suppcode)){
+        if(is_null($req->sjnbr) && is_null($req->suppcode) && is_null($req->pokontrak)){
             $ponbrtampung = $req->ponbr;
             $supptampung = $req->supp;
+            $kontraktampung = $req->kontrak;
             // dd($ponbrtampung);
             // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
             // return redirect()->back();
         }else{
             $ponbrtampung = $req->sjnbr;
             $supptampung = $req->suppcode;
+            $kontraktampung = $req->pokontrak;
         }
 
         // dd($ponbrtampung,$supptampung);
 
         // WSA QAD
-        $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung);
+        $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung,$kontraktampung);
 
         if($po_receipt === false){
             alert()->error('Error', 'WSA Failed');

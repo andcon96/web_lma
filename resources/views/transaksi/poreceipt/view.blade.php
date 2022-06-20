@@ -21,7 +21,7 @@
     <div class="col-md-2">
       <input id="po_nbr" type="text" class="form-control" name="po_nbr" value="{{$receiptdetail->first()->po_nbr}}" readonly>
     </div>
-    <label for="po_kontrak" class="col-form-label col-md-2 text-md-right">{{ __('PO Contract') }}</label>
+    <label for="po_kontrak" class="col-form-label col-md-3 text-md-right">{{ __('PO Contract') }}</label>
     <div class="col-md-2">
       <input id="po_kontrak" type="text" class="form-control" name="po_kontrak" value="{{$receiptdetail->first()->po_contract}}" readonly>
     </div>
@@ -50,6 +50,24 @@
     <label for="nopol" class="col-form-label col-md-3" style="margin-left:25px">{{ __('No. Polisi') }}</label>
     <div class="col-md-3">
       <textarea type="text" class="form-control" name="nopol" rows="2" maxlength="30">{{($sessionpo!=null) ? $sessionpo->first()->pod_nopol : ''}}</textarea>
+    </div>
+  </div>
+  <div class="row py-2">
+    <label for="exkapal" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Ex Kapal') }}</label>
+    <div class="col-md-3">
+      <input type="text" id="exkapal" class="form-control" name="exkapal" maxlength="24" value="" />
+    </div>
+  </div>
+  <div class="row py-2">
+    <label for="exgudang" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Ex Gudang') }}</label>
+    <div class="col-md-3">
+      <input type="text" id="exgudang" class="form-control" name="exgudang" maxlength="24" value="" />
+    </div>
+  </div>
+  <div class="row py-2">
+    <label for="qtykarung" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Jumlah Karung') }}</label>
+    <div class="col-md-3">
+      <input type="number" class="form-control" name="qtykarung" min="0" step="0.01" value="" />
     </div>
   </div>
 

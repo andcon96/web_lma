@@ -582,7 +582,7 @@ class WSAServices
     /**
      * get PO by Number
      */
-    public function wsagetpo($ponbr,$suppcode){
+    public function wsagetpo($ponbr,$suppcode,$kontrak){
         $wsa = Qxwsa::first();
 
         $domain = Session::get('domain');
@@ -606,6 +606,7 @@ class WSAServices
                     '<inpdomain>' . $domain . '</inpdomain>' .
                     '<innbr>' . $ponbr . '</innbr>' .
                     '<insupp>'.$suppcode.'</insupp>' .
+                    '<inkon>'.$kontrak.'</inkon>' .
                 '</LMA_getPO>' .
             '</Body>' .
         '</Envelope>';
