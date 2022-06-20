@@ -72,7 +72,7 @@ class POReceiptController extends Controller
                 return redirect()->back();
             }else{
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
-                dd($po_receipt[1],'data po ditemukan',$tempPO);
+                dump($po_receipt[1],'data po ditemukan',$tempPO);
             }
         }
 
