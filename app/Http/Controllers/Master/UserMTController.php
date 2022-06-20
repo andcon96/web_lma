@@ -78,12 +78,12 @@ class UserMTController extends Controller
             'unique' => 'Email Must Be Unique',
         ]);
 
-        $users = User::where('isActive', 1)->get();
-        if ($users->count() >= 5) {
-            alert()->error('Error', 'Exceeded Maximum Allowed User');
-            // $request->session()->flash('error', 'Exceeded Maximum Allowed User');
-            return back();
-        }
+        // $users = User::where('isActive', 1)->get();
+        // if ($users->count() >= 5) {
+        //     alert()->error('Error', 'Exceeded Maximum Allowed User');
+        //     // $request->session()->flash('error', 'Exceeded Maximum Allowed User');
+        //     return back();
+        // }
 
         $role = $request->role;
 
