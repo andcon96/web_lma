@@ -67,21 +67,6 @@
         document.getElementById('btnloading').style.display = '';
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const inputs = Array.from(
-            document.querySelectorAll('input[name=sjnbr], input[name=pokontrak], select[name=suppcode]')
-        );
-
-        const inputListener = e => {
-            inputs
-                .filter(i => i !== e.target)
-                .forEach(i => (i.required = !e.target.value.length));
-        };
-        
-        console.log(inputListener);
-
-        inputs.forEach(i => i.addEventListener('input', inputListener));
-    });
 </script>
 
 @endsection
