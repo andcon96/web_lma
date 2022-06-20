@@ -81,7 +81,7 @@
             document.getElementById('pokontrak').required = false;
         }
 
-        if (valksj === "") {
+        if (valsj === "") {
             document.getElementById('pokontrak').required = true;
             document.getElementById('suppcode').required = true;
         } else {
