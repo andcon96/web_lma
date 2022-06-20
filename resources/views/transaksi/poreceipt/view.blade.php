@@ -65,7 +65,7 @@
     </div>
   </div>
   <div class="row py-2">
-    <label for="qtykarung" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Jumlah Karung test') }}</label>
+    <label for="qtykarung" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Jumlah Karung') }}</label>
     <div class="col-md-3">
       <input type="number" class="form-control" name="qtykarung" min="0" step="0.01" value="{{($sessionpo!=null) ? $sessionpo->first()->po_qtykarung : ''}}" />
     </div>
