@@ -63,10 +63,10 @@
 
 
     <div class="row">
-        <div class="col-lg-2 col-md-2 col-sm-12 py-2">
+        <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
             <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust,'sonbr'=>$so[0]->so_nbr])}}" class="btn btn-danger" style="width: 100% !important;">Cancel</a>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
+        <div class="col-lg-2 col-md-2 col-sm-12 py-2">
             <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn btn-info" style="width: 100% !important;">
             <button type="button" class="btn btn-info" id="s_btnloading" style="display:none;">
                 <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
