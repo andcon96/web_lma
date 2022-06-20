@@ -611,7 +611,7 @@ class WSAServices
             '</Body>' .
         '</Envelope>';
 
-        dump($qdocRequest);
+        dd($qdocRequest);
 
         $curlOptions = array(
             CURLOPT_URL => $qxUrl,
