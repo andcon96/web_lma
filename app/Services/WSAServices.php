@@ -611,8 +611,6 @@ class WSAServices
             '</Body>' .
         '</Envelope>';
 
-        dump($qdocRequest);
-
         $curlOptions = array(
             CURLOPT_URL => $qxUrl,
             CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
@@ -649,8 +647,6 @@ class WSAServices
             }
             curl_close($curl);
         }
-
-        dd($qdocResponse);
 
         if(is_bool($qdocResponse)){
             return false;

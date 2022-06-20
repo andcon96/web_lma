@@ -40,7 +40,6 @@ class POReceiptController extends Controller
         // $sessionpo = Session::get('session_po');
 
         if(is_null($req->sjnbr) && is_null($req->suppcode) && is_null($req->pokontrak)){
-            dump('semua null');
             $ponbrtampung = $req->ponbr;
             $supptampung = $req->supp;
             $kontraktampung = $req->kontrak;
@@ -48,31 +47,24 @@ class POReceiptController extends Controller
             // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
             // return redirect()->back();
         }else{
-            dump('salah satu ada isi');
             $ponbrtampung = $req->sjnbr;
             $supptampung = $req->suppcode;
             $kontraktampung = $req->pokontrak;
         }
 
-        dump($ponbrtampung,$supptampung,$kontraktampung);
-
         // WSA QAD
         $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung,$kontraktampung);
 
-        dump($po_receipt);
         if($po_receipt === false){
 
-            dd('wsa failed');
             alert()->error('Error', 'WSA Failed');
             return redirect()->route('poreceipt.index');
         }else{
             if($po_receipt[1] == "false"){
-                dd('data po tidak ditemukan');
                 alert()->error('Error', 'Data PO tidak ditemukan');
                 return redirect()->back();
             }else{
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
-                dump($po_receipt[1],'data po ditemukan',$tempPO);
             }
         }
 
@@ -86,7 +78,6 @@ class POReceiptController extends Controller
         // dd('aa');
         $po = Session::get('tablepo');
 
-        dd($po);
         $podetail = Session::get('allporeceipt');
 
         // $receiptdate = Session::get('receiptdate');
