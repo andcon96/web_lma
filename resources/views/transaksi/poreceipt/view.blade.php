@@ -102,7 +102,7 @@
 
   <div class="row">
     <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
-      <a id="back_btn" class="btn btn-danger" style="width: 100%;" href="{{route('searchPO',['ponbr'=>$receiptdetail->first()->po_contract,'supp'=>$receiptdetail->first()->po_cust])}}">Cancel</a>
+      <a id="back_btn" class="btn btn-danger" style="width: 100%;" href="{{route('searchPO',['ponbr'=>$receiptdetail->first()->po_contract,'kontrak'=>$receiptdetail->first()->po_contract,'supp'=>$receiptdetail->first()->po_cust])}}">Cancel</a>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 py-2">
       <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn btn-info" style="width: 100%;">
