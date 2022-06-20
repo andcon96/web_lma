@@ -70,7 +70,6 @@ class POReceiptController extends Controller
                 alert()->error('Error', 'Data PO tidak ditemukan');
                 return redirect()->back();
             }else{
-                ;
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
                 dd('data po ditemukan');
             }
