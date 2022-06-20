@@ -75,19 +75,25 @@
 
         if (val === "") {
             document.getElementById('sjnbr').required = true;
-        } else {
-            document.getElementById('sjnbr').required = false;
-        }
-
-        if (valkon === "") {
             document.getElementById('pokontrak').required = true;
         } else {
+            document.getElementById('sjnbr').required = false;
             document.getElementById('pokontrak').required = false;
         }
 
-        if (valsj === "") {
+        if (valksj === "") {
+            document.getElementById('pokontrak').required = true;
             document.getElementById('suppcode').required = true;
         } else {
+            document.getElementById('pokontrak').required = false;
+            document.getElementById('suppcode').required = false;
+        }
+
+        if (valkon === "") {
+            document.getElementById('sjnbr').required = true;
+            document.getElementById('suppcode').required = true;
+        } else {
+            document.getElementById('sjnbr').required = false;
             document.getElementById('suppcode').required = false;
         }
         
