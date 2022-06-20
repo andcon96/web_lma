@@ -59,6 +59,7 @@ class POReceiptController extends Controller
         // WSA QAD
         $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung,$kontraktampung);
 
+        dump($po_receipt);
         if($po_receipt === false){
 
             dd('wsa failed');
