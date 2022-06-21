@@ -151,7 +151,7 @@ class POReceiptController extends Controller
     }
 
     public function toDetailPO($id,$supp,$cont){
-        
+
     }
 
     public function submitReceipt(Request $req){
@@ -185,9 +185,13 @@ class POReceiptController extends Controller
             return redirect()->route('poreceipt.edit',$req->po_nbr);
         }
 
+        $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+        Session::put('session_po',$poSession);
+
 
         alert()->success('Success', 'PO : '.$req->po_nbr.' dengan PO Contract : '.$req->po_kontrak.' berhasil di receipt')->persistent('Dismiss');
-        return redirect()->route('poreceipt.index');
+        // return redirect()->route('poreceipt.index');
+        return redirect()->route('poreceipt.edit',$req->po_nbr);
 
     }
     
