@@ -98,12 +98,14 @@ class SuratJalanController extends Controller
             
             DB::commit();
             alert()->success('Success', 'Surat jalan Created, SJ Number : ' . $newprefix[0])->persistent('Dismiss');
-            return redirect()->route('suratjalan.index');
+            return redirect()->route('suratjalan.edit',$newprefix[0]);
+            // return redirect()->route('suratjalan.index');
         } catch (Exception $err) {
             DB::rollBack();
             Log::channel('shipment')->info($err);
             alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
-            return redirect()->route('suratjalan.index');
+            return redirect()->route('suratjalan.edit',$newprefix[0]);
+            // return redirect()->route('suratjalan.index');
         }
     }
 
@@ -200,14 +202,26 @@ class SuratJalanController extends Controller
     }
 
     public function edit($id){
-        if(!Session::get('allso')){
-            alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
+        // if(!Session::get('allso')){
+        //     alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
 
+        //     return redirect()->route('suratjalan.index');
+        // }
+
+        $getso = (new WSAServices())->wsagetso('',$id);
+        if ($getso === false) {
+            alert()->error('Error', 'WSA Failed')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
+        } else {
+            if ($getso[1] == 'false') {
+                alert()->error('Error', 'SO Number or Customer Not Found')->persistent('Dismiss');
+                return redirect()->route('suratjalan.index');
+            }
+            $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);
         }
 
-        $so = Session::get('allso')->where('so_nbr','=',$id)->values()->all();
-        $so = collect($so);
+        $so = $tempPO[0];
+        // $so = collect($so);
         
         if($so->count() == 0){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
@@ -307,7 +321,7 @@ class SuratJalanController extends Controller
     }
 
     public function searchchangesj(Request $request){
-        $getso = (new WSAServices())->wsagetso($request->sonbr);
+        $getso = (new WSAServices())->wsagetso('',$request->sonbr);
         if ($getso === false) {
             alert()->error('Error', 'WSA Failed')->persistent('Dismiss');
             return redirect()->route('changeSJBrowse',['id'=>$request->idsj]);
