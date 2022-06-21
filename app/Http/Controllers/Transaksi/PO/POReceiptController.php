@@ -120,6 +120,22 @@ class POReceiptController extends Controller
             return redirect()->route('poreceipt.index');
         }
 
+        $po_receipt = (new WSAServices())->wsagetpo($id,'','');
+
+        if($po_receipt === false){
+
+            alert()->error('Error', 'WSA Failed');
+            return redirect()->route('poreceipt.index');
+        }else{
+            if($po_receipt[1] == "false"){
+                alert()->error('Error', 'Data PO tidak ditemukan');
+                return redirect()->back();
+            }else{
+                $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
+                dd($tempPO[0]);
+            }
+        }
+
         $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id)->values()->all();
         $receiptdetail = collect($receiptdetail);
         
