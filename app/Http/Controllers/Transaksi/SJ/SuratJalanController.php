@@ -214,6 +214,7 @@ class SuratJalanController extends Controller
             return redirect()->route('suratjalan.index');
         } else {
             if ($getso[1] == 'false') {
+                dd($getso[1]);
                 alert()->error('Error', 'SO Number or Customer Not Found')->persistent('Dismiss');
                 return redirect()->route('suratjalan.index');
             }

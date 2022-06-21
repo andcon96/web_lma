@@ -897,7 +897,7 @@ class WSAServices
         $dataloop   = $xmlResp->xpath('//ns1:tempRow');
         $qdocResult = (string) $xmlResp->xpath('//ns1:outOK')[0];
         
-        dd($qdocResult);
+        // dd($qdocResult);
 
         return [$dataloop, $qdocResult];
     }
