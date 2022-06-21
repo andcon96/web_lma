@@ -98,13 +98,13 @@ class SuratJalanController extends Controller
             
             DB::commit();
             alert()->success('Success', 'Surat jalan Created, SJ Number : ' . $newprefix[0])->persistent('Dismiss');
-            return redirect()->route('suratjalan.edit',$newprefix[0]);
+            return redirect()->route('suratjalan.edit',$request->sonbr);
             // return redirect()->route('suratjalan.index');
         } catch (Exception $err) {
             DB::rollBack();
             Log::channel('shipment')->info($err);
             alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
-            return redirect()->route('suratjalan.edit',$newprefix[0]);
+            return redirect()->route('suratjalan.edit',$request->sonbr);
             // return redirect()->route('suratjalan.index');
         }
     }
@@ -210,7 +210,6 @@ class SuratJalanController extends Controller
 
         $getso = (new WSAServices())->wsagetso('',$id);
 
-        dd($getso);
         if ($getso === false) {
             alert()->error('Error', 'WSA Failed')->persistent('Dismiss');
             return redirect()->route('suratjalan.index');
