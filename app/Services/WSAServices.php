@@ -845,7 +845,7 @@ class WSAServices
             </Body>
         </Envelope>';
 
-        dd($qdocRequest);
+        // dd($qdocRequest);
 
         $curlOptions = array(
             CURLOPT_URL => $qxUrl,
@@ -888,13 +888,15 @@ class WSAServices
             return false;
         }
 
+        dd($qdocResponse);
+
         $xmlResp = simplexml_load_string($qdocResponse);
 
         $xmlResp->registerXPathNamespace('ns1', $wsa->wsas_path);
 
         $dataloop   = $xmlResp->xpath('//ns1:tempRow');
         $qdocResult = (string) $xmlResp->xpath('//ns1:outOK')[0];
-
+        
         return [$dataloop, $qdocResult];
     }
 
