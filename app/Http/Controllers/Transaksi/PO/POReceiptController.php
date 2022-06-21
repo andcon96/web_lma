@@ -150,6 +150,10 @@ class POReceiptController extends Controller
         return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
     }
 
+    public function toDetailPO($id,$supp,$cont){
+        
+    }
+
     public function submitReceipt(Request $req){
         $newrequest = $req->all();
 
