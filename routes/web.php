@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('poreceipt', POReceiptController::class);
         Route::get('searchpo', [POReceiptController::class, 'searchPO'])->name('searchPO');
         Route::post('submitreceipt', [POReceiptController::class, 'submitReceipt'])->name('submitReceipt');
+        Route::get('poreceipt/todetailpo/{id}/{supp}/{cont}',[POReceiptController::class, 'toDetailPO'])->name('toDetailPO');
     });
 
     Route::group(['middleware'=>'can:po_approval'],function (){
