@@ -25,7 +25,7 @@
           <input type="hidden" name="popartdesc[]" value="{{$show->pod_partdesc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
         </td>
         <td>
-          {{($sessionpo!=null) ? number_format($sessionpo[$index]->pod_qty_terima,2) : number_format($show->pod_qty_ord,2)}}
+          {{($sessionpo!=null) ? number_format($sessionpo[$index]->pod_qty_ord,2) : number_format($show->pod_qty_ord,2)}}
           <input type="hidden" name="poqtyord[]" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_ord : $show->pod_qty_ord}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
         </td>
         <td>
