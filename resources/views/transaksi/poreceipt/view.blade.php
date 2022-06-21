@@ -39,7 +39,7 @@
   @csrf
 
   @include('transaksi.poreceipt.table-view')
-  </div>
+
   <div class="row py-2">
     <label for="remarkreceipt" class="col-form-label col-md-3" style="margin-left:25px">{{ __('Remark') }}</label>
     <div class="col-md-3">
