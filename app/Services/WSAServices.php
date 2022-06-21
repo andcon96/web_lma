@@ -888,7 +888,7 @@ class WSAServices
             return false;
         }
 
-        dd($qdocResponse);
+        // dd($qdocResponse);
 
         $xmlResp = simplexml_load_string($qdocResponse);
 
@@ -897,6 +897,8 @@ class WSAServices
         $dataloop   = $xmlResp->xpath('//ns1:tempRow');
         $qdocResult = (string) $xmlResp->xpath('//ns1:outOK')[0];
         
+        dd($qdocResult);
+
         return [$dataloop, $qdocResult];
     }
 
