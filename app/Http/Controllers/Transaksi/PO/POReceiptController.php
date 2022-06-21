@@ -203,8 +203,8 @@ class POReceiptController extends Controller
             return redirect()->route('poreceipt.edit',$req->po_nbr);
         }
 
-        $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
-        Session::put('session_po',$poSession);
+        // $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+        // Session::put('session_po',$poSession);
 
 
         alert()->success('Success', 'PO : '.$req->po_nbr.' dengan PO Contract : '.$req->po_kontrak.' berhasil di receipt')->persistent('Dismiss');
