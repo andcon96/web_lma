@@ -132,12 +132,14 @@ class POReceiptController extends Controller
                 return redirect()->back();
             }else{
                 $tempPO = (new CreateTempTable())->createPOTemp($po_receipt[0]);
-                dd($tempPO[0]);
+                // dd($tempPO[0]);
             }
         }
 
-        $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id)->values()->all();
-        $receiptdetail = collect($receiptdetail);
+        $receiptdetail = $tempPO[0];
+
+        // $receiptdetail = Session::get('allporeceipt')->where('po_nbr','=',$id)->values()->all();
+        // $receiptdetail = collect($receiptdetail);
         
         if($receiptdetail->count() == 0){
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');

@@ -25,15 +25,15 @@
           <input type="hidden" name="popartdesc[]" value="{{$show->pod_partdesc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
         </td>
         <td>
-          {{($sessionpo!=null) ? number_format($sessionpo[$index]->pod_qty_ord,2) : number_format($show->pod_qty_ord,2)}}
-          <input type="hidden" name="poqtyord[]" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_ord : $show->pod_qty_ord}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
+          {{number_format($show->pod_qty_ord,2)}}
+          <input type="hidden" name="poqtyord[]" value="{{$show->pod_qty_ord}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
         </td>
         <td>
-          {{($sessionpo!=null) ? number_format($sessionpo[$index]->pod_qty_rcvd,2) : number_format($show->pod_qty_rcvd,2)}}
-          <input type="hidden" name="poqtyrcvd[]" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_rcvd : $show->pod_qty_rcvd}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
+          {{number_format($show->pod_qty_rcvd,2)}}
+          <input type="hidden" name="poqtyrcvd[]" value="{{$show->pod_qty_rcvd}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
         </td>
         <td>
-          {{($sessionpo!=null) ?  number_format($sessionpo[$index]->pod_qty_ord - $sessionpo[$index]->pod_qty_rcvd,2) : number_format($show->pod_qty_ord - $show->pod_qty_rcvd,2)}}
+          {{number_format($show->pod_qty_ord - $show->pod_qty_rcvd,2)}}
         </td>
         <td>
           <input type="text" class="form-control" name="partloc[]" value="{{$show->pod_loc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':'readonly'}}>
