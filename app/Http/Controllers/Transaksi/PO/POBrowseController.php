@@ -18,6 +18,8 @@ class POBrowseController extends Controller
     {
         //
 
+        dd($req->receiptdate);
+
         $datas = POhist::query()->with(['getUser.getRoleType']);
 
         $supps = POhist::groupBy('ph_supp')->select('ph_supp','ph_suppname')->get();
