@@ -53,7 +53,7 @@
             <label for="tanggalsj" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Tanggal SJ') }}</label>
         </div>
         <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
-            <input id="tanggalsj" type="date" class="form-control" name="tanggalsj" value="{{ request()->input('tanggalsj') ? request()->input('tanggalsj') : '' }}">
+            <input id="tanggalsj" type="text" class="form-control" name="tanggalsj" value="{{ request()->input('tanggalsj') ? request()->input('tanggalsj') : '' }}">
         </div>
         <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
             <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
@@ -72,6 +72,10 @@
 <script>
     $("#status,#cust").select2({
         width: '100%'
+    });
+
+    $("#tanggalsj").datepicker({
+        dateFormat: 'yy-mm-dd',
     });
     
     function resetSearch(){
