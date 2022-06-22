@@ -25,16 +25,19 @@ class POBrowseController extends Controller
         $supps = POhist::groupBy('ph_supp')->select('ph_supp','ph_suppname')->get();
 
         if($req->ponbr){
+            dump($req->ponbr);
             $datas->where('ph_ponbr',$req->ponbr);
         }
         if($req->supp){
+            dump($req->supp);
             $datas->where('ph_supp',$req->supp);
         }
         if($req->receiptdate){
-            dd($req->receiptdate);
+            dump($req->receiptdate);
             $datas->where('ph_receiptdate',$req->receiptdate);
         }
         if($req->pocon){
+            dump($req->pocon);
             $datas->where('ph_pokontrak',$req->pocon);
         }
 
