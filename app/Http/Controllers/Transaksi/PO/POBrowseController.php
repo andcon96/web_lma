@@ -41,6 +41,8 @@ class POBrowseController extends Controller
             $datas->where('ph_pokontrak','=',$req->pocon);
         }
 
+        dump($datas->get());
+
 
         $datas = $datas->whereRelation('getUser.getRoleType','usertype', 'office')->orWhereRelation('getUser.getRoleType','usertype', 'notoffice')->orWhereRelation('getUser.getRoleType','usertype','all')->orderBy('id','desc')->paginate(10);
 
