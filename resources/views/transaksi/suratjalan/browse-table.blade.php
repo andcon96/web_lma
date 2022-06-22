@@ -3,13 +3,13 @@
         <thead>
             <tr>
                 <th style="width: 8%;">Surat Jalan</th>
-                <th style="width: 8%;">SO Number</th>
-                <th style="width: 8%;">Tanggal SJ</th>
-                <th style="width: 35%;">Customer</th>
-                <th style="width: 8%;">No. Polisi</th>
+                <th style="width: 12%;">SO Number</th>
+                <th style="width: 12%;">Tanggal SJ</th>
+                <th style="width: 30%;">Customer</th>
+                <th style="width: 12%;">No. Polisi</th>
                 {{-- <th style="width: 20%;">Ship To</th>
                 <th style="width: 20%;">Bill To</th> --}}
-                <th>Status</th>
+                <th style="width: 7%;">Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -20,7 +20,7 @@
                     <td>{{$datas->sj_so_nbr}}</td>
                     <td>{{$datas->created_at->format('d-m-Y')}}</td>
                     <td>{{$datas->sj_so_cust}} -- {{$datas->getDetailCust->cust_name}}</td>
-                    <td>{{$datas->sj_so_police}}</td>
+                    <td>{{$datas->sj_nopol}}</td>
                     {{-- <td>{{$datas->sj_so_ship}} -- {{$datas->getDetailShip->cust_name}}</td>
                     <td>{{$datas->sj_so_bill}} -- {{$datas->getDetailBill->cust_name}}</td> --}}
                     <td>{{$datas->sj_status}}</td>

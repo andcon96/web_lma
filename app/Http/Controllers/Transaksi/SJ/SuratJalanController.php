@@ -255,8 +255,6 @@ class SuratJalanController extends Controller
 
         $data = $data->orderBy('created_at', 'Desc')->paginate(10);
 
-        dump($data);
-
         return view('transaksi.suratjalan.browse', compact('data', 'cust'));
     }
 
