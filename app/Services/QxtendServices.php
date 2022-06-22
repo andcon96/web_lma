@@ -481,10 +481,8 @@ class QxtendServices
     foreach ($poline as $key => $p) {
       $qtyreject = 0;
 
-      $qtyreject = 10.221 - 10.133;
-      // $qtyreject = $qtyterima[$key] - $qtyfg[$key];
+      $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-      dd($qtyreject);
       // dd($index);
       $qdocBody .= ' <lineDetail>
                         <line>' . $p . '</line>
