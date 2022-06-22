@@ -83,6 +83,7 @@
         $('#sjnbr').val('');
         $('#sonbr').val('');
         $('#status').val('');
+        $('#tanggalsj').val('');
     }
 
     $( function () {
