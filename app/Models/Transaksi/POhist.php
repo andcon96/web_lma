@@ -26,7 +26,7 @@ class POhist extends Model
             // $builder->where('user_id', '=', Auth()->user()->id);
             if(auth()->user()->getRole->role != "Super_User"){
                 $builder->where('ph_domain', Session::get('domain'));
-
+                $builder->where('created_by', auth()->user()->id);
 
                 // if(auth()->user()->getRoleType->usertype == "notoffice"){
                 //     $builder->where('created_by', auth()->user()->id);
