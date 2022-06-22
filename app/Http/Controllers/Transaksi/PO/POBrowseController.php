@@ -18,7 +18,7 @@ class POBrowseController extends Controller
     {
         //
 
-        dd($req->receiptdate);
+        
 
         $datas = POhist::query()->with(['getUser.getRoleType']);
 
@@ -31,6 +31,7 @@ class POBrowseController extends Controller
             $datas->where('ph_supp',$req->supp);
         }
         if($req->receiptdate){
+            dd($req->receiptdate);
             $datas->where('ph_receiptdate',$req->receiptdate);
         }
         if($req->pocon){
