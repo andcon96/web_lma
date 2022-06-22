@@ -18,8 +18,6 @@ class POBrowseController extends Controller
     {
         //
 
-        dump(auth()->user()->id);
-
         $datas = POhist::with('getUser.getRoleType');
 
         $supps = POhist::groupBy('ph_supp')->select('ph_supp','ph_suppname')->get();
