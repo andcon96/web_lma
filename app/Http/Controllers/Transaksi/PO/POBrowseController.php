@@ -25,26 +25,26 @@ class POBrowseController extends Controller
         $supps = POhist::groupBy('ph_supp')->select('ph_supp','ph_suppname')->get();
 
         if($req->ponbr){
-            dump($req->ponbr);
+            // dump($req->ponbr);
             $datas->where('ph_ponbr','=',$req->ponbr);
         }
         if($req->supp){
-            dump($req->supp);
+            // dump($req->supp);
             $datas->where('ph_supp','=',$req->supp);
         }
         if($req->receiptdate){
-            dump($req->receiptdate);
+            // dump($req->receiptdate);
             $datas->where('ph_receiptdate','=',$req->receiptdate);
         }
         if($req->pocon){
-            dump($req->pocon);
+            // dump($req->pocon);
             $datas->where('ph_pokontrak','=',$req->pocon);
         }
 
 
-        $datas = $datas/*->whereRelation('getUser.getRoleType','usertype', 'office')->orWhereRelation('getUser.getRoleType','usertype', 'notoffice')->orWhereRelation('getUser.getRoleType','usertype','all')*/->orderBy('id','desc')->paginate(10);
+        $datas = $datas->whereRelation('getUser.getRoleType','usertype', 'office')->orWhereRelation('getUser.getRoleType','usertype', 'notoffice')->orWhereRelation('getUser.getRoleType','usertype','all')->orderBy('id','desc')->paginate(10);
 
-        dump($datas);
+        // dump($datas);
         return view('transaksi.porcpbrowse.index',compact('datas','supps'));
     }
 
