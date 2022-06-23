@@ -49,13 +49,13 @@
     </div>
 </form>
 
-<form action="{{route('exportpo/toexcel')}}" method="GET">
-    <div class="form-group row">
-        <div class="col-lg-3 col-md-4">
-            <button class="btn bt-action ml-2" id='btn_export' style="width: 40px !important"><i class="fa fa-file-excel"></i> Export ke Excel</button>
-        </div>
+<!-- tombol expert excel -->
+<div class="form-group row">
+    <div class="col-lg-3 col-md-4">
+        <button class="btn bt-action ml-2" id='btn_export' style="width: 40px !important"><i class="fa fa-file-excel"></i> Export ke Excel</button>
     </div>
-</form>
+</div>
+
 
 <div id="tabledata">
     @include('transaksi.porcpbrowse.table-index')
@@ -94,5 +94,10 @@
     $(document).on('click', '#btnrefresh', function() {
         resetSearch();
     });
+
+    $(document).on('click','#btn_export',function(){{
+        window.open("exportpo/toexcel");
+    });
+        
 </script>
 @endsection
