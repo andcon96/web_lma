@@ -96,11 +96,6 @@
     $(document).on('click', '#btnrefresh', function() {
         resetSearch();
     });
-
-    // $(document).on('click','#btn_export',function(){
-    //     alert('masok');
-    //     window.open("poreceiptbrw/toexcel");
-    // });
         
 </script>
 @endsection
