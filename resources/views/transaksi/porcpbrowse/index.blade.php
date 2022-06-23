@@ -50,7 +50,7 @@
 </form>
 
 <!-- tombol expert excel -->
-<a href="/poreceiptbrw/toexcel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+<a href="{{ route('exportExcel') }}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
 <!-- <form action="/poreceiptbrw/toexcel" method="get">
     <div class="form-group row">
         <div class="col-lg-3 col-md-4">

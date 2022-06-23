@@ -74,7 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware'=>'can:po_browse'],function (){
         Route::resource('poreceiptbrw', POBrowseController::class);
-        Route::get('/poreceiptbrw/toexcel', [POBrowseController::class, 'toexcel']);
+        Route::get('/poreceiptbrw/toexcel', [POBrowseController::class, 'exportExcel'])->name('exportExcel');
     });
 
     

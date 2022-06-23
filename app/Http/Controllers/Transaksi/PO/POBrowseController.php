@@ -115,8 +115,10 @@ class POBrowseController extends Controller
         //
     }
 
-    public function toexcel(Request $req){
-        dd('masuk ke to excel');
-        // return Excel::download(new POhistExport, 'PO_Hist_'.date("Y-m-d H:i:s").'.xlsx');
+    public function exportExcel()
+    {
+        //
+        dd('masuk');
+        return Excel::download(new POhistExport, 'POhist.xlsx');
     }
 }
