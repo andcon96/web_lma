@@ -89,6 +89,7 @@ class POBrowseController extends Controller
     public function edit($id)
     {
         //
+        dd('masuk');
     }
 
     /**
