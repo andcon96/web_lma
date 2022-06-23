@@ -116,6 +116,6 @@ class POBrowseController extends Controller
 
     public function exportPO(){
         dd('masuk ke exportPO');
-        return Excel::download(new POhistExport, 'PO_Hist_'.date("Y-m-d H:i:s").'.xlsx');
+        // return Excel::download(new POhistExport, 'PO_Hist_'.date("Y-m-d H:i:s").'.xlsx');
     }
 }
