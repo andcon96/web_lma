@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Transaksi\PO;
 
+use App\Exports\POhistExport;
 use App\Http\Controllers\Controller;
 use App\Models\Transaksi\POhist;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session as Session;
 
 class POBrowseController extends Controller
@@ -110,5 +112,9 @@ class POBrowseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function exportPO(){
+        return Excel::download(new POhistExport, 'PO_Hist_'.date("Y-m-d H:i:s").'.xlsx');
     }
 }

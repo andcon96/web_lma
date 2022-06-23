@@ -72,7 +72,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('sendmailapproval', [POApprovalController::class, 'sendMailApproval'])->name('sendMailApproval');
     });
 
-        Route::resource('poreceiptbrw', POBrowseController::class);
+    Route::resource('poreceiptbrw', POBrowseController::class);
+    Route::get('exportpo', [POBrowseController::class, 'exportPO'])->name('exportPO');
 
     Route::group(['middleware'=>'can:sj_create'],function(){
         Route::get('suratjalan/createbrowse', [SuratJalanController::class, 'createBrowse'])->name('createBrowse');

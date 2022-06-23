@@ -49,6 +49,14 @@
     </div>
 </form>
 
+<form action="{{route('exportpo'}}" method="GET">
+    <div class="form-group row">
+        <div class="col-lg-3 col-md-4">
+            <button class="btn bt-action ml-2" id='btn_export' style="width: 40px !important"><i class="fa fa-file-excel"></i> Export ke Excel</button>
+        </div>
+    </div>
+</form>
+
 <div id="tabledata">
     @include('transaksi.porcpbrowse.table-index')
 </div>
