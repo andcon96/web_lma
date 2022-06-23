@@ -31,6 +31,9 @@ class SuratJalanConfirmController extends Controller
         if($request->status){
             $data->where('sj_status',$request->status);
         }
+        if($request->tanggalsj){
+            $data->where('created_at','like', $request->tanggalsj.'%');
+        }
 
         $data->where('sj_domain',Session::get('domain'));
 
