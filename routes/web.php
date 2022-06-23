@@ -70,10 +70,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('poapproval', POApprovalController::class);
         Route::get('searchpoinvc', [POApprovalController::class, 'searchpoinvc'])->name('searchpoinvc');
         Route::post('sendmailapproval', [POApprovalController::class, 'sendMailApproval'])->name('sendMailApproval');
+
+        Route::resource('poreceiptbrw', POBrowseController::class);
+        Route::get('poreceiptbrw/toexcel', [POBrowseController::class, 'exportPO'])->name('exportPO');
     });
 
-    Route::resource('poreceiptbrw', POBrowseController::class);
-    Route::get('poreceiptbrw/toexcel', [POBrowseController::class, 'exportPO'])->name('exportPO');
+    
 
     Route::group(['middleware'=>'can:sj_create'],function(){
         Route::get('suratjalan/createbrowse', [SuratJalanController::class, 'createBrowse'])->name('createBrowse');
