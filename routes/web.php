@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::resource('poreceiptbrw', POBrowseController::class);
-    Route::get('exportpo/toexcel', [POBrowseController::class, 'exportPO'])->name('exportPO');
+    Route::get('poreceiptbrw/toexcel', [POBrowseController::class, 'exportPO'])->name('exportPO');
 
     Route::group(['middleware'=>'can:sj_create'],function(){
         Route::get('suratjalan/createbrowse', [SuratJalanController::class, 'createBrowse'])->name('createBrowse');
