@@ -3,16 +3,18 @@
 namespace App\Exports;
 
 use App\Models\Export\ExportPO;
-use App\Models\PoHist;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class POhistExport implements FromCollection
+class POhistExport implements FromView, ShouldAutoSize
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view():View
     {
-        return ExportPO::all();
+        $po = ExportPO::all();
+        return view('export.pohist', [
+            'po' => $po
+        ]);
     }
+    
 }
