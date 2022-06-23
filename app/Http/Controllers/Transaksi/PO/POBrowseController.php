@@ -115,7 +115,7 @@ class POBrowseController extends Controller
         //
     }
 
-    public function exportExcel()
+    public function exportexcel()
     {
         //
         dd('masuk');
