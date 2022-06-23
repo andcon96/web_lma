@@ -50,11 +50,13 @@
 </form>
 
 <!-- tombol expert excel -->
-<div class="form-group row">
-    <div class="col-lg-3 col-md-4">
-        <input type="button" class="btn btn-primary" id="btn_export" value="Export to Excel"/>
+<form action="{{exportPO)}}" method="GET">
+    <div class="form-group row">
+        <div class="col-lg-3 col-md-4">
+            <button type="submit" class="btn btn-primary" id="btn_export">Export to Excel</button>
+        </div>
     </div>
-</div>
+</form>
 
 
 <div id="tabledata">
@@ -95,10 +97,10 @@
         resetSearch();
     });
 
-    $(document).on('click','#btn_export',function(){
-        alert('masok');
-        window.open("poreceiptbrw/toexcel");
-    });
+    // $(document).on('click','#btn_export',function(){
+    //     alert('masok');
+    //     window.open("poreceiptbrw/toexcel");
+    // });
         
 </script>
 @endsection
