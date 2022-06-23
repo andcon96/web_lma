@@ -96,6 +96,7 @@
     });
 
     $(document).on('click','#btn_export',function(){{
+        alert('masok');
         window.open("exportpo/toexcel");
     });
         
