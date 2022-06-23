@@ -52,7 +52,7 @@
 <!-- tombol expert excel -->
 <div class="form-group row">
     <div class="col-lg-3 col-md-4">
-        <input type="button" class="btn btn-primary" id="btn_excel" value="Export to Excel"/>
+        <input type="button" class="btn btn-primary" id="btn_export" value="Export to Excel"/>
     </div>
 </div>
 
