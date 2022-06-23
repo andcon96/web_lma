@@ -43,9 +43,9 @@
             <td>{{$show->ph_qty_terima}}</td>
             <td>{{$show->ph_qty_fg}}</td>
             <td>{{$show->ph_qty_terima - $show->ph_qty_fg}}</td>
-            <td>{{$show->ph_exkapal</td>
-            <td>{{$show->ph_exgudang</td>
-            <td>{{$show->ph_qtykarung</td>
+            <td>{{$show->ph_exkapal}}</td>
+            <td>{{$show->ph_exgudang}}</td>
+            <td>{{$show->ph_qtykarung}}</td>
             <td>{{$show->getUserName->name}}</td>
             <td>{{$show->created_at}}</td>
         </tr>
