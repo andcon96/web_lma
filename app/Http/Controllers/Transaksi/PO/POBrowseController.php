@@ -117,8 +117,7 @@ class POBrowseController extends Controller
 
     public function exportexcel()
     {
-        //
         dd('masuk');
-        return Excel::download(new POhistExport, 'POhist.xlsx');
+        // return Excel::download(new POhistExport, 'POhist.xlsx');
     }
 }
