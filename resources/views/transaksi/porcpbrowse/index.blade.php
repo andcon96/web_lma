@@ -50,13 +50,14 @@
 </form>
 
 <!-- tombol expert excel -->
-<form action="/poreceiptbrw/toexcel" method="get">
+<a href="/poreceiptbrw/toexcel" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+<!-- <form action="/poreceiptbrw/toexcel" method="get">
     <div class="form-group row">
         <div class="col-lg-3 col-md-4">
             <button type="submit" class="btn btn-primary" id="btn_export">Export to Excel</button>
         </div>
     </div>
-</form>
+</form> -->
 
 
 <div id="tabledata">
