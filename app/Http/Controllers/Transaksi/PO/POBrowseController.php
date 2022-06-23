@@ -114,7 +114,8 @@ class POBrowseController extends Controller
         //
     }
 
-    public function exportPO(){
+    public function exportPO(Request $req){
+        dd($req->all());
         dd('masuk ke exportPO');
         // return Excel::download(new POhistExport, 'PO_Hist_'.date("Y-m-d H:i:s").'.xlsx');
     }

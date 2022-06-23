@@ -72,7 +72,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('sendmailapproval', [POApprovalController::class, 'sendMailApproval'])->name('sendMailApproval');
 
         Route::resource('poreceiptbrw', POBrowseController::class);
-        Route::get('poreceiptbrw/toexcel', [POBrowseController::class, 'exportPO'])->name('exportPOO');
+        Route::POST('poreceiptbrw/toexcel', [POBrowseController::class, 'exportPO']);
     });
 
     
