@@ -89,8 +89,9 @@
             <input id="h_status" type="hidden" class="form-control" name="h_status">
             <input id="h_tanggalsj" type="hidden" class="form-control" name="h_tanggalsj" value="{{ request()->input('tanggalsj') ? request()->input('tanggalsj') : '' }}">
             <input id="h_customer" type="hidden" class="form-control" name="h_customer">
+            <input id="h_nopol" type="hidden" class="form-control" name="h_nopol" value="{{ request()->input('nopol') }}">
 
-            <button type="submit" class="btn btn-success my-3">EXPORT EXCEL</button>
+            <button type="submit" class="btn btn-success my-1">EXPORT EXCEL</button>
 
         </div>
     </div>

@@ -10,13 +10,14 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class SJExport implements FromView, ShouldAutoSize
 {
-    public function __construct($sjnbr,$sonbr,$customer,$status,$tanggalsj)
+    public function __construct($sjnbr,$sonbr,$customer,$status,$tanggalsj,$nopol)
     {
         $this->sjnbr = $sjnbr;
         $this->sonbr = $sonbr;
         $this->customer = $customer;
         $this->status = $status;
         $this->tanggalsj = $tanggalsj;
+        $this->nopol = $nopol;
     }
 
     public function view(): View
@@ -26,6 +27,7 @@ class SJExport implements FromView, ShouldAutoSize
         $customer = $this->customer;
         $status = $this->status;
         $tanggalsj = $this->tanggalsj;
+        $nopol = $this->nopol;
 
 
         $getsj = SuratJalan::with('getDetail','getDetailCust','getDetailShip');
@@ -48,6 +50,10 @@ class SJExport implements FromView, ShouldAutoSize
 
         $getsj->when(isset($tanggalsj), function($q) use ($tanggalsj) {
             $q->where('created_at','like', $tanggalsj.'%');
+        });
+
+        $getsj->when(isset($nopol), function($q) use ($nopol) {
+            $q->where('sj_nopol', $nopol);
         });
 
         $getsj = $getsj->get();

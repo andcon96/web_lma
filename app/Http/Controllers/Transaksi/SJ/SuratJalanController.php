@@ -407,6 +407,7 @@ class SuratJalanController extends Controller
         $h_customer = $request->h_customer;
         $h_status = $request->h_status;
         $h_tanggalsj = $request->h_tanggalsj;
-        return Excel::download(new SJExport($h_sjnbr,$h_sonbr,$h_customer,$h_status,$h_tanggalsj), 'suratjalan_'.date("Y_m_d_H:i:s").'.xlsx');
+        $h_nopol = $request->h_nopol;
+        return Excel::download(new SJExport($h_sjnbr,$h_sonbr,$h_customer,$h_status,$h_tanggalsj,$h_nopol), 'suratjalan_'.date("Y_m_d_H:i:s").'.xlsx');
     }
 }
