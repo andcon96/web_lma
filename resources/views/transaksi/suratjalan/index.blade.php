@@ -30,7 +30,7 @@
             </select>
         </div>
 
-        <div class="col-sm-12 col-xs-12 mt-sm-2 mt-xs-2" id='btn'>
+        <div class="col-sm-12 col-xs-12 mt-2 mt-sm-2 mt-xs-2" id='btn'>
             <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="width: 100%;" />
         </div>
     </div>
