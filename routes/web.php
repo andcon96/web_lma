@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('browsesj/searchchangesj', [SuratJalanController::class, 'searchchangesj'])->name('searchChangeSJ');
         Route::get('browsesj/dispchangesj', [SuratJalanController::class, 'dispchangesj'])->name('dispChangeSJ');
         Route::post('browsesj/updatechangesj', [SuratJalanController::class, 'updatechangesj'])->name('updateChangeSJ');
+        Route::get('browsesj/sjtoexcel', [SuratJalanController::class, 'sjtoexcel'])->name('sjtoexcel');
     });
 
     Route::group(['middleware'=>'can:sj_confirm'],function(){

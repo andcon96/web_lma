@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Transaksi\SJ;
 
+use App\Exports\SJExport;
 use App\Http\Controllers\Controller;
 use App\Models\Master\CustMstr;
 use App\Models\Master\Domain;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SuratJalanController extends Controller
 {
@@ -394,5 +396,9 @@ class SuratJalanController extends Controller
             alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
             return redirect()->route('browseSJ');
         }
+    }
+
+    public function sjtoexcel(){
+        return Excel::download(new SJExport, 'suratjalan_'.date("Y_m_d_H:i:s").'.xlsx');
     }
 }

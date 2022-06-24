@@ -62,6 +62,12 @@
     </div>
 </form>
 
+<div class="form-group row">
+    <div class="col-lg-4 col-md-4">
+        <a href="{{ route('sjtoexcel') }}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+    </div>
+</div>
+
 <div id="tabledata">
     @include('transaksi.suratjalan.browse-table')
 </div>
