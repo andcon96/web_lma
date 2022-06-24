@@ -60,9 +60,9 @@
             <input id="remarks" type="text" class="form-control" name="remarks" value="{{$data->sj_nbr}}" maxlength="24" autocomplete="off">
         </div>
     </div>
-    <div class="form-group row col-md-12">
-        @include('transaksi.sjconfirm.edit-table')
-    </div>
+    
+    @include('transaksi.sjconfirm.edit-table')
+    
     <div class="form-group row col-md-12">
         <label for="potongdp" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Potong DP') }}</label>
         <div class="col-md-2">
