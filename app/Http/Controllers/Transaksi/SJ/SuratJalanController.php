@@ -398,7 +398,8 @@ class SuratJalanController extends Controller
         }
     }
 
-    public function sjtoexcel(){
+    public function sjtoexcel(Request $request){
+        dd($request->all());
         return Excel::download(new SJExport, 'suratjalan_'.date("Y_m_d_H:i:s").'.xlsx');
     }
 }

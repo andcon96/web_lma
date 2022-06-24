@@ -61,13 +61,20 @@
         </div>
     </div>
 </form>
+<form method="get" action="{{ route('sjtoexcel') }}">
+    <div class="form-group row">
+        <div class="col-lg-4 col-md-4">  
+            <input id="h_sjnbr" type="hidden" class="form-control" name="h_sjnbr" value="{{ request()->input('sjnbr') }}">
+            <input id="h_sonbr" type="hidden" class="form-control" name="h_sonbr" value="{{ request()->input('sonbr')}}">
+            <input id="h_status" type="hidden" class="form-control" name="h_status">
+            <input id="h_tanggalsj" type="hidden" class="form-control" name="h_tanggalsj" value="{{ request()->input('tanggalsj') ? request()->input('tanggalsj') : '' }}">
+            <input id="h_customer" type="hidden" class="form-control" name="h_customer">
 
-<div class="form-group row">
-    <div class="col-lg-4 col-md-4">
-        <a href="{{ route('sjtoexcel') }}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+            <button type="submit" class="btn btn-success my-3">EXPORT EXCEL</button>
+
+        </div>
     </div>
-</div>
-
+</form>
 <div id="tabledata">
     @include('transaksi.suratjalan.browse-table')
 </div>
@@ -107,7 +114,8 @@
 
         let customer = queryString.get('cust');
         let status = queryString.get('status');
-
+        document.getElementById('h_customer').value= customer;
+        document.getElementById('h_status').value= status;
         $('#cust').val(customer).trigger('change');
         $('#status').val(status).trigger('change');
     });
