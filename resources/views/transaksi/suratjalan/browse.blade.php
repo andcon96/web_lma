@@ -61,8 +61,12 @@
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
             <input id="nopol" type="text" class="form-control" name="nopol" value="{{ request()->input('nopol') }}">
         </div>
+        <div class="col-lg-2 col-md-2" id='btn'>
+            <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
+            <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
+        </div>
     </div>
-    <div class="form-group row">
+    <!-- <div class="form-group row">
         <div class="col-lg-2 col-md-3">
             <label for="loc" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Location') }}</label>
         </div>
@@ -75,11 +79,7 @@
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
             <input id="trukkapal" type="text" class="form-control" name="trukkapal" value="{{ request()->input('trukkapal') }}">
         </div>
-        <div class="col-lg-2 col-md-2" id='btn'>
-            <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
-            <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
-        </div>
-    </div>
+    </div> -->
 </form>
 <form method="get" action="{{ route('sjtoexcel') }}">
     <div class="form-group row">

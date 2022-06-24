@@ -255,6 +255,9 @@ class SuratJalanController extends Controller
         if($request->tanggalsj){
             $data->where('created_at','like', $request->tanggalsj.'%');
         }
+        if ($request->nopol){
+            $data->where('sj_nopol', $request->nopol);
+        }
 
         $data->where('sj_domain',Session::get('domain'));
 
