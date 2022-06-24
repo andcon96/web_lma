@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-sm-12 col-xs-12 mt-sm-2 mt-xs-2" id='btn'>
-            <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="margin-left:15px;" />
+            <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="width: 100%;" />
         </div>
     </div>
 </form>
