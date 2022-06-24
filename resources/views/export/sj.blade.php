@@ -36,6 +36,12 @@
             <td>{{$datas->created_at}}</td>
             <td>{{$datas->sj_eff_date}}</td>
             
+            <td>{{$datas->getDetail->sj_part}} -- {{$datas->getDetail->sj_part_desc}}</td>
+            <td>{{$datas->getDetail->sj_loc}}</td>
+            <td>{{$datas->getDetail->sj_lot}}</td>
+            <td>{{$datas->getDetail->sj_qty_ord}}</td>
+            <td>{{$datas->getDetail->sj_qty_input}}</td>
+            <td>{{$datas->getDetail->sj_qty_rcvd}}</td>
         </tr>
         @empty
         <tr>
