@@ -75,6 +75,10 @@
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
             <input id="trukkapal" type="text" class="form-control" name="trukkapal" value="{{ request()->input('trukkapal') }}">
         </div>
+        <div class="col-lg-2 col-md-2" id='btn'>
+            <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
+            <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
+        </div>
     </div>
     <div class="form-group row">
         <div class="col-lg-4 col-md-4" id='btn'>
