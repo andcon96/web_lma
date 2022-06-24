@@ -50,12 +50,19 @@
 </form>
 
 <!-- tombol expert excel -->
+<form method="get" action="{{ route('exportExcel') }}">
+    <div class="form-group row">
+        <div class="col-lg-4 col-md-4">
+            <input type="hidden" name="h_ponbr" value="{{ request()->input('ponbr') }}"/>
+            <input type="hidden" name="h_pocon" value="{{ request()->input('pocon') }}"/>
+            <input type="hidden" name="h_supp"/>
+            <input type="hidden" name="h_receiptdate" value="{{ request()->input('receiptdate') }}"/>
 
-<div class="form-group row">
-    <div class="col-lg-4 col-md-4">
-        <a href="{{ route('exportExcel') }}" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
+            <button type="submit" class="btn btn-success my-3">EXPORT EXCEL</button>
+        </div>
     </div>
-</div>
+</form>
+
 
 
 
@@ -89,6 +96,8 @@
         let queryString = new URLSearchParams(paramString);
 
         let supp = queryString.get('supp');
+
+        document.getElementById('h_supp').value = supp;
 
         $('#supp').val(supp).trigger('change');
     });
