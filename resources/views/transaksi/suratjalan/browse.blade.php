@@ -77,7 +77,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
+        <div class="col-lg-4 col-md-4" id='btn'>
             <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
             <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
         </div>
