@@ -22,26 +22,26 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($sj as $show)
+        @forelse ($sj as $index => $datas)
         <tr>
-            <td>{{$show->id}}</td>
-            <td>{{$show->sj_nbr}}</td>
-            <td>{{$show->sj_so_nbr}}</td>
-            <td>{{$show->sj_so_po}}</td>
-            <td>{{$show->getDetailCust->cust_name}}</td>
-            <td>{{$show->getDetailShip->cust_name}}</td>
-            <td>{{$show->sj_nopol}}</td>
-            <td>{{$show->sj_remark}}</td>
-            <td>{{$show->sj_status}}</td>
-            <td>{{$show->created_at}}</td>
-            <td>{{$show->sj_eff_date}}</td>
-            <td>{{$show->getDetail->sj_line}}</td>
-            <td>{{$show->getDetail->sj_part}} -- {{$show->getDetail->sj_part_desc}}</td>
-            <td>{{$show->getDetail->sj_loc}}</td>
-            <td>{{$show->getDetail->sj_lot}}</td>
-            <td>{{$show->getDetail->sj_qty_ord}}</td>
-            <td>{{$show->getDetail->sj_qty_input}}</td>
-            <td>{{$show->getDetail->sj_qty_rcvd}}</td>
+            <td>{{$datas->id}}</td>
+            <td>{{$datas->sj_nbr}}</td>
+            <td>{{$datas->sj_so_nbr}}</td>
+            <td>{{$datas->sj_so_po}}</td>
+            <td>{{$datas->getDetailCust->cust_name}}</td>
+            <td>{{$datas->getDetailShip->cust_name}}</td>
+            <td>{{$datas->sj_nopol}}</td>
+            <td>{{$datas->sj_remark}}</td>
+            <td>{{$datas->sj_status}}</td>
+            <td>{{$datas->created_at}}</td>
+            <td>{{$datas->sj_eff_date}}</td>
+            <td>{{$datas->getDetail->sj_line}}</td>
+            <td>{{$datas->getDetail->sj_part}} -- {{$datas->getDetail->sj_part_desc}}</td>
+            <td>{{$datas->getDetail->sj_loc}}</td>
+            <td>{{$datas->getDetail->sj_lot}}</td>
+            <td>{{$datas->getDetail->sj_qty_ord}}</td>
+            <td>{{$datas->getDetail->sj_qty_input}}</td>
+            <td>{{$datas->getDetail->sj_qty_rcvd}}</td>
         </tr>
         @empty
         <tr>
