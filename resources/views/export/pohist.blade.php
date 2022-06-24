@@ -46,7 +46,7 @@
             <td>{{$show->ph_exkapal}}</td>
             <td>{{$show->ph_exgudang}}</td>
             <td>{{$show->ph_qtykarung}}</td>
-            <td>{{$show->getUserName->name}}</td>
+            <td>{{$show->getUser->name}}</td>
             <td>{{$show->created_at}}</td>
         </tr>
         @empty
