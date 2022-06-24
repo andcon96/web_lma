@@ -11,17 +11,13 @@
 @section('content')
 
 <form action="{{route('searchSO')}}" method="GET">
-    <div class="row">
-        <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
-            <label for="sonbr" class="col-form-label text-md-right">{{ __('SO No.') }}</label>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-12 col-xs-12">
+    <div class="form-group row">
+        <label for="sonbr" class="col-form-label text-md-right">{{ __('SO No.') }}</label>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <input type="text" id="sonbr" name="sonbr" class="form-control" value="" required /> 
         </div>
-        <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
-            <label for="sjnbr" class="col-form-label text-md-right ml-1 ml-sm-0 ml-xs-0">{{ __('Customer') }}</label>
-        </div>
-        <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
+        <label for="sjnbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Customer') }}</label>
+        <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
             <select id="sjnbr" class="form-control" name="sjnbr" required>
                     <option value="">Select Data</option>
                 @foreach ( $custdat as $show )
@@ -29,10 +25,9 @@
                 @endforeach
             </select>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id='btn'>
-            <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="width: 100%;" />
+
+        <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
+            <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="margin-left:15px;" />
         </div>
     </div>
 </form>
