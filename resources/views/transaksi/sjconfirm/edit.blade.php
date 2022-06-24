@@ -60,7 +60,7 @@
             <input id="remarks" type="text" class="form-control" name="remarks" value="{{$data->sj_nbr}}" maxlength="24" autocomplete="off">
         </div>
     </div>
-    <div class="form-group row py-4">
+    <div class="form-group row col-md-12 py-4">
         @include('transaksi.sjconfirm.edit-table')
     </div>
     <div class="form-group row col-md-12">
