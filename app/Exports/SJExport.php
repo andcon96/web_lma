@@ -11,8 +11,10 @@ class SJExport implements FromView
 {
     public function view(): View
     {
+        $getsj = SuratJalan::with('getDetail','getDetailCust','getDetailShip')->get();
+
         return view('export.sj', [
-            'sj' => SuratJalan::all()
+            'sj' => $getsj,
         ]);
     }
     /**
