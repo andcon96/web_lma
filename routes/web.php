@@ -100,6 +100,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware'=>'can:sj_confirm'],function(){
+        Route::get('sjconfirm/sjtoexcel', [SuratJalanConfirmController::class, 'sjtoexcel'])->name('sjtoexcel');
         Route::resource('sjconfirm', SuratJalanConfirmController::class);
     });
 

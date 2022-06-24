@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Transaksi\SJ;
 
+use App\Exports\SJExport;
 use App\Http\Controllers\Controller;
 use App\Models\Master\LocMstr;
 use App\Models\Transaksi\SuratJalan;
@@ -10,6 +11,7 @@ use App\Services\CreateTempTable;
 use App\Services\QxtendServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as Session;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\Console\Input\Input;
 
 class SuratJalanConfirmController extends Controller
@@ -89,5 +91,15 @@ class SuratJalanConfirmController extends Controller
         $this->authorize('view', [SuratJalan::class, $data]);
 
         return view('transaksi.sjconfirm.show',compact('data'));
+    }
+
+    public function sjtoexcel(Request $request){
+        $h_sjnbr = $request->h_sjnbr;
+        $h_sonbr = $request->h_sonbr;
+        $h_customer = $request->h_customer;
+        $h_status = $request->h_status;
+        $h_tanggalsj = $request->h_tanggalsj;
+        $h_nopol = $request->h_nopol;
+        return Excel::download(new SJExport($h_sjnbr,$h_sonbr,$h_customer,$h_status,$h_tanggalsj,$h_nopol), 'suratjalan_'.date("Y_m_d_H:i:s").'.xlsx');
     }
 }
