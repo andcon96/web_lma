@@ -29,7 +29,8 @@
                 @endforeach
             </select>
         </div>
-
+    </div>
+    <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" id='btn'>
             <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="width: 100%;" />
         </div>
