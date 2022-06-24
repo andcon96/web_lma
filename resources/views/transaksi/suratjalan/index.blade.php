@@ -26,7 +26,7 @@
             </select>
         </div>
 
-        <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0 mt-sm-2 mt-xs-2" id='btn'>
+        <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0 col-sm-12 col-xs-12 mt-sm-2 mt-xs-2" id='btn'>
             <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="margin-left:15px;" />
         </div>
     </div>
