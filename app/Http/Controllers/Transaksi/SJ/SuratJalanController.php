@@ -399,7 +399,11 @@ class SuratJalanController extends Controller
     }
 
     public function sjtoexcel(Request $request){
-        dd($request->all());
-        return Excel::download(new SJExport, 'suratjalan_'.date("Y_m_d_H:i:s").'.xlsx');
+        $h_sjnbr = $request->h_sjnbr;
+        $h_sonbr = $request->h_sonbr;
+        $h_customer = $request->h_customer;
+        $h_status = $request->h_status;
+        $h_tanggalsj = $request->h_tanggalsj;
+        return Excel::download(new SJExport($h_sjnbr,$h_sonbr,$h_customer,$h_status,$h_tanggalsj), 'suratjalan_'.date("Y_m_d_H:i:s").'.xlsx');
     }
 }
