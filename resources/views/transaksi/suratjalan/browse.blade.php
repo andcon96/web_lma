@@ -80,12 +80,6 @@
             <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
         </div>
     </div>
-    <div class="form-group row">
-        <div class="col-lg-4 col-md-4" id='btn'>
-            <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
-            <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
-        </div>
-    </div>
 </form>
 <form method="get" action="{{ route('sjtoexcel') }}">
     <div class="form-group row">
