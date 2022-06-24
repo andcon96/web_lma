@@ -118,6 +118,7 @@
         $('#sonbr').val('');
         $('#status').val('');
         $('#tanggalsj').val('');
+        $('#nopol').val('');
     }
 
     $( function () {
