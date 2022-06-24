@@ -776,6 +776,7 @@ class QxtendServices
       $sj_mstr->sj_remark = $datas['remarks'];
       $sj_mstr->sj_eff_date = $datas['effdate'];
       $sj_mstr->sj_nopol = $datas['nopol'];
+      $sj_mstr->sj_potongdp = $datas['potongdp'];
       $sj_mstr->save();
 
       foreach($datas['line'] as $key => $data){
