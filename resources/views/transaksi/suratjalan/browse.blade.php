@@ -11,7 +11,7 @@
 
 <form action="{{route('browseSJ')}}" method="GET">
     <div class="form-group row offset-lg-1">
-        <div class="col-lg-2 col-md-4">
+        <div class="col-lg-2 col-md-3">
             <label for="sjnbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('SJ Number') }}</label>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="form-group row offset-lg-1">
-        <div class="col-lg-2 col-md-4">
+        <div class="col-lg-2 col-md-3">
             <label for="cust" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Customer') }}</label>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
@@ -49,12 +49,35 @@
         </div>
     </div>
     <div class="form-group row offset-lg-1">
-        <div class="col-lg-2 col-md-4">
+        <div class="col-lg-2 col-md-3">
             <label for="tanggalsj" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Tanggal SJ') }}</label>
         </div>
         <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
             <input id="tanggalsj" type="text" class="form-control" name="tanggalsj" autocomplete="off" value="{{ request()->input('tanggalsj') ? request()->input('tanggalsj') : '' }}">
         </div>
+        <div class="col-lg-2 col-md-4">
+            <label for="nopol" class="col-form-label text-md-right" style="margin-left:25px">{{ __('No. Polisi') }}</label>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
+            <input id="nopol" type="text" class="form-control" name="nopol" value="{{ request()->input('nopol') }}">
+        </div>
+    </div>
+    <div class="form-group row offset-lg-1">
+        <div class="col-lg-2 col-md-3">
+            <label for="loc" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Location') }}</label>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
+            <input id="loc" type="text" class="form-control" name="loc" value="{{ request()->input('loc') }}">
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <label for="trukkapal" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Truk / Kapal') }}</label>
+        </div>
+        <div class="col-xl-2 col-lg-2 col-md-8 col-sm-12 col-xs-12">
+            <input id="trukkapal" type="text" class="form-control" name="trukkapal" value="{{ request()->input('trukkapal') }}">
+        </div>
+    </div>
+    <div class="form-group row offset-lg-1">
+        <div class="off"
         <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
             <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
             <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
