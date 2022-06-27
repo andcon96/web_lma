@@ -33,7 +33,7 @@ class StockItemController extends Controller
 
     public function store(){
         $domains = Domain::get();
-
+        dd($domains);
         foreach($domains as $datadomain){
             $stockitem = (new WSAServices())->wsastockitem($datadomain->domain_code);
 
@@ -46,7 +46,7 @@ class StockItemController extends Controller
                     alert()->error('Error', 'Stock Item Loc. FG tidak ditemukan');
                     return redirect()->back();
                 }else{
-                    dump($stockitem[0]);
+                    
                     foreach($stockitem[0] as $datas){
 
                         $stocks =  StockItm::firstOrNew(['itemdom'=>$datas->t_dom,
