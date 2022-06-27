@@ -12,6 +12,9 @@ class StockItm extends Model
     public $table = 'stockitm';
 
     protected $fillable = [
-        'id'
+        'id',
+        'itemdom',
+        'item_nbr',
+        'item_loc',
     ];
 }

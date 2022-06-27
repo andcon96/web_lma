@@ -47,17 +47,12 @@ class StockItemController extends Controller
                     return redirect()->back();
                 }else{
                     
-                    foreach($stockitem[0] as $datas){
+                    foreach($stockitem[0] as $datas){   
 
                         $stocks =  StockItm::firstOrNew(['itemdom'=>$datas->t_dom,
                                                         'item_nbr'=>$datas->t_part,
-                                                        'item_loc'=>$datas->t_loc,
-                                                        'item_um'=>$datas->t_um,
-                                                        'item_qtyoh'=>$datas->t_qtyoh]);
+                                                        'item_loc'=>$datas->t_loc]);
 
-                        $stocks->itemdom = $datas->t_dom;
-                        $stocks->item_loc = $datas->t_loc;
-                        $stocks->item_nbr = $datas->t_part;
                         $stocks->item_desc = $datas->t_desc1.' '.$datas->t_desc2;
                         $stocks->item_um = $datas->t_um;
                         $stocks->item_qtyoh = $datas->t_qtyoh;
