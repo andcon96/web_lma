@@ -11,12 +11,12 @@
 @section('content')
 
 <form action="{{route('searchSO')}}" method="GET">
-    <div class="row">
+    <div class="form-group row">
         <label for="sonbr" class="col-form-label text-md-right">{{ __('SO No.') }}</label>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <input type="text" id="sonbr" name="sonbr" class="form-control" value="" required /> 
         </div>
-        <label for="sjnbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Customer') }}</label>
+        <label for="sjnbr" class="col-form-label text-md-right">{{ __('Customer') }}</label>
         <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
             <select id="sjnbr" class="form-control" name="sjnbr" required>
                     <option value="">Select Data</option>
@@ -26,8 +26,8 @@
             </select>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12" id='btn'>
+    <div class="form-group row">
+        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
             <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" />
         </div>
     </div>
