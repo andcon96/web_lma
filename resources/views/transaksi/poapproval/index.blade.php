@@ -12,7 +12,9 @@
 
 <form id="searchinvc" action="{{route('searchpoinvc')}}" method="GET">
     <div class="form-group row">
-        <label for="ponbr" class="col-form-label text-md-right">{{ __('Invoice Reference') }}</label>
+        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <label for="ponbr" class="col-form-label text-md-right">{{ __('Invoice Reference') }}</label>
+        </div>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <input id="ponbr" type="text" class="form-control" name="ponbr">
         </div>
