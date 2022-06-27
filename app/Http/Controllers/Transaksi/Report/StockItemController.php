@@ -49,8 +49,6 @@ class StockItemController extends Controller
                     
                     foreach($stockitem[0] as $datas){
 
-                        dump($stockitem[0]);
-
                         $stocks =  StockItm::firstOrNew(['itemdom'=>$datas->t_dom,
                                                         'item_nbr'=>$datas->t_part,
                                                         'item_loc'=>$datas->t_loc]);
@@ -60,16 +58,14 @@ class StockItemController extends Controller
                         $stocks->item_qtyoh = $datas->t_qtyoh;
                         $stocks->save();
                     }
-
-                    dd('stop');
-        
-        
-                    alert()->success('Success','Data berhasil diload');
-                    return redirect()->route('stockitm.index');
+                    
                 }
 
             }
         }
+
+        alert()->success('Success','Data berhasil diload');
+        return redirect()->route('stockitm.index');
 
     }
 }
