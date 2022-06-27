@@ -977,7 +977,7 @@ class WSAServices
         return [$dataloop, $qdocResult];
     }
 
-    public function wsagethutang(){
+    public function wsagethutang($dom){
         $wsa = Qxwsa::first();
 
         // Validasi WSA
@@ -990,13 +990,11 @@ class WSAServices
         $dsName         = '';
         $timeout        = 0;
 
-        $domain         = $wsa->wsas_domain;
-
         $qdocRequest =   
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
             <Body>
                 <LMA_hutangcust xmlns="'. $wsa->wsas_path .'">
-                    <dom>'.$domain.'</dom>
+                    <dom>'.$dom.'</dom>
                 </LMA_hutangcust>
             </Body>
         </Envelope>';

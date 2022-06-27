@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi\Report;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\Domain;
 use App\Models\Transaksi\HutangCust;
 use App\Services\WSAServices;
 use Illuminate\Http\Request;
@@ -32,33 +33,41 @@ class HutangCustController extends Controller
     }
 
     public function store(){
-        $hutangcust = (new WSAServices())->wsagethutang();
 
-        if($hutangcust === false){
-            alert()->error('Error', 'WSA Failed');
-            return redirect()->back();
-        }else{
+        $domains = Domain::get();
 
-            if($hutangcust[1] == "false"){
-                alert()->error('Error', 'Data Hutang Customer tidak ditemukan');
+        foreach ($domains as $datadomain) {
+            $hutangcust = (new WSAServices())->wsagethutang($datadomain->domain_code);
+
+            if($hutangcust === false){
+                alert()->error('Error', 'WSA Failed');
                 return redirect()->back();
             }else{
-                HutangCust::truncate();
-                foreach($hutangcust[0] as $datas){
-                    HutangCust::insert([
-                        'hutang_invcnbr'  => $datas->t_invccode,
-                        'hutang_custnbr' => $datas->t_custcode,
-                        'hutang_cust'   => $datas->t_custname,
-                        'hutang_invcdate' => $datas->t_invcdate,
-                        'hutang_amt' => $datas->t_aropen
-                    ]);
-                }
-    
-    
-                alert()->success('Success','Data berhasil diload');
-                return redirect()->route('hutangcust.index');
-            }
 
+                if($hutangcust[1] == "false"){
+                    alert()->error('Error', 'Data Hutang Customer tidak ditemukan');
+                    return redirect()->back();
+                }else{
+                    foreach($hutangcust[0] as $datas){
+                        
+                        $hutangs = HutangCust::firstOrNew(['hutangdom'=>$datas->t_dom,
+                                                            'hutang_custnbr'=>$datas->t_custcode,
+                                                            'hutang_invcnbr'=>$datas->t_invccode]);
+
+                        $hutangs->hutang_cust = $datas->t_custname;
+                        $hutangs->hutang_invcdate = $datas->t_invcdate;
+                        $hutangs->hutang_amt = $datas->t_aropen;
+
+                        $hutangs->save();
+                    }
+        
+                }
+
+            }
         }
+
+        alert()->success('Success','Data berhasil diload');
+        return redirect()->route('hutangcust.index');
+        
     }
 }
