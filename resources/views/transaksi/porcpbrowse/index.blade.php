@@ -97,6 +97,8 @@
 
         let supp = queryString.get('supp');
 
+
+        console.log(supp);
         document.getElementById('h_supp').value = supp;
 
         $('#supp').val(supp).trigger('change');
