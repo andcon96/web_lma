@@ -46,6 +46,7 @@ class StockItemController extends Controller
                     alert()->error('Error', 'Stock Item Loc. FG tidak ditemukan');
                     return redirect()->back();
                 }else{
+                    dump($stockitem[0]);
                     foreach($stockitem[0] as $datas){
 
                         $stocks =  StockItm::firstOrNew(['itemdom'=>$datas->t_dom,

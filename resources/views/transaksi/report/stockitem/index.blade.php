@@ -66,7 +66,7 @@
     <thead>
       <tr>
         <!-- <th style="width: 15%;">Site</th> -->
-        <th style="width: 15%;">Domain</th>
+        <th style="width: 10%;">Domain</th>
         <th style="width: 10%;">Location</th>
         <th style="width: 15%;">Item Number</th>
         <th style="width: 35%;">Description</th>
