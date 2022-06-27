@@ -33,7 +33,7 @@ class StockItemController extends Controller
 
     public function store(){
         $domains = Domain::get();
-        dd($domains);
+        // dd($domains);
         foreach($domains as $datadomain){
             $stockitem = (new WSAServices())->wsastockitem($datadomain->domain_code);
 
