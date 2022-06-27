@@ -11,7 +11,7 @@
 @section('content')
 
 <form action="{{route('searchSO')}}" method="GET">
-    <div class="form-group row">
+    <div class="row">
         <label for="sonbr" class="col-form-label text-md-right">{{ __('SO No.') }}</label>
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <input type="text" id="sonbr" name="sonbr" class="form-control" value="" required /> 
@@ -25,9 +25,10 @@
                 @endforeach
             </select>
         </div>
-
-        <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
-            <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="margin-left:15px;" />
+    </div>
+    <div class="row">
+        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12" id='btn'>
+            <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" />
         </div>
     </div>
 </form>
