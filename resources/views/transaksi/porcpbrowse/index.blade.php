@@ -53,10 +53,10 @@
 <form method="get" action="{{ route('exportExcel') }}">
     <div class="form-group row">
         <div class="col-lg-4 col-md-4">
-            <input type="hidden" name="h_ponbr" value="{{ request()->input('ponbr') }}"/>
-            <input type="hidden" name="h_pocon" value="{{ request()->input('pocon') }}"/>
-            <input type="hidden" name="h_supp" value="" />
-            <input type="hidden" name="h_receiptdate" value="{{ request()->input('receiptdate') }}"/>
+            <input type="hidden" id="h_ponbr" name="h_ponbr" value="{{ request()->input('ponbr') }}"/>
+            <input type="hidden" id="h_pocon" name="h_pocon" value="{{ request()->input('pocon') }}"/>
+            <input type="hidden" id="h_supp" name="h_supp" value="" />
+            <input type="hidden" id="h_receiptdate" name="h_receiptdate" value="{{ request()->input('receiptdate') }}"/>
 
             <button type="submit" class="btn btn-success my-3">EXPORT EXCEL</button>
         </div>
