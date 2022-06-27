@@ -1,6 +1,7 @@
 @forelse ($hutangcust as $show)
   <tr>
     <!-- <td>{{ $show->item_site }}</td> -->
+    <td>{{ $show->hutangdom }}</td>
     <td>{{ $show->hutang_invcnbr }}</td>
     <td>{{ date('d-m-Y',strtotime($show->hutang_invcdate)) }}</td>
     <td>{{ $show->hutang_cust }}</td>

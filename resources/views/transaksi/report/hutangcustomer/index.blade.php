@@ -53,6 +53,7 @@
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
+                <th style="width: 10%;">Domain</th>
                 <th style="width: 15%;">Invoice No.</th>
                 <th style="width: 15%;">Invoice Date</th>
                 <th style="width: 30%;">Customer</th>
