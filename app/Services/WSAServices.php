@@ -902,7 +902,7 @@ class WSAServices
         return [$dataloop, $qdocResult];
     }
 
-    public function wsastockitem(){
+    public function wsastockitem($dom){
         $wsa = Qxwsa::first();
 
         // Validasi WSA
@@ -915,13 +915,13 @@ class WSAServices
         $dsName         = '';
         $timeout        = 0;
 
-        $domain         = $wsa->wsas_domain;
+        // $domain         = $wsa->wsas_domain;
 
         $qdocRequest =   
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
             <Body>
                 <LMA_stockitem xmlns="'. $wsa->wsas_path .'">
-                    <inpdomain>'.$domain.'</inpdomain>
+                    <inpdomain>'.$dom.'</inpdomain>
                 </LMA_stockitem>
             </Body>
         </Envelope>';

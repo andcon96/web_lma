@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi\Report;
 
 use App\Http\Controllers\Controller;
+use App\Models\Master\Domain;
 use App\Models\Transaksi\StockItm;
 use App\Services\CreateTempTable;
 use App\Services\WSAServices;
@@ -31,35 +32,43 @@ class StockItemController extends Controller
     }
 
     public function store(){
-        $stockitem = (new WSAServices())->wsastockitem();
+        $domains = Domain::get();
 
-        if($stockitem === false){
-            alert()->error('Error', 'WSA Failed');
-            return redirect()->back();
-        }else{
+        foreach($domains as $datadomain){
+            $stockitem = (new WSAServices())->wsastockitem($datadomain->domain_code);
 
-            if($stockitem[1] == "false"){
-                alert()->error('Error', 'Stock Item Loc. FG tidak ditemukan');
+            if($stockitem === false){
+                alert()->error('Error', 'WSA Failed');
                 return redirect()->back();
             }else{
-                StockItm::truncate();
-                foreach($stockitem[0] as $datas){
-    
-                    DB::table('stockitm')->insert([
-                        'item_nbr'  => $datas->t_part,
-                        'item_desc' => $datas->t_desc1.' '.$datas->t_desc2,
-                        'item_um'   => $datas->t_um,
-                        // 'item_site' => $datas->t_site,
-                        'item_loc' => $datas->t_loc,
-                        'item_qtyoh' => $datas->t_qtyoh
-                    ]);
-                }
-    
-    
-                alert()->success('Success','Data berhasil diload');
-                return redirect()->route('stockitm.index');
-            }
 
+                if($stockitem[1] == "false"){
+                    alert()->error('Error', 'Stock Item Loc. FG tidak ditemukan');
+                    return redirect()->back();
+                }else{
+                    foreach($stockitem[0] as $datas){
+
+                        $stocks =  StockItm::firstOrNew(['itemdom'=>$datas->t_dom,
+                                                        'item_nbr'=>$datas->t_part,
+                                                        'item_loc'=>$datas->t_loc,
+                                                        'item_um'=>$datas->t_um,
+                                                        'item_qtyoh'=>$datas->t_qtyoh,]);
+
+                        $stocks->itemdom = $datas->t_dom;
+                        $stocks->item_loc = $datas->t_loc;
+                        $stocks->item_nbr = $datas->t_part;
+                        $stocks->item_desc = $datas->t_desc1.' '.$datas->t_desc2;
+                        $stocks->item_um = $datas->t_um;
+                        $stocks->item_qtyoh = $datas->t_qtyoh;
+                        $stocks->save();
+                    }
+        
+        
+                    alert()->success('Success','Data berhasil diload');
+                    return redirect()->route('stockitm.index');
+                }
+
+            }
         }
 
     }
