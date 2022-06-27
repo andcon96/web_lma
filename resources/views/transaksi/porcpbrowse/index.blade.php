@@ -12,13 +12,13 @@
 <form action="{{route('poreceiptbrw.index')}}" method="GET">
     <div class="form-group row">
         <div class="col-lg-2 col-md-4">
-            <label for="ponbr" class="col-form-label text-md-right" style="margin-left:25px">{{ __('PO No.') }}</label>
+            <label for="ponbr" class="col-form-label text-md-right">{{ __('PO No.') }}</label>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <input id="ponbr" type="text" class="form-control" name="ponbr" value="{{ request()->input('ponbr') }}">
         </div>
         <div class="col-lg-2 col-md-4">
-            <label for="pocon" class="col-form-label text-md-right" style="margin-left:25px">{{ __('PO Contract') }}</label>
+            <label for="pocon" class="col-form-label text-md-right">{{ __('PO Contract') }}</label>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <input id="pocon" type="text" class="form-control" name="pocon" value="{{ request()->input('pocon') }}">
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group row">
         <div class="col-lg-2 col-md-4">
-            <label for="supp" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Supplier') }}</label>
+            <label for="supp" class="col-form-label text-md-right">{{ __('Supplier') }}</label>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <select name="supp" id="supp" class="form-control">
@@ -37,12 +37,12 @@
             </select>
         </div>
         <div class="col-lg-2 col-md-4">
-            <label for="receiptdate" class="col-form-label text-md-right" style="margin-left:25px">{{ __('Receipt Date') }}</label>
+            <label for="receiptdate" class="col-form-label text-md-right">{{ __('Receipt Date') }}</label>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <input id="receiptdate" type="text" class="form-control" name="receiptdate" autocomplete="off" value="{{request()->input('receiptdate') ? request()->input('receiptdate') : '' }}">
         </div>
-        <div class="offset-md-3 offset-lg-0 offset-xl-0 offset-sm-0 offset-xs-0" id='btn'>
+        <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12">
             <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
             <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
         </div>
