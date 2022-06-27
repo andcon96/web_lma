@@ -12,12 +12,16 @@
 
 <form action="{{route('searchSO')}}" method="GET">
     <div class="form-group row">
-        <label for="sonbr" class="col-form-label text-md-right">{{ __('SO No.') }}</label>
-        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <label for="sonbr" class="col-form-label text-md-right">SO No.</label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <input type="text" id="sonbr" name="sonbr" class="form-control" value="" required /> 
         </div>
-        <label for="sjnbr" class="col-form-label text-md-right">{{ __('Customer') }}</label>
-        <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <label for="sjnbr" class="col-form-label text-md-right">{{ __('Customer') }}</label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <select id="sjnbr" class="form-control" name="sjnbr" required>
                     <option value="">Select Data</option>
                 @foreach ( $custdat as $show )
