@@ -1,6 +1,7 @@
 @forelse ($stock as $show)
   <tr>
     <!-- <td>{{ $show->item_site }}</td> -->
+    <td>{{ $show->itemdom }}</td>
     <td>{{ $show->item_loc }}</td>
     <td>{{ $show->item_nbr }}</td>
     <td>{{ $show->item_desc }}</td>
