@@ -53,7 +53,7 @@ class StockItemController extends Controller
                                                         'item_nbr'=>$datas->t_part,
                                                         'item_loc'=>$datas->t_loc,
                                                         'item_um'=>$datas->t_um,
-                                                        'item_qtyoh'=>$datas->t_qtyoh,]);
+                                                        'item_qtyoh'=>$datas->t_qtyoh]);
 
                         $stocks->itemdom = $datas->t_dom;
                         $stocks->item_loc = $datas->t_loc;
