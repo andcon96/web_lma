@@ -24,7 +24,7 @@
                 value="{{ Carbon\Carbon::parse(now())->format('d-m-Y')  }}" readonly>
         </div> -->
 
-        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 mt-xl-0 mt-lg-0 mt-2 ">
+        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 mt-xl-0 mt-lg-0 mt-3">
             <input type="submit" class="btn bt-ref" id="btnsearch" value="Search" style="width: 100%;" />
             <button type="button" class="btn btn-info" id="s_btnloading" style="display:none;width: 100%;">
                 <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
