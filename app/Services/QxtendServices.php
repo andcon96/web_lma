@@ -624,7 +624,7 @@ class QxtendServices
       }
 
       if ($array_unplanned){
-
+        dd($array_unplanned);
         foreach($array_unplanned as $unplanned){
             $rcptunplanned = new RcptUnplanned();
 
