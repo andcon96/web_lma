@@ -21,9 +21,6 @@
                     <td>{{$show->receiptdate}}</td>
                     <td>{{$show->part}} -- {{$show->partdesc}}</td>
                     <td>
-                        <a href="{{ route('rcptunplanned.show') }}" class="btn btn-primary btn-sm">
-                            <i class="fa fa-eye"></i>
-                        </a>
                     </td>
                 </tr>                
             @empty
