@@ -15,7 +15,9 @@ class CreateRcptUnplannedTable extends Migration
     {
         Schema::create('rcpt_unplanned', function (Blueprint $table) {
             $table->id();
+            $table->string('domain');
             $table->string('ponbr');
+            $table->integer('line');
             $table->string('part');
             $table->string('partdesc')->nullable();
             $table->string('loc')->nullable();

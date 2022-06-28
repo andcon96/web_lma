@@ -8,6 +8,7 @@ use App\Models\Master\Qxwsa;
 use App\Models\Master\UM;
 use App\Models\RFPMaster;
 use App\Models\Transaksi\POhist;
+use App\Models\Transaksi\RcptUnplanned;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use Carbon\Carbon;
@@ -395,6 +396,9 @@ class QxtendServices
 
     $timeout = 0;
 
+    $array_unplanned = array();
+    $i = 0;
+
     $qdocHead =
       '<?xml version="1.0" encoding="UTF-8"?>
       <soapenv:Envelope xmlns="urn:schemas-qad-com:xml-services"
@@ -499,12 +503,26 @@ class QxtendServices
       }
 
       if ($qtyreject > 0) {
+        $array_unplanned [$i]['domain'] = $domain;
+        $array_unplanned [$i]['receiptdate'] = $receiptdate;
+        $array_unplanned [$i]['ponbr'] = $ponbr;
+        $array_unplanned [$i]['poline'] = $p;
+        $array_unplanned [$i]['part'] = $popart[$key];
+        $array_unplanned [$i]['partdesc'] = $popartname[$key];
+        $array_unplanned [$i]['loc'] = $partloc[$key];
+        $array_unplanned [$i]['lot'] = $partlot[$key];
+        $array_unplanned [$i]['qty_unplanned'] = abs($qtyreject);
+
+        $i++;
+
         $qdocBody .= ' <receiptDetail>
                           <location>Reject</location>
                           <lotserialQty>' . $qtyreject . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
       }
+
+      
 
       $qdocBody .= '</lineDetail>';
     }
@@ -599,6 +617,27 @@ class QxtendServices
           $pohist->save();
         }
       }
+
+      if ($array_unplanned){
+
+        foreach($array_unplanned as $unplanned){
+            $rcptunplanned = new RcptUnplanned();
+
+            $rcptunplanned->domain = $unplanned->domain;
+            $rcptunplanned->receiptdate = $unplanned->receiptdate;
+            $rcptunplanned->ponbr = $unplanned->ponbr;
+            $rcptunplanned->line = $unplanned->poline;
+            $rcptunplanned->part = $unplanned->part;
+            $rcptunplanned->partdesc = $unplanned->partdesc;
+            $rcptunplanned->loc = $unplanned->loc;
+            $rcptunplanned->lot = $unplanned->lot;
+            $rcptunplanned->qty_unplanned = $unplanned->qty_unplanned;
+
+            $rcptunplanned->save();
+        }
+
+      }
+
 
       return true;
     } else {
