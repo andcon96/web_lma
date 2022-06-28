@@ -503,6 +503,16 @@ class QxtendServices
       }
 
       if ($qtyreject > 0) {
+
+        $qdocBody .= ' <receiptDetail>
+                          <location>Reject</location>
+                          <lotserialQty>' . $qtyreject . '</lotserialQty>
+                          <serialsYn>true</serialsYn>
+                        </receiptDetail>';
+      }
+
+      if ($qtyreject < 0){
+
         $array_unplanned [$i]['domain'] = $domain;
         $array_unplanned [$i]['receiptdate'] = $receiptdate;
         $array_unplanned [$i]['ponbr'] = $ponbr;
@@ -515,11 +525,6 @@ class QxtendServices
 
         $i++;
 
-        $qdocBody .= ' <receiptDetail>
-                          <location>Reject</location>
-                          <lotserialQty>' . $qtyreject . '</lotserialQty>
-                          <serialsYn>true</serialsYn>
-                        </receiptDetail>';
       }
 
       
