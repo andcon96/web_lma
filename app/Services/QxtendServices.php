@@ -274,14 +274,14 @@ class QxtendServices
               </qcom:ttContext>
             </qcom:dsSessionContext>';
 
-          $qdocBody =
-            '<dsPurchaseOrderReceive>
+    $qdocBody =
+      '<dsPurchaseOrderReceive>
               <purchaseOrderReceive>
               <ordernum>' . $surat_jalan[0]->getPOMaster->pom_nbr . '</ordernum>';
 
-          foreach ($surat_jalan as $sj) {
-            $qdocBody .=
-              '<lineDetail>
+    foreach ($surat_jalan as $sj) {
+      $qdocBody .=
+        '<lineDetail>
                   <line>' . $sj->sj_line . '</line>
                   <lotserialQty>' . $sj->sj_qty_rcvd . '</lotserialQty>
                   <site>' . $site . '</site>
@@ -289,68 +289,68 @@ class QxtendServices
                   <lotserial>' . $sj->sj_lot . '</lotserial>
                   <lotref>' . $sj->sj_ref . '</lotref>
                 </lineDetail>';
-          }
+    }
 
-          $qdocFoot =
-            '</purchaseOrderReceive>
+    $qdocFoot =
+      '</purchaseOrderReceive>
             </dsPurchaseOrderReceive>
           </receivePurchaseOrder>
         </soapenv:Body>
       </soapenv:Envelope>';
 
-          $qdocRequest = $qdocHead . $qdocBody . $qdocFoot;
+    $qdocRequest = $qdocHead . $qdocBody . $qdocFoot;
 
-          $curlOptions = array(
-            CURLOPT_URL => $qxUrl,
-            CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
-            CURLOPT_TIMEOUT => $timeout + 120, // The maximum number of seconds to allow cURL functions to execute. must be greater than CURLOPT_CONNECTTIMEOUT
-            CURLOPT_HTTPHEADER => $this->httpHeader($qdocRequest),
-            CURLOPT_POSTFIELDS => preg_replace("/\s+/", " ", $qdocRequest),
-            CURLOPT_POST => true,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_SSL_VERIFYHOST => false
-          );
+    $curlOptions = array(
+      CURLOPT_URL => $qxUrl,
+      CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
+      CURLOPT_TIMEOUT => $timeout + 120, // The maximum number of seconds to allow cURL functions to execute. must be greater than CURLOPT_CONNECTTIMEOUT
+      CURLOPT_HTTPHEADER => $this->httpHeader($qdocRequest),
+      CURLOPT_POSTFIELDS => preg_replace("/\s+/", " ", $qdocRequest),
+      CURLOPT_POST => true,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_SSL_VERIFYPEER => false,
+      CURLOPT_SSL_VERIFYHOST => false
+    );
 
-          $getInfo = '';
-          $httpCode = 0;
-          $curlErrno = 0;
-          $curlError = '';
+    $getInfo = '';
+    $httpCode = 0;
+    $curlErrno = 0;
+    $curlError = '';
 
 
-          $qdocResponse = '';
+    $qdocResponse = '';
 
-          $curl = curl_init();
-          if ($curl) {
-            curl_setopt_array($curl, $curlOptions);
-            $qdocResponse = curl_exec($curl);           // sending qdocRequest here, the result is qdocResponse.
-            //
-            $curlErrno = curl_errno($curl);
-            $curlError = curl_error($curl);
-            $first = true;
-            foreach (curl_getinfo($curl) as $key => $value) {
-              if (gettype($value) != 'array') {
-                if (!$first) $getInfo .= ", ";
-                $getInfo = $getInfo . $key . '=>' . $value;
-                $first = false;
-                if ($key == 'http_code') $httpCode = $value;
-              }
-            }
-            curl_close($curl);
-          }
-          
-          if (is_bool($qdocResponse)) {
-            return false;
-          }
-          $xmlResp = simplexml_load_string($qdocResponse);
-          $xmlResp->registerXPathNamespace('ns1', 'urn:schemas-qad-com:xml-services');
-          $qdocResult = (string) $xmlResp->xpath('//ns1:result')[0];
+    $curl = curl_init();
+    if ($curl) {
+      curl_setopt_array($curl, $curlOptions);
+      $qdocResponse = curl_exec($curl);           // sending qdocRequest here, the result is qdocResponse.
+      //
+      $curlErrno = curl_errno($curl);
+      $curlError = curl_error($curl);
+      $first = true;
+      foreach (curl_getinfo($curl) as $key => $value) {
+        if (gettype($value) != 'array') {
+          if (!$first) $getInfo .= ", ";
+          $getInfo = $getInfo . $key . '=>' . $value;
+          $first = false;
+          if ($key == 'http_code') $httpCode = $value;
+        }
+      }
+      curl_close($curl);
+    }
 
-          if ($qdocResult == "success" or $qdocResult == "warning") {
-            return true;
-          } else {
-            return false;
-          }
+    if (is_bool($qdocResponse)) {
+      return false;
+    }
+    $xmlResp = simplexml_load_string($qdocResponse);
+    $xmlResp->registerXPathNamespace('ns1', 'urn:schemas-qad-com:xml-services');
+    $qdocResult = (string) $xmlResp->xpath('//ns1:result')[0];
+
+    if ($qdocResult == "success" or $qdocResult == "warning") {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 
@@ -402,8 +402,8 @@ class QxtendServices
         xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
         <soapenv:Header>
           <wsa:Action/>
-          <wsa:To>urn:services-qad-com:'.$qxRcv.'</wsa:To>
-          <wsa:MessageID>urn:services-qad-com::'.$qxRcv.'</wsa:MessageID>
+          <wsa:To>urn:services-qad-com:' . $qxRcv . '</wsa:To>
+          <wsa:MessageID>urn:services-qad-com::' . $qxRcv . '</wsa:MessageID>
           <wsa:ReferenceParameters>
             <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
           </wsa:ReferenceParameters>
@@ -417,7 +417,7 @@ class QxtendServices
               <qcom:ttContext>
                 <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
                 <qcom:propertyName>domain</qcom:propertyName>
-                <qcom:propertyValue>'.$domain.'</qcom:propertyValue>
+                <qcom:propertyValue>' . $domain . '</qcom:propertyValue>
               </qcom:ttContext>
               <qcom:ttContext>
                 <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
@@ -471,12 +471,12 @@ class QxtendServices
       '<dsPurchaseOrderReceive>
                   <purchaseOrderReceive>
                     <ordernum>' . $ponbr . '</ordernum>
-                    <receiptDate>'.$receiptdate.'</receiptDate>
+                    <receiptDate>' . $receiptdate . '</receiptDate>
                     <cmmtYn>true</cmmtYn>
                     <yn>true</yn>
                     <yn1>true</yn1>
                     <purchaseOrderReceiveTransComment>
-                      <cmtCmmt>'.$nopol.'</cmtCmmt>
+                      <cmtCmmt>' . $nopol . '</cmtCmmt>
                     </purchaseOrderReceiveTransComment>';
     foreach ($poline as $key => $p) {
       $qtyreject = 0;
@@ -487,26 +487,26 @@ class QxtendServices
       $qdocBody .= ' <lineDetail>
                         <line>' . $p . '</line>
                         <lotserialQty>' . $qtyterima[$key]  . '</lotserialQty>
-                        <location>'.$partloc[$key].'</location>
-                        <lotserial>'.$partlot[$key].'</lotserial>
+                        <location>' . $partloc[$key] . '</location>
+                        <lotserial>' . $partlot[$key] . '</lotserial>
                         <multiEntry>true</multiEntry>';
       if ($qtyfg[$key] > 0) {
-          $qdocBody .= ' <receiptDetail>
-                          <location>'.$partloc[$key].'</location>
-                          <lotserialQty>'.$qtyfg[$key].'</lotserialQty>
+        $qdocBody .= ' <receiptDetail>
+                          <location>' . $partloc[$key] . '</location>
+                          <lotserialQty>' . $qtyfg[$key] . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
       }
 
       if ($qtyreject > 0) {
-          $qdocBody .= ' <receiptDetail>
+        $qdocBody .= ' <receiptDetail>
                           <location>Reject</location>
-                          <lotserialQty>'.$qtyreject.'</lotserialQty>
+                          <lotserialQty>' . $qtyreject . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
       }
 
-        $qdocBody .= '</lineDetail>';
+      $qdocBody .= '</lineDetail>';
     }
     $qdocFoot = ' </purchaseOrderReceive>
                 </dsPurchaseOrderReceive>
@@ -626,8 +626,8 @@ class QxtendServices
               xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
               <soapenv:Header>
                 <wsa:Action/>
-                <wsa:To>urn:services-qad-com:'.$qxRcv.'</wsa:To>
-                <wsa:MessageID>urn:services-qad-com::'.$qxRcv.'</wsa:MessageID>
+                <wsa:To>urn:services-qad-com:' . $qxRcv . '</wsa:To>
+                <wsa:MessageID>urn:services-qad-com::' . $qxRcv . '</wsa:MessageID>
                 <wsa:ReferenceParameters>
                   <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
                 </wsa:ReferenceParameters>
@@ -641,7 +641,7 @@ class QxtendServices
                     <qcom:ttContext>
                       <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
                       <qcom:propertyName>domain</qcom:propertyName>
-                      <qcom:propertyValue>'.$domain.'</qcom:propertyValue>
+                      <qcom:propertyValue>' . $domain . '</qcom:propertyValue>
                     </qcom:ttContext>
                     <qcom:ttContext>
                       <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
@@ -695,22 +695,22 @@ class QxtendServices
 
     $qdocBody = '<dsSalesOrderShipment>
                   <SalesOrderShipment>
-                      <soNbr>'.$datas['sonbr'].'</soNbr>
-                      <effDate>'.$datas['effdate'].'</effDate>
-                      <document>'.$datas['remarks'].';'.$datas['nopol'].'</document>';
-                      foreach($datas['line'] as $key => $data){ 
-                          $qdocBody.= '
+                      <soNbr>' . $datas['sonbr'] . '</soNbr>
+                      <effDate>' . $datas['effdate'] . '</effDate>
+                      <document>' . $datas['remarks'] . ';' . $datas['nopol'] . '</document>';
+    foreach ($datas['line'] as $key => $data) {
+      $qdocBody .= '
                   <lineDetail>
-                          <line>'.$data.'</line>
-                          <lotserialQty>'.$datas['qtysj'][$key].'</lotserialQty>
-                          <location>'.$datas['partloc'][$key].'</location>
-                          <lotserial>'.$datas['lot'][$key].'</lotserial>
+                          <line>' . $data . '</line>
+                          <lotserialQty>' . $datas['qtysj'][$key] . '</lotserialQty>
+                          <location>' . $datas['partloc'][$key] . '</location>
+                          <lotserial>' . $datas['lot'][$key] . '</lotserial>
                           <pickLogic>false</pickLogic>
                           <yn>true</yn>
                           <yn1>true</yn1>        
                           </lineDetail>';
-                      }
-    $qdocfooter =   '<soTrl1Amt>-'.$datas['potongdp'].'</soTrl1Amt>
+    }
+    $qdocfooter =   '<soTrl1Amt>-' . $datas['potongdp'] . '</soTrl1Amt>
                     </SalesOrderShipment> 
                   </dsSalesOrderShipment>
                           </shipSalesOrder>
@@ -770,7 +770,7 @@ class QxtendServices
 
     // dd($qdocResponse, $qdocResult);
     if ($qdocResult == "success" or $qdocResult == "warning") {
-      
+
       $sj_mstr = SuratJalan::findOrFail($datas['idmaster']);
       $sj_mstr->sj_status = 'Closed';
       $sj_mstr->sj_remark = $datas['remarks'];
@@ -779,7 +779,7 @@ class QxtendServices
       $sj_mstr->sj_potongdp = $datas['potongdp'];
       $sj_mstr->save();
 
-      foreach($datas['line'] as $key => $data){
+      foreach ($datas['line'] as $key => $data) {
         $sj_dets = SuratJalanDetail::findOrFail($datas['iddetail'][$key]);
         $sj_dets->sj_qty_rcvd = $datas['qtyinp'][$key];
         $sj_dets->sj_loc = $datas['partloc'][$key];
@@ -790,10 +790,10 @@ class QxtendServices
     } else {
       return false;
     }
-    
   }
 
-  public function qxSOMT($datas){
+  public function qxSOMT($datas)
+  {
     // dd($datas[0]->sod_nbr,$datas);
     $qxwsa = Qxwsa::first();
 
@@ -813,8 +813,8 @@ class QxtendServices
                 xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
                 <soapenv:Header>
                   <wsa:Action/>
-                  <wsa:To>urn:services-qad-com:'.$qxRcv.'</wsa:To>
-                  <wsa:MessageID>urn:services-qad-com::'.$qxRcv.'</wsa:MessageID>
+                  <wsa:To>urn:services-qad-com:' . $qxRcv . '</wsa:To>
+                  <wsa:MessageID>urn:services-qad-com::' . $qxRcv . '</wsa:MessageID>
                   <wsa:ReferenceParameters>
                     <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
                   </wsa:ReferenceParameters>
@@ -828,7 +828,7 @@ class QxtendServices
                       <qcom:ttContext>
                         <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
                         <qcom:propertyName>domain</qcom:propertyName>
-                        <qcom:propertyValue>'.$domain.'</qcom:propertyValue>
+                        <qcom:propertyValue>' . $domain . '</qcom:propertyValue>
                       </qcom:ttContext>
                       <qcom:ttContext>
                         <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
@@ -882,18 +882,176 @@ class QxtendServices
 
     $qdocBody = '<dsSalesOrder>
                   <salesOrder>
-                    <soNbr>'.$datas[0]->sod_nbr.'</soNbr>
+                    <soNbr>' . $datas[0]->sod_nbr . '</soNbr>
                     <yn>true</yn>';
-                      foreach($datas as $key => $data){ 
-                          $qdocBody.= '
+    foreach ($datas as $key => $data) {
+      $qdocBody .= '
                           <salesOrderDetail>
                             <operation>A</operation>
-                            <sodPart>'.$data->sod_part.'</sodPart>
-                            <sodQtyOrd>'.$data->sod_qty_sj.'</sodQtyOrd>
-                            <sodListPr>'.$data->sod_price_ls.'</sodListPr>
+                            <sodPart>' . $data->sod_part . '</sodPart>
+                            <sodQtyOrd>' . $data->sod_qty_sj . '</sodQtyOrd>
+                            <sodListPr>' . $data->sod_price_ls . '</sodListPr>
                             <lYn>true</lYn>
                           </salesOrderDetail>';
-                      }
+    }
+    $qdocfooter =   '</salesOrder>
+                      </dsSalesOrder>
+                    </maintainSalesOrder>
+                  </soapenv:Body>
+                  </soapenv:Envelope>';
+
+    $qdocRequest = $qdocHead . $qdocBody . $qdocfooter;
+
+    $curlOptions = array(
+      CURLOPT_URL => $qxUrl,
+      CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
+      CURLOPT_TIMEOUT => $timeout + 120, // The maximum number of seconds to allow cURL functions to execute. must be greater than CURLOPT_CONNECTTIMEOUT
+      CURLOPT_HTTPHEADER => $this->httpHeader($qdocRequest),
+      CURLOPT_POSTFIELDS => preg_replace("/\s+/", " ", $qdocRequest),
+      CURLOPT_POST => true,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_SSL_VERIFYPEER => false,
+      CURLOPT_SSL_VERIFYHOST => false
+    );
+
+    $getInfo = '';
+    $httpCode = 0;
+    $curlErrno = 0;
+    $curlError = '';
+
+
+    $qdocResponse = '';
+
+    $curl = curl_init();
+    if ($curl) {
+      curl_setopt_array($curl, $curlOptions);
+      $qdocResponse = curl_exec($curl);           // sending qdocRequest here, the result is qdocResponse.
+      //
+      $curlErrno = curl_errno($curl);
+      $curlError = curl_error($curl);
+      $first = true;
+      foreach (curl_getinfo($curl) as $key => $value) {
+        if (gettype($value) != 'array') {
+          if (!$first) $getInfo .= ", ";
+          $getInfo = $getInfo . $key . '=>' . $value;
+          $first = false;
+          if ($key == 'http_code') $httpCode = $value;
+        }
+      }
+      curl_close($curl);
+    }
+
+    if (is_bool($qdocResponse)) {
+      return false;
+    }
+    $xmlResp = simplexml_load_string($qdocResponse);
+    $xmlResp->registerXPathNamespace('ns1', 'urn:schemas-qad-com:xml-services');
+    $qdocResult = (string) $xmlResp->xpath('//ns1:result')[0];
+
+    return $qdocResult;
+  }
+
+  public function qxRcptUnplanned($datas)
+  {
+    $qxwsa = Qxwsa::first();
+
+    // Var Qxtend
+    $qxUrl          = $qxwsa->qx_url; // Edit Here
+
+    $qxRcv          = $qxwsa->qx_rcv;
+
+    $timeout        = 0;
+
+    $domain         = Session::get('domain');
+
+    // XML Qextend ** Edit Here
+    $qdocHead = '<?xml version="1.0" encoding="UTF-8"?>
+              <soapenv:Envelope xmlns="urn:schemas-qad-com:xml-services"
+                xmlns:qcom="urn:schemas-qad-com:xml-services:common"
+                xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+                <soapenv:Header>
+                  <wsa:Action/>
+                  <wsa:To>urn:services-qad-com:' . $qxRcv . '</wsa:To>
+                  <wsa:MessageID>urn:services-qad-com::' . $qxRcv . '</wsa:MessageID>
+                  <wsa:ReferenceParameters>
+                    <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
+                  </wsa:ReferenceParameters>
+                  <wsa:ReplyTo>
+                    <wsa:Address>urn:services-qad-com:</wsa:Address>
+                  </wsa:ReplyTo>
+                </soapenv:Header>
+                <soapenv:Body>
+                  <maintainSalesOrder>
+                    <qcom:dsSessionContext>
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>domain</qcom:propertyName>
+                        <qcom:propertyValue>' . $domain . '</qcom:propertyValue>
+                      </qcom:ttContext>
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>scopeTransaction</qcom:propertyName>
+                        <qcom:propertyValue>true</qcom:propertyValue>
+                      </qcom:ttContext>
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>version</qcom:propertyName>
+                        <qcom:propertyValue>ERP3_2</qcom:propertyValue>
+                      </qcom:ttContext>
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>mnemonicsRaw</qcom:propertyName>
+                        <qcom:propertyValue>false</qcom:propertyValue>
+                      </qcom:ttContext>
+                      <!--
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>username</qcom:propertyName>
+                        <qcom:propertyValue/>
+                      </qcom:ttContext>
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>password</qcom:propertyName>
+                        <qcom:propertyValue/>
+                      </qcom:ttContext>
+                      -->
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>action</qcom:propertyName>
+                        <qcom:propertyValue/>
+                      </qcom:ttContext>
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>entity</qcom:propertyName>
+                        <qcom:propertyValue/>
+                      </qcom:ttContext>
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>email</qcom:propertyName>
+                        <qcom:propertyValue/>
+                      </qcom:ttContext>
+                      <qcom:ttContext>
+                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+                        <qcom:propertyName>emailLevel</qcom:propertyName>
+                        <qcom:propertyValue/>
+                      </qcom:ttContext>
+                    </qcom:dsSessionContext>';
+
+
+    $qdocBody = '<dsSalesOrder>
+                  <salesOrder>
+                    <soNbr>' . $datas[0]->sod_nbr . '</soNbr>
+                    <yn>true</yn>';
+    foreach ($datas as $key => $data) {
+      $qdocBody .= '
+                          <salesOrderDetail>
+                            <operation>A</operation>
+                            <sodPart>' . $data->sod_part . '</sodPart>
+                            <sodQtyOrd>' . $data->sod_qty_sj . '</sodQtyOrd>
+                            <sodListPr>' . $data->sod_price_ls . '</sodListPr>
+                            <lYn>true</lYn>
+                          </salesOrderDetail>';
+    }
     $qdocfooter =   '</salesOrder>
                       </dsSalesOrder>
                     </maintainSalesOrder>
