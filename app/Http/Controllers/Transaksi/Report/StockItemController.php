@@ -48,13 +48,19 @@ class StockItemController extends Controller
                 }else{
                     $array_unplanned = array();
                     $i = 0;
-                    foreach($stockitem[0] as $datas){
 
-                        $array_unplanned[$i]["dom"] = $datas->t_dom;
-                        $array_unplanned[$i]["part"] = $datas->t_part;
-                        $array_unplanned[$i]["qtyoh"] = $datas->t_qtyoh;
+                    $tesdata = StockItm::get();
+                    foreach($tesdata as $xy){
+                        $array_unplanned[$i]["dom"] = $xy->itemdom;
+                        $array_unplanned[$i]["part"] = $xy->item_nbr;
+                        $array_unplanned[$i]["qtyoh"] = $xy->item_qtyoh;
 
                         $i++;
+                    }
+
+                    dd($array_unplanned);
+
+                    foreach($stockitem[0] as $datas){
 
                         $stocks =  StockItm::firstOrNew(['itemdom'=>$datas->t_dom,
                                                         'item_nbr'=>$datas->t_part,
@@ -64,10 +70,7 @@ class StockItemController extends Controller
                         $stocks->item_um = $datas->t_um;
                         $stocks->item_qtyoh = $datas->t_qtyoh;
                         $stocks->save();
-                    }
-
-                    dd($array_unplanned);
-                    
+                    }                    
                 }
 
             }
