@@ -32,7 +32,7 @@
             <select name="supp" id="supp" class="form-control">
                 <option value="">Select Data</option>
                 @foreach ($supp as $suppdata )
-                <option value="{{$supp->supp}}">{{$supp->supp}} - {{$supp->suppname}}</option>
+                <option value="{{$suppdata->supp}}">{{$suppdata->supp}} - {{$suppdata->suppname}}</option>
                 @endforeach
             </select>
         </div>
