@@ -13,13 +13,30 @@ class RcptUnplannedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
 
-        $rcpt = RcptUnplanned::get();
+        $rcpt = RcptUnplanned::query();
 
-        return view('transaksi.receipt_unplanned.index',compact('rcpt'));
+        $supp = RcptUnplanned::groupBy('supp')->select('supp','suppname')->get();
+
+        if ($request->ponbr) {
+            $rcpt->where('ponbr', '=', $request->ponbr);
+        }
+        if ($request->supp) {
+            $rcpt->where('supp', '=', $request->supp);
+        }
+        if ($request->receiptdate) {
+            $rcpt->where('receiptdate', '=', $request->receiptdate);
+        }
+        if ($request->pocon) {
+            $rcpt->where('pokontrak', '=', $request->pocon);
+        }
+
+        $rcpt = $rcpt->orderBy('id', 'desc')->paginate(10);
+
+        return view('transaksi.receipt_unplanned.index',compact('rcpt','supp'));
     }
 
     /**

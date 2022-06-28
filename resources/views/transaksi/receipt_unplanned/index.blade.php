@@ -31,8 +31,8 @@
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
             <select name="supp" id="supp" class="form-control">
                 <option value="">Select Data</option>
-                @foreach ($supps as $supp )
-                <option value="{{$supp->ph_supp}}">{{$supp->ph_supp}} - {{$supp->ph_suppname}}</option>
+                @foreach ($supp as $suppdata )
+                <option value="{{$supp->supp}}">{{$supp->supp}} - {{$supp->suppname}}</option>
                 @endforeach
             </select>
         </div>
