@@ -396,7 +396,7 @@ class QxtendServices
 
     $timeout = 0;
 
-    $array_unplanned = array();
+    $array_unplanned = [];
     $i = 0;
 
     $qdocHead =
@@ -624,7 +624,7 @@ class QxtendServices
       }
 
       if ($array_unplanned){
-        //dd($array_unplanned);
+        dd($array_unplanned);
         foreach($array_unplanned as $unplanned => $x){
             $rcptunplanned = new RcptUnplanned();
             dd($x);
