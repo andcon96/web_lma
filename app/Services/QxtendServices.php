@@ -629,16 +629,16 @@ class QxtendServices
             $rcptunplanned = new RcptUnplanned();
             
             // dd($x->domain);
-            $rcptunplanned->domain = $x[$unplanned]->domain;
-            $rcptunplanned->receiptdate = $x[$unplanned]->receiptdate;
-            $rcptunplanned->ponbr = $x[$unplanned]->ponbr;
-            $rcptunplanned->line = $x[$unplanned]->poline;
-            $rcptunplanned->part = $x[$unplanned]->part;
-            $rcptunplanned->partdesc = $x[$unplanned]->partdesc;
-            $rcptunplanned->loc = $x[$unplanned]->loc;
-            $rcptunplanned->lot = $x[$unplanned]->lot;
-            $rcptunplanned->qty_unplanned = $x[$unplanned]->qty_unplanned;
-
+            $rcptunplanned->domain = $x[$unplanned+1]->domain;
+            $rcptunplanned->receiptdate = $x[$unplanned+1]->receiptdate;
+            $rcptunplanned->ponbr = $x[$unplanned+1]->ponbr;
+            $rcptunplanned->line = $x[$unplanned+1]->poline;
+            $rcptunplanned->part = $x[$unplanned+1]->part;
+            $rcptunplanned->partdesc = $x[$unplanned+1]->partdesc;
+            $rcptunplanned->loc = $x[$unplanned+1]->loc;
+            $rcptunplanned->lot = $x[$unplanned+1]->lot;
+            $rcptunplanned->qty_unplanned = $x[$unplanned+1]->qty_unplanned;
+            dd($rcptunplanned);
             $rcptunplanned->save();
         }
 
