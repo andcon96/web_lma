@@ -628,7 +628,7 @@ class QxtendServices
         foreach($array_unplanned as $unplanned => $x){
           foreach($x as $key => $value){
             $rcptunplanned = new RcptUnplanned();
-            dd($value);
+            dd($x);
             // dd($value->domain);
             $rcptunplanned->domain = $value->domain;
             $rcptunplanned->receiptdate = $value->receiptdate;
