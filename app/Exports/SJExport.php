@@ -7,6 +7,9 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use PhpOffice\PhpSpreadsheet\Style\Color;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Style;
 
 class SJExport implements FromView, ShouldAutoSize
 {
@@ -62,6 +65,20 @@ class SJExport implements FromView, ShouldAutoSize
         return view('export.sj', [
             'sj' => $getsj,
         ]);
+    }
+
+    public function defaultStyles(Style $defaultStyle)
+    {
+        // Configure the default styles
+        return $defaultStyle->getFill()->setFillType(Fill::FILL_SOLID);
+    
+        // Or return the styles array
+        return [
+            'fill' => [
+                'fillType'   => Fill::FILL_SOLID,
+                'startColor' => ['argb' => Color::RED],
+            ],
+        ];
     }
     /**
     * @return \Illuminate\Support\Collection
