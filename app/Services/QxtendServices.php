@@ -522,6 +522,10 @@ class QxtendServices
         $array_unplanned [$i]['loc'] = $partloc[$key];
         $array_unplanned [$i]['lot'] = $partlot[$key];
         $array_unplanned [$i]['qty_unplanned'] = abs($qtyreject);
+        $array_unplanned [$i]['po_contract'] = $pokontrak;
+        $array_unplanned [$i]['nopol'] = $nopol;
+        $array_unplanned [$i]['supp'] = $supp;
+        $array_unplanned [$i]['suppname'] = $suppname;
 
         $i++;
 
@@ -634,12 +638,16 @@ class QxtendServices
             $rcptunplanned->domain = $x["domain"];
             $rcptunplanned->receiptdate = $x["receiptdate"];
             $rcptunplanned->ponbr = $x["ponbr"];
+            $rcptunplanned->supp = $x["supp"];
+            $rcptunplanned->suppname = $x["suppname"];
             $rcptunplanned->line = $x['poline'];
             $rcptunplanned->part = $x["part"];
             $rcptunplanned->partdesc = $x["partdesc"];
             $rcptunplanned->loc = $x["loc"];
             $rcptunplanned->lot = $x["lot"];
             $rcptunplanned->qty_unplanned = $x["qty_unplanned"];
+            $rcptunplanned->pokontrak = $x["po_contract"];
+            $rcptunplanned->nopol = $x["nopol"];
             $rcptunplanned->save();
         }
 

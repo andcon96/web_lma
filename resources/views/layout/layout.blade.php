@@ -143,6 +143,14 @@
                     </a>
                   </li>
                   @endcan
+                  @can('receipt_unplanned')
+                  <li class="nav-item">
+                    <a href="{{route('rcptunplanned.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Receipt Unplanned</p>
+                    </a>
+                  </li>
+                  @endcan
                 </ul>
               </li>
               @endcan

@@ -116,6 +116,16 @@
             </div>
           </div>
 
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Receipt Unplanned') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbRcptUnplanned">
+                <input type="checkbox" id="cbRcptUnplanned" name="cbRcptUnplanned" value="PO04" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
           <!-- <div class="form-group row">
             <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('PO Approval Utility') }}</label>
             <div class="col-md-6">
@@ -284,6 +294,11 @@
               document.getElementById("cbPOBrowse").checked = true;  
             }else{
               document.getElementById("cbPOBrowse").checked = false;
+            }
+            if(totmenu.search("PO04") >= 0){
+              document.getElementById("cbRcptUnplanned").checked = true;
+            }else{
+              document.getElementById("cbRcptUnplanned").checked = false;
             }
 
             //SJ

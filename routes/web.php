@@ -17,6 +17,7 @@ use App\Http\Controllers\Transaksi\PO\POReceiptController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Transaksi\PO\POApprovalController;
 use App\Http\Controllers\Transaksi\PO\POBrowseController;
+use App\Http\Controllers\Transaksi\PO\RcptUnplanned;
 use App\Http\Controllers\Transaksi\Report\HutangCustController;
 use App\Http\Controllers\Transaksi\SJ\SuratJalanConfirmController;
 use App\Http\Controllers\Transaksi\SJ\SuratJalanController;
@@ -73,9 +74,12 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware'=>'can:po_browse'],function (){
-        
         Route::get('/poreceiptbrw/toexcel', [POBrowseController::class, 'exportexcel'])->name('exportExcel');
         Route::resource('poreceiptbrw', POBrowseController::class);
+    });
+
+    Route::group(['middleware'=>'can:receipt_unplanned'],function(){
+        Route::resource('rcptunplanned', RcptUnplanned::class);
     });
 
     
