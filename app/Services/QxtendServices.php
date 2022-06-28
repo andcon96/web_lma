@@ -640,7 +640,6 @@ class QxtendServices
             $rcptunplanned->loc = $x["loc"];
             $rcptunplanned->lot = $x["lot"];
             $rcptunplanned->qty_unplanned = $x["qty_unplanned"];
-            dd($rcptunplanned);
             $rcptunplanned->save();
         }
 
