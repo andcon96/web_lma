@@ -46,19 +46,6 @@ class StockItemController extends Controller
                     alert()->error('Error', 'Stock Item Loc. FG tidak ditemukan');
                     return redirect()->back();
                 }else{
-                    $array_unplanned = array();
-                    $i = 0;
-
-                    $tesdata = StockItm::get();
-                    foreach($tesdata as $xy){
-                        $array_unplanned[$i]["dom"] = $xy->itemdom;
-                        $array_unplanned[$i]["part"] = $xy->item_nbr;
-                        $array_unplanned[$i]["qtyoh"] = $xy->item_qtyoh;
-
-                        $i++;
-                    }
-
-                    dd($array_unplanned);
 
                     foreach($stockitem[0] as $datas){
 
