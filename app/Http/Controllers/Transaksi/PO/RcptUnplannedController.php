@@ -69,6 +69,10 @@ class RcptUnplannedController extends Controller
     public function show($id)
     {
         //
+
+        $detaildata = RcptUnplanned::where('id',$id)->first();
+
+        return view('transaksi.receipt_unplanned.detail', compact('detaildata'));
     }
 
     /**
