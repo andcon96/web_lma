@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  @include('transaksi.receipt_unplanned.table-detail)
+  @include('transaksi.receipt_unplanned.table-detail')
 
   <div class="form-group row md-form">
     <div class="col-md-12" style="text-align: center;">
