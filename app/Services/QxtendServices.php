@@ -1020,99 +1020,94 @@ class QxtendServices
 
     // XML Qextend ** Edit Here
     $qdocHead = '<?xml version="1.0" encoding="UTF-8"?>
-              <soapenv:Envelope xmlns="urn:schemas-qad-com:xml-services"
-                xmlns:qcom="urn:schemas-qad-com:xml-services:common"
-                xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
-                <soapenv:Header>
-                  <wsa:Action/>
-                  <wsa:To>urn:services-qad-com:' . $qxRcv . '</wsa:To>
-                  <wsa:MessageID>urn:services-qad-com::' . $qxRcv . '</wsa:MessageID>
-                  <wsa:ReferenceParameters>
-                    <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
-                  </wsa:ReferenceParameters>
-                  <wsa:ReplyTo>
-                    <wsa:Address>urn:services-qad-com:</wsa:Address>
-                  </wsa:ReplyTo>
-                </soapenv:Header>
-                <soapenv:Body>
-                  <maintainSalesOrder>
-                    <qcom:dsSessionContext>
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>domain</qcom:propertyName>
-                        <qcom:propertyValue>' . $domain . '</qcom:propertyValue>
-                      </qcom:ttContext>
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>scopeTransaction</qcom:propertyName>
-                        <qcom:propertyValue>true</qcom:propertyValue>
-                      </qcom:ttContext>
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>version</qcom:propertyName>
-                        <qcom:propertyValue>ERP3_2</qcom:propertyValue>
-                      </qcom:ttContext>
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>mnemonicsRaw</qcom:propertyName>
-                        <qcom:propertyValue>false</qcom:propertyValue>
-                      </qcom:ttContext>
-                      <!--
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>username</qcom:propertyName>
-                        <qcom:propertyValue/>
-                      </qcom:ttContext>
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>password</qcom:propertyName>
-                        <qcom:propertyValue/>
-                      </qcom:ttContext>
-                      -->
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>action</qcom:propertyName>
-                        <qcom:propertyValue/>
-                      </qcom:ttContext>
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>entity</qcom:propertyName>
-                        <qcom:propertyValue/>
-                      </qcom:ttContext>
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>email</qcom:propertyName>
-                        <qcom:propertyValue/>
-                      </qcom:ttContext>
-                      <qcom:ttContext>
-                        <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-                        <qcom:propertyName>emailLevel</qcom:propertyName>
-                        <qcom:propertyValue/>
-                      </qcom:ttContext>
-                    </qcom:dsSessionContext>';
+    <soapenv:Envelope xmlns="urn:schemas-qad-com:xml-services"
+      xmlns:qcom="urn:schemas-qad-com:xml-services:common"
+      xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+      <soapenv:Header>
+        <wsa:Action/>
+        <wsa:To>urn:services-qad-com:' .$qxRcv. '</wsa:To>
+        <wsa:MessageID>urn:services-qad-com::' .$qxRcv. '</wsa:MessageID>
+        <wsa:ReferenceParameters>
+          <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
+        </wsa:ReferenceParameters>
+        <wsa:ReplyTo>
+          <wsa:Address>urn:services-qad-com:</wsa:Address>
+        </wsa:ReplyTo>
+      </soapenv:Header>
+      <soapenv:Body>
+        <receiveInventory>
+          <qcom:dsSessionContext>
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>' .$domain. '</qcom:propertyName>
+              <qcom:propertyValue/>
+            </qcom:ttContext>
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>scopeTransaction</qcom:propertyName>
+              <qcom:propertyValue>true</qcom:propertyValue>
+            </qcom:ttContext>
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>version</qcom:propertyName>
+              <qcom:propertyValue>eB_2</qcom:propertyValue>
+            </qcom:ttContext>
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>mnemonicsRaw</qcom:propertyName>
+              <qcom:propertyValue>false</qcom:propertyValue>
+            </qcom:ttContext>
+            <!--
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>username</qcom:propertyName>
+              <qcom:propertyValue/>
+            </qcom:ttContext>
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>password</qcom:propertyName>
+              <qcom:propertyValue/>
+            </qcom:ttContext>
+            -->
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>action</qcom:propertyName>
+              <qcom:propertyValue/>
+            </qcom:ttContext>
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>entity</qcom:propertyName>
+              <qcom:propertyValue/>
+            </qcom:ttContext>
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>email</qcom:propertyName>
+              <qcom:propertyValue/>
+            </qcom:ttContext>
+            <qcom:ttContext>
+              <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
+              <qcom:propertyName>emailLevel</qcom:propertyName>
+              <qcom:propertyValue/>
+            </qcom:ttContext>
+          </qcom:dsSessionContext>';
 
 
-    $qdocBody = '<dsSalesOrder>
-                  <salesOrder>
-                    <soNbr>' . $datas[0]->sod_nbr . '</soNbr>
-                    <yn>true</yn>';
-    foreach ($datas as $key => $data) {
-      $qdocBody .= '
-                          <salesOrderDetail>
-                            <operation>A</operation>
-                            <sodPart>' . $data->sod_part . '</sodPart>
-                            <sodQtyOrd>' . $data->sod_qty_sj . '</sodQtyOrd>
-                            <sodListPr>' . $data->sod_price_ls . '</sodListPr>
-                            <lYn>true</lYn>
-                          </salesOrderDetail>';
-    }
-    $qdocfooter =   '</salesOrder>
-                      </dsSalesOrder>
-                    </maintainSalesOrder>
-                  </soapenv:Body>
-                  </soapenv:Envelope>';
+    $qdocBody = ' <dsInventoryReceipt>
+                    <inventoryReceipt>
+                      <ptPart>' .$datas['part']. '</ptPart>
+                      <lotserialQty>' .$datas['qtyunplanned']. '</lotserialQty>
+                      <location>' .$datas['loc']. '</location>
+                      <lotserial>' .$datas['lot']. '</lotserial>
+                      <effDate>' .$datas['receiptdate']. '</effDate>';
+    $qdocfooter =   '</inventoryReceipt>
+                    </dsInventoryReceipt>
+                  </receiveInventory>
+                </soapenv:Body>
+              </soapenv:Envelope>';
 
     $qdocRequest = $qdocHead . $qdocBody . $qdocfooter;
+
+    dd($qdocRequest);
 
     $curlOptions = array(
       CURLOPT_URL => $qxUrl,

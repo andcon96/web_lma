@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Transaksi\PO;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaksi\RcptUnplanned;
+use App\Services\QxtendServices;
 use Illuminate\Http\Request;
 
 class RcptUnplannedController extends Controller
@@ -58,6 +59,23 @@ class RcptUnplannedController extends Controller
     public function store(Request $request)
     {
         //
+
+        $allreq = $request->all();
+
+        $unplanned_submit = (new QxtendServices())->qxRcptUnplanned($allreq);
+        
+        if($unplanned_submit === 'qxtend_err'){
+            alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
+            return redirect()->route('rcptunplanned.index');
+        }
+        
+        if($unplanned_submit === false){
+            alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
+            return redirect()->route('rcptunplanned.index');
+        }
+
+        alert()->success('Success', 'PO : '.$request->po_nbr.' dengan PO Contract : '.$request->po_kontrak.' berhasil receipt unplanned')->persistent('Dismiss');
+        return redirect()->route('rcptunplanned.index');
     }
 
     /**
