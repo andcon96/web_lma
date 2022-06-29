@@ -20,7 +20,7 @@
           <input type="hidden" name="partdesc" value="{{$detaildata->partdesc}}" />
         </td>
         <td>
-          {{$detaildata->loc)}}
+          {{$detaildata->loc}}
           <input type="hidden" name="loc" value="{{$detaildata->loc}}" />
         </td>
         <td>
