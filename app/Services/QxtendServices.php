@@ -1007,7 +1007,6 @@ class QxtendServices
 
   public function qxRcptUnplanned($datas)
   {
-    dd($datas);
 
     $qxwsa = Qxwsa::first();
 

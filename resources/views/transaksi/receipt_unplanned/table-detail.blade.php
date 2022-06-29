@@ -29,7 +29,7 @@
         </td>
         <td>
             {{$detaildata->qty_unplanned}}
-            <input type="hidden" class="form-control" name="qtyunplanned" value="{{ $detaildata->qtyunplanned }}" />
+            <input type="hidden" class="form-control" name="qtyunplanned" value="{{ $detaildata->qty_unplanned }}" />
         </td>
       </tr>
     </tbody>
