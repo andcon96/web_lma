@@ -1156,6 +1156,20 @@ class QxtendServices
     $xmlResp->registerXPathNamespace('ns1', 'urn:schemas-qad-com:xml-services');
     $qdocResult = (string) $xmlResp->xpath('//ns1:result')[0];
 
-    return $qdocResult;
+
+
+    if ($qdocResult == "success" or $qdocResult == "warning") {
+
+      $rcpt_unplanned = RcptUnplanned::findOrFail($datas['idmaster']);
+      $rcpt_unplanned->status = 'Closed';
+      $rcpt_unplanned->save();
+
+      return true;
+
+    } else {
+
+      return false;
+
+    }
   }
 }

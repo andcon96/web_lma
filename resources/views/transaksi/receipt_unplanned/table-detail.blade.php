@@ -11,6 +11,7 @@
     </thead>
     <tbody>
       <tr>
+          <input type="hidden" name="idmaster" value="{{$detaildata->id}}">
         <td>
           {{$detaildata->line}}
           <input type="hidden" name="line" value="{{$detaildata->line}}"/>

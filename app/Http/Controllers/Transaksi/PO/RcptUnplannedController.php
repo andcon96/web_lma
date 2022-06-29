@@ -18,7 +18,7 @@ class RcptUnplannedController extends Controller
     {
         //
 
-        $rcpt = RcptUnplanned::query();
+        $rcpt = RcptUnplanned::where('status','=','Open');
 
         $supp = RcptUnplanned::groupBy('supp')->select('supp','suppname')->get();
 
