@@ -15,7 +15,7 @@ class AddStatusToRcptUnplanned extends Migration
     {
         Schema::table('rcpt_unplanned', function (Blueprint $table) {
             //
-            $table->enum('status',['Open','Closed'])->default('New');
+            $table->enum('status',['Open','Closed'])->default('Open');
         });
     }
 
