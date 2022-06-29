@@ -20,7 +20,7 @@
                     <td>{{$show->nopol}}</td>
                     <td>{{$show->receiptdate}}</td>
                     <td>{{$show->part}} -- {{$show->partdesc}}</td>
-                    <td>
+                    <td><a href="{{ route('rcptunplanned.show') }}"><i class="fas fa-edit"></i></a></td>
                     </td>
                 </tr>                
             @empty
