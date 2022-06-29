@@ -1161,6 +1161,7 @@ class QxtendServices
     if ($qdocResult == "success" or $qdocResult == "warning") {
 
       $rcpt_unplanned = RcptUnplanned::findOrFail($datas['idmaster']);
+      $rcpt_unplanned->updated_at = now();
       $rcpt_unplanned->status = 'Closed';
       $rcpt_unplanned->save();
 
