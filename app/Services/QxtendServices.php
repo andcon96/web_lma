@@ -1108,8 +1108,6 @@ class QxtendServices
 
     $qdocRequest = $qdocHead . $qdocBody . $qdocfooter;
 
-    dd($qdocRequest);
-
     $curlOptions = array(
       CURLOPT_URL => $qxUrl,
       CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
