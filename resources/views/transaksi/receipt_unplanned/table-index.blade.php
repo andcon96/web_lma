@@ -5,9 +5,10 @@
                 <th style="width: 10%">Domain</th>
                 <th style="width: 10%;">PO No.</th>
                 <th style="width: 12%;">PO Contract</th>
-                <th style="width: 15%;">Nomor Polisi</th>
+                <th style="width: 10%;">Nomor Polisi</th>
                 <th style="width: 10%;">Receipt Date</th>
                 <th style="width: 20%;">Item</th>
+                <th style="width: 10%;">Qty Unplanned</th>
                 <th style="width: 10%;">Action</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                     <td>{{$show->nopol}}</td>
                     <td>{{$show->receiptdate}}</td>
                     <td>{{$show->part}} -- {{$show->partdesc}}</td>
+                    <td>{{$show->qty_unplanned}}</td>
                     <td><a href="{{ route('rcptunplanned.show',$show->id) }}"><i class="fas fa-edit"></i></a></td>
                     </td>
                 </tr>                
