@@ -52,6 +52,8 @@ class POReceiptController extends Controller
             $kontraktampung = $req->pokontrak;
         }
 
+        dd($ponbrtampung,$supptampung,$kontraktampung);
+
         // WSA QAD
         $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung,$kontraktampung);
 
