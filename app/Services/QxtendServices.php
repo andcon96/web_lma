@@ -494,14 +494,23 @@ class QxtendServices
                         <location>' . $partloc[$key] . '</location>
                         <lotserial>' . $partlot[$key] . '</lotserial>
                         <multiEntry>true</multiEntry>';
-      if ($qtyfg[$key] > 0) {
+
+      if ($qtyfg[$key] > $qtyterima[$key]) {
         $qdocBody .= ' <receiptDetail>
+                        <location>' . $partloc[$key] . '</location>
+                        <lotserialQty>' . $qtyterima[$key] . '</lotserialQty>
+                        <serialsYn>true</serialsYn>
+                      </receiptDetail>';
+      } else {
+        if ($qtyfg > 0 ) {
+          $qdocBody .= ' <receiptDetail>
                           <location>' . $partloc[$key] . '</location>
                           <lotserialQty>' . $qtyfg[$key] . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
+        }
       }
-
+    
       if ($qtyreject > 0) {
 
         $qdocBody .= ' <receiptDetail>
@@ -544,7 +553,6 @@ class QxtendServices
 
     $qdocRequest = $qdocHead . $qdocBody . $qdocFoot;
 
-    // dd($qdocRequest);
     $curlOptions = array(
       CURLOPT_URL => $qxUrl,
       CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
