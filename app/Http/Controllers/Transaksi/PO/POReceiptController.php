@@ -41,8 +41,8 @@ class POReceiptController extends Controller
 
         if(is_null($req->sjnbr) && is_null($req->suppcode) && is_null($req->pokontrak)){
             $ponbrtampung = $req->ponbr;
-            $supptampung = $req->supp;
-            $kontraktampung = $req->kontrak;
+            $supptampung = '';
+            $kontraktampung = '';
             // dd($ponbrtampung);
             // alert()->error('Error', 'PO tidak boleh kosong')->persistent('Dismiss');
             // return redirect()->back();
@@ -51,8 +51,6 @@ class POReceiptController extends Controller
             $supptampung = $req->suppcode;
             $kontraktampung = $req->pokontrak;
         }
-
-        dd($ponbrtampung,$supptampung,$kontraktampung);
 
         // WSA QAD
         $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung,$kontraktampung);
