@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Models\Master\Role;
 use App\Models\Transaksi\RcptUnplanned;
 use App\Models\Transaksi\SuratJalan;
+use App\Policies\RcptUnplannedPolicy;
+use App\Policies\SuratJalanPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
