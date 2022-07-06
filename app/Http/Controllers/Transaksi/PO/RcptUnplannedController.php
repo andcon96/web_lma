@@ -90,6 +90,8 @@ class RcptUnplannedController extends Controller
 
         $detaildata = RcptUnplanned::where('id',$id)->first();
 
+        $this->authorize('view', [RcptUnplanned::class, $detaildata]);
+
         return view('transaksi.receipt_unplanned.detail', compact('detaildata'));
     }
 

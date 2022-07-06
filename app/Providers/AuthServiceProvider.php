@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Master\Role;
+use App\Models\Transaksi\RcptUnplanned;
+use App\Models\Transaksi\SuratJalan;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,6 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        SuratJalan::class => SuratJalanPolicy::class,
+        RcptUnplanned::class => RcptUnplannedPolicy::class,
     ];
 
     /**
