@@ -35,6 +35,8 @@
     </div>
   </div>
 
+  <input type="hidden" name="dom_search" value="{{Session::get('dom_search')}}" />
+
   @method('POST')
   @csrf
 

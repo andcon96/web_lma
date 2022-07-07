@@ -58,7 +58,7 @@ class CreateTempTable
 
     public function createPOSessionTemp($data){
         // dd($data);
-
+        $dom_search = $data['dom_search'];
         $ponbr = $data['po_nbr'];
         $supp = $data['supphidden'];
         $partloc = $data['partloc'];
@@ -79,6 +79,7 @@ class CreateTempTable
         $remark = $data['remarkreceipt'];
 
         Schema::create('po_session', function ($table) {
+            $table->string('dom_search');
             $table->string('po_nbr');
             $table->string('po_cust');
             $table->string('pod_line');
@@ -100,6 +101,7 @@ class CreateTempTable
 
         foreach($poline as $datas => $a){
             DB::table('po_session')->insert([
+                'dom_search' => $dom_search,
                 'po_nbr' => $ponbr,
                 'po_cust' => $supp,
                 'pod_line' => $a,
