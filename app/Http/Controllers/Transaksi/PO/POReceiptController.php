@@ -52,7 +52,7 @@ class POReceiptController extends Controller
             $kontraktampung = $req->pokontrak;
         }
 
-        Session::put('dom_search', Session::get('domain'));
+        // Session::put('dom_search', Session::get('domain'));
 
         // WSA QAD
         $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung,$kontraktampung);
@@ -73,7 +73,7 @@ class POReceiptController extends Controller
         Session::put('allporeceipt', $tempPO[0]);
         
         
-        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO[1],'dom_search' => $dom_search]);
+        return redirect()->route('showReceipt')->with(['tablepo' => $tempPO[1]]);
     }
 
     public function showReceipt(){
@@ -164,12 +164,13 @@ class POReceiptController extends Controller
                 Session::forget('errorcode');
                 alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
                 return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
-            }elseif(Session::get('errorcode') === 3){
-                // dd('error code 2');
-                Session::forget('errorcode');
-                alert()->error('Error', 'Domain berbeda. Silahkan ganti domain,')->persistent('Dismiss');
-                return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
             }
+            // elseif(Session::get('errorcode') === 3){
+            //     // dd('error code 2');
+            //     Session::forget('errorcode');
+            //     alert()->error('Error', 'Domain berbeda. Silahkan ganti domain,')->persistent('Dismiss');
+            //     return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
+            // }
         }
 
         return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
@@ -182,12 +183,12 @@ class POReceiptController extends Controller
     public function submitReceipt(Request $req){
         $newrequest = $req->all();
 
-        if(Session::get('dom_search') != Session::get('domain')){
-            $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
-            Session::put('session_po',$poSession);
-            Session::put('errorcode',3);
-            return redirect()->route('poreceipt.edit',$req->po_nbr);
-        }
+        // if(Session::get('dom_search') != Session::get('domain')){
+        //     $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+        //     Session::put('session_po',$poSession);
+        //     Session::put('errorcode',3);
+        //     return redirect()->route('poreceipt.edit',$req->po_nbr);
+        // }
 
         // dd($newrequest);
         // if(is_null($req->nopol)){
