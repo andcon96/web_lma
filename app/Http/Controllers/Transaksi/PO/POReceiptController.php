@@ -118,7 +118,7 @@ class POReceiptController extends Controller
         //check if domain changed
         if(Session::get('domain') != Session::get('dom_search')){
             Session::forget('dom_search');
-            alert()->error('Error', 'Terjadi Perubahan Domain')->persistent('Dismiss');
+            alert()->error('Error', 'Terjadi Perubahan Domain. Harap lakukan pencarian ulang sesuai domain saat ini.')->persistent('Dismiss');
             return redirect()->route('poreceipt.index');
         }
         // dd($id);
