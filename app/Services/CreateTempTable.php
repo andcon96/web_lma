@@ -19,6 +19,7 @@ class CreateTempTable
         // WSA -> LMA_getPO
         Schema::dropIfExists('temp_group');
         Schema::create('temp_group', function ($table) {
+            $table->string('po_domain');
             $table->string('po_nbr');
             $table->string('po_contract');
             $table->string('po_cust');
@@ -34,6 +35,7 @@ class CreateTempTable
 
         foreach($data as $datas){
             DB::table('temp_group')->insert([
+                'po_domain' => $datas->t_domain,
                 'po_nbr' => $datas->t_ponbr,
                 'po_contract' => $datas->t_pokontrak,
                 'po_cust' => $datas->t_suppnbr,
