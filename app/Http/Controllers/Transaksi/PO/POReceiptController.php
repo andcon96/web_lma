@@ -29,7 +29,7 @@ class POReceiptController extends Controller
     }
 
     public function searchPO(Request $req){
-        dd('searchPO');
+        // dd('searchPO');
         // 
         // Validasi Webif(is_null($req->sjnbr) && is_null($req->suppcode)){
         //     alert()->error('Error', 'Harap isi salah satu dari PO No. atau Supplier Name')->persistent('Dismiss');
@@ -77,7 +77,7 @@ class POReceiptController extends Controller
     }
 
     public function showReceipt(){
-        dd('showReceipt');
+        // dd('showReceipt');
         // dd('aa');
         $po = Session::get('tablepo');
 
