@@ -52,7 +52,7 @@ class POReceiptController extends Controller
             $kontraktampung = $req->pokontrak;
         }
 
-        // Session::put('dom_search', Session::get('domain'));
+        Session::put('dom_search', Session::get('domain'));
 
         // WSA QAD
         $po_receipt = (new WSAServices())->wsagetpo($ponbrtampung,$supptampung,$kontraktampung);
@@ -115,7 +115,12 @@ class POReceiptController extends Controller
     }
 
     public function edit($id){
-        dd('edit');
+        //check if domain changed
+        if(Session::get('domain') != Session::get('dom_search')){
+            Session::forget('dom_search');
+            alert()->error('Error', 'Terjadi Perubahan Domain')->persistent('Dismiss');
+            return redirect()->route('poreceipt.index');
+        }
         // dd($id);
         // dd(Session::get('allporeceipt')->where('po_nbr','=',$id),Session::get('session_po'));
         if(!Session::get('allporeceipt')){
@@ -203,7 +208,6 @@ class POReceiptController extends Controller
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
         
         if($poreceipt_submit === 'qxtend_err'){
-            dd('qxtend_err');
             // alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
@@ -213,7 +217,6 @@ class POReceiptController extends Controller
         }
         
         if($poreceipt_submit === false){
-            dd('false');
             // alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
@@ -227,7 +230,6 @@ class POReceiptController extends Controller
 
         //tommy punya
 
-        dd('success');
         alert()->success('Success', 'PO : '.$req->po_nbr.' dengan PO Contract : '.$req->po_kontrak.' berhasil di receipt')->persistent('Dismiss');
         // return redirect()->route('poreceipt.index');
         return redirect()->route('poreceipt.edit',$req->po_nbr);
