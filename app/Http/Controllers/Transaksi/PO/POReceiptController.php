@@ -203,6 +203,7 @@ class POReceiptController extends Controller
         $poreceipt_submit = (new QxtendServices())->submitreceipt($newrequest);
         
         if($poreceipt_submit === 'qxtend_err'){
+            dd('qxtend_err');
             // alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
@@ -212,6 +213,7 @@ class POReceiptController extends Controller
         }
         
         if($poreceipt_submit === false){
+            dd('false');
             // alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
@@ -225,6 +227,7 @@ class POReceiptController extends Controller
 
         //tommy punya
 
+        dd('success');
         alert()->success('Success', 'PO : '.$req->po_nbr.' dengan PO Contract : '.$req->po_kontrak.' berhasil di receipt')->persistent('Dismiss');
         // return redirect()->route('poreceipt.index');
         return redirect()->route('poreceipt.edit',$req->po_nbr);
