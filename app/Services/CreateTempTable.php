@@ -74,9 +74,6 @@ class CreateTempTable
         $receiptdate = $data['receiptdate'];
         // $listnopol = implode(" , ", $datas['nopol']);
         $nopol = $data['nopol'];
-        $exkapal = $data['exkapal'];
-        $exgudang = $data['exgudang'];
-        $qtykarung = $data['qtykarung'];
 
         $remark = $data['remarkreceipt'];
 
@@ -94,9 +91,6 @@ class CreateTempTable
             $table->decimal('pod_qty_fg');
             $table->string('pod_remarks')->nullable();
             $table->longText('pod_nopol')->nullable();
-            $table->string('po_exkapal')->nullable();
-            $table->string('po_exgudang')->nullable();
-            $table->decimal('po_qtykarung')->nullable();
             $table->date('pod_receiptdate');
             $table->temporary();
         });
@@ -117,9 +111,6 @@ class CreateTempTable
                 'pod_remarks' => $remark,
                 'pod_nopol' => $nopol,
                 'pod_receiptdate' => $receiptdate,
-                'po_exkapal' => $exkapal,
-                'po_exgudang' => $exgudang,
-                'po_qtykarung' => $qtykarung,
             ]);
         }
 

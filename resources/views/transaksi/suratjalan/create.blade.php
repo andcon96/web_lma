@@ -52,6 +52,31 @@
 
     @include('transaksi.suratjalan.create-table')
 
+    <div class="row py-2">
+        <label for="exkapal" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Ex Kapal') }}</label>
+        <div class="col-md-3">
+            <input type="text" id="exkapal" class="form-control" name="exkapal" maxlength="24" />
+        </div>
+    </div>
+    <div class="row py-2">
+        <label for="exgudang" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Ex Gudang') }}</label>
+        <div class="col-md-3">
+            <input type="text" id="exgudang" class="form-control" name="exgudang" maxlength="24" />
+        </div>
+    </div>
+    <div class="row py-2">
+        <label for="qtykarung" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Jumlah Karung') }}</label>
+        <div class="col-md-3">
+            <input type="number" class="form-control" name="qtykarung" min="0" step="0.01"/>
+        </div>
+    </div>
+    <div class="row py-2">
+        <label for="transportirname" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Nama Transportir') }}</label>
+        <div class="col-md-3">
+            <input type="string" class="form-control" name="transportirname" />
+        </div>
+    </div>
+
     <div class="row md-form offset-lg-1">
         <div class="col-md-10" style="text-align: center;">
             <div class="custom-control custom-checkbox">
