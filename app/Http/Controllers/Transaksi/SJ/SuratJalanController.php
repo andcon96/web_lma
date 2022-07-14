@@ -75,6 +75,10 @@ class SuratJalanController extends Controller
             $sj_mstr->sj_nopol = $request->nopol;
             $sj_mstr->sj_so_po = $request->sopo;
             $sj_mstr->sj_domain = Session::get('domain');
+            $sj_mstr->sj_exkapal = $request->exkapal;
+            $sj_mstr->sj_exgudang = $request->exgudang;
+            $sj_mstr->sj_qtykarung = $request->qtykarung;
+            $sj_mstr->sj_transportir_name = $request->transportirname;
             $sj_mstr->save();
 
             $id = $sj_mstr->id;
@@ -124,6 +128,10 @@ class SuratJalanController extends Controller
         try {
             $master = SuratJalan::findOrFail($request->idmaster);
             $master->sj_nopol = $request->nopol;
+            $master->sj_exkapal = $request->exkapal;
+            $master->sj_exgudang = $request->exgudang;
+            $master->sj_qtykarung = $request->qtykarung;
+            $master->sj_transportir_name = $request->transportirname;
             $master->save();
 
             foreach ($request->iddetail as $key => $datas) {

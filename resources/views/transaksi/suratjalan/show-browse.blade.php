@@ -66,6 +66,30 @@
         <div class="form-group row col-md-12">
             @include('transaksi.suratjalan.show-browse-table')
         </div>
+        <div class="row py-2">
+            <label for="exkapal" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Ex Kapal') }}</label>
+            <div class="col-md-3">
+                <input type="text" id="exkapal" class="form-control" name="exkapal" maxlength="24" value="{{$data->sj_exkapal ?? ''}}" readonly />
+            </div>
+        </div>
+        <div class="row py-2">
+            <label for="exgudang" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Ex Gudang') }}</label>
+            <div class="col-md-3">
+                <input type="text" id="exgudang" class="form-control" name="exgudang" maxlength="24" value="{{$data->sj_exgudang}} ?? ''}}" readonly />
+            </div>
+        </div>
+        <div class="row py-2">
+            <label for="qtykarung" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Jumlah Karung') }}</label>
+            <div class="col-md-3">
+                <input type="number" class="form-control" name="qtykarung" min="0" step="0.01" value="{{$data->sj_qtykarung}}" readonly/>
+            </div>
+        </div>
+        <div class="row py-2">
+            <label for="transportirname" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Nama Transportir') }}</label>
+            <div class="col-md-3">
+                <input type="string" class="form-control" name="transportirname" value="{{$data->sj_transportir_name ?? ''}}" readonly />
+            </div>
+        </div>
         <div class="form-group row col-md-12">
             <div class="offset-md-1 col-md-10" style="margin-top:90px;">
                 <div class="float-right">

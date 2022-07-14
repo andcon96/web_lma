@@ -374,9 +374,6 @@ class QxtendServices
     $pokontrak = $datas['po_kontrak'];
     // $listnopol = implode(" , ", $datas['nopol']);
     $nopol = $datas['nopol'];
-    $exkapal = $datas['exkapal'];
-    $exgudang = $datas['exgudang'];
-    $qtykarung = $datas['qtykarung'];
 
     // dd($listnopol);
     // foreach($ponbr as $key => $p){
@@ -628,9 +625,6 @@ class QxtendServices
           $pohist->created_by = auth()->user()->id;
           $pohist->ph_domain = $domain;
           $pohist->ph_pokontrak = $pokontrak;
-          $pohist->ph_exkapal = $exkapal;
-          $pohist->ph_exgudang = $exgudang;
-          $pohist->ph_qtykarung = $qtykarung;
           $pohist->save();
         }
       }

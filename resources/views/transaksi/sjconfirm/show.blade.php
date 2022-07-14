@@ -67,6 +67,36 @@
             @include('transaksi.sjconfirm.show-table')
         </div>
         <div class="form-group row col-md-12">
+            <label for="potongdp" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Potong DP') }}</label>
+            <div class="col-md-2">
+                <input id="potongdp" type="number" class="form-control" name="potongdp" min="0" step="0.01" value="{{ old('potongdp') ? old('potongdp') : 0 }}" autocomplete="off" readonly>
+            </div>
+        </div>
+        <div class="form-group row col-md-12">
+            <label for="exkapal" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Ex Kapal') }}</label>
+            <div class="col-md-2">
+                <input id="exkapal" type="text" class="form-control" name="exkapal" value="{{ $data->sj_exkapal }}" maxlength="24" autocomplete="on" readonly>
+            </div>
+        </div>
+        <div class="form-group row col-md-12">
+            <label for="exgudang" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Ex Gudang') }}</label>
+            <div class="col-md-2">
+                <input id="exgudang" type="text" class="form-control" name="exgudang" value="{{ $data->sj_exgudang }}" maxlength="24" autocomplete="on" readonly>
+            </div>
+        </div>
+        <div class="form-group row col-md-12">
+            <label for="qtykarung" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Jumlah Karung') }}</label>
+            <div class="col-md-2">
+                <input id="qtykarung" type="number" class="form-control" name="qtykarung" min="0" step="1" value="{{ $data->sj_qtykarung }}" autocomplete="off" readonly>
+            </div>
+        </div>
+        <div class="form-group row col-md-12">
+            <label for="transportirname" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Nama Transportir') }}</label>
+            <div class="col-md-2">
+                <input id="transportirname" type="text" class="form-control" name="transportirname"value="{{ $data->sj_transportir_name }}" maxlength="24" autocomplete="on" readonly>
+            </div>
+        </div>
+        <div class="form-group row col-md-12">
             <div class="offset-md-1 col-md-10" style="margin-top:90px;">
                 <div class="float-right">
                     <a href="{{route('sjconfirm.index')}}" id="btnback" class="btn btn-success bt-action">Back</a>

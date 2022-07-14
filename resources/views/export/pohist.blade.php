@@ -17,9 +17,6 @@
             <th>Qty Supplier</th>
             <th>Qty Terima</th>
             <th>Qty Reject</th>
-            <th>Ex Kapal</th>
-            <th>Ex Gudang</th>
-            <th>Jumlah Karung</th>
             <th>Dibuat Oleh</th>
             <th>Dibuat Tanggal</th>
         </tr>
@@ -43,9 +40,6 @@
             <td>{{$show->ph_qty_terima}}</td>
             <td>{{$show->ph_qty_fg}}</td>
             <td>{{$show->ph_qty_terima - $show->ph_qty_fg}}</td>
-            <td>{{$show->ph_exkapal}}</td>
-            <td>{{$show->ph_exgudang}}</td>
-            <td>{{$show->ph_qtykarung}}</td>
             <td>{{$show->getUser->name}}</td>
             <td>{{$show->created_at}}</td>
         </tr>

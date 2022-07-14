@@ -19,6 +19,10 @@
             <th>Qty Order</th>
             <th>Qty Kirim</th>
             <th>Qty Actual</th>
+            <th>Ex Kapal</th>
+            <th>Ex Gudang</th>
+            <th>Qty Karung</th>
+            <th>Transportir Name</th>
         </tr>
     </thead>
     <tbody>
@@ -42,6 +46,11 @@
             <td>{{$datas->getDetail->first()->sj_qty_ord}}</td>
             <td>{{$datas->getDetail->first()->sj_qty_input}}</td>
             <td>{{$datas->getDetail->first()->sj_qty_rcvd}}</td>
+            <td>{{$datas->sj_exkapal}}</td>
+            <td>{{$datas->sj_exgudang}}</td>
+            <td>{{$datas->sj_qtykarung}}</td>
+            <td>{{$datas->sj_transportir_name}}</td>
+
         </tr>
         @empty
         <tr>
