@@ -33,8 +33,8 @@
         </div>
     </div>
     
-    <input id="shipto" type="hidden" class="form-control" name="shipto" value="{{$so->so_ship}}" readonly>
-    <input id="billto" type="hidden" class="form-control" name="billto" value="{{$so->so_bill}}" readonly>
+    <input id="shipto" type="hidden" class="form-control" name="shipto" value="{{$so[0]->so_ship}}" readonly>
+    <input id="billto" type="hidden" class="form-control" name="billto" value="{{$so[0]->so_bill}}" readonly>
 
     <div class="form-group row md-form offset-lg-1">
         <label for="sopo" class="col-md-2 col-form-label text-md-right">{{ __('SO PO') }}</label>
