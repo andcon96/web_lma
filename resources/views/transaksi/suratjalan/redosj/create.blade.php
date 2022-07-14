@@ -28,7 +28,7 @@
         </div>
         <label for="customer" class="col-md-2 col-form-label text-md-right">{{ __('Customer') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
-            <input id="customer" type="text" class="form-control" value="{{$so->so_cust  ?? ''}} -- {{$so[0]->so_cust_name  ?? ''}}" readonly>
+            <input id="customer" type="text" class="form-control" value="{{$so->so_cust  ?? ''}} -- {{$so->so_cust_name  ?? ''}}" readonly>
             <input id="customer" type="hidden" class="form-control" name="customer" value="{{$so->so_cust  ?? ''}}" readonly>
         </div>
     </div>
