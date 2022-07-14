@@ -28,18 +28,18 @@
         </div>
         <label for="customer" class="col-md-2 col-form-label text-md-right">{{ __('Customer') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
-            <input id="customer" type="text" class="form-control" value="{{$so[0]->so_cust  ?? ''}} -- {{$so[0]->so_cust_name  ?? ''}}" readonly>
-            <input id="customer" type="hidden" class="form-control" name="customer" value="{{$so[0]->so_cust  ?? ''}}" readonly>
+            <input id="customer" type="text" class="form-control" value="{{$so->so_cust  ?? ''}} -- {{$so[0]->so_cust_name  ?? ''}}" readonly>
+            <input id="customer" type="hidden" class="form-control" name="customer" value="{{$so->so_cust  ?? ''}}" readonly>
         </div>
     </div>
     
-    <input id="shipto" type="hidden" class="form-control" name="shipto" value="{{$so[0]->so_ship}}" readonly>
-    <input id="billto" type="hidden" class="form-control" name="billto" value="{{$so[0]->so_bill}}" readonly>
+    <input id="shipto" type="hidden" class="form-control" name="shipto" value="{{$so->so_ship}}" readonly>
+    <input id="billto" type="hidden" class="form-control" name="billto" value="{{$so->so_bill}}" readonly>
 
     <div class="form-group row md-form offset-lg-1">
         <label for="sopo" class="col-md-2 col-form-label text-md-right">{{ __('SO PO') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
-            <input id="sopo" type="text" class="form-control" name="sopo" value="{{$so[0]->so_po  ?? ''}}" readonly>
+            <input id="sopo" type="text" class="form-control" name="sopo" value="{{$so->so_po  ?? ''}}" readonly>
         </div>
         <label for="nopol" class="col-md-2 col-form-label text-md-right">{{ __('No Polis') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
