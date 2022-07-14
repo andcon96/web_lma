@@ -44,7 +44,7 @@ class SuratJalanController extends Controller
     public function create()
     {
         $so = Session::get('tableso');
-        dd($so);
+
         if (is_null($so)) {
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
             return view('transaksi.suratjalan.index');
@@ -348,6 +348,8 @@ class SuratJalanController extends Controller
             $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);
         }
 
+        $tempPO = $tempPO[0];
+
         return redirect()->route('dispChangeSJ')->with(['tableso' => $tempPO,'sjnbr' => $request->sj, 'nopol' => $request->nopol]);
     }
 
@@ -355,8 +357,6 @@ class SuratJalanController extends Controller
         $so = Session::get('tableso');
         $sjnbr = Session::get('sjnbr');
         $nopol = Session::get('nopol');
-
-        dd($so);
 
         if (is_null($so) || is_null($sjnbr)) {
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
@@ -405,7 +405,7 @@ class SuratJalanController extends Controller
             return redirect()->route('browseSJ');
         } catch (Exception $err) {
             DB::rollBack();
-            dd($err);
+
             alert()->error('Error', 'Failed to Create SJ')->persistent('Dismiss');
             return redirect()->route('browseSJ');
         }
