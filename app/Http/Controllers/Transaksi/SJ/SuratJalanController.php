@@ -44,7 +44,7 @@ class SuratJalanController extends Controller
     public function create()
     {
         $so = Session::get('tableso');
-
+        dd($so);
         if (is_null($so)) {
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
             return view('transaksi.suratjalan.index');
