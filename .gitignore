@@ -21,3 +21,4 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+resources/views/email/EmailPOApproval.blade.php
