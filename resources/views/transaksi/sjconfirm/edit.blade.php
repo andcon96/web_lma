@@ -93,15 +93,15 @@
             <input id="transportirname" type="text" class="form-control" name="transportirname" value="{{ $data->sj_transportir_name }}" maxlength="24" autocomplete="on">
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
-            <a href="{{route('sjconfirm.index')}}" id="btnback" class="btn btn-danger" style="width: 100% !important;">Back</a>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-12 py-2">
-        <button type="submit" class="btn btn-info" id="btnconf" style="width: 100% !important;">Save</button>
-            <button type="button" class="btn bt-action" id="btnloading" style="display:none">
-                <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
-            </button>
+    <div class="form-group row col-md-12">
+        <div class="offset-md-1 col-md-10" style="margin-top:90px;">
+            <div class="float-right">
+                <a href="{{route('sjconfirm.index')}}" id="btnback" class="btn btn-success bt-action">Back</a>
+                <button type="submit" class="btn btn-success bt-action btn-focus" id="btnconf">Save</button>
+                <button type="button" class="btn bt-action" id="btnloading" style="display:none">
+                    <i class="fa fa-circle-o-notch fa-spin"></i> &nbsp;Loading
+                </button>
+            </div>
         </div>
     </div>
     </div>
