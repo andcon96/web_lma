@@ -94,7 +94,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto" style="margin-top:90px;">
+        <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
             <a href="{{route('sjconfirm.index')}}" id="btnback" class="btn btn-danger" style="width: 100% !important;">Back</a>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-12 py-2">
