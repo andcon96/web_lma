@@ -356,6 +356,8 @@ class SuratJalanController extends Controller
         $sjnbr = Session::get('sjnbr');
         $nopol = Session::get('nopol');
 
+        dd($so);
+
         if (is_null($so) || is_null($sjnbr)) {
             alert()->error('Error', 'Silahkan Search Ulang')->persistent('Dismiss');
             return redirect()->route('browseSJ');
