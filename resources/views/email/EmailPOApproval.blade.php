@@ -185,8 +185,8 @@
     </div>
     <div style="text-align: center;">
       <p>Approve or Reject this Request using the buttons below. </p>
-      <a href="{{url('/api/apiapprovalinvoice/yes/'.$param1.'/'.$param2.'/'.$param3.'/'.$param4.'/'.$param5)}}" class="button">Approve</a>
-      <a href="{{url('/api/apiapprovalinvoice/no/'.$param1.'/'.$param2.'/'.$param3.'/'.$param4.'/'.$param5)}}" class="button2">Reject</a>
+      <a href="{{'http://45.196.31.99:22002/api/apiapprovalinvoice/yes/'.$param1.'/'.$param2.'/'.$param3.'/'.$param4.'/'.$param5 }}" class="button">Approve</a>
+      <a href="{{'http://45.196.31.99:22002/api/apiapprovalinvoice/no/'.$param1.'/'.$param2.'/'.$param3.'/'.$param4.'/'.$param5 }}" class="button2">Reject</a>
     </div>
   
       <!-- URL ganti ketika dipasang -->
