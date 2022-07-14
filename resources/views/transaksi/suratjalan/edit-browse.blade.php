@@ -57,28 +57,28 @@
         <div class="form-group row col-md-12">
             @include('transaksi.suratjalan.edit-browse-table')
         </div>
-        <div class="row py-2">
-            <label for="exkapal" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Ex Kapal') }}</label>
-            <div class="col-md-3">
-                <input type="text" id="exkapal" class="form-control" name="exkapal" maxlength="24" value="{{$data->sj_exkapal ?? ''}}" />
+        <div class="form-group row col-md-12">
+            <label for="exkapal" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Ex Kapal') }}</label>
+            <div class="col-md-2">
+                <input id="exkapal" type="text" class="form-control" name="exkapal" value="{{ $data->sj_exkapal }}" maxlength="24" autocomplete="on" >
             </div>
         </div>
-        <div class="row py-2">
-            <label for="exgudang" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Ex Gudang') }}</label>
-            <div class="col-md-3">
-                <input type="text" id="exgudang" class="form-control" name="exgudang" maxlength="24" value="{{$data->sj_exgudang}} ?? ''}}" />
+        <div class="form-group row col-md-12">
+            <label for="exgudang" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Ex Gudang') }}</label>
+            <div class="col-md-2">
+                <input id="exgudang" type="text" class="form-control" name="exgudang" value="{{ $data->sj_exgudang }}" maxlength="24" autocomplete="on" >
             </div>
         </div>
-        <div class="row py-2">
-            <label for="qtykarung" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Jumlah Karung') }}</label>
-            <div class="col-md-3">
-                <input type="number" class="form-control" name="qtykarung" min="0" step="0.01" value="{{$data->sj_qtykarung}}"/>
+        <div class="form-group row col-md-12">
+            <label for="qtykarung" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Jumlah Karung') }}</label>
+            <div class="col-md-2">
+                <input id="qtykarung" type="number" class="form-control" name="qtykarung" min="0" step="1" value="{{ $data->sj_qtykarung }}" autocomplete="off" >
             </div>
         </div>
-        <div class="row py-2">
-            <label for="transportirname" class="col-form-label col-md-3" style="margin-left: 25px;">{{ __('Nama Transportir') }}</label>
-            <div class="col-md-3">
-                <input type="string" class="form-control" name="transportirname" value="{{$data->sj_transportir_name ?? ''}}" />
+        <div class="form-group row col-md-12">
+            <label for="transportirname" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Nama Transportir') }}</label>
+            <div class="col-md-2">
+                <input id="transportirname" type="text" class="form-control" name="transportirname" value="{{ $data->sj_transportir_name }}" maxlength="24" autocomplete="on" >
             </div>
         </div>
         <div class="form-group row col-md-12">

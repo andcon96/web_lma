@@ -93,7 +93,7 @@
         <div class="form-group row col-md-12">
             <label for="transportirname" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Nama Transportir') }}</label>
             <div class="col-md-2">
-                <input id="transportirname" type="text" class="form-control" name="transportirname"value="{{ $data->sj_transportir_name }}" maxlength="24" autocomplete="on" readonly>
+                <input id="transportirname" type="text" class="form-control" name="transportirname" value="{{ $data->sj_transportir_name }}" maxlength="24" autocomplete="on" readonly>
             </div>
         </div>
         <div class="form-group row col-md-12">
