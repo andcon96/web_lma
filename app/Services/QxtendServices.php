@@ -1101,6 +1101,7 @@ class QxtendServices
                       <lotserialQty>' .$datas['qtyunplanned']. '</lotserialQty>
                       <location>' .$datas['loc']. '</location>
                       <lotserial>' .$datas['lot']. '</lotserial>
+                      <rmks>'.$datas['po_nbr'].'</rmks>
                       <effDate>' .$datas['receiptdate']. '</effDate>';
     $qdocfooter =   '</inventoryReceipt>
                     </dsInventoryReceipt>
