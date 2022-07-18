@@ -469,7 +469,7 @@ class QxtendServices
               </qcom:ttContext> -->
             </qcom:dsSessionContext>';
     $qdocBody =
-      '<dsPurchaseOrderReceiadadwve>
+      '<dsPurchaseOrderReceive>
                   <purchaseOrderReceive>
                     <ordernum>' . $ponbr . '</ordernum>
                     <receiptDate>' . $receiptdate . '</receiptDate>
@@ -591,7 +591,7 @@ class QxtendServices
 
     // dd($qdocResponse);
 
-    if (is_bool($qdocResponse)) {
+    if (!is_bool($qdocResponse)) {
       return false;
     }
 
