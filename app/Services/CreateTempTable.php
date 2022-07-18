@@ -83,12 +83,12 @@ class CreateTempTable
             $table->string('po_cust');
             $table->string('pod_line');
             $table->string('pod_part');
-            $table->string('pod_qty_ord');
-            $table->string('pod_qty_rcvd');
+            $table->decimal('pod_qty_ord',15,2);
+            $table->decimal('pod_qty_rcvd',15,2);
             $table->string('pod_loc')->nullable();
             $table->string('pod_lot')->nullable();
-            $table->decimal('pod_qty_terima');
-            $table->decimal('pod_qty_fg');
+            $table->decimal('pod_qty_terima',15,2);
+            $table->decimal('pod_qty_fg',15,2);
             $table->string('pod_remarks')->nullable();
             $table->longText('pod_nopol')->nullable();
             $table->date('pod_receiptdate');
