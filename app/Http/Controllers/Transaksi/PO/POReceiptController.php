@@ -171,6 +171,11 @@ class POReceiptController extends Controller
                 Session::forget('errorcode');
                 alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
                 return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
+            }elseif(Session::get('errorcode') === 3){
+                // dd('error code 3');
+                Session::forget('errorcode');
+                alert()->error('Error', 'Terdapat masalah pada Database')->persistent('Dismiss');
+                return view('transaksi.poreceipt.view', compact('receiptdetail','sessionpo'));
             }
             // elseif(Session::get('errorcode') === 3){
             //     // dd('error code 2');
@@ -222,6 +227,15 @@ class POReceiptController extends Controller
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
             Session::put('session_po',$poSession);
             Session::put('errorcode',2);
+            return redirect()->route('poreceipt.edit',$req->po_nbr);
+        }
+
+        if($poreceipt_submit === 'db_err'){
+            // alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
+            // return redirect()->route('poreceipt.index');
+            $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+            Session::put('session_po',$poSession);
+            Session::put('errorcode',3);
             return redirect()->route('poreceipt.edit',$req->po_nbr);
         }
 

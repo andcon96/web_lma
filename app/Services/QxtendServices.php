@@ -12,6 +12,7 @@ use App\Models\Transaksi\RcptUnplanned;
 use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -375,29 +376,83 @@ class QxtendServices
     // $listnopol = implode(" , ", $datas['nopol']);
     $nopol = $datas['nopol'];
 
+    $domain = Session::get('domain');
+
     // dd($listnopol);
     // foreach($ponbr as $key => $p){
     //   dump($key,$poline[$key]);
     // }
     //  dd($datas,$datas['ponbr']);
 
+    DB::beginTransaction();
+    try {
+
+      foreach ($poline as $key => $a) {
+        $qtyreject = 0;
+
+        $qtyreject = $qtyterima[$key] - $qtyfg[$key];
+
+        if ($qtyfg[$key] > 0 || $qtyreject > 0) {
+          $pohist = new POhist();
+
+          $pohist->ph_ponbr = $ponbr;
+          $pohist->ph_supp = $supp;
+          $pohist->ph_suppname = $suppname;
+          $pohist->ph_line = $a;
+          $pohist->ph_part = $popart[$key];
+          $pohist->ph_partname = $popartname[$key];
+          $pohist->ph_qty_order = $qtyord[$key];
+          $pohist->ph_qty_rcvd = $qtyrcvd[$key];
+          $pohist->ph_qty_terima = $qtyterima[$key];
+          $pohist->ph_qty_fg = $qtyfg[$key];
+          $pohist->ph_qty_rjct = $qtyreject;
+          $pohist->ph_nopol = $nopol;
+          $pohist->ph_receiptdate = $receiptdate;
+          $pohist->ph_loc = $partloc[$key];
+          $pohist->ph_lot = $partlot[$key];
+          $pohist->created_by = auth()->user()->id;
+          $pohist->ph_domain = $domain;
+          $pohist->ph_pokontrak = $pokontrak;
+          $pohist->save();
+        }
+
+        if ($qtyreject < 0) {
+          //dd($array_unplanned);
+
+          $rcptunplanned = new RcptUnplanned();
+
+          // dd($x->domain);
+          $rcptunplanned->domain = $domain;
+          $rcptunplanned->receiptdate = $receiptdate;
+          $rcptunplanned->ponbr = $ponbr;
+          $rcptunplanned->supp = $supp;
+          $rcptunplanned->suppname = $suppname;
+          $rcptunplanned->line = $a;
+          $rcptunplanned->part = $popart[$key];
+          $rcptunplanned->partdesc = $popartname[$key];
+          $rcptunplanned->loc = $partloc[$key];
+          $rcptunplanned->lot = $partlot[$key];
+          $rcptunplanned->qty_unplanned = abs($qtyreject);
+          $rcptunplanned->pokontrak = $pokontrak;
+          $rcptunplanned->nopol = $nopol;
+          $rcptunplanned->save();
+        }
+      }
+
+      $qxwsa = Qxwsa::first();
+      // dd($qxtend);
+      $qxUrl          = $qxwsa->qx_url;
+
+      $qxRcv = $qxwsa->qx_rcv;
 
 
-    $qxwsa = Qxwsa::first();
-    // dd($qxtend);
-    $qxUrl          = $qxwsa->qx_url;
+      $timeout = 0;
 
-    $qxRcv = $qxwsa->qx_rcv;
+      $array_unplanned = [];
+      $i = 0;
 
-    $domain = Session::get('domain');
-
-    $timeout = 0;
-
-    $array_unplanned = [];
-    $i = 0;
-
-    $qdocHead =
-      '<?xml version="1.0" encoding="UTF-8"?>
+      $qdocHead =
+        '<?xml version="1.0" encoding="UTF-8"?>
       <soapenv:Envelope xmlns="urn:schemas-qad-com:xml-services"
         xmlns:qcom="urn:schemas-qad-com:xml-services:common"
         xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
@@ -468,8 +523,8 @@ class QxtendServices
                 <qcom:propertyValue/>
               </qcom:ttContext> -->
             </qcom:dsSessionContext>';
-    $qdocBody =
-      '<dsPurchaseOrderReceive>
+      $qdocBody =
+        '<dsPurchaseOrderReceive>
                   <purchaseOrderReceive>
                     <ordernum>' . $ponbr . '</ordernum>
                     <receiptDate>' . $receiptdate . '</receiptDate>
@@ -479,186 +534,125 @@ class QxtendServices
                     <purchaseOrderReceiveTransComment>
                       <cmtCmmt>' . $nopol . '</cmtCmmt>
                     </purchaseOrderReceiveTransComment>';
-    foreach ($poline as $key => $p) {
-      $qtyreject = 0;
+      foreach ($poline as $key => $p) {
+        $qtyreject = 0;
 
-      $qtyreject = $qtyterima[$key] - $qtyfg[$key];
+        $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-      // dd($index);
-      $qdocBody .= ' <lineDetail>
+        // dd($index);
+        $qdocBody .= ' <lineDetail>
                         <line>' . $p . '</line>
                         <lotserialQty>' . $qtyterima[$key]  . '</lotserialQty>
                         <location>' . $partloc[$key] . '</location>
                         <lotserial>' . $partlot[$key] . '</lotserial>
                         <multiEntry>true</multiEntry>';
 
-      if ($qtyfg[$key] > $qtyterima[$key]) {
-        $qdocBody .= ' <receiptDetail>
+        if ($qtyfg[$key] > $qtyterima[$key]) {
+          $qdocBody .= ' <receiptDetail>
                         <location>' . $partloc[$key] . '</location>
                         <lotserialQty>' . $qtyterima[$key] . '</lotserialQty>
                         <serialsYn>true</serialsYn>
                       </receiptDetail>';
-      } else {
-        if ($qtyfg > 0 ) {
-          $qdocBody .= ' <receiptDetail>
+        } else {
+          if ($qtyfg > 0) {
+            $qdocBody .= ' <receiptDetail>
                           <location>' . $partloc[$key] . '</location>
                           <lotserialQty>' . $qtyfg[$key] . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
+          }
         }
-      }
-    
-      if ($qtyreject > 0) {
 
-        $qdocBody .= ' <receiptDetail>
+        if ($qtyreject > 0) {
+
+          $qdocBody .= ' <receiptDetail>
                           <location>Reject</location>
                           <lotserialQty>' . $qtyreject . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
+        }
+
+        $qdocBody .= '</lineDetail>';
       }
-
-      if ($qtyreject < 0){
-
-        $array_unplanned [$i]['domain'] = $domain;
-        $array_unplanned [$i]['receiptdate'] = $receiptdate;
-        $array_unplanned [$i]['ponbr'] = $ponbr;
-        $array_unplanned [$i]['poline'] = $p;
-        $array_unplanned [$i]['part'] = $popart[$key];
-        $array_unplanned [$i]['partdesc'] = $popartname[$key];
-        $array_unplanned [$i]['loc'] = $partloc[$key];
-        $array_unplanned [$i]['lot'] = $partlot[$key];
-        $array_unplanned [$i]['qty_unplanned'] = abs($qtyreject);
-        $array_unplanned [$i]['po_contract'] = $pokontrak;
-        $array_unplanned [$i]['nopol'] = $nopol;
-        $array_unplanned [$i]['supp'] = $supp;
-        $array_unplanned [$i]['suppname'] = $suppname;
-
-        $i++;
-
-      }
-
-      
-
-      $qdocBody .= '</lineDetail>';
-    }
-    $qdocFoot = ' </purchaseOrderReceive>
+      $qdocFoot = ' </purchaseOrderReceive>
                 </dsPurchaseOrderReceive>
               </receivePurchaseOrder>
             </soapenv:Body>
           </soapenv:Envelope>';
 
 
-    $qdocRequest = $qdocHead . $qdocBody . $qdocFoot;
+      $qdocRequest = $qdocHead . $qdocBody . $qdocFoot;
 
-    $curlOptions = array(
-      CURLOPT_URL => $qxUrl,
-      CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
-      CURLOPT_TIMEOUT => $timeout + 120, // The maximum number of seconds to allow cURL functions to execute. must be greater than CURLOPT_CONNECTTIMEOUT
-      CURLOPT_HTTPHEADER => $this->httpHeader($qdocRequest),
-      CURLOPT_POSTFIELDS => preg_replace("/\s+/", " ", $qdocRequest),
-      CURLOPT_POST => true,
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_SSL_VERIFYPEER => false,
-      CURLOPT_SSL_VERIFYHOST => false
-    );
+      $curlOptions = array(
+        CURLOPT_URL => $qxUrl,
+        CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
+        CURLOPT_TIMEOUT => $timeout + 120, // The maximum number of seconds to allow cURL functions to execute. must be greater than CURLOPT_CONNECTTIMEOUT
+        CURLOPT_HTTPHEADER => $this->httpHeader($qdocRequest),
+        CURLOPT_POSTFIELDS => preg_replace("/\s+/", " ", $qdocRequest),
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYHOST => false
+      );
 
-    $getInfo = '';
-    $httpCode = 0;
-    $curlErrno = 0;
-    $curlError = '';
+      $getInfo = '';
+      $httpCode = 0;
+      $curlErrno = 0;
+      $curlError = '';
 
 
-    $qdocResponse = '';
+      $qdocResponse = '';
 
-    $curl = curl_init();
-    if ($curl) {
-      curl_setopt_array($curl, $curlOptions);
-      $qdocResponse = curl_exec($curl);           // sending qdocRequest here, the result is qdocResponse.
-      //
-      $curlErrno = curl_errno($curl);
-      $curlError = curl_error($curl);
-      $first = true;
-      foreach (curl_getinfo($curl) as $key => $value) {
-        if (gettype($value) != 'array') {
-          if (!$first) $getInfo .= ", ";
-          $getInfo = $getInfo . $key . '=>' . $value;
-          $first = false;
-          if ($key == 'http_code') $httpCode = $value;
+      $curl = curl_init();
+      if ($curl) {
+        curl_setopt_array($curl, $curlOptions);
+        $qdocResponse = curl_exec($curl);           // sending qdocRequest here, the result is qdocResponse.
+        //
+        $curlErrno = curl_errno($curl);
+        $curlError = curl_error($curl);
+        $first = true;
+        foreach (curl_getinfo($curl) as $key => $value) {
+          if (gettype($value) != 'array') {
+            if (!$first) $getInfo .= ", ";
+            $getInfo = $getInfo . $key . '=>' . $value;
+            $first = false;
+            if ($key == 'http_code') $httpCode = $value;
+          }
         }
-      }
-      curl_close($curl);
-    }
-
-    // dd($qdocResponse);
-
-    if (is_bool($qdocResponse)) {
-      return false;
-    }
-
-    // dd($qdocResponse);
-    $xmlResp = simplexml_load_string($qdocResponse);
-    $xmlResp->registerXPathNamespace('ns1', 'urn:schemas-qad-com:xml-services');
-    $qdocResult = (string) $xmlResp->xpath('//ns1:result')[0];
-
-    if ($qdocResult == "success" or $qdocResult == "warning") {
-
-      foreach ($poline as $key => $a) {
-
-        if ($qtyfg[$key] > 0 || $qtyreject > 0) {
-          $pohist = new POhist();
-
-          $pohist->ph_ponbr = $ponbr;
-          $pohist->ph_supp = $supp;
-          $pohist->ph_suppname = $suppname;
-          $pohist->ph_line = $a;
-          $pohist->ph_part = $popart[$key];
-          $pohist->ph_partname = $popartname[$key];
-          $pohist->ph_qty_order = $qtyord[$key];
-          $pohist->ph_qty_rcvd = $qtyrcvd[$key];
-          $pohist->ph_qty_terima = $qtyterima[$key];
-          $pohist->ph_qty_fg = $qtyfg[$key];
-          $pohist->ph_qty_rjct = $qtyreject;
-          $pohist->ph_nopol = $nopol;
-          $pohist->ph_receiptdate = $receiptdate;
-          $pohist->ph_loc = $partloc[$key];
-          $pohist->ph_lot = $partlot[$key];
-          $pohist->created_by = auth()->user()->id;
-          $pohist->ph_domain = $domain;
-          $pohist->ph_pokontrak = $pokontrak;
-          $pohist->save();
-        }
+        curl_close($curl);
       }
 
-      if ($array_unplanned){
-        //dd($array_unplanned);
-        foreach($array_unplanned as $unplanned => $x){
-          
-          
-          $rcptunplanned = new RcptUnplanned();
-            
-            // dd($x->domain);
-            $rcptunplanned->domain = $x["domain"];
-            $rcptunplanned->receiptdate = $x["receiptdate"];
-            $rcptunplanned->ponbr = $x["ponbr"];
-            $rcptunplanned->supp = $x["supp"];
-            $rcptunplanned->suppname = $x["suppname"];
-            $rcptunplanned->line = $x['poline'];
-            $rcptunplanned->part = $x["part"];
-            $rcptunplanned->partdesc = $x["partdesc"];
-            $rcptunplanned->loc = $x["loc"];
-            $rcptunplanned->lot = $x["lot"];
-            $rcptunplanned->qty_unplanned = $x["qty_unplanned"];
-            $rcptunplanned->pokontrak = $x["po_contract"];
-            $rcptunplanned->nopol = $x["nopol"];
-            $rcptunplanned->save();
-        }
+      // dd($qdocResponse);
+
+      if (is_bool($qdocResponse)) {
+
+        DB::rollBack();
+        return false;
+        
+      }
+
+      // dd($qdocResponse);
+      $xmlResp = simplexml_load_string($qdocResponse);
+      $xmlResp->registerXPathNamespace('ns1', 'urn:schemas-qad-com:xml-services');
+      $qdocResult = (string) $xmlResp->xpath('//ns1:result')[0];
+
+      if ($qdocResult == "success" or $qdocResult == "warning") {
+
+        DB::commit();
+        return true;
+
+      } else {
+
+        DB::rollBack();
+        return 'qxtend_err';
 
       }
 
+    } catch (Exception $e) {
 
-      return true;
-    } else {
-      return 'qxtend_err';
+      DB::rollBack();
+      return 'db_err';
+
     }
   }
 
@@ -1028,8 +1022,8 @@ class QxtendServices
       xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
       <soapenv:Header>
         <wsa:Action/>
-        <wsa:To>urn:services-qad-com:' .$qxRcv. '</wsa:To>
-        <wsa:MessageID>urn:services-qad-com::' .$qxRcv. '</wsa:MessageID>
+        <wsa:To>urn:services-qad-com:' . $qxRcv . '</wsa:To>
+        <wsa:MessageID>urn:services-qad-com::' . $qxRcv . '</wsa:MessageID>
         <wsa:ReferenceParameters>
           <qcom:suppressResponseDetail>true</qcom:suppressResponseDetail>
         </wsa:ReferenceParameters>
@@ -1042,7 +1036,7 @@ class QxtendServices
           <qcom:dsSessionContext>
             <qcom:ttContext>
               <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-              <qcom:propertyName>' .$domain. '</qcom:propertyName>
+              <qcom:propertyName>' . $domain . '</qcom:propertyName>
               <qcom:propertyValue/>
             </qcom:ttContext>
             <qcom:ttContext>
@@ -1097,12 +1091,12 @@ class QxtendServices
 
     $qdocBody = ' <dsInventoryReceipt>
                     <inventoryReceipt>
-                      <ptPart>' .$datas['part']. '</ptPart>
-                      <lotserialQty>' .$datas['qtyunplanned']. '</lotserialQty>
-                      <location>' .$datas['loc']. '</location>
-                      <lotserial>' .$datas['lot']. '</lotserial>
-                      <rmks>'.$datas['po_nbr'].'</rmks>
-                      <effDate>' .$datas['receiptdate']. '</effDate>';
+                      <ptPart>' . $datas['part'] . '</ptPart>
+                      <lotserialQty>' . $datas['qtyunplanned'] . '</lotserialQty>
+                      <location>' . $datas['loc'] . '</location>
+                      <lotserial>' . $datas['lot'] . '</lotserial>
+                      <rmks>' . $datas['po_nbr'] . '</rmks>
+                      <effDate>' . $datas['receiptdate'] . '</effDate>';
     $qdocfooter =   '</inventoryReceipt>
                     </dsInventoryReceipt>
                   </receiveInventory>
@@ -1167,11 +1161,9 @@ class QxtendServices
       $rcpt_unplanned->save();
 
       return true;
-
     } else {
 
       return false;
-
     }
   }
 }
