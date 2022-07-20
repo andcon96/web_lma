@@ -74,6 +74,11 @@ class RcptUnplannedController extends Controller
             return redirect()->route('rcptunplanned.index');
         }
 
+        if($unplanned_submit === 'db_err'){
+            alert()->error('Error', 'Terdapat masalah pada database')->persistent('Dismiss');
+            return redirect()->route('rcptunplanned.index');
+        }
+
         alert()->success('Success', 'PO : '.$request->po_nbr.' dengan PO Contract : '.$request->po_kontrak.' berhasil receipt unplanned')->persistent('Dismiss');
         return redirect()->route('rcptunplanned.index');
     }
