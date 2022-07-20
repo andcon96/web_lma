@@ -527,7 +527,7 @@ class QxtendServices
         '<dsPurchaseOrderReceive>
                   <purchaseOrderReceive>
                     <ordernum>' . $ponbr . '</ordernum>
-                    <receiptDate>' . $receiptdate . '</receiptDate>
+                    <receiptDate>dwdadwd</receiptDate>
                     <cmmtYn>true</cmmtYn>
                     <yn>true</yn>
                     <yn1>true</yn1>
