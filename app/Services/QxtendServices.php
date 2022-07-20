@@ -625,7 +625,7 @@ class QxtendServices
       // dd($qdocResponse);
 
       if (is_bool($qdocResponse)) {
-
+        dd('false');
         DB::rollBack();
         return false;
         
@@ -637,19 +637,19 @@ class QxtendServices
       $qdocResult = (string) $xmlResp->xpath('//ns1:result')[0];
 
       if ($qdocResult == "success" or $qdocResult == "warning") {
-
+        dd('true');
         DB::commit();
         return true;
 
       } else {
-
+        dd('qxtend_err');
         DB::rollBack();
         return 'qxtend_err';
 
       }
 
     } catch (Exception $e) {
-
+      dd('db_err');
       DB::rollBack();
       return 'db_err';
 
