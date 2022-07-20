@@ -17,6 +17,7 @@
             <th>Qty Supplier</th>
             <th>Qty Terima</th>
             <th>Qty Reject</th>
+            <th>Qty Lebih</th>
             <th>Dibuat Oleh</th>
             <th>Dibuat Tanggal</th>
         </tr>
@@ -39,7 +40,8 @@
             <td>{{$show->ph_lot}}</td>
             <td>{{$show->ph_qty_terima}}</td>
             <td>{{$show->ph_qty_fg}}</td>
-            <td>{{$show->ph_qty_terima - $show->ph_qty_fg}}</td>
+            <td>{{$show->ph_qty_rjct}}</td>
+            <td>{{$show->ph_qty_lebih}}</td>
             <td>{{$show->getUser->name}}</td>
             <td>{{$show->created_at}}</td>
         </tr>

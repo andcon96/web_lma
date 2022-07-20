@@ -389,10 +389,32 @@ class QxtendServices
 
       foreach ($poline as $key => $a) {
         $qtyreject = 0;
+        $qtylebih = 0;
 
         $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-        if ($qtyfg[$key] > 0 || $qtyreject > 0) {
+        if($qtyreject < 0){
+          $qtylebih = abs($qtyreject);
+          $qtyreject = 0;
+
+          $rcptunplanned = new RcptUnplanned();
+          
+          $rcptunplanned->domain = $domain;
+          $rcptunplanned->receiptdate = $receiptdate;
+          $rcptunplanned->ponbr = $ponbr;
+          $rcptunplanned->supp = $supp;
+          $rcptunplanned->suppname = $suppname;
+          $rcptunplanned->line = $a;
+          $rcptunplanned->part = $popart[$key];
+          $rcptunplanned->partdesc = $popartname[$key];
+          $rcptunplanned->loc = $partloc[$key];
+          $rcptunplanned->lot = $partlot[$key];
+          $rcptunplanned->qty_unplanned = $qtylebih;
+          $rcptunplanned->pokontrak = $pokontrak;
+          $rcptunplanned->nopol = $nopol;
+          $rcptunplanned->save();
+        }
+
           $pohist = new POhist();
 
           $pohist->ph_ponbr = $ponbr;
@@ -406,6 +428,7 @@ class QxtendServices
           $pohist->ph_qty_terima = $qtyterima[$key];
           $pohist->ph_qty_fg = $qtyfg[$key];
           $pohist->ph_qty_rjct = $qtyreject;
+          $pohist->ph_qty_lebih = $qtylebih;
           $pohist->ph_nopol = $nopol;
           $pohist->ph_receiptdate = $receiptdate;
           $pohist->ph_loc = $partloc[$key];
@@ -414,29 +437,7 @@ class QxtendServices
           $pohist->ph_domain = $domain;
           $pohist->ph_pokontrak = $pokontrak;
           $pohist->save();
-        }
 
-        if ($qtyreject < 0) {
-          //dd($array_unplanned);
-
-          $rcptunplanned = new RcptUnplanned();
-
-          // dd($x->domain);
-          $rcptunplanned->domain = $domain;
-          $rcptunplanned->receiptdate = $receiptdate;
-          $rcptunplanned->ponbr = $ponbr;
-          $rcptunplanned->supp = $supp;
-          $rcptunplanned->suppname = $suppname;
-          $rcptunplanned->line = $a;
-          $rcptunplanned->part = $popart[$key];
-          $rcptunplanned->partdesc = $popartname[$key];
-          $rcptunplanned->loc = $partloc[$key];
-          $rcptunplanned->lot = $partlot[$key];
-          $rcptunplanned->qty_unplanned = abs($qtyreject);
-          $rcptunplanned->pokontrak = $pokontrak;
-          $rcptunplanned->nopol = $nopol;
-          $rcptunplanned->save();
-        }
       }
 
       $qxwsa = Qxwsa::first();
