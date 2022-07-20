@@ -15,7 +15,7 @@ class AddPhQtyLebihToPoHist extends Migration
     {
         Schema::table('po_hist', function (Blueprint $table) {
             //
-            $table->decimal('ph_qty_lebih', 10, 2);
+            $table->decimal('ph_qty_lebih', 10, 2)->nullable();
         });
     }
 
