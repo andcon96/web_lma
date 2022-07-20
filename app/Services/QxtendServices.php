@@ -664,6 +664,10 @@ class QxtendServices
       $sj_mstr->sj_eff_date = $datas['effdate'];
       $sj_mstr->sj_nopol = $datas['nopol'];
       $sj_mstr->sj_potongdp = $datas['potongdp'];
+      $sj_mstr->sj_exgudang = $datas['exgudang'];
+      $sj_mstr->sj_exkapal = $datas['exkapal'];
+      $sj_mstr->sj_qtykarung = $datas['qtykarung'];
+      $sj_mstr->sj_transportir_name = $datas['transportirname'];
       $sj_mstr->save();
 
       foreach ($datas['line'] as $key => $data) {
