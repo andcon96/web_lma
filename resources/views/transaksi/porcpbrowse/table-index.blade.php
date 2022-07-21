@@ -10,6 +10,7 @@
                 <th style="width: 10%;">Qty Receipt</th>
                 <th style="width: 10%;">Qty FG</th>
                 <th style="width: 10%;">Qty Reject</th>
+                <th style="width: 10%;">Qty Lebih</th>
                 <th style="width: 10%;">Receipt Date</th>
                 <th style="width: 10%;">Receipt By</th>
             </tr>
@@ -24,7 +25,8 @@
                     <td>{{$show->ph_part}} -- {{$show->ph_partname}}</td>
                     <td>{{$show->ph_qty_terima}}</td>
                     <td>{{$show->ph_qty_fg}}</td>
-                    <td>{{number_format($show->ph_qty_terima-$show->ph_qty_fg,2)}}</td>
+                    <td>{{$show->ph_qty_rjct}}</td>
+                    <td>{{$show->ph_qty_lebih}}</td>
                     <td>{{$show->ph_receiptdate}}</td>
                     <td>{{$show->getUser->name}}
                 </tr>                
