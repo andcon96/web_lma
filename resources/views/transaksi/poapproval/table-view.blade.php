@@ -44,7 +44,7 @@
           @endif
         </td>
         @php
-        $approvalstatus = $statusappr->where('invcnbr')->first();
+        $approvalstatus = $statusappr->where('invcnbr','=',$show->invoice_nbr)->first();
         @endphp
         <td>
           @if (is_null($approvalstatus))
