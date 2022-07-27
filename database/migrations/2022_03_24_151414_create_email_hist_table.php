@@ -15,10 +15,10 @@ class CreateEmailHistTable extends Migration
     {
         Schema::create('email_hist', function (Blueprint $table) {
             $table->id();
-            $table->string('eh_ponbr');
-            $table->string('eh_invcnbr');
+            $table->string('eh_ponbr')->nullable();
+            $table->string('eh_invcnbr')->nullable();
             $table->timestamp('created_at')->useCurrent();
-            $table->dateTime('eh_approved_date');
+            $table->dateTime('eh_approved_date')->nullable();
         });
     }
 
