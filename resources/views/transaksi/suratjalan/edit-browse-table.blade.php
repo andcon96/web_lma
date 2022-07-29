@@ -25,7 +25,7 @@
                     <td>{{number_format($datas->sj_qty_ord - $totqtyshipped - $totqtyongoing ,2)}}</td>
                     <td>{{number_format($datas->sj_qty_input,2)}}</td>
                     <td>
-                        <input type="number" class="form-control" name="qtyinp[]" value="{{$datas->sj_qty_input}}" >
+                        <input type="number" class="form-control" name="qtyinp[]" min="0" step="0.01" value="{{$datas->sj_qty_input}}" >
                     </td>
                     <td>
                         <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='4' data-live-search="true">
