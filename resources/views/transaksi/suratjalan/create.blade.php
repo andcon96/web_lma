@@ -89,7 +89,7 @@
 
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-12 py-2 ml-auto">
-            <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust,'sonbr'=>$so[0]->so_nbr])}}" class="btn btn-danger" style="width: 100% !important;">Cancel</a>
+            <a href="{{route('searchSO',['sjnbr'=>$so[0]->so_cust,'sonbr'=>$so[0]->so_nbr])}}" class="btn btn-danger" id="s_btncancel" style="width: 100% !important;">Cancel</a>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-12 py-2">
             <input type="submit" name="submit" id='s_btnconf' value='Submit' class="btn btn-info" style="width: 100% !important;">
@@ -142,6 +142,7 @@
 
     $('#submit').submit(function(event) {
         document.getElementById('s_btnconf').style.display = 'none';
+        document.getElementById('s_btncancel').style.display = 'none';
         document.getElementById('s_btnloading').style.display = '';
     });
 </script>
