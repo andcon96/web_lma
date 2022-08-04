@@ -251,7 +251,7 @@ class CreateTempTable
             if($data['qtysj'][$key] != $data['qtyinp'][$key]){
                 DB::table('temp_group')->insert([
                     'sod_nbr' => $data['sonbr'],
-                    'sod_part' => 'Reject - '.$data['part'][$key],
+                    'sod_part' => $data['part'][$key],
                     'sod_qty_sj' => number_format($data['qtyinp'][$key] - $data['qtysj'][$key],2),
                     'sod_price_ls' => $data['price'][$key]
                 ]);
