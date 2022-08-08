@@ -7,7 +7,6 @@
                 <th>Qty Order QAD</th>
                 <th>Qty Open</th>
                 <th>Qty SJ</th>
-                <th>Qty Input</th>
                 <th width="25%">Location </th>
                 <th>Delete</th>
             </tr>
@@ -23,7 +22,6 @@
                         $totqtyshipped = $listsjship->where('sj_line',$datas->sj_line)->where('sj_part',$datas->sj_part)->sum('sj_qty_input');
                     @endphp
                     <td>{{number_format($datas->sj_qty_ord - $totqtyshipped - $totqtyongoing ,2)}}</td>
-                    <td>{{number_format($datas->sj_qty_input,2)}}</td>
                     <td>
                         <input type="number" class="form-control" name="qtyinp[]" min="0" step="0.01" value="{{$datas->sj_qty_input}}" >
                     </td>
