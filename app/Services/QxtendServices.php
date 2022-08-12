@@ -848,11 +848,11 @@ class QxtendServices
       } else {
 
         DB::rollBack();
-        return false;
+        return 'response_err';
       }
     } catch (Exception $e) {
       DB::rollBack();
-      return false;
+      return 'db_err';
     }
   }
 
