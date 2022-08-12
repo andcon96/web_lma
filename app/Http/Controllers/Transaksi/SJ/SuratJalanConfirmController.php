@@ -71,7 +71,13 @@ class SuratJalanConfirmController extends Controller
     public function update(Request $request){
         $sendqxtend = (new QxtendServices())->qxSOShipment($request->all());
         if($sendqxtend === false){
-            alert()->error('Error', 'Failed to Ship SJ')->persistent('Dismiss');
+            alert()->error('Error', 'Please check QAD connection')->persistent('Dismiss');
+            return back()->withInput($request->only('qtyinp','partloc','potongdp','exkapal','exgudang','qtykarung','transportirname'));
+        }elseif($sendqxtend === 'response_err'){
+            alert()->error('Error', 'Please check SO location / qty')->persistent('Dismiss');
+            return back()->withInput($request->only('qtyinp','partloc','potongdp','exkapal','exgudang','qtykarung','transportirname'));
+        }elseif($sendqxtend === 'db_err'){
+            alert()->error('Error', 'Please try again.')->persistent('Dismiss');
             return back()->withInput($request->only('qtyinp','partloc','potongdp','exkapal','exgudang','qtykarung','transportirname'));
         }else{
             $createNewLine = (new CreateTempTable())->createNewLineSO($request->all());
