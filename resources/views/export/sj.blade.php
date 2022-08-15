@@ -39,13 +39,13 @@
             <td>{{$datas->sj_status}}</td>
             <td>{{$datas->created_at}}</td>
             <td>{{$datas->sj_eff_date}}</td>
-            <td>{{$datas->getDetail->first()->sj_line}}</td>
-            <td>{{$datas->getDetail->first()->sj_part}} -- {{$datas->getDetail->first()->sj_part_desc}}</td>
-            <td>{{$datas->getDetail->first()->sj_loc}}</td>
-            <td>{{$datas->getDetail->first()->sj_lot}}</td>
-            <td>{{$datas->getDetail->first()->sj_qty_ord}}</td>
-            <td>{{$datas->getDetail->first()->sj_qty_input}}</td>
-            <td>{{$datas->getDetail->first()->sj_qty_rcvd}}</td>
+            <td>{{$datas->getDetail->first()->sj_line ?? ''}}</td>
+            <td>{{$datas->getDetail->first()->sj_part ?? ''}} -- {{$datas->getDetail->first()->sj_part_desc ?? ''}}</td>
+            <td>{{$datas->getDetail->first()->sj_loc ?? ''}}</td>
+            <td>{{$datas->getDetail->first()->sj_lot ?? ''}}</td>
+            <td>{{$datas->getDetail->first()->sj_qty_ord ?? ''}}</td>
+            <td>{{$datas->getDetail->first()->sj_qty_input ?? ''}}</td>
+            <td>{{$datas->getDetail->first()->sj_qty_rcvd ?? ''}}</td>
             <td>{{$datas->sj_exkapal}}</td>
             <td>{{$datas->sj_exgudang}}</td>
             <td>{{$datas->sj_qtykarung}}</td>
