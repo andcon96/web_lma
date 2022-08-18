@@ -764,6 +764,7 @@ class WSAServices
             <Body>
                 <LMA_poappr xmlns="'. $wsa->wsas_path .'">
                     <inpref>'.$ponbr.'</inpref>
+                    <indom>'.$domain.'</indom>
                 </LMA_poappr>
             </Body>
         </Envelope>';
