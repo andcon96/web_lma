@@ -125,6 +125,7 @@ class CreateTempTable
         Schema::dropIfExists('temp_poinvc');
 
         Schema::create('temp_poinvc',function ($table){
+            $table->string('po_dom')->nullable();
             $table->string('po_nbr')->nullable();
             $table->longText('supp');
             $table->string('invoice_nbr');
@@ -139,6 +140,7 @@ class CreateTempTable
 
             if(is_null($checksendemail)){
                 DB::table('temp_poinvc')->insert([
+                    'po_dom' => $datas->t_dom,
                     'po_nbr' => $datas->t_ponbr,
                     'supp' => $datas->t_suppcode.' - '.$datas->t_suppname,
                     'invoice_nbr' => $datas->t_invcnbr,
@@ -149,6 +151,7 @@ class CreateTempTable
                 ]);
             }else{
                 DB::table('temp_poinvc')->insert([
+                    'po_dom' => $datas->t_dom,
                     'po_nbr' => $datas->t_ponbr,
                     'supp' => $datas->t_suppcode.' - '.$datas->t_suppname,
                     'invoice_nbr' => $datas->t_invcnbr,
