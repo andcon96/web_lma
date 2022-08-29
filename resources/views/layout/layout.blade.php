@@ -232,84 +232,118 @@
 
             @can('access_masters')
             <li class="nav-header">MASTER</li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-wrench"></i>
-                <p>
-                  Setting
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="{{route('usermaint.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>User Maintenance</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('rolemaint.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Role Maintenance</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('accessrolemenu.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Role Menu Maintenance</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{url('qxwsa')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>WSA Qxtend Maintenance</p>
-                  </a>
-                </li>
-                <!-- <li class="nav-item">
-                  <a href="{{url('prefixmaint')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Prefix Maintenance</p>
-                  </a>
-                </li> -->
-                <li class="nav-item">
-                  <a href="{{route('poinvcemail.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>PO Invoice Email Control</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('domainmstr.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Domain Master</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('custmstr.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Customer Master</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('locmstr.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Location Master</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('sitemstr.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Site Master</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('suppmstr.index')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Supplier Master</p>
-                  </a>
-                </li>
 
-              </ul>
-            </li>
+              @can('access_setting_head')
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-wrench"></i>
+                  <p>
+                    Setting
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  @can('user_maint')
+                  <li class="nav-item">
+                    <a href="{{route('usermaint.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>User Maintenance</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('role_maint')
+                  <li class="nav-item">
+                    <a href="{{route('rolemaint.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Role Maintenance</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('rolemenu_maint')
+                  <li class="nav-item">
+                    <a href="{{route('accessrolemenu.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Role Menu Maintenance</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('wsaqx_maint')
+                  <li class="nav-item">
+                    <a href="{{url('qxwsa')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>WSA Qxtend Maintenance</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('email_maint')
+                  <li class="nav-item">
+                    <a href="{{route('poinvcemail.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>PO Invoice Email Control</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('dom_master')
+                  <li class="nav-item">
+                    <a href="{{route('domainmstr.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Domain Master</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('cust_master')
+                  <li class="nav-item">
+                    <a href="{{route('custmstr.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Customer Master</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('loc_master')
+                  <li class="nav-item">
+                    <a href="{{route('locmstr.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Location Master</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('site_master')
+                  <li class="nav-item">
+                    <a href="{{route('sitemstr.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Site Master</p>
+                    </a>
+                  </li>
+                  @endcan
+
+                  @can('supp_master')
+                  <li class="nav-item">
+                    <a href="{{route('suppmstr.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Supplier Master</p>
+                    </a>
+                  </li>
+                  @endcan
+                  
+                  <!-- <li class="nav-item">
+                    <a href="{{url('prefixmaint')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Prefix Maintenance</p>
+                    </a>
+                  </li> -->
+
+                </ul>
+              </li>
+              @endcan
+            
             @endcan
 
 
