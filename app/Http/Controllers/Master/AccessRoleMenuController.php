@@ -88,7 +88,20 @@ class AccessRoleMenuController extends Controller
         $cbStockItem = $request->input('cbStockItem');
         $cbHutangCust = $request->input('cbHutangCust');
 
-        $data = 'TR'. $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbPOBrowse . $cbRcptUnplanned . $cbStockItem . $cbHutangCust;
+        //Menu Setting
+        $cbUsrMt = $request->input('cbUsrMt');  
+        $cbRoleMt = $request->input('cbRoleMt');  
+        $cbRoleMenuMt = $request->input('cbRoleMenuMt');  
+        $cbWSAQXMt = $request->input('cbWSAQXMt');  
+        $cbEmail = $request->input('cbEmail');  
+        $cbDomain = $request->input('cbDomain');  
+        $cbCustomer = $request->input('cbCustomer');  
+        $cbLocation = $request->input('cbLocation');  
+        $cbSite = $request->input('cbSite');  
+        $cbSupplier = $request->input('cbSupplier');
+          
+
+        $data = 'TR' . $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbPOBrowse . $cbRcptUnplanned . $cbStockItem . $cbHutangCust . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier ;
 
         DB::beginTransaction();
 
@@ -122,7 +135,7 @@ class AccessRoleMenuController extends Controller
     {
         if ($request->ajax()) {
 
-            $output = "";
+            $output = '';
 
             $accessmenu = RoleType::where('id', $request->search)->get();
 

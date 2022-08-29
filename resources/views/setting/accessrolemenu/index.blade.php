@@ -229,6 +229,113 @@
               </label>
             </div>
           </div>
+
+          <div class="form-group">
+            <h6>
+              <center><strong>Setting</strong></center>
+              </h5>
+              <hr>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('User Maintenance') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbUsrMt">
+                <input type="checkbox" id="cbUsrMt" name="cbUsrMt" value="ST01" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Role Maintenance') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbRoleMt">
+                <input type="checkbox" id="cbRoleMt" name="cbRoleMt" value="ST02" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Role Menu Maintenance') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbRoleMenuMt">
+                <input type="checkbox" id="cbRoleMenuMt" name="cbRoleMenuMt" value="ST03" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('WSA Qxtend Maintenance') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbWSAQXMt">
+                <input type="checkbox" id="cbWSAQXMt" name="cbWSAQXMt" value="ST04" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('PO Invoice Email Control') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbEmail">
+                <input type="checkbox" id="cbEmail" name="cbEmail" value="ST05" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Domain Master') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbDomain">
+                <input type="checkbox" id="cbDomain" name="cbDomain" value="ST06" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Customer Master') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbCustomer">
+                <input type="checkbox" id="cbCustomer" name="cbCustomer" value="ST07" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Location Master') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbLocation">
+                <input type="checkbox" id="cbLocation" name="cbLocation" value="ST08" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Site Master') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbSite">
+                <input type="checkbox" id="cbSite" name="cbSite" value="ST09" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Supplier Master') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbSupplier">
+                <input type="checkbox" id="cbSupplier" name="cbSupplier" value="ST10" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
         </div>
 
         <div class="modal-footer">
@@ -330,6 +437,68 @@
             }else{
               document.getElementById("cbHutangCust").checked = false;
             }
+
+            //Setting
+            if(totmenu.search("ST01") >= 0){
+              document.getElementById("cbUsrMt").checked = true;  
+            }else{
+              document.getElementById("cbUsrMt").checked = false;
+            }
+
+            if(totmenu.search("ST02") >= 0){
+              document.getElementById("cbRoleMt").checked = true;  
+            }else{
+              document.getElementById("cbRoleMt").checked = false;
+            }
+
+            if(totmenu.search("ST03") >= 0){
+              document.getElementById("cbRoleMenuMt").checked = true;  
+            }else{
+              document.getElementById("cbRoleMenuMt").checked = false;
+            }
+
+            if(totmenu.search("ST04") >= 0){
+              document.getElementById("cbWSAQXMt").checked = true;  
+            }else{
+              document.getElementById("cbWSAQXMt").checked = false;
+            }
+
+            if(totmenu.search("ST05") >= 0){
+              document.getElementById("cbEmail").checked = true;  
+            }else{
+              document.getElementById("cbEmail").checked = false;
+            }
+
+            if(totmenu.search("ST06") >= 0){
+              document.getElementById("cbDomain").checked = true;  
+            }else{
+              document.getElementById("cbDomain").checked = false;
+            }
+
+            if(totmenu.search("ST07") >= 0){
+              document.getElementById("cbCustomer").checked = true;  
+            }else{
+              document.getElementById("cbCustomer").checked = false;
+            }
+
+            if(totmenu.search("ST08") >= 0){
+              document.getElementById("cbLocation").checked = true;  
+            }else{
+              document.getElementById("cbLocation").checked = false;
+            }
+
+            if(totmenu.search("ST09") >= 0){
+              document.getElementById("cbSite").checked = true;  
+            }else{
+              document.getElementById("cbSite").checked = false;
+            }
+
+            if(totmenu.search("ST10") >= 0){
+              document.getElementById("cbSupplier").checked = true;  
+            }else{
+              document.getElementById("cbSupplier").checked = false;
+            }
+
           }
       });
      

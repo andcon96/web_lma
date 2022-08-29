@@ -66,6 +66,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'RP');
         });
 
+        Gate::define('access_setting_head', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST');
+        });
+
 
         //=============================
         // Menu Transaksi
@@ -113,6 +117,46 @@ class AuthServiceProvider extends ServiceProvider
         //=============================
         Gate::define('access_masters', function ($user) {
             return $user->getRole->role === Role::SUPER_USER;
+        });
+
+        Gate::define('user_maint', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST01');
+        });
+
+        Gate::define('role_maint', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST02');
+        });
+
+        Gate::define('rolemenu_maint', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST03');
+        });
+
+        Gate::define('wsaqx_maint', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST04');
+        });
+
+        Gate::define('email_maint', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST05');
+        });
+
+        Gate::define('dom_master', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST06');
+        });
+
+        Gate::define('cust_master', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST07');
+        });
+
+        Gate::define('loc_master', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST08');
+        });
+
+        Gate::define('site_master', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST09');
+        });
+
+        Gate::define('supp_master', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST10');
         });
     }
 }
