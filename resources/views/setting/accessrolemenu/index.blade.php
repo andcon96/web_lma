@@ -214,7 +214,7 @@
             <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Stock Item') }}</label>
             <div class="col-md-6">
               <label class="switch" for="cbStockItem">
-                <input type="checkbox" id="cbStockItem" name="cbStockItem" value="RP01" />
+                <input type="checkbox" id="cbStockItem" name="cbStockItem" value="LP01" />
                 <div class="slider round"></div>
               </label>
             </div>
@@ -224,7 +224,7 @@
             <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Hutang Customer') }}</label>
             <div class="col-md-6">
               <label class="switch" for="cbHutangCust">
-                <input type="checkbox" id="cbHutangCust" name="cbHutangCust" value="RP02" />
+                <input type="checkbox" id="cbHutangCust" name="cbHutangCust" value="LP02" />
                 <div class="slider round"></div>
               </label>
             </div>
@@ -426,13 +426,13 @@
             }
 
             //Report
-            if(totmenu.search("RP01") >= 0){
+            if(totmenu.search("LP01") >= 0){
               document.getElementById("cbStockItem").checked = true;  
             }else{
               document.getElementById("cbStockItem").checked = false;
             }
 
-            if(totmenu.search("RP02") >= 0){
+            if(totmenu.search("LP02") >= 0){
               document.getElementById("cbHutangCust").checked = true;  
             }else{
               document.getElementById("cbHutangCust").checked = false;
