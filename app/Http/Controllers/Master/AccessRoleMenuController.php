@@ -101,7 +101,7 @@ class AccessRoleMenuController extends Controller
         $cbSupplier = $request->input('cbSupplier');
           
 
-        $data = 'TR' . $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbPOBrowse . $cbRcptUnplanned . $cbStockItem . $cbHutangCust . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier ;
+        $data = 'TR' . 'MS' . $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbPOBrowse . $cbRcptUnplanned . $cbStockItem . $cbHutangCust . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier ;
 
         DB::beginTransaction();
 

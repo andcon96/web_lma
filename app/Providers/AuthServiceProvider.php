@@ -63,7 +63,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('access_report_head', function($user){
-            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'RP');
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'LP');
         });
 
         Gate::define('access_setting_head', function($user){
@@ -106,17 +106,17 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('stock_item', function($user){
-            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'RP01');
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'LP01');
         });
 
         Gate::define('hutang_cust', function($user){
-            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'RP02');
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'LP02');
         });
         //=============================
         // Menu Master
         //=============================
         Gate::define('access_masters', function ($user) {
-            return $user->getRole->role === Role::SUPER_USER;
+            return $user->getRole->role === Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'MS');
         });
 
         Gate::define('user_maint', function($user){
