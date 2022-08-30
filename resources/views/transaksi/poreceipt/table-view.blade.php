@@ -8,7 +8,7 @@
         <th style="width: 9%;">Qty Received</th>
         <th style="width: 9%;">Qty Open</th>
         <th style="width: 10%;">Location</th>
-        <th style="width: 10%;">Transportir</th>
+        <th style="width: 10%;">Gudang/Kapal</th>
         <th style="width: 10%;">Qty Supplier</th>
         <th style="width: 10%;">Qty Terima</th>
       </tr>
