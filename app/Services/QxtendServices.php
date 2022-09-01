@@ -1025,11 +1025,14 @@ class QxtendServices
 
     try {
 
+      dump('abc');
+
       $rcpt_unplanned = RcptUnplanned::findOrFail($datas['idmaster']);
       $rcpt_unplanned->updated_at = now();
       $rcpt_unplanned->status = 'Closed';
       $rcpt_unplanned->save();
 
+      dump('efg');
       $qxwsa = Qxwsa::first();
 
       // Var Qxtend
