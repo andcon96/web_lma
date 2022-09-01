@@ -23,7 +23,7 @@
         <td>
           {{$detaildata->loc}}
           <input type="hidden" name="loc" value="{{$detaildata->loc}}" />
-          <input type="text" name="site" value="{{$detaildata->site}}" />
+          <input type="hidden" name="site" value="{{$detaildata->site}}" />
         </td>
         <td>
             {{$detaildata->lot}}
