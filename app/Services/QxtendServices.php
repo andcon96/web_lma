@@ -373,6 +373,7 @@ class QxtendServices
     $popartname = $datas['popartdesc'];
     $receiptdate = $datas['receiptdate'];
     $pokontrak = $datas['po_kontrak'];
+    $partsite = $datas['podsite'];
     // $listnopol = implode(" , ", $datas['nopol']);
     $nopol = $datas['nopol'];
 
@@ -409,6 +410,7 @@ class QxtendServices
           $rcptunplanned->partdesc = $popartname[$key];
           $rcptunplanned->loc = $partloc[$key];
           $rcptunplanned->lot = $partlot[$key];
+          $rcptunplanned->site = $partsite[$key];
           $rcptunplanned->qty_unplanned = $qtylebih;
           $rcptunplanned->pokontrak = $pokontrak;
           $rcptunplanned->nopol = $nopol;
@@ -1116,6 +1118,7 @@ class QxtendServices
                     <inventoryReceipt>
                       <ptPart>' . $datas['part'] . '</ptPart>
                       <lotserialQty>' . $datas['qtyunplanned'] . '</lotserialQty>
+                      <site>' . $datas['site'] . '</site>
                       <location>' . $datas['loc'] . '</location>
                       <lotserial>' . $datas['lot'] . '</lotserial>
                       <rmks>' . $datas['po_nbr'] . '</rmks>

@@ -23,6 +23,7 @@
         <td>{{$show->pod_part}} -- {{$show->pod_partdesc}}
           <input type="hidden" name="popart[]" value="{{$show->pod_part}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
           <input type="hidden" name="popartdesc[]" value="{{$show->pod_partdesc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
+          <input type="hidden" name="podsite[]" value="{{$show->pod_site}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'disabled':''}} />
         </td>
         <td>
           {{number_format($show->pod_qty_ord,2)}}
