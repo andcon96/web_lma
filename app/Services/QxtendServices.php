@@ -958,6 +958,7 @@ class QxtendServices
                             <sodQtyOrd>' . $data->sod_qty_sj . '</sodQtyOrd>
                             <sodListPr>' . $data->sod_price_ls . '</sodListPr>
                             <lYn>true</lYn>
+                            <sodType>M</sodType>
                           </salesOrderDetail>';
     }
     $qdocfooter =   '</salesOrder>

@@ -212,25 +212,27 @@ class CreateTempTable
             $ship_name = CustMstr::where('cust_code','=',$datas->t_soship)->first();
             $bill_name = CustMstr::where('cust_code','=',$datas->t_sobill)->first();
             
-            DB::table('temp_group')->insert([
-                'so_nbr' => $datas->t_sonbr,
-                'so_cust' => $datas->t_socust,
-                'so_cust_name' => $cust_name->cust_name ?? '',
-                'so_ship' => $datas->t_soship,
-                'so_ship_name' => $ship_name->cust_name ?? '',
-                'so_bill' => $datas->t_sobill,
-                'so_bill_name' => $bill_name->cust_name ?? '',
-                'so_po' => $datas->t_sopo, // *170522
-                'so_duedate' => $datas->t_soduedate,
-                'sod_line' => $datas->t_soline,
-                'sod_part' => $datas->t_sopart,
-                'sod_part_desc' => $datas->t_sopartdesc,
-                'sod_loc' => $datas->t_soloc,
-                'sod_qty_ord' => $datas->t_soqtyord,
-                'sod_qty_ship' => $datas->t_soqtyship,
-                'sod_price_ls' => $datas->t_listprc,
-                'sod_qty_ongoing' => $qtysj,
-            ]);
+            if($datas->t_soqtyord > 0){
+                DB::table('temp_group')->insert([
+                    'so_nbr' => $datas->t_sonbr,
+                    'so_cust' => $datas->t_socust,
+                    'so_cust_name' => $cust_name->cust_name ?? '',
+                    'so_ship' => $datas->t_soship,
+                    'so_ship_name' => $ship_name->cust_name ?? '',
+                    'so_bill' => $datas->t_sobill,
+                    'so_bill_name' => $bill_name->cust_name ?? '',
+                    'so_po' => $datas->t_sopo, // *170522
+                    'so_duedate' => $datas->t_soduedate,
+                    'sod_line' => $datas->t_soline,
+                    'sod_part' => $datas->t_sopart,
+                    'sod_part_desc' => $datas->t_sopartdesc,
+                    'sod_loc' => $datas->t_soloc,
+                    'sod_qty_ord' => $datas->t_soqtyord,
+                    'sod_qty_ship' => $datas->t_soqtyship,
+                    'sod_price_ls' => $datas->t_listprc,
+                    'sod_qty_ongoing' => $qtysj,
+                ]);
+            }
         }
 
         $table_so = DB::table('temp_group')->get();
@@ -256,7 +258,7 @@ class CreateTempTable
             if($data['qtysj'][$key] != $data['qtyinp'][$key]){
                 DB::table('temp_group')->insert([
                     'sod_nbr' => $data['sonbr'],
-                    'sod_part' => 'Reject - '.$data['part'][$key],
+                    'sod_part' => $data['part'][$key],
                     'sod_qty_sj' => number_format($data['qtyinp'][$key] - $data['qtysj'][$key],2),
                     'sod_price_ls' => $data['price'][$key]
                 ]);
