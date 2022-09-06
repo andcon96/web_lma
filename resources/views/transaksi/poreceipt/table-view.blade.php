@@ -37,13 +37,13 @@
           {{number_format($show->pod_qty_ord - $show->pod_qty_rcvd,2)}}
         </td>
         <td>
-          <input type="text" class="form-control" name="partloc[]" value="{{$show->pod_loc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? '':'readonly'}}>
+          <input type="text" class="form-control" name="partloc[]" value="{{$show->pod_loc}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'readonly':'readonly'}}>
         </td>
         <td>
-          <input type="text" class="form-control" name="partlot[]" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_lot ?? null : ''}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? '':''}}>
+          <input type="text" class="form-control" name="partlot[]" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_lot ?? null : ''}}" {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'readonly':'readonly'}}>
         </td>
-        <td><input type="number" class="form-control" name="qtyterima[]" min="0" step="1" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_terima ?? null : 0}}" required {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? '':''}} /></td>
-        <td><input type="number" class="form-control" name="qtyfg[]" min="0" step="1" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_fg ?? null : 0}}" required {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? '':''}} /></td>
+        <td><input type="number" class="form-control" name="qtyterima[]" min="0" step="1" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_terima ?? null : 0}}" required {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'readonly':''}} /></td>
+        <td><input type="number" class="form-control" name="qtyfg[]" min="0" step="1" value="{{($sessionpo!=null) ? $sessionpo[$index]->pod_qty_fg ?? null : 0}}" required {{$show->pod_qty_ord <= $show->pod_qty_rcvd ? 'readonly':''}} /></td>
       </tr>
       @empty
       <td colspan='7' class='text-danger'><b>No Data Available</b></td>
