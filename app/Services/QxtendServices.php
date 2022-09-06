@@ -648,7 +648,7 @@ class QxtendServices
         return 'qxtend_err';
       }
     } catch (Exception $e) {
-      // dd('db_err');
+      dd($e);
       DB::rollBack();
       return 'db_err';
     }
