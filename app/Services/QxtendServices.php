@@ -341,7 +341,7 @@ class QxtendServices
       curl_close($curl);
     }
 
-    if (is_bool($qdocResponse)) {
+    if (!is_bool($qdocResponse)) {
       return false;
     }
     $xmlResp = simplexml_load_string($qdocResponse);
