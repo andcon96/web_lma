@@ -633,7 +633,7 @@ class QxtendServices
 
       // dd($qdocResponse);
 
-      if (!is_bool($qdocResponse)) {
+      if (is_bool($qdocResponse)) {
         // dd('false');
         DB::rollBack();
         return false;
