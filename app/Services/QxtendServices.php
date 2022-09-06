@@ -341,7 +341,7 @@ class QxtendServices
       curl_close($curl);
     }
 
-    if (!is_bool($qdocResponse)) {
+    if (is_bool($qdocResponse)) {
       return false;
     }
     $xmlResp = simplexml_load_string($qdocResponse);
@@ -394,53 +394,52 @@ class QxtendServices
 
         $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-        // if ($qtyreject < 0 && ($qtyterima[$key] != 0 || $qtyfg[$key] != 0)) {
-        //   $qtylebih = abs($qtyreject);
-        //   $qtyreject = 0;
+        if($qtyreject < 0){
+          $qtylebih = abs($qtyreject);
+          $qtyreject = 0;
 
-        //   $rcptunplanned = new RcptUnplanned();
+          $rcptunplanned = new RcptUnplanned();
+          
+          $rcptunplanned->domain = $domain;
+          $rcptunplanned->receiptdate = $receiptdate;
+          $rcptunplanned->ponbr = $ponbr;
+          $rcptunplanned->supp = $supp;
+          $rcptunplanned->suppname = $suppname;
+          $rcptunplanned->line = $a;
+          $rcptunplanned->part = $popart[$key];
+          $rcptunplanned->partdesc = $popartname[$key];
+          $rcptunplanned->loc = $partloc[$key];
+          $rcptunplanned->lot = $partlot[$key];
+          $rcptunplanned->site = $partsite[$key];
+          $rcptunplanned->qty_unplanned = $qtylebih;
+          $rcptunplanned->pokontrak = $pokontrak;
+          $rcptunplanned->nopol = $nopol;
+          $rcptunplanned->save();
+        }
 
-        //   $rcptunplanned->domain = $domain;
-        //   $rcptunplanned->receiptdate = $receiptdate;
-        //   $rcptunplanned->ponbr = $ponbr;
-        //   $rcptunplanned->supp = $supp;
-        //   $rcptunplanned->suppname = $suppname;
-        //   $rcptunplanned->line = $a;
-        //   $rcptunplanned->part = $popart[$key];
-        //   $rcptunplanned->partdesc = $popartname[$key];
-        //   $rcptunplanned->loc = $partloc[$key];
-        //   $rcptunplanned->lot = $partlot[$key];
-        //   $rcptunplanned->site = $partsite[$key];
-        //   $rcptunplanned->qty_unplanned = $qtylebih;
-        //   $rcptunplanned->pokontrak = $pokontrak;
-        //   $rcptunplanned->nopol = $nopol;
-        //   $rcptunplanned->save();
-        // }
+          $pohist = new POhist();
 
-        // if ($qtyterima[$key] != 0 || $qtyfg[$key] != 0) {
-        //   $pohist = new POhist();
+          $pohist->ph_ponbr = $ponbr;
+          $pohist->ph_supp = $supp;
+          $pohist->ph_suppname = $suppname;
+          $pohist->ph_line = $a;
+          $pohist->ph_part = $popart[$key];
+          $pohist->ph_partname = $popartname[$key];
+          $pohist->ph_qty_order = $qtyord[$key];
+          $pohist->ph_qty_rcvd = $qtyrcvd[$key];
+          $pohist->ph_qty_terima = $qtyterima[$key];
+          $pohist->ph_qty_fg = $qtyfg[$key];
+          $pohist->ph_qty_rjct = $qtyreject;
+          $pohist->ph_qty_lebih = $qtylebih;
+          $pohist->ph_nopol = $nopol;
+          $pohist->ph_receiptdate = $receiptdate;
+          $pohist->ph_loc = $partloc[$key];
+          $pohist->ph_lot = $partlot[$key];
+          $pohist->created_by = auth()->user()->id;
+          $pohist->ph_domain = $domain;
+          $pohist->ph_pokontrak = $pokontrak;
+          $pohist->save();
 
-        //   $pohist->ph_ponbr = $ponbr;
-        //   $pohist->ph_supp = $supp;
-        //   $pohist->ph_suppname = $suppname;
-        //   $pohist->ph_line = $a;
-        //   $pohist->ph_part = $popart[$key];
-        //   $pohist->ph_partname = $popartname[$key];
-        //   $pohist->ph_qty_order = $qtyord[$key];
-        //   $pohist->ph_qty_rcvd = $qtyrcvd[$key];
-        //   $pohist->ph_qty_terima = $qtyterima[$key];
-        //   $pohist->ph_qty_fg = $qtyfg[$key];
-        //   $pohist->ph_qty_rjct = $qtyreject;
-        //   $pohist->ph_qty_lebih = $qtylebih;
-        //   $pohist->ph_nopol = $nopol;
-        //   $pohist->ph_receiptdate = $receiptdate;
-        //   $pohist->ph_loc = $partloc[$key];
-        //   $pohist->ph_lot = $partlot[$key];
-        //   $pohist->created_by = auth()->user()->id;
-        //   $pohist->ph_domain = $domain;
-        //   $pohist->ph_pokontrak = $pokontrak;
-        //   $pohist->save();
-        // }
       }
 
       $qxwsa = Qxwsa::first();
@@ -543,45 +542,40 @@ class QxtendServices
 
         $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-        if ($qtyterima[$key] != 0 || $qtyfg[$key] != 0) {
-
-
-
-          // dd($index);
-          $qdocBody .= ' <lineDetail>
+        // dd($index);
+        $qdocBody .= ' <lineDetail>
                         <line>' . $p . '</line>
                         <lotserialQty>' . $qtyterima[$key]  . '</lotserialQty>
                         <location>' . $partloc[$key] . '</location>
                         <lotserial>' . $partlot[$key] . '</lotserial>
                         <multiEntry>true</multiEntry>';
 
-          if ($qtyfg[$key] > $qtyterima[$key]) {
-            $qdocBody .= ' <receiptDetail>
+        if ($qtyfg[$key] > $qtyterima[$key]) {
+          $qdocBody .= ' <receiptDetail>
                         <location>' . $partloc[$key] . '</location>
                         <lotserialQty>' . $qtyterima[$key] . '</lotserialQty>
                         <serialsYn>true</serialsYn>
                       </receiptDetail>';
-          } else {
-            if ($qtyfg > 0) {
-              $qdocBody .= ' <receiptDetail>
+        } else {
+          if ($qtyfg > 0) {
+            $qdocBody .= ' <receiptDetail>
                           <location>' . $partloc[$key] . '</location>
                           <lotserialQty>' . $qtyfg[$key] . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
-            }
           }
+        }
 
-          if ($qtyreject > 0) {
+        if ($qtyreject > 0) {
 
-            $qdocBody .= ' <receiptDetail>
+          $qdocBody .= ' <receiptDetail>
                           <location>Reject</location>
                           <lotserialQty>' . $qtyreject . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
-          }
-
-          $qdocBody .= '</lineDetail>';
         }
+
+        $qdocBody .= '</lineDetail>';
       }
       $qdocFoot = ' </purchaseOrderReceive>
                 </dsPurchaseOrderReceive>

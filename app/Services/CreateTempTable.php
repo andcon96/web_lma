@@ -211,7 +211,7 @@ class CreateTempTable
             $cust_name = CustMstr::where('cust_code','=',$datas->t_socust)->first();
             $ship_name = CustMstr::where('cust_code','=',$datas->t_soship)->first();
             $bill_name = CustMstr::where('cust_code','=',$datas->t_sobill)->first();
-
+            
             if($datas->t_soqtyord > 0){
                 DB::table('temp_group')->insert([
                     'so_nbr' => $datas->t_sonbr,
@@ -233,7 +233,6 @@ class CreateTempTable
                     'sod_qty_ongoing' => $qtysj,
                 ]);
             }
-            
         }
 
         $table_so = DB::table('temp_group')->get();
