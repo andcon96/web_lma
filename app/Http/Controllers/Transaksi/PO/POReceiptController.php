@@ -216,6 +216,8 @@ class POReceiptController extends Controller
             // alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+
+            dd($poSession);
             Session::put('session_po',$poSession);
             Session::put('errorcode',1);
             return redirect()->route('poreceipt.edit',$req->po_nbr);
@@ -225,6 +227,7 @@ class POReceiptController extends Controller
             // alert()->error('Error', 'Terdapat masalah pada qxtend')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+            ($poSession);
             Session::put('session_po',$poSession);
             Session::put('errorcode',2);
             return redirect()->route('poreceipt.edit',$req->po_nbr);
@@ -234,6 +237,7 @@ class POReceiptController extends Controller
             // alert()->error('Error', 'Qxtend Error')->persistent('Dismiss');
             // return redirect()->route('poreceipt.index');
             $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
+            dd($poSession);
             Session::put('session_po',$poSession);
             Session::put('errorcode',3);
             return redirect()->route('poreceipt.edit',$req->po_nbr);
