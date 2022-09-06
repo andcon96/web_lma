@@ -394,12 +394,12 @@ class QxtendServices
 
         $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-        if($qtyreject < 0){
+        if ($qtyreject < 0 && !empty($qtyterima[$key]) && !empty($qtyfg[$key])) {
           $qtylebih = abs($qtyreject);
           $qtyreject = 0;
 
           $rcptunplanned = new RcptUnplanned();
-          
+
           $rcptunplanned->domain = $domain;
           $rcptunplanned->receiptdate = $receiptdate;
           $rcptunplanned->ponbr = $ponbr;
@@ -417,6 +417,7 @@ class QxtendServices
           $rcptunplanned->save();
         }
 
+        if (!empty($qtyterima[$key]) && !empty($qtyfg[$key])) {
           $pohist = new POhist();
 
           $pohist->ph_ponbr = $ponbr;
@@ -439,7 +440,7 @@ class QxtendServices
           $pohist->ph_domain = $domain;
           $pohist->ph_pokontrak = $pokontrak;
           $pohist->save();
-
+        }
       }
 
       $qxwsa = Qxwsa::first();
@@ -542,40 +543,45 @@ class QxtendServices
 
         $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-        // dd($index);
-        $qdocBody .= ' <lineDetail>
+        if (!empty($qtyterima[$key]) && !empty($qtyfg[$key])) {
+
+
+
+          // dd($index);
+          $qdocBody .= ' <lineDetail>
                         <line>' . $p . '</line>
                         <lotserialQty>' . $qtyterima[$key]  . '</lotserialQty>
                         <location>' . $partloc[$key] . '</location>
                         <lotserial>' . $partlot[$key] . '</lotserial>
                         <multiEntry>true</multiEntry>';
 
-        if ($qtyfg[$key] > $qtyterima[$key]) {
-          $qdocBody .= ' <receiptDetail>
+          if ($qtyfg[$key] > $qtyterima[$key]) {
+            $qdocBody .= ' <receiptDetail>
                         <location>' . $partloc[$key] . '</location>
                         <lotserialQty>' . $qtyterima[$key] . '</lotserialQty>
                         <serialsYn>true</serialsYn>
                       </receiptDetail>';
-        } else {
-          if ($qtyfg > 0) {
-            $qdocBody .= ' <receiptDetail>
+          } else {
+            if ($qtyfg > 0) {
+              $qdocBody .= ' <receiptDetail>
                           <location>' . $partloc[$key] . '</location>
                           <lotserialQty>' . $qtyfg[$key] . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
+            }
           }
-        }
 
-        if ($qtyreject > 0) {
+          if ($qtyreject > 0) {
 
-          $qdocBody .= ' <receiptDetail>
+            $qdocBody .= ' <receiptDetail>
                           <location>Reject</location>
                           <lotserialQty>' . $qtyreject . '</lotserialQty>
                           <serialsYn>true</serialsYn>
                         </receiptDetail>';
-        }
+          }
 
-        $qdocBody .= '</lineDetail>';
+          $qdocBody .= '</lineDetail>';
+        }
       }
       $qdocFoot = ' </purchaseOrderReceive>
                 </dsPurchaseOrderReceive>
