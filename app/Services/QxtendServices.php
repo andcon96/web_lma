@@ -394,53 +394,53 @@ class QxtendServices
 
         $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-        if ($qtyreject < 0 && ($qtyterima[$key] != 0 || $qtyfg[$key] != 0)) {
-          $qtylebih = abs($qtyreject);
-          $qtyreject = 0;
+        // if ($qtyreject < 0 && ($qtyterima[$key] != 0 || $qtyfg[$key] != 0)) {
+        //   $qtylebih = abs($qtyreject);
+        //   $qtyreject = 0;
 
-          $rcptunplanned = new RcptUnplanned();
+        //   $rcptunplanned = new RcptUnplanned();
 
-          $rcptunplanned->domain = $domain;
-          $rcptunplanned->receiptdate = $receiptdate;
-          $rcptunplanned->ponbr = $ponbr;
-          $rcptunplanned->supp = $supp;
-          $rcptunplanned->suppname = $suppname;
-          $rcptunplanned->line = $a;
-          $rcptunplanned->part = $popart[$key];
-          $rcptunplanned->partdesc = $popartname[$key];
-          $rcptunplanned->loc = $partloc[$key];
-          $rcptunplanned->lot = $partlot[$key];
-          $rcptunplanned->site = $partsite[$key];
-          $rcptunplanned->qty_unplanned = $qtylebih;
-          $rcptunplanned->pokontrak = $pokontrak;
-          $rcptunplanned->nopol = $nopol;
-          $rcptunplanned->save();
-        }
+        //   $rcptunplanned->domain = $domain;
+        //   $rcptunplanned->receiptdate = $receiptdate;
+        //   $rcptunplanned->ponbr = $ponbr;
+        //   $rcptunplanned->supp = $supp;
+        //   $rcptunplanned->suppname = $suppname;
+        //   $rcptunplanned->line = $a;
+        //   $rcptunplanned->part = $popart[$key];
+        //   $rcptunplanned->partdesc = $popartname[$key];
+        //   $rcptunplanned->loc = $partloc[$key];
+        //   $rcptunplanned->lot = $partlot[$key];
+        //   $rcptunplanned->site = $partsite[$key];
+        //   $rcptunplanned->qty_unplanned = $qtylebih;
+        //   $rcptunplanned->pokontrak = $pokontrak;
+        //   $rcptunplanned->nopol = $nopol;
+        //   $rcptunplanned->save();
+        // }
 
-        if ($qtyterima[$key] != 0 || $qtyfg[$key] != 0) {
-          $pohist = new POhist();
+        // if ($qtyterima[$key] != 0 || $qtyfg[$key] != 0) {
+        //   $pohist = new POhist();
 
-          $pohist->ph_ponbr = $ponbr;
-          $pohist->ph_supp = $supp;
-          $pohist->ph_suppname = $suppname;
-          $pohist->ph_line = $a;
-          $pohist->ph_part = $popart[$key];
-          $pohist->ph_partname = $popartname[$key];
-          $pohist->ph_qty_order = $qtyord[$key];
-          $pohist->ph_qty_rcvd = $qtyrcvd[$key];
-          $pohist->ph_qty_terima = $qtyterima[$key];
-          $pohist->ph_qty_fg = $qtyfg[$key];
-          $pohist->ph_qty_rjct = $qtyreject;
-          $pohist->ph_qty_lebih = $qtylebih;
-          $pohist->ph_nopol = $nopol;
-          $pohist->ph_receiptdate = $receiptdate;
-          $pohist->ph_loc = $partloc[$key];
-          $pohist->ph_lot = $partlot[$key];
-          $pohist->created_by = auth()->user()->id;
-          $pohist->ph_domain = $domain;
-          $pohist->ph_pokontrak = $pokontrak;
-          $pohist->save();
-        }
+        //   $pohist->ph_ponbr = $ponbr;
+        //   $pohist->ph_supp = $supp;
+        //   $pohist->ph_suppname = $suppname;
+        //   $pohist->ph_line = $a;
+        //   $pohist->ph_part = $popart[$key];
+        //   $pohist->ph_partname = $popartname[$key];
+        //   $pohist->ph_qty_order = $qtyord[$key];
+        //   $pohist->ph_qty_rcvd = $qtyrcvd[$key];
+        //   $pohist->ph_qty_terima = $qtyterima[$key];
+        //   $pohist->ph_qty_fg = $qtyfg[$key];
+        //   $pohist->ph_qty_rjct = $qtyreject;
+        //   $pohist->ph_qty_lebih = $qtylebih;
+        //   $pohist->ph_nopol = $nopol;
+        //   $pohist->ph_receiptdate = $receiptdate;
+        //   $pohist->ph_loc = $partloc[$key];
+        //   $pohist->ph_lot = $partlot[$key];
+        //   $pohist->created_by = auth()->user()->id;
+        //   $pohist->ph_domain = $domain;
+        //   $pohist->ph_pokontrak = $pokontrak;
+        //   $pohist->save();
+        // }
       }
 
       $qxwsa = Qxwsa::first();
