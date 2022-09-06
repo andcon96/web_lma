@@ -195,6 +195,8 @@ class POReceiptController extends Controller
     public function submitReceipt(Request $req){
         $newrequest = $req->all();
 
+        dd($newrequest);
+
         // if(Session::get('dom_search') != Session::get('domain')){
         //     $poSession = (new CreateTempTable())->createPOSessionTemp($newrequest);
         //     Session::put('session_po',$poSession);
