@@ -394,7 +394,7 @@ class QxtendServices
 
         $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-        if ($qtyreject < 0 && $qtyterima[$key] != 0 && $qtyfg[$key] != 0) {
+        if ($qtyreject < 0 && ($qtyterima[$key] != 0 || $qtyfg[$key] != 0)) {
           $qtylebih = abs($qtyreject);
           $qtyreject = 0;
 
@@ -417,7 +417,7 @@ class QxtendServices
           $rcptunplanned->save();
         }
 
-        if ($qtyterima[$key] != 0 && $qtyfg[$key] != 0) {
+        if ($qtyterima[$key] != 0 || $qtyfg[$key] != 0) {
           $pohist = new POhist();
 
           $pohist->ph_ponbr = $ponbr;
@@ -543,7 +543,7 @@ class QxtendServices
 
         $qtyreject = $qtyterima[$key] - $qtyfg[$key];
 
-        if ($qtyterima[$key] != 0 && $qtyfg[$key] != 0) {
+        if ($qtyterima[$key] != 0 || $qtyfg[$key] != 0) {
 
 
 
