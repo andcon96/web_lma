@@ -15,7 +15,7 @@ class AddPhPokontrakToPoHist extends Migration
     {
         Schema::table('po_hist', function (Blueprint $table) {
             //
-            $table->string('ph_pokontrak');
+            $table->string('ph_pokontrak')->nullable();
         });
     }
 
