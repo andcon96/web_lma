@@ -13,7 +13,7 @@
             <th>Qty Receive</th>
             <th>Qty Open</th>
             <th>Location</th>
-            <th>Gudang/Kapal</th>
+            <th>Gudang / Kapal</th>
             <th>Qty Supplier</th>
             <th>Qty Terima</th>
             <th>Qty Reject</th>

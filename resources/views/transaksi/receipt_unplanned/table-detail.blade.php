@@ -5,7 +5,7 @@
         <th style="width: 5%;">Line</th>
         <th style="width: 28%;">Item</th>
         <th style="width: 10%;">Location</th>
-        <th style="width: 10%;">Gudang/Kapal</th>
+        <th style="width: 10%;">Gudang / Kapal</th>
         <th style="width: 9%;">Qty Unplanned</th>
       </tr>
     </thead>
