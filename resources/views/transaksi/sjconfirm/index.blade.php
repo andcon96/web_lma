@@ -69,7 +69,7 @@
     </div>
 </form>
 
-<form method="get" action="{{ route('sjtoexcel') }}">
+<form method="get" action="{{ route('sjconfirmexcel') }}">
     <div class="form-group row">
         <div class="col-lg-4 col-md-4">  
             <input id="h_sjnbr" type="hidden" class="form-control" name="h_sjnbr" value="{{ request()->input('sjnbr') }}">
