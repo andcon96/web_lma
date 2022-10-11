@@ -1064,8 +1064,8 @@ class QxtendServices
           <qcom:dsSessionContext>
             <qcom:ttContext>
               <qcom:propertyQualifier>QAD</qcom:propertyQualifier>
-              <qcom:propertyName>' . $domain . '</qcom:propertyName>
-              <qcom:propertyValue/>
+              <qcom:propertyName>domain</qcom:propertyName>
+              <qcom:propertyValue>' . $domain . '</qcom:propertyValue>
             </qcom:ttContext>
             <qcom:ttContext>
               <qcom:propertyQualifier>QAD</qcom:propertyQualifier>

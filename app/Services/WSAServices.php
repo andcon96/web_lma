@@ -761,7 +761,7 @@ class WSAServices
         if(strpos($ponbr, '&') !== false){
             $ponbr = str_replace('&', '&amp;', $ponbr);
         }
-
+        
         $qdocRequest =   
         '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
             <Body>
