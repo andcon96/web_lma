@@ -95,6 +95,10 @@ class SuratJalanController extends Controller
                     $sj_dets->sj_qty_input = $request->qtyinput[$key];
                     $sj_dets->sj_price_ls = $request->sodpricels[$key];
                     $sj_dets->save();
+                }else{
+                    DB::rollBack();
+                    alert()->error('Error', 'Failed submit, Qty tidak bisa 0')->persistent('Dismiss');
+                    return redirect()->route('suratjalan.edit',$request->sonbr);
                 } 
             }
 
