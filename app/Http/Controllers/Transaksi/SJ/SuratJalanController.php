@@ -98,7 +98,7 @@ class SuratJalanController extends Controller
                 }else{
                     DB::rollBack();
                     alert()->error('Error', 'Failed submit, Qty tidak bisa 0')->persistent('Dismiss');
-                    return back();
+                    return back()->withInput($request->only('nopol','exkapal','exgudang','qtykarung','transportirname'));
                 } 
             }
 
