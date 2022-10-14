@@ -98,7 +98,7 @@ class SuratJalanController extends Controller
                 }else{
                     DB::rollBack();
                     alert()->error('Error', 'Failed submit, Qty tidak bisa 0')->persistent('Dismiss');
-                    return redirect()->route('suratjalan.edit',$request->sonbr);
+                    return back();
                 } 
             }
 
