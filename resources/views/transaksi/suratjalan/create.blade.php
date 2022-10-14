@@ -46,7 +46,7 @@
         </div>
         <label for="nopol" class="col-md-2 col-form-label text-md-right">{{ __('No Polis') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
-            <input id="nopol" type="text" class="form-control" name="nopol" value="abc" required>
+            <input id="nopol" type="text" class="form-control" name="nopol" value="{{request()->input('nopol')}}" required>
         </div>
     </div>
 

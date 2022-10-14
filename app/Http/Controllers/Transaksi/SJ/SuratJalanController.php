@@ -97,6 +97,8 @@ class SuratJalanController extends Controller
                     $sj_dets->save();
                 }else{
                     DB::rollBack();
+
+                    dd($request->only('nopol','exkapal','exgudang','qtykarung','transportirname'));
                     alert()->error('Error', 'Failed submit, Qty tidak bisa 0')->persistent('Dismiss');
                     return back()->withInput($request->only('nopol','exkapal','exgudang','qtykarung','transportirname'));
                 } 
