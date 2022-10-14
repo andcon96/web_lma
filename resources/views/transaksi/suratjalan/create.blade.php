@@ -11,7 +11,7 @@
 @section('content')
 
 
-<form method="post" action="{{route('suratjalan.store')}}" id='submit'>
+<form method="get" action="{{route('suratjalan.store')}}" id='submit'>
     @method('POST')
     @csrf
 
