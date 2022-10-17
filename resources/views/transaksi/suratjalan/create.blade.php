@@ -46,7 +46,7 @@
         </div>
         <label for="nopol" class="col-md-2 col-form-label text-md-right">{{ __('No Polis') }}</label>
         <div class="col-xl-3 col-lg-3 col-md-8 col-sm-12 col-xs-12">
-            <input id="nopol" type="text" class="form-control" name="nopol" value="" required>
+            <input id="nopol" type="text" class="form-control" name="nopol" value="{{ old('nopol') }}" required>
         </div>
     </div>
 
@@ -55,25 +55,25 @@
     <div class="form-group row col-md-12">
         <label for="exkapal" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Ex Kapal') }}</label>
         <div class="col-md-2">
-            <input id="exkapal" type="text" class="form-control" name="exkapal" maxlength="24" autocomplete="on" >
+            <input id="exkapal" type="text" class="form-control" name="exkapal" maxlength="24" autocomplete="on" value="{{old('exkapal')}}" >
         </div>
     </div>
     <div class="form-group row col-md-12">
         <label for="exgudang" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Ex Gudang') }}</label>
         <div class="col-md-2">
-            <input id="exgudang" type="text" class="form-control" name="exgudang" maxlength="24" autocomplete="on" >
+            <input id="exgudang" type="text" class="form-control" name="exgudang" maxlength="24" autocomplete="on" value="{{old('exgudang')}}" >
         </div>
     </div>
     <div class="form-group row col-md-12">
         <label for="qtykarung" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Jumlah Karung') }}</label>
         <div class="col-md-2">
-            <input id="qtykarung" type="number" class="form-control" name="qtykarung" min="0" step="1" autocomplete="off" >
+            <input id="qtykarung" type="number" class="form-control" name="qtykarung" min="0" step="1" autocomplete="off" value="{{old('qtykarung')}}" >
         </div>
     </div>
     <div class="form-group row col-md-12">
         <label for="transportirname" class="col-form-label col-md-2" style="margin-left:95px">{{ __('Nama Transportir') }}</label>
         <div class="col-md-2">
-            <input id="transportirname" type="text" class="form-control" name="transportirname" maxlength="24" autocomplete="on" >
+            <input id="transportirname" type="text" class="form-control" name="transportirname" maxlength="24" autocomplete="on" value="{{old('transportirname')}}" >
         </div>
     </div>
 

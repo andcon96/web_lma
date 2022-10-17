@@ -60,7 +60,7 @@ class SuratJalanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   //return back()->withInput($request->only('nopol','exkapal','exgudang','qtykarung','transportirname'));
         DB::beginTransaction();
         try {
             $newprefix = (new CreateTempTable())->getRNSJ();
@@ -97,8 +97,9 @@ class SuratJalanController extends Controller
                     $sj_dets->save();
                 }else{
                     DB::rollBack();
+
                     alert()->error('Error', 'Failed submit, Qty tidak bisa 0')->persistent('Dismiss');
-                    return redirect()->route('suratjalan.edit',$request->sonbr);
+                    return back()->withInput($request->only('nopol','exkapal','exgudang','qtykarung','transportirname'));
                 } 
             }
 

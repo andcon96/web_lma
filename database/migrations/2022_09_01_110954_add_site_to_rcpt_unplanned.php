@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPhPokontrakToPoHist extends Migration
+class AddSiteToRcptUnplanned extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddPhPokontrakToPoHist extends Migration
      */
     public function up()
     {
-        Schema::table('po_hist', function (Blueprint $table) {
+        Schema::table('rcpt_unplanned', function (Blueprint $table) {
             //
-            $table->string('ph_pokontrak')->nullable();
+            $table->string('site')->nullable();
         });
     }
 
@@ -26,9 +26,9 @@ class AddPhPokontrakToPoHist extends Migration
      */
     public function down()
     {
-        Schema::table('po_hist', function (Blueprint $table) {
+        Schema::table('rcpt_unplanned', function (Blueprint $table) {
             //
-            $table->dropColumn('ph_pokontrak');
+            $table->dropColumn('site');
         });
     }
 }
