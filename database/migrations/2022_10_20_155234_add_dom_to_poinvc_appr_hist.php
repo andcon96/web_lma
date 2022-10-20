@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDomToPoInvcApprHist extends Migration
+class AddDomToPoinvcApprHist extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddDomToPoInvcApprHist extends Migration
      */
     public function up()
     {
-        Schema::table('po_invc_appr_hist', function (Blueprint $table) {
+        Schema::table('poinvc_appr_hist', function (Blueprint $table) {
             //
             $table->string('dom')->after('ponbr')->nullable();
         });
@@ -26,7 +26,7 @@ class AddDomToPoInvcApprHist extends Migration
      */
     public function down()
     {
-        Schema::table('po_invc_appr_hist', function (Blueprint $table) {
+        Schema::table('poinvc_appr_hist', function (Blueprint $table) {
             //
             $table->dropColumn('dom');
         });
