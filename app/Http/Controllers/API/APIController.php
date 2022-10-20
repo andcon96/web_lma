@@ -16,7 +16,7 @@ class APIController extends Controller
 {
     //
 
-    public function approvedInvcYes($ponbr, $invcnbr, $supp, $postingdate, $amt)
+    public function approvedInvcYes($ponbr, $invcnbr, $supp, $postingdate, $amt, $dom)
     {
 
         try {
@@ -28,9 +28,10 @@ class APIController extends Controller
             $param3 = Crypt::decrypt($supp);
             $param4 = Crypt::decrypt($postingdate);
             $param5 = Crypt::decrypt($amt);
+            $param6 = Crypt::decrypt($dom);
             // dd($param1);
 
-            $poinvc_hist = POInvcApprHist::where('invcnbr','=',$param2)->first();
+            $poinvc_hist = POInvcApprHist::where('dom','=',$param6)->where('invcnbr','=',$param2)->first();
             // dd($poinvc_hist);
 
             if(!$poinvc_hist){
@@ -38,6 +39,7 @@ class APIController extends Controller
 
                 $poinvc1 = new POInvcApprHist();
                 $poinvc1->ponbr = $param1 ?? '-';
+                $poinvc1->dom = $param6;
                 $poinvc1->invcnbr = $param2;
                 $poinvc1->status = 'approved';
 
@@ -78,7 +80,7 @@ class APIController extends Controller
         }
     }
 
-    public function approvedInvcNo($ponbr, $invcnbr, $supp, $postingdate, $amt)
+    public function approvedInvcNo($ponbr, $invcnbr, $supp, $postingdate, $amt, $dom)
     {
         try {
 
@@ -87,14 +89,16 @@ class APIController extends Controller
             $param3 = Crypt::decrypt($supp);
             $param4 = Crypt::decrypt($postingdate);
             $param5 = Crypt::decrypt($amt);
+            $param6 = Crypt::decrypt($dom);
 
-            $poinvc_hist = POInvcApprHist::where('invcnbr','=',$param2)->first();
+            $poinvc_hist = POInvcApprHist::where('dom','=',$param6)->where('invcnbr','=',$param2)->first();
             
             if(!$poinvc_hist){
 
 
                 $poinvc2 = new POInvcApprHist();
                 $poinvc2->ponbr = $param1 ?? '-';
+                $poinvc2->dom = $param6;
                 $poinvc2->invcnbr = $param2;
                 $poinvc2->status = 'rejected';
 

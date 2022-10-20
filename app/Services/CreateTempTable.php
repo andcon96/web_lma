@@ -138,7 +138,7 @@ class CreateTempTable
         });
 
         foreach($data as $datas){
-            $checksendemail =  POInvc::where('eh_invcnbr','=',$datas->t_invcnbr)->first();
+            $checksendemail =  POInvc::where('dom','=',$datas->t_dom)->where('eh_invcnbr','=',$datas->t_invcnbr)->first();
 
             if(is_null($checksendemail)){
                 DB::table('temp_poinvc')->insert([

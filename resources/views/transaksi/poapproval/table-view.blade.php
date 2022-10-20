@@ -16,6 +16,7 @@
     <tbody>
       @forelse ($poinvoice as $index => $show)
       <tr>
+          <input type="hidden" name="dom[]" value="{{$show->po_dom}}" />
         <td>
           {{$show->po_nbr}}
           <input type="hidden" name="ponbr[]" value="{{$show->po_nbr}}" />
@@ -44,7 +45,7 @@
           @endif
         </td>
         @php
-        $approvalstatus = $statusappr->where('invcnbr','=',$show->invoice_nbr)->first();
+        $approvalstatus = $statusappr->where('dom','=',$show->po_dom)->where('invcnbr','=',$show->invoice_nbr)->first();
         @endphp
         <td>
           @if (is_null($approvalstatus))
