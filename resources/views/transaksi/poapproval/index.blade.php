@@ -33,6 +33,12 @@
     </div>
 </form>
 
+<form id="browsebutton" action="{{route('browseHistSent')}}" method="GET">
+    <div class="col-xl-3 col-lg-3 col-md-3 col-xs-12">
+        <input type="submit" class="btn btn-danger" value="Browse History Sent Email" style="width: 100%;" />
+    </div>
+</form>
+
 @endsection
 
 @section('scripts')

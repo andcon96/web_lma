@@ -7,7 +7,6 @@ use App\Jobs\EmailtoReceiver;
 use App\Models\Master\PoInvcEmail;
 use App\Models\Transaksi\POInvc;
 use App\Models\Transaksi\POInvcApprHist;
-use ArgumentCountError;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -79,7 +78,7 @@ class APIController extends Controller
         } catch (DecryptException $error) {
             // dd($error);
             abort('404');
-        } catch (ArgumentCountError $err) {
+        } catch (Exception $err) {
             abort('500');
         }
     }
@@ -133,7 +132,7 @@ class APIController extends Controller
             
         } catch (DecryptException $error) {
             abort('404');
-        } catch (ArgumentCountError $err) {
+        } catch (Exception $err) {
             abort('500');
         }
     }

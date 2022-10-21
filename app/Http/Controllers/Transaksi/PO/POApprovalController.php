@@ -128,4 +128,8 @@ class POApprovalController extends Controller
 
         // dd($countemail);
     }
+
+    public function browseHistSent(){
+        return view('transaksi.poapproval.browsehist_sentmail');
+    }
 }
