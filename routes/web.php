@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('poapproval', POApprovalController::class);
         Route::get('searchpoinvc', [POApprovalController::class, 'searchpoinvc'])->name('searchpoinvc');
         Route::post('sendmailapproval', [POApprovalController::class, 'sendMailApproval'])->name('sendMailApproval');
+        Route::get('browsehistory', [POApprovalController::class, 'browseHistSent'])->name('browseHistSent');
     });
 
     Route::group(['middleware'=>'can:po_browse'],function (){
