@@ -18,29 +18,10 @@
             <input id="ponbr" type="text" class="form-control" name="ponbr" value="{{ request()->input('ponbr') }}">
         </div>
         <div class="col-lg-2 col-md-4">
-            <label for="pocon" class="col-form-label text-md-right">{{ __('PO Contract') }}</label>
+            <label for="invno" class="col-form-label text-md-right">{{ __('Invoice No.') }}</label>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
-            <input id="pocon" type="text" class="form-control" name="pocon" value="{{ request()->input('pocon') }}">
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-lg-2 col-md-4">
-            <label for="supp" class="col-form-label text-md-right">{{ __('Supplier') }}</label>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
-            <select name="supp" id="supp" class="form-control">
-                <option value="">Select Data</option>
-                @foreach ($supps as $supp )
-                <option value="{{$supp->ph_supp}}">{{$supp->ph_supp}} - {{$supp->ph_suppname}}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col-lg-2 col-md-4">
-            <label for="receiptdate" class="col-form-label text-md-right">{{ __('Receipt Date') }}</label>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
-            <input id="receiptdate" type="text" class="form-control" name="receiptdate" autocomplete="off" value="{{request()->input('receiptdate') ? request()->input('receiptdate') : '' }}">
+            <input id="invno" type="text" class="form-control" name="invno" value="{{ request()->input('invno') }}">
         </div>
         <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 mt-xl-0 mt-lg-0 mt-3">
             <button class="btn bt-ref" id="btnsearch" value="search">Search</button>
@@ -48,23 +29,6 @@
         </div>
     </div>
 </form>
-
-<!-- tombol expert excel -->
-<form method="get" action="{{ route('exportExcel') }}">
-    <div class="form-group row">
-        <div class="col-lg-4 col-md-4">
-            <input type="hidden" id="h_ponbr" name="h_ponbr" value="{{ request()->input('ponbr') }}"/>
-            <input type="hidden" id="h_pocon" name="h_pocon" value="{{ request()->input('pocon') }}"/>
-            <input type="hidden" id="h_supp" name="h_supp" value="" />
-            <input type="hidden" id="h_receiptdate" name="h_receiptdate" value="{{ request()->input('receiptdate') }}"/>
-
-            <button type="submit" class="btn btn-success my-3">EXPORT EXCEL</button>
-        </div>
-    </div>
-</form>
-
-
-
 
 <div id="tabledata">
     @include('transaksi.poapproval.table-browsehist_sentmail')

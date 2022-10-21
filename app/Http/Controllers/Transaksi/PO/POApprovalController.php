@@ -129,7 +129,21 @@ class POApprovalController extends Controller
         // dd($countemail);
     }
 
-    public function browseHistSent(){
-        return view('transaksi.poapproval.browsehist_sentmail');
+    public function browseHistSent(Request $req){
+
+        $datasentlist = POInvc::query();
+
+        if($req->ponbr){
+            $datasentlist->where('eh_ponbr','=',$req->ponbr);
+        }
+
+        if($req->invno){
+            $datasentlist->where('eh_invcnbr','=',$req->invno);
+        }
+
+
+        $datasentlist = $datasentlist->paginate(10);
+
+        return view('transaksi.poapproval.browsehist_sentmail',compact('datasentlist'));
     }
 }
