@@ -139,7 +139,7 @@ class POApprovalController extends Controller
         }
 
 
-        $datasentlist = $datasentlist->paginate(10);
+        $datasentlist = $datasentlist->orderBy('id','desc')->paginate(10);
 
         return view('transaksi.poapproval.browsehist_sentmail',compact('datasentlist'));
     }
