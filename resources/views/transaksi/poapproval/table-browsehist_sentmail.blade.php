@@ -28,5 +28,12 @@
       <td colspan='7' class='text-danger'><b>No Data Available</b></td>
       @endforelse
     </tbody>
+    <tfoot>
+        <tr style="border:0 !important">
+            <td colspan="12">
+                {{ $datasentlist->withQueryString()->links() }}
+            </td>
+        </tr>
+    </tfoot>
   </table>
 </div>
