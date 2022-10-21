@@ -48,9 +48,7 @@
 
     function resetSearch() {
         $('#ponbr').val('');
-        $('#supp').val('');
-        $('#pocon').val('');
-        $('#receiptdate').val('');
+        $('#invno').val('');
     }
 
     $(document).ready(function() {
@@ -58,14 +56,7 @@
 
         let paramString = cur_url.split('?')[1];
         let queryString = new URLSearchParams(paramString);
-
-        let supp = queryString.get('supp');
-
-
-        console.log(supp);
-        document.getElementById('h_supp').value = supp;
-
-        $('#supp').val(supp).trigger('change');
+        
     });
 
     $(document).on('click', '#btnrefresh', function() {
