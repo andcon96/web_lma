@@ -18,10 +18,10 @@
             {{$showlist->eh_ponbr}}
         </td>
         <td>
-            {{$show->eh_invcnbr}}
+            {{$showlist->eh_invcnbr}}
         </td>
         <td>
-            {{$show->created_at}}
+            {{$showlist->created_at}}
         </td>
       </tr>
       @empty

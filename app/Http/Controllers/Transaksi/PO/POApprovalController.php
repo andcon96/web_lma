@@ -130,7 +130,7 @@ class POApprovalController extends Controller
     }
 
     public function browseHistSent(Request $req){
-
+        
         $datasentlist = POInvc::query();
 
         if($req->ponbr){
