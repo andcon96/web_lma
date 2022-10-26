@@ -116,6 +116,7 @@ class APIController extends Controller
                 $supp = $param3;
                 $postingdate = $param4;
                 $amt = $param5;
+                $dom = $param6;
 
                 EmailtoReceiver::dispatch(
                     $pesan,
@@ -125,6 +126,7 @@ class APIController extends Controller
                     $supp,
                     $postingdate,
                     $amt,
+                    $dom
                 );
 
                 return view('Invc_no');
