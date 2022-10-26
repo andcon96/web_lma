@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Jika yes approve
-route::get('/apiapprovalinvoice/yes/{ponbr}/{invcnbr}/{supp}/{postingdate}/{amt}',[APIController::class,'approvedInvcYes']);
+route::get('/apiapprovalinvoice/yes/{ponbr}/{invcnbr}/{supp}/{postingdate}/{amt}/{dom}',[APIController::class,'approvedInvcYes']);
 
 //jika no approve
-route::get('/apiapprovalinvoice/no/{ponbr}/{invcnbr}/{supp}/{postingdate}/{amt}',[APIController::class,'approvedInvcNo']);
+route::get('/apiapprovalinvoice/no/{ponbr}/{invcnbr}/{supp}/{postingdate}/{amt}/{dom}',[APIController::class,'approvedInvcNo']);

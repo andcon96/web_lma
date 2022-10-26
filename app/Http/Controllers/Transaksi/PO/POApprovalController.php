@@ -84,6 +84,7 @@ class POApprovalController extends Controller
                 
 
                     $pesan = 'New PO Invoice Approval';
+                    $dom = $req->dom[$key];
                     $ponbr = $req->ponbr[$key];
                     $supplier = $req->supp[$key];
                     $posdate = $req->posting_date[$key];
@@ -94,6 +95,7 @@ class POApprovalController extends Controller
         
                     EmailPOInvcApproval::dispatch(
                         $pesan,
+                        $dom,
                         $ponbr,
                         $supplier,
                         $posdate,
@@ -103,10 +105,11 @@ class POApprovalController extends Controller
                         $alamatemail
                     );
                     
-                    $newdata = POInvc::where('eh_ponbr','=',$ponbr)->where('eh_invcnbr','=',$invcnbr)->first();
+                    $newdata = POInvc::where('dom','=',$dom)->where('eh_ponbr','=',$ponbr)->where('eh_invcnbr','=',$invcnbr)->first();
 
                     if(!$newdata){
                         POInvc::insert([
+                            'dom' => $req->dom[$key],
                             'eh_ponbr' => $req->ponbr[$key],
                             'eh_invcnbr' => $req->invoice_nbr[$key],
                         ]);

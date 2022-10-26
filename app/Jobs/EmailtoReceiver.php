@@ -28,8 +28,9 @@ class EmailtoReceiver
     protected $supp;
     protected $postingdate;
     protected $amt;
+    protected $dom;
 
-    public function __construct($pesan, $pesan2, $ponbr, $invcnbr, $supp, $postingdate, $amt)
+    public function __construct($pesan, $pesan2, $ponbr, $invcnbr, $supp, $postingdate, $amt, $dom)
     {
         //
         $this->pesan = $pesan;
@@ -39,6 +40,7 @@ class EmailtoReceiver
         $this->supp = $supp;
         $this->postingdate = $postingdate;
         $this->amt = $amt;
+        $this->dom = $dom;
     }
 
     /**
@@ -56,6 +58,7 @@ class EmailtoReceiver
         $supp = $this->supp;
         $postingdate = $this->postingdate;
         $amt = $this->amt;
+        $dom = $this->dom;
 
         // dd($this->emailto);
 
@@ -73,6 +76,7 @@ class EmailtoReceiver
                 'supp' => $supp,
                 'postingdate' => $postingdate,
                 'amt' => $amt,
+                'dom' => $dom,
 
             ],
             function ($message) use ($emailto) {
