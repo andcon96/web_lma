@@ -143,6 +143,14 @@
           <tbody>
             <tr>
               <td style="width: 15%; background-color: #aaa;">
+                Domain
+              </td>
+              <td style="width: 20%;">
+                {{$dom}}
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 15%; background-color: #aaa;">
                 PO No.
               </td>
               <td style="width: 20%;">
