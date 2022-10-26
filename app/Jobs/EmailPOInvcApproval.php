@@ -82,6 +82,7 @@ class EmailPOInvcApproval
                 'note3' => $invcamt,
                 'note4' => $supplier,
                 'note5' => $posdate,
+                'note6' => $dom,
                 'param1' => $param1,
                 'param2' => $param2,
                 'param3' => $param3,
