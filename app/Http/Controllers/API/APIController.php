@@ -30,7 +30,7 @@ class APIController extends Controller
             $param4 = Crypt::decrypt($postingdate);
             $param5 = Crypt::decrypt($amt);
             $param6 = Crypt::decrypt($dom);
-            dd($param1,$param2,$param3,$param4,$param5,$param6);
+            // dd($param1,$param2,$param3,$param4,$param5,$param6);
 
             $poinvc_hist = POInvcApprHist::where('dom','=',$param6)->where('invcnbr','=',$param2)->first();
             // dd($poinvc_hist);
