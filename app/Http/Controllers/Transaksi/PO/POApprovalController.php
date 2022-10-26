@@ -94,8 +94,8 @@ class POApprovalController extends Controller
                     $alamatemail = $emailto->email_invc;
         
                     EmailPOInvcApproval::dispatch(
-                        $dom,
                         $pesan,
+                        $dom,
                         $ponbr,
                         $supplier,
                         $posdate,

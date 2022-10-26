@@ -71,7 +71,7 @@ class EmailPOInvcApproval
         $param5 = Crypt::encrypt($invcamt);
         $param6 = Crypt::encrypt($dom);
 
-        dump($pesan,$ponbr,$invcnbr,$invcamt, $penerima, $alamatemail, $dom);
+        dd($pesan,$ponbr,$invcnbr,$invcamt, $penerima, $alamatemail, $dom);
 
         Mail::send(
             'email.EmailPOApproval',
