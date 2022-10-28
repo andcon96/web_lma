@@ -89,7 +89,7 @@ class POApprovalController extends Controller
                     $supplier = $req->supp[$key];
                     $posdate = $req->posting_date[$key];
                     $invcnbr = $req->invoice_nbr[$key];
-                    $invcamt = $req->invoice_amt[$key];
+                    $invcamt = $req->invoice_amt_bc[$key];
                     $penerima = $emailto->name_invc;
                     $alamatemail = $emailto->email_invc;
         

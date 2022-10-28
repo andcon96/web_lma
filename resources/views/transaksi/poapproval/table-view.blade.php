@@ -6,7 +6,8 @@
         <th style="width: 15%;">Supplier</th>
         <th style="width: 20%;">Invoice No.</th>
         <th style="width: 10%;">Posting Date</th>
-        <th style="width: 15%;">Amount</th>
+        <th style="width: 15%;">TC Amount</th>
+        <th style="width: 15%;">BC Amount</th>
         <th style="width: 5%;">Status</th>
         <th style="width: 8%;">Appr. Status</th>
         <th style="width: 10%;">Email Status</th>
@@ -34,8 +35,12 @@
           <input type="hidden" name="posting_date[]" value="{{$show->posting_date}}" />
         </td>
         <td>
-          {{number_format($show->invoice_amt,2)}}
-          <input type="hidden" name="invoice_amt[]" value="{{$show->invoice_amt}}" />
+          {{number_format($show->invoice_amt_tc,2)}}
+          <input type="hidden" name="invoice_amt_tc[]" value="{{$show->invoice_amt_tc}}" />
+        </td>
+        <td>
+          {{number_format($show->invoice_amt_bc,2)}}
+          <input type="hidden" name="invoice_amt_bc[]" value="{{$show->invoice_amt_bc}}" />
         </td>
         <td>
           @if($show->invoice_status == 'true')

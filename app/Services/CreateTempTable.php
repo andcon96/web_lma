@@ -131,7 +131,8 @@ class CreateTempTable
             $table->string('po_nbr')->nullable();
             $table->longText('supp');
             $table->string('invoice_nbr');
-            $table->float('invoice_amt',15,2);
+            $table->float('invoice_amt_tc',15,2);
+            $table->float('invoice_amt_bc',15,2);
             $table->string('invoice_status');
             $table->date('posting_date');
             $table->string('email_status')->nullable();
@@ -146,7 +147,8 @@ class CreateTempTable
                     'po_nbr' => $datas->t_ponbr,
                     'supp' => $datas->t_suppcode.' - '.$datas->t_suppname,
                     'invoice_nbr' => $datas->t_invcnbr,
-                    'invoice_amt' => $datas->t_bcinvcamt,
+                    'invoice_amt_tc' => $datas->t_tcinvcamt,
+                    'invoice_amt_bc' => $datas->t_bcinvcamt,
                     'invoice_status' => $datas->t_invcstatus,
                     'posting_date' => $datas->t_posdate,
                     'email_status' => 'Not Send'
@@ -157,7 +159,8 @@ class CreateTempTable
                     'po_nbr' => $datas->t_ponbr,
                     'supp' => $datas->t_suppcode.' - '.$datas->t_suppname,
                     'invoice_nbr' => $datas->t_invcnbr,
-                    'invoice_amt' => $datas->t_bcinvcamt,
+                    'invoice_amt_tc' => $datas->t_tcinvcamt,
+                    'invoice_amt_bc' => $datas->t_bcinvcamt,
                     'invoice_status' => $datas->t_invcstatus,
                     'posting_date' => $datas->t_posdate,
                     'email_status' => 'Send'
