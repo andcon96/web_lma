@@ -74,6 +74,7 @@ class CreateTempTable
         $qtyrcvd = $data['poqtyrcvd'];
         $popart = $data['popart'];
         $receiptdate = $data['receiptdate'];
+        $effdate = $data['effdate'];
         // $listnopol = implode(" , ", $datas['nopol']);
         $nopol = $data['nopol'];
 
@@ -94,6 +95,7 @@ class CreateTempTable
             $table->string('pod_remarks')->nullable();
             $table->longText('pod_nopol')->nullable();
             $table->date('pod_receiptdate');
+            $table->date('pod_effdate');
             $table->temporary();
         });
 
@@ -113,6 +115,7 @@ class CreateTempTable
                 'pod_remarks' => $remark,
                 'pod_nopol' => $nopol,
                 'pod_receiptdate' => $receiptdate,
+                'pod_effdate' => $effdate,
             ]);
         }
 

@@ -47,6 +47,14 @@
             <button class="btn bt-action ml-2" id='btnrefresh' style="width: 40px !important"><i class="fa fa-sync"></i></button>
         </div>
     </div>
+    <div class="form-group row">
+        <div class="col-lg-2 col-md-4">
+            <label for="effdate" class="col-form-label text-md-right">{{ __('Eff. Date') }}</label>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <input id="effdate" type="text" class="form-control" name="effdate" autocomplete="off" value="{{request()->input('effdate') ? request()->input('effdate') : '' }}">
+        </div>
+    </div>
 </form>
 
 <!-- tombol expert excel -->
@@ -57,6 +65,7 @@
             <input type="hidden" id="h_pocon" name="h_pocon" value="{{ request()->input('pocon') }}"/>
             <input type="hidden" id="h_supp" name="h_supp" value="" />
             <input type="hidden" id="h_receiptdate" name="h_receiptdate" value="{{ request()->input('receiptdate') }}"/>
+            <input type="hidden" id="h_effdate" name="h_effdate" value="{{ request()->input('effdate') }}"/>
 
             <button type="submit" class="btn btn-success my-3">EXPORT EXCEL</button>
         </div>

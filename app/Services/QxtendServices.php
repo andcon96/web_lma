@@ -372,6 +372,7 @@ class QxtendServices
     $popart = $datas['popart'];
     $popartname = $datas['popartdesc'];
     $receiptdate = $datas['receiptdate'];
+    $effdate = $datas['effdate'];
     $pokontrak = $datas['po_kontrak'];
     $partsite = $datas['podsite'];
     // $listnopol = implode(" , ", $datas['nopol']);
@@ -401,6 +402,7 @@ class QxtendServices
           $rcptunplanned = new RcptUnplanned();
           
           $rcptunplanned->domain = $domain;
+          $rcptunplanned->effdate = $effdate;
           $rcptunplanned->receiptdate = $receiptdate;
           $rcptunplanned->ponbr = $ponbr;
           $rcptunplanned->supp = $supp;
@@ -432,6 +434,7 @@ class QxtendServices
           $pohist->ph_qty_rjct = $qtyreject;
           $pohist->ph_qty_lebih = $qtylebih;
           $pohist->ph_nopol = $nopol;
+          $pohist->ph_effdate = $effdate;
           $pohist->ph_receiptdate = $receiptdate;
           $pohist->ph_loc = $partloc[$key];
           $pohist->ph_lot = $partlot[$key];
@@ -530,6 +533,7 @@ class QxtendServices
         '<dsPurchaseOrderReceive>
                   <purchaseOrderReceive>
                     <ordernum>' . $ponbr . '</ordernum>
+                    <effDate>'.$effdate.'</effDate>
                     <receiptDate>' . $receiptdate . '</receiptDate>
                     <cmmtYn>true</cmmtYn>
                     <yn>true</yn>

@@ -27,6 +27,10 @@
     </div>
   </div>
   <div class="row py-2">
+    <label for="effdate" class="col-form-label col-md-2 text-md-right">{{ __('Effective Date') }}</label>
+    <div class="col-md-2">
+      <input id="effdate" type="text" class="form-control" name="effdate" value="{{ ($sessionpo!=null) ? $sessionpo->first()->pod_effdate : Carbon\Carbon::parse(now())->format('Y-m-d')  }}" required>
+    </div>
     <label for="supp" class="col-form-label col-md-2 text-md-right">{{ __('Supplier') }}</label>
     <div class="col-md-4">
       <input id="supp" type="text" class="form-control" name="supp" value="{{$receiptdetail->first()->po_cust}} -- {{$receiptdetail->first()->po_custname}}" readonly>

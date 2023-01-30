@@ -8,6 +8,7 @@
             <th>Line</th>
             <th>Item</th>
             <th>Supplier</th>
+            <th>Eff. Date</th>
             <th>Receipt Date</th>
             <th>Qty Order</th>
             <th>Qty Receive</th>
@@ -32,6 +33,7 @@
             <td>{{$show->ph_line}}</td>
             <td>{{$show->ph_part}} -- {{$show->ph_partname}}</td>
             <td>{{$show->ph_suppname}}</td>
+            <td>{{$show->ph_effdate}}</td>
             <td>{{$show->ph_receiptdate}}</td>
             <td>{{$show->ph_qty_order}}</td>
             <td>{{$show->ph_qty_rcvd}}</td>
