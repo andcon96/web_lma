@@ -91,11 +91,16 @@
         dateFormat: 'yy-mm-dd',
     });
 
+    $("#effdate").datepicker({
+        dateFormat: 'yy-mm-dd',
+    });
+
     function resetSearch() {
         $('#ponbr').val('');
         $('#supp').val('');
         $('#pocon').val('');
         $('#receiptdate').val('');
+        $('effdate').val('');
     }
 
     $(document).ready(function() {
