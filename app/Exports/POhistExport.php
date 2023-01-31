@@ -10,12 +10,13 @@ use Maatwebsite\Excel\Concerns\WithStrictNullComparison;
 
 class POhistExport implements FromView, ShouldAutoSize, WithStrictNullComparison
 {
-    public function __construct($ponbr,$supp,$receiptdate,$pocon)
+    public function __construct($ponbr,$supp,$receiptdate,$pocon,$effdate)
     {
         $this->ponbr = $ponbr;
         $this->supp = $supp;
         $this->receiptdate = $receiptdate;
         $this->pocon = $pocon;
+        $this->effdate = $effdate;
         
     }
 
@@ -25,6 +26,7 @@ class POhistExport implements FromView, ShouldAutoSize, WithStrictNullComparison
         $supp = $this->supp;
         $receiptdate = $this->receiptdate;
         $pocon = $this->pocon;
+        $effdate = $this->effdate;
 
         $po = POhist::with('getUser.getRoleType');
 
@@ -38,6 +40,10 @@ class POhistExport implements FromView, ShouldAutoSize, WithStrictNullComparison
 
         $po->when(isset($receiptdate), function($q) use ($receiptdate) {
             $q->where('ph_receiptdate', $receiptdate);
+        });
+
+        $po->when(isset($effdate), function($q) use ($effdate) {
+            $q->where('ph_effdate', $effdate);
         });
 
         $po->when(isset($pocon), function($q) use ($pocon) {

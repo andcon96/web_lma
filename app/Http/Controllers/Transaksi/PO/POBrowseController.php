@@ -36,6 +36,10 @@ class POBrowseController extends Controller
             // dump($req->receiptdate);
             $datas->where('ph_receiptdate','=',$req->receiptdate);
         }
+        if($req->effdate){
+
+            $datas->where('ph_effdate','=',$req->effdate);
+        }
         if($req->pocon){
             // dump($req->pocon);
             $datas->where('ph_pokontrak','=',$req->pocon);
@@ -121,8 +125,9 @@ class POBrowseController extends Controller
         $ponbr = $request->h_ponbr;
         $supp = $request->h_supp;
         $receiptdate = $request->h_receiptdate;
+        $effdate = $request->h_effdate;
         $pocon = $request->h_pocon;
 
-        return Excel::download(new POhistExport($ponbr,$supp,$receiptdate,$pocon), 'POhist_'.date("Y_m_d_H:i:s").'.xlsx');
+        return Excel::download(new POhistExport($ponbr,$supp,$receiptdate,$pocon,$effdate), 'POhist_'.date("Y_m_d_H:i:s").'.xlsx');
     }
 }

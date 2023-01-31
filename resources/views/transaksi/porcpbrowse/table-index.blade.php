@@ -12,6 +12,7 @@
                 <th style="width: 10%;">Qty Reject</th>
                 <th style="width: 10%;">Qty Lebih</th>
                 <th style="width: 10%;">Receipt Date</th>
+                <th style="width: 10%;">Eff. Date</th>
                 <th style="width: 10%;">Receipt By</th>
             </tr>
         </thead>
@@ -27,7 +28,16 @@
                     <td>{{$show->ph_qty_fg}}</td>
                     <td>{{$show->ph_qty_rjct}}</td>
                     <td>{{$show->ph_qty_lebih}}</td>
-                    <td>{{$show->ph_receiptdate}}</td>
+                    @if ($show->ph_receiptdate != null)
+                        <td>{{$show->ph_receiptdate}}</td>
+                    @else
+                        <td>-</td>
+                    @endif
+                    @if ($show->ph_effdate != null)
+                        <td>{{$show->ph_effdate}}</td>
+                    @else
+                        <td>-</td>
+                    @endif
                     <td>{{$show->getUser->name}}
                 </tr>                
             @empty
