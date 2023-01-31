@@ -1,5 +1,5 @@
 <div class="table-responsive col-lg-12 col-md-12 mt-4 mb-4 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
-    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <table class="table table-bordered" id="dataTable" width="120%" cellspacing="0">
         <thead>
             <tr>
                 <th>Line</th>
@@ -43,11 +43,9 @@
                 <td>
                     <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='4' data-dropup-auto="false" data-live-search="true">
                         @foreach ($loc as $locs)
-                            @if(old('partloc'))
                             <option value="{{$locs->loc}}" {{ $show->sod_loc == $locs->loc ? 'Selected' : '' }} >
                                 {{$locs->loc}} -- {{$locs->loc_desc}}
                             </option>
-                            @endif
                         @endforeach
                     </select>
                 </td>
