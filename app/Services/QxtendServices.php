@@ -447,6 +447,8 @@ class QxtendServices
 
       }
 
+      $datetoday = Carbon\Carbon::parse(now())->format('Y-m-d');
+
       $qxwsa = Qxwsa::first();
       // dd($qxtend);
       $qxUrl          = $qxwsa->qx_url;
@@ -536,6 +538,7 @@ class QxtendServices
                   <purchaseOrderReceive>
                     <ordernum>' . $ponbr . '</ordernum>
                     <effDate>'.$effdate.'</effDate>
+                    <shipDate>'.$datetoday.'</shipDate>
                     <receiptDate>' . $receiptdate . '</receiptDate>
                     <cmmtYn>true</cmmtYn>
                     <yn>true</yn>
@@ -591,7 +594,7 @@ class QxtendServices
 
 
       $qdocRequest = $qdocHead . $qdocBody . $qdocFoot;
-
+      dd($qdocRequest);
       $curlOptions = array(
         CURLOPT_URL => $qxUrl,
         CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
