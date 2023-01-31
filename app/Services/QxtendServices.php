@@ -656,7 +656,7 @@ class QxtendServices
     } catch (Exception $e) {
       // dd('db_err');
 
-      dd($e);
+      // dd($e);
 
       // dd(json_encode($e->getMessage(), true));
       DB::rollBack();
