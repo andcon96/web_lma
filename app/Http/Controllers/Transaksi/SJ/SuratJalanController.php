@@ -399,7 +399,8 @@ class SuratJalanController extends Controller
                     $sj_dets->sj_line = $datas;
                     $sj_dets->sj_part = $request->sodpart[$key];
                     $sj_dets->sj_part_desc = $request->soddesc[$key];
-                    $sj_dets->sj_loc = $request->sodloc[$key];
+                    $sj_dets->sj_loc = $request->partloc[$key];
+                    $sj_dets->sj_lot = $request->lot[$key];
                     $sj_dets->sj_qty_ord = $request->sodqtyord[$key];
                     $sj_dets->sj_qty_ship = $request->sodqtyship[$key];
                     $sj_dets->sj_qty_input = $request->qtyinput[$key];

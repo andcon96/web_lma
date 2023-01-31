@@ -9,6 +9,8 @@
                 <th>Qty Dalam Perjalanan</th>
                 <th>Qty Sudah Sampai</th>
                 <th width="10%">Qty Input</th>
+                <th width="15%">Loc</th>
+                <th width="15%">Lot</th>
             </tr>
         </thead>
         <tbody>
@@ -38,6 +40,20 @@
                     <input type="hidden" name="sodpricels[]" value="{{$show->sod_price_ls}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                 </td>
                 <td><input type="number" name="qtyinput[]" class="form-control" min="0" step="0.01" value="0" required {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} /></td>
+                <td>
+                    <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='4' data-dropup-auto="false" data-live-search="true">
+                        @foreach ($loc as $locs)
+                            @if(old('partloc'))
+                            <option value="{{$locs->loc}}" {{ $show->sod_loc == $locs->loc ? 'Selected' : '' }} >
+                                {{$locs->loc}} -- {{$locs->loc_desc}}
+                            </option>
+                            @endif
+                        @endforeach
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control" name="lot[]">
+                </td>
             </tr>
             @empty
             <td colspan='7' class='text-danger'><b>No Data Available</b></td>

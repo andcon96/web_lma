@@ -10,7 +10,7 @@
                 <th>Qty Sudah Sampai</th>
                 <th width="10%">Qty Input</th>
                 <th width="15%">Location</th>
-                <th width="10%">Lot</th>
+                <th width="15%">Lot</th>
             </tr>
         </thead>
         <tbody>
