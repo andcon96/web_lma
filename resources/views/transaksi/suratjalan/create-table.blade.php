@@ -1,5 +1,5 @@
 <div class="table-responsive col-lg-12 col-md-12 mt-4 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
-    <table class="table table-bordered" id="dataTable" width="120%" cellspacing="0">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
                 <th>Line</th>
