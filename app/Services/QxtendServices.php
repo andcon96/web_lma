@@ -421,6 +421,8 @@ class QxtendServices
 
           $pohist = new POhist();
 
+          dd($popartname[$key]);
+
           $pohist->ph_ponbr = $ponbr;
           $pohist->ph_supp = $supp;
           $pohist->ph_suppname = $suppname;
