@@ -1,4 +1,4 @@
-<div class="table-responsive col-lg-12 col-md-12 mt-4 tag-container" style="overflow-x: auto; display: inline-block;white-space: nowrap; position:relative">
+<div class="table-responsive col-lg-12 col-md-12 mt-4 tag-container" style="overflow-x: auto;overflow-y: hidden ;display: inline-block;white-space: nowrap; position:relative">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
