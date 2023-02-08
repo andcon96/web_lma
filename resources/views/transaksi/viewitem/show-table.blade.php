@@ -20,7 +20,7 @@
                     <td>{{$datas->t_um}}</td>
                     <td>{{$datas->t_location}}</td>
                     <td>{{$datas->t_lot}}</td>
-                    <td>{{$datas->t_qtyoh}}</td>
+                    <td>{{number_format($datas->t_qtyoh,2)}}</td>
                 </tr>
             @empty
             <td colspan='7' class='text-danger'><b>No Data Available</b></td>

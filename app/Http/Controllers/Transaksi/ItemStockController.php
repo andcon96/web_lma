@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Transaksi;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaksi\SuratJalan;
 use App\Services\WSAServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -31,6 +32,9 @@ class ItemStockController extends Controller
         }
 
         $data = collect($wsa[0]);
+
+        $sjdata = SuratJalan::with('getDetail')->get();
+        dd($sjdata);
 
         return view('transaksi.viewitem.show',compact('data','id'));
     }
