@@ -33,7 +33,9 @@ class ItemStockController extends Controller
 
         $data = collect($wsa[0]);
 
-        $sjdata = SuratJalan::with('getDetail')->groupBy('sj_part','sj_loc','sj_lot')->get();
+        $sjdata = SuratJalan::with(['getDetail' => function($query){
+                $query->groupBy('sj_part','sj_loc','sj_lot');
+            }])->get();
         dd($sjdata);
 
         return view('transaksi.viewitem.show',compact('data','id'));
