@@ -85,7 +85,7 @@
     </div>
 </form>
 
-<div class="row col-12">
+<div id="tabledata">
     @include('transaksi.sjconfirm.index-table')
 </div>
 

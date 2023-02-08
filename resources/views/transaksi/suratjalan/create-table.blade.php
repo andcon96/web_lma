@@ -1,4 +1,4 @@
-<div class="table-responsive col-lg-12 col-md-12 mt-4 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
+<div class="table-responsive col-lg-12 col-md-12 mt-4 tag-container" style="overflow-x: auto; display: inline-block;white-space: nowrap; position:relative">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
@@ -41,7 +41,7 @@
                 </td>
                 <td><input type="number" name="qtyinput[]" class="form-control" min="0" step="0.01" value="0" required {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} /></td>
                 <td>
-                    <select name="partloc[]" class="form-control selectpicker" data-style="btn-custom" data-size='4' data-dropup-auto="false" data-live-search="true">
+                    <select name="partloc[]" class="form-control selectpicker" style="width: 150px !important;" data-style="btn-custom" data-size='4' data-dropup-auto="false" data-live-search="true">
                         @foreach ($loc as $locs)
                             <option value="{{$locs->loc}}" {{ $show->sod_loc == $locs->loc ? 'Selected' : '' }} >
                                 {{$locs->loc}} -- {{$locs->loc_desc}}
@@ -50,7 +50,7 @@
                     </select>
                 </td>
                 <td>
-                    <input type="text" class="form-control" name="lot[]">
+                    <input type="text" class="form-control" style="width: 150px !important;" name="lot[]">
                 </td>
             </tr>
             @empty
