@@ -35,6 +35,7 @@ class ItemStockController extends Controller
 
         $sjdata = SuratJalan::with(['getDetail' => function($query){
                 $query->groupBy('sj_part','sj_loc','sj_lot');
+                $query->selectRaw('sj_part,sj_loc,sj_lot, SUM(sj_qty_input) as qty_input');
             }])->get();
         dd($sjdata);
 
