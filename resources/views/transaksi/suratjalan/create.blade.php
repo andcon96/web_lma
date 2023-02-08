@@ -7,6 +7,11 @@
 </ol>
 @endsection
 
+<style>
+    .bootstrap-select>.dropdown-toggle{
+        width: 175px !important;
+    }
+</style>
 
 @section('content')
 
