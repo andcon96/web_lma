@@ -33,8 +33,8 @@ class ItemStockController extends Controller
 
         $data = collect($wsa[0]);
 
-        $sjdata = SuratJalan::with('getDetail')->groupBy('sj_part','sj_loc','sj_lot')->selectRaw('sj_part,sj_loc,sj_lot, SUM(sj_qty_input) as qty_sj')->get();
-        dd($sjdata);
+        // $sjdata = SuratJalan::with('getDetail')->groupBy('sj_part','sj_loc','sj_lot')->selectRaw('sj_part,sj_loc,sj_lot, SUM(sj_qty_input) as qty_sj')->get();
+        // dd($sjdata);
 
         return view('transaksi.viewitem.show',compact('data','id'));
     }
