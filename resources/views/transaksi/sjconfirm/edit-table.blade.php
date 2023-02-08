@@ -34,7 +34,7 @@
                         <input type="number" class="form-control" style="width: 150px !important;" name="qtyinp[]" step="0.01" value="{{ old('qtyinp.'.$index) ? old('qtyinp.'.$index) : $datas->sj_qty_input}}">
                     </td>
                     <td>
-                        <select name="partloc[]" class="form-control selectpicker" data-width="150px" data-style="btn-custom" data-size='4' data-dropup-auto="false" data-live-search="true">
+                        <select name="partloc[]" class="form-control selectpicker" data-width="200px" data-style="btn-custom" data-size='4' data-dropup-auto="false" data-live-search="true">
                             @foreach ($loc as $locs)
                                 @if(old('partloc'))
                                 <option value="{{$locs->loc}}" {{ old('partloc.'.$index) == $locs->loc ? 'Selected' : '' }} >
