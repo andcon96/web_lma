@@ -1,4 +1,4 @@
-<div class="table-responsive offset-lg-1 col-lg-10 col-md-12 mt-4 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
+<div class="table-responsive col-lg-12 col-md-12 mt-4 tag-container" style="overflow-x: auto; display: block;white-space: nowrap;">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
@@ -7,6 +7,7 @@
                 <th style="width: 35%;">Item Desc</th>
                 <th style="width: 10%;">UM</th>
                 <th style="width: 10%;">Lokasi</th>
+                <th style="width: 10%;">Lot</th>
                 <th style="width: 10%;">Qty OH</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
                     <td>{{$datas->t_desc1}} {{$datas->t_desc2}}</td>
                     <td>{{$datas->t_um}}</td>
                     <td>{{$datas->t_location}}</td>
+                    <td>{{$datas->t_lot}}</td>
                     <td>{{$datas->t_qtyoh}}</td>
                 </tr>
             @empty
