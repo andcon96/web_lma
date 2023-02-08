@@ -112,6 +112,15 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('hutang_cust', function($user){
             return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'LP02');
         });
+
+        Gate::define('view_item', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'LP03');
+        });
+
+
+        
+
+
         //=============================
         // Menu Master
         //=============================

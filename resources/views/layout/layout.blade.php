@@ -224,6 +224,15 @@
                     </a>
                   </li>
                   @endcan
+
+                  @can('view_item')
+                  <li class="nav-item">
+                    <a href="{{route('viewitem.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List Item & Alokasi</p>
+                    </a>
+                  </li>
+                  @endcan
                 </ul>
               </li>
               @endcan
