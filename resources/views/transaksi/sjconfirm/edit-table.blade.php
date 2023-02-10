@@ -49,7 +49,7 @@
                         </select>
                     </td>
                     <td>
-                        <input type="text" class="form-control" style="width: 150px !important;" name="lot[]">
+                        <input type="text" class="form-control" style="width: 150px !important;" name="lot[]" value="{{ old('lot.'.$index) ? old('lot.'.$index) : $datas->sj_lot }}">
                     </td>
                 </tr>
             @empty

@@ -17,7 +17,7 @@
                     <td>{{$datas->t_desc1}} {{$datas->t_desc2}}</td>
                     <td>{{$datas->t_um}}</td>
                     <td>
-                        <a href="{{route('viewitem.show',$datas->t_part) }}"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('getDetailItem',['id'=> $datas->t_part, 'dom'=> $datas->t_dom]) }}"><i class="fas fa-eye"></i></a>
                     </td>
                 </tr>
             @empty

@@ -291,4 +291,67 @@ class CreateTempTable
 
         return [$newprefix,$newrn];
     }
+
+    public function tempDetailItem($data){
+        Schema::dropIfExists('temp_detailitem');
+
+        Schema::create('temp_detailitem',function ($table){
+            $table->string('t_dom')->nullable();
+            $table->string('t_part')->nullable();
+            $table->longText('t_desc1')->nullable();
+            $table->longText('t_desc2')->nullable();
+            $table->string('t_um')->nullable();
+            $table->string('t_location')->nullable();
+            $table->string('t_lot')->nullable();
+            $table->float('t_qtyoh',15,2);
+            $table->float('t_qtyinput_web',15,2);
+            $table->float('t_qtysisa',15,2);
+        });
+
+        foreach($data as $datawsa){
+            $location = (string) $datawsa->t_location;
+            if($location == ""){ //jika location kosong jadi null
+                $location = null;
+            }
+
+            $lot = (string) $datawsa->t_lot;
+            if($lot == ""){
+                $lot = null;
+            }
+            $sjweb = SuratJalanDetail::with('getMaster')
+                    ->whereRelation('getMaster','sj_status','New')
+                    ->whereRelation('getMaster','sj_domain', $datawsa->t_dom)
+                    ->where('sj_part', $datawsa->t_part)
+                    ->where('sj_loc', $location)
+                    ->where('sj_lot', $lot)
+                    ->get();
+            
+            // dump($sjweb);
+
+            $qtyinput_web = 0;
+            foreach($sjweb as $sjweblist){
+                $qtyinput_web += $sjweblist->sj_qty_input;
+            }
+
+            DB::table('temp_detailitem')->insert([
+                't_dom' => $datawsa->t_dom,
+                't_part' => $datawsa->t_part,
+                't_desc1' => $datawsa->t_desc1,
+                't_desc2' => $datawsa->t_desc2,
+                't_um' => $datawsa->t_um,
+                't_location' => $datawsa->t_location,
+                't_lot' => $datawsa->t_lot,
+                't_qtyoh' => $datawsa->t_qtyoh,
+                't_qtyinput_web' => $qtyinput_web,
+                't_qtysisa' => $datawsa->t_qtyoh - $qtyinput_web,
+            ]);
+
+        }
+
+        $table_detail = DB::table('temp_detailitem')->get();
+
+        Schema::dropIfExists('temp_detailitem');
+        return $table_detail;
+
+    }
 }

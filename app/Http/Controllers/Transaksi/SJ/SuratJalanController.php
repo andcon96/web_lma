@@ -147,6 +147,7 @@ class SuratJalanController extends Controller
                 } else {
                     $detail->sj_qty_input = $request->qtyinp[$key];
                     $detail->sj_loc = $request->partloc[$key];
+                    $detail->sj_lot = $request->lot[$key];
                     $detail->save();
                 }
             }

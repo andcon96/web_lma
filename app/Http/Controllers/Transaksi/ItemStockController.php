@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Transaksi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaksi\SuratJalan;
+use App\Models\Transaksi\SuratJalanDetail;
+use App\Services\CreateTempTable;
 use App\Services\WSAServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ItemStockController extends Controller
@@ -25,19 +28,35 @@ class ItemStockController extends Controller
 
     public function show($id)
     {
+        // $wsa = (new WSAServices())->wsagetstokitem(Session::get('domain'),$id);
+        // if($wsa === false){
+        //     alert()->error('Error', 'WSA Failed');
+        //     return redirect()->back();
+        // }
+
+        // $data = collect($wsa[0]);
+
+        // $sjdata = SuratJalan::where('sj_nbr','SJ220002')->get();
+        // dd($sjdata);
+
+        // return view('transaksi.viewitem.show',compact('data','id'));
+    }
+
+    public function getdetail($id,$dom){
+        // dd($id,$dom);
         $wsa = (new WSAServices())->wsagetstokitem(Session::get('domain'),$id);
         if($wsa === false){
             alert()->error('Error', 'WSA Failed');
             return redirect()->back();
+        }else{
+            $tempStockItem = (new CreateTempTable())->tempDetailItem($wsa[0]);
         }
 
-        $data = collect($wsa[0]);
+        $data = $tempStockItem;
 
-        $sjdata = SuratJalan::with(['getDetail' => function($query){
-                $query->selectRaw('sj_part,sj_loc,sj_lot, SUM(sj_qty_input) as qty_input')
-                    ->groupBy('sj_part','sj_loc','sj_lot');
-            }])->get();
-        dd($sjdata);
+        // $data = collect($wsa[0]);
+
+        
 
         return view('transaksi.viewitem.show',compact('data','id'));
     }

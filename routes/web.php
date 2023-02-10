@@ -123,6 +123,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware'=>'can:view_item'],function(){
         Route::resource('viewitem', ItemStockController::class);
+        Route::get('viewitem/detailitem/{id}/{dom}',[ItemStockController::class, 'getdetail'])->name('getDetailItem');
     });
 
     /**

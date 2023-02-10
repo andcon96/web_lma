@@ -1,4 +1,4 @@
-<div class="table-responsive col-lg-12 col-md-12 mt-4 tag-container" style="overflow-x: auto; overflow-y:hidden; display: inline-table;white-space: nowrap;">
+<div class="table-responsive col-lg-12 col-md-12 mt-4 tag-container" style="overflow-x: auto; overflow-y:hidden; display: inline-block;white-space: nowrap;">
     <table class="table table-bordered" style="margin-bottom: 100px;" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
@@ -7,7 +7,8 @@
                 <th>Qty Order QAD</th>
                 <th>Qty Open</th>
                 <th>Qty SJ</th>
-                <th width="25%">Location </th>
+                <th width="20%">Location </th>
+                <th width="20%">Lot</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -31,6 +32,9 @@
                                 <option value="{{$locs->loc}}" {{$locs->loc == $datas->sj_loc ? 'Selected' : ''}} >{{$locs->loc}} -- {{$locs->loc_desc}}</option>
                             @endforeach
                         </select>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" style="width: 150px !important;" name="lot[]" value="{{$datas->sj_lot}}">
                     </td>
                     <td>
                         <input type="hidden" name="iddetail[]" value="{{$datas->id}}">
