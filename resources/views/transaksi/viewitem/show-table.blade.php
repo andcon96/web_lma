@@ -37,7 +37,7 @@
                     $totalQtySisa += $datas->t_qtysisa;
                 @endphp
             @empty
-            <td colspan='7' class='text-danger'><b>No Data Available</b></td>
+            <td colspan='7' class='text-center text-danger'><b>No Data Available</b></td>
             @endforelse
         </tbody>
         <tfoot>
