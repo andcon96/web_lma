@@ -348,7 +348,7 @@ class CreateTempTable
 
         }
 
-        $table_detail = DB::table('temp_detailitem')->get();
+        $table_detail = DB::table('temp_detailitem')->orderBy('t_location','asc')->get();
 
         Schema::dropIfExists('temp_detailitem');
         return $table_detail;

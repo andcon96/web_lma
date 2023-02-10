@@ -230,6 +230,16 @@
             </div>
           </div>
 
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('List Item & Alokasi') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbAlokItem">
+                <input type="checkbox" id="cbAlokItem" name="cbAlokItem" value="LP03" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
           <div class="form-group">
             <h6>
               <center><strong>Setting</strong></center>
@@ -436,6 +446,12 @@
               document.getElementById("cbHutangCust").checked = true;  
             }else{
               document.getElementById("cbHutangCust").checked = false;
+            }
+
+            if(totmenu.search("LP03") >= 0){
+              document.getElementById("cbAlokItem").checked = true;  
+            }else{
+              document.getElementById("cbAlokItem").checked = false;
             }
 
             //Setting

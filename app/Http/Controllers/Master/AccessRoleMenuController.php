@@ -87,6 +87,7 @@ class AccessRoleMenuController extends Controller
         //Menu Report
         $cbStockItem = $request->input('cbStockItem');
         $cbHutangCust = $request->input('cbHutangCust');
+        $cbAlokItem = $request->input('cbAlokItem');
 
         //Menu Setting
         $cbUsrMt = $request->input('cbUsrMt');  
@@ -100,7 +101,7 @@ class AccessRoleMenuController extends Controller
         $cbSite = $request->input('cbSite');  
         $cbSupplier = $request->input('cbSupplier');            
 
-        $data = 'TR' . 'MS' . $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbPOBrowse . $cbRcptUnplanned . $cbStockItem . $cbHutangCust . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier  . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier ;
+        $data = 'TR' . 'MS' . $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbPOBrowse . $cbRcptUnplanned . $cbStockItem . $cbHutangCust . $cbAlokItem . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier  . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier ;
 
         DB::beginTransaction();
 

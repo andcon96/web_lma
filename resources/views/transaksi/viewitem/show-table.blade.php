@@ -14,6 +14,11 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $totalQtyOH = 0;
+                $totalQtyWeb = 0;
+                $totalQtySisa = 0;
+            @endphp
             @forelse ($data as $index => $datas)
                 <tr>
                     <td>{{$datas->t_dom}}</td>
@@ -26,9 +31,22 @@
                     <td>{{number_format($datas->t_qtyinput_web,2)}}</td>
                     <td>{{number_format($datas->t_qtysisa,2)}}</td>
                 </tr>
+                @php
+                    $totalQtyOH += $datas->t_qtyoh;
+                    $totalQtyWeb += $datas->t_qtyinput_web;
+                    $totalQtySisa += $datas->t_qtysisa;
+                @endphp
             @empty
             <td colspan='7' class='text-danger'><b>No Data Available</b></td>
             @endforelse
         </tbody>
+        <tfoot>
+            <tr style="background-color: greenyellow; border-top: 2px solid gray;">
+                <td colspan="6" align="right" style="background-color: lightgray;">Total</td>
+                <td>{{ number_format($totalQtyOH, 2) }}</td>
+                <td>{{ number_format($totalQtyWeb, 2) }}</td>
+                <td>{{ number_format($totalQtySisa, 2) }}</td>
+            </tr>
+        </tfoot>
     </table>
 </div>
