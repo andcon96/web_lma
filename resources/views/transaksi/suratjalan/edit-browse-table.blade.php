@@ -27,7 +27,7 @@
                         <input type="number" class="form-control" style="width: 100px !important;" name="qtyinp[]" min="0" step="0.01" value="{{$datas->sj_qty_input}}" >
                     </td>
                     <td>
-                        <select name="partloc[]" class="form-control selectpicker" data-width="200px" data-style="btn-custom" data-size='4' data-live-search="true">
+                        <select name="partloc[]" class="form-control selectpicker" data-width="320px" data-style="btn-custom" data-size='4' data-live-search="true">
                             @foreach ($loc as $locs)
                                 <option value="{{$locs->loc}}" {{$locs->loc == $datas->sj_loc ? 'Selected' : ''}} >{{$locs->loc}} -- {{$locs->loc_desc}}</option>
                             @endforeach
