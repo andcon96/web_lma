@@ -83,7 +83,7 @@ class SuratJalanController extends Controller
 
             $id = $sj_mstr->id;
             foreach ($request->sodline as $key => $datas) {
-                if($request->qtyinput[$key] > 0 ){
+                // if($request->qtyinput[$key] > 0 ){ /* dimatiin biar bisa qty input nya minus */
                     $sj_dets = new SuratJalanDetail();
                     $sj_dets->sj_mstr_id = $id;
                     $sj_dets->sj_line = $datas;
@@ -96,12 +96,12 @@ class SuratJalanController extends Controller
                     $sj_dets->sj_qty_input = $request->qtyinput[$key];
                     $sj_dets->sj_price_ls = $request->sodpricels[$key];
                     $sj_dets->save();
-                }else{
-                    DB::rollBack();
+                // }else{ /* dimatiin biar bisa qty input nya minus */
+                //     DB::rollBack();
 
-                    alert()->error('Error', 'Failed submit, Qty tidak bisa 0')->persistent('Dismiss');
-                    return back()->withInput($request->only('nopol','exkapal','exgudang','qtykarung','transportirname'));
-                } 
+                //     alert()->error('Error', 'Failed submit, Qty tidak bisa 0')->persistent('Dismiss');
+                //     return back()->withInput($request->only('nopol','exkapal','exgudang','qtykarung','transportirname'));
+                // } 
             }
 
             $domain = Domain::where('domain_code',Session::get('domain'))->firstOrFail();
@@ -394,7 +394,7 @@ class SuratJalanController extends Controller
 
             $id = $sj_mstr->id;
             foreach ($request->sodline as $key => $datas) {
-                if($request->qtyinput[$key] > 0 ){
+                // if($request->qtyinput[$key] > 0 ){ /* dimatiin biar bisa qty inputnya minus */
                     $sj_dets = new SuratJalanDetail();
                     $sj_dets->sj_mstr_id = $id;
                     $sj_dets->sj_line = $datas;
@@ -407,7 +407,7 @@ class SuratJalanController extends Controller
                     $sj_dets->sj_qty_input = $request->qtyinput[$key];
                     $sj_dets->sj_price_ls = $request->sodpricels[$key];
                     $sj_dets->save();
-                } 
+                // } 
             }
             
             DB::commit();
