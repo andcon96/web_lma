@@ -39,7 +39,7 @@
                     <input type="hidden" name="sodqtyship[]" value="{{$show->sod_qty_ship}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                     <input type="hidden" name="sodpricels[]" value="{{$show->sod_price_ls}}" {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} />
                 </td>
-                <td><input type="number" name="qtyinput[]" style="width: 100px !important;" class="form-control" min="0" step="0.01" value="0" required {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} /></td>
+                <td><input type="number" name="qtyinput[]" style="width: 100px !important;" class="form-control" step="0.01" value="0" required {{$show->sod_qty_ord <= $show->sod_qty_ship + $show->sod_qty_ongoing ? 'disabled':''}} /></td>
                 <td>
                     <select name="partloc[]" class="form-control selectpicker" data-width="320px" data-style="btn-custom" data-size='4' data-dropup-auto="false" data-live-search="true" required>
                         @foreach ($loc as $locs)
