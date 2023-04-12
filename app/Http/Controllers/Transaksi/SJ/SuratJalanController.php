@@ -300,11 +300,30 @@ class SuratJalanController extends Controller
             ->whereRelation('getMaster', 'sj_domain', Session::get('domain'))
             ->get();
 
-        // dd($listsjship);
+        $sonbr = $data->sj_so_nbr;
+        $socust = $data->sj_so_cust;
+
+        //harus ambil data qty ship so tersebut dari qad untuk perhitungan Qty Open
+        $getso = (new WSAServices())->wsagetso($socust,$sonbr);
+        if ($getso === false) {
+            alert()->error('Error', 'WSA Failed')->persistent('Dismiss');
+            return redirect()->route('browseSJ');
+        } else {
+            if ($getso[1] == 'false') {
+                alert()->error('Error', 'Error WSA QAD Data')->persistent('Dismiss');
+                return redirect()->route('browseSJ');
+            }
+
+            $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);
+        }
+
+        $soqad = $tempPO[1]->first()->sod_qty_ship;
+
+        // dd($soqad);
 
         $loc  = LocMstr::where('loc_domain', Session::get('domain'))->get();
 
-        return view('transaksi.suratjalan.edit-browse', compact('data', 'listsjopen', 'loc', 'listsjship'));
+        return view('transaksi.suratjalan.edit-browse', compact('data', 'listsjopen', 'loc', 'listsjship','soqad'));
     }
 
     public function viewjsbrowse($id)
