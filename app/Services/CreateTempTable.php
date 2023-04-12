@@ -201,11 +201,14 @@ class CreateTempTable
             $table->temporary();
         });
 
+        $thisdomain = Session::get('domain');
+
         foreach($data as $datas){
             // Current Surat Jalan
             $listsj = SuratJalanDetail::with('getMaster')
                             ->whereRelation('getMaster','sj_status','New')
                             ->whereRelation('getMaster','sj_so_nbr',$datas->t_sonbr)
+                            ->whereRelation('getMaster','sj_domain', $thisdomain)
                             ->where('sj_line',$datas->t_soline)
                             ->where('sj_part',$datas->t_sopart)    
                             ->get();
@@ -308,6 +311,8 @@ class CreateTempTable
             $table->float('t_qtysisa',15,2);
         });
 
+        // dd($data);
+
         foreach($data as $datawsa){
             $location = (string) $datawsa->t_location;
             if($location == ""){ //jika location kosong jadi null
@@ -325,7 +330,7 @@ class CreateTempTable
                     ->where('sj_loc', $location)
                     ->where('sj_lot', $lot)
                     ->get();
-            
+
             // dump($sjweb);
 
             $qtyinput_web = 0;

@@ -292,10 +292,12 @@ class SuratJalanController extends Controller
         $listsjopen = SuratJalanDetail::with('getMaster')
             ->whereRelation('getMaster', 'sj_status', 'New')
             ->whereRelation('getMaster', 'sj_so_nbr', $data->sj_so_nbr)
+            ->whereRelation('getMaster', 'sj_domain', Session::get('domain'))
             ->get();
         $listsjship = SuratJalanDetail::with('getMaster')
             ->whereRelation('getMaster', 'sj_status', 'Closed')
             ->whereRelation('getMaster', 'sj_so_nbr', $data->sj_so_nbr)
+            ->whereRelation('getMaster', 'sj_domain', Session::get('domain'))
             ->get();
 
         // dd($listsjship);

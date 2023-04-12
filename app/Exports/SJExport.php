@@ -4,6 +4,7 @@ namespace App\Exports;
 
 use App\Models\Transaksi\SuratJalan;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -59,8 +60,7 @@ class SJExport implements FromView, ShouldAutoSize
             $q->where('sj_nopol', $nopol);
         });
 
-        $getsj = $getsj->get();
-
+        $getsj = $getsj->where('sj_domain','=', Session::get('domain'))->get();
 
         return view('export.sj', [
             'sj' => $getsj,
