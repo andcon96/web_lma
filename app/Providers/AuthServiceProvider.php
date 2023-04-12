@@ -70,6 +70,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'ST');
         });
 
+        Gate::define('access_dashboard_head', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'DS');
+        });
+
 
         //=============================
         // Menu Transaksi
