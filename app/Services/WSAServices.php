@@ -1524,6 +1524,193 @@ class WSAServices
 
         return [$dataloop, $qdocResult];
     }
+    
+    public function wsagetstokallitem($dom){
+        $wsa = Qxwsa::first();
+        
+        // Validasi WSA
+        $qxUrl          = $wsa->wsas_url;
+        $qxReceiver     = '';
+        $qxSuppRes      = 'false';
+        $qxScopeTrx     = '';
+        $qdocName       = '';
+        $qdocVersion    = '';
+        $dsName         = '';
+        $timeout        = 0;
 
+        // $domain         = $wsa->wsas_domain;
 
+        $qdocRequest =   
+        '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+            <Body>
+                <LMA_stokallitem_lokasi xmlns="'. $wsa->wsas_path .'">
+                    <inpdomain>'.$dom.'</inpdomain>
+                </LMA_stokallitem_lokasi>
+            </Body>
+        </Envelope>';
+
+        
+
+        // dd($qdocRequest);
+
+        $curlOptions = array(
+            CURLOPT_URL => $qxUrl,
+            CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
+            CURLOPT_TIMEOUT => $timeout + 120, // The maximum number of seconds to allow cURL functions to execute. must be greater than CURLOPT_CONNECTTIMEOUT
+            CURLOPT_HTTPHEADER => $this->httpHeader($qdocRequest),
+            CURLOPT_POSTFIELDS => preg_replace("/\s+/", " ", $qdocRequest),
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        );
+
+        $getInfo = '';
+        $httpCode = 0;
+        $curlErrno = 0;
+        $curlError = '';
+        $qdocResponse = '';
+
+        $curl = curl_init();
+        if ($curl) {
+            curl_setopt_array($curl, $curlOptions);
+            $qdocResponse = curl_exec($curl);           // sending qdocRequest here, the result is qdocResponse.
+            $curlErrno    = curl_errno($curl);
+            $curlError    = curl_error($curl);
+            $first        = true;
+
+            foreach (curl_getinfo($curl) as $key => $value) {
+                if (gettype($value) != 'array') {
+                    if (!$first) $getInfo .= ", ";
+                    $getInfo = $getInfo . $key . '=>' . $value;
+                    $first = false;
+                    if ($key == 'http_code') $httpCode = $value;
+                }
+            }
+            curl_close($curl);
+        }
+        // dd($qdocResponse);
+
+        if(is_bool($qdocResponse)){
+            return false;
+        }
+
+        $xmlResp = simplexml_load_string($qdocResponse);
+
+        $xmlResp->registerXPathNamespace('ns1', $wsa->wsas_path);
+
+        $dataloop   = $xmlResp->xpath('//ns1:tempRow');
+        $qdocResult = (string) $xmlResp->xpath('//ns1:outOK')[0];
+
+        $dataresult = [];
+
+        foreach($dataloop as $key => $datas){
+            $dataresult[] = [
+                't_dom' => (String)$datas->t_dom,
+                't_part' => (String)$datas->t_part,
+                't_desc1' => (String)$datas->t_desc1,
+                't_desc2' => (String)$datas->t_desc2,
+                't_um' => (String)$datas->t_um,
+                't_location' => (String)$datas->t_location == "" ? null : (String)$datas->t_location,
+                't_qtyoh' => (String)$datas->t_qtyoh,
+                't_lot' => (String)$datas->t_lot == "" ? null : (String)$datas->t_lot,
+            ];
+        }
+
+        return $dataresult;
+    }
+
+    public function wsaGetOutstandingInvoice($dom){
+        $wsa = Qxwsa::first();
+        
+        // Validasi WSA
+        $qxUrl          = $wsa->wsas_url;
+        $qxReceiver     = '';
+        $qxSuppRes      = 'false';
+        $qxScopeTrx     = '';
+        $qdocName       = '';
+        $qdocVersion    = '';
+        $dsName         = '';
+        $timeout        = 0;
+
+        // $domain         = $wsa->wsas_domain;
+
+        $qdocRequest =   
+        '<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+            <Body>
+                <LMA_outstanding_invoice xmlns="'.$wsa->wsas_path.'">
+                    <inpdomain>'.$dom.'</inpdomain>
+                </LMA_outstanding_invoice>
+            </Body>
+        </Envelope>';
+
+        $curlOptions = array(
+            CURLOPT_URL => $qxUrl,
+            CURLOPT_CONNECTTIMEOUT => $timeout,        // in seconds, 0 = unlimited / wait indefinitely.
+            CURLOPT_TIMEOUT => $timeout + 15, // The maximum number of seconds to allow cURL functions to execute. must be greater than CURLOPT_CONNECTTIMEOUT
+            CURLOPT_HTTPHEADER => $this->httpHeader($qdocRequest),
+            CURLOPT_POSTFIELDS => preg_replace("/\s+/", " ", $qdocRequest),
+            CURLOPT_POST => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_SSL_VERIFYHOST => false
+        );
+
+        $getInfo = '';
+        $httpCode = 0;
+        $curlErrno = 0;
+        $curlError = '';
+        $qdocResponse = '';
+
+        $curl = curl_init();
+        if ($curl) {
+            curl_setopt_array($curl, $curlOptions);
+            $qdocResponse = curl_exec($curl);           // sending qdocRequest here, the result is qdocResponse.
+            $curlErrno    = curl_errno($curl);
+            $curlError    = curl_error($curl);
+            $first        = true;
+
+            foreach (curl_getinfo($curl) as $key => $value) {
+                if (gettype($value) != 'array') {
+                    if (!$first) $getInfo .= ", ";
+                    $getInfo = $getInfo . $key . '=>' . $value;
+                    $first = false;
+                    if ($key == 'http_code') $httpCode = $value;
+                }
+            }
+            curl_close($curl);
+        }
+
+        if(is_bool($qdocResponse)){
+            return false;
+        }
+
+        $xmlResp = simplexml_load_string($qdocResponse);
+
+        $xmlResp->registerXPathNamespace('ns1', $wsa->wsas_path);
+
+        $dataloop   = $xmlResp->xpath('//ns1:tempRow');
+        $qdocResult = (string) $xmlResp->xpath('//ns1:outOK')[0];
+
+        $dataresult = [];
+
+        foreach($dataloop as $key => $datas){
+            $dataresult[] = [
+                't_domain' => (String)$datas->t_domain,
+                't_invnbr' => (String)$datas->t_invnbr,
+                't_totalinv' => (String)$datas->t_totalinv,
+                't_sisainv' => (String)$datas->t_sisainv,
+                't_postingdate' => (String)$datas->t_postingdate,
+                't_invoicedate' => (String)$datas->t_invoicedate,
+                'group_inv_date' => date('M Y',strtotime($datas->t_invoicedate)),
+            ];
+        }
+
+        // Sorting
+        $key_values = array_column($dataresult, 't_invoicedate'); 
+        array_multisort($key_values, SORT_ASC, $dataresult);
+        
+
+        return $dataresult;
+    }
 }

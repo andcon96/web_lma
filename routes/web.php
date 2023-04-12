@@ -15,6 +15,7 @@ use App\Http\Controllers\Master\SuppMstrController;
 use App\Http\Controllers\Transaksi\Report\StockItemController;
 use App\Http\Controllers\Transaksi\PO\POReceiptController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Transaksi\DashboardController;
 use App\Http\Controllers\Transaksi\ItemStockController;
 use App\Http\Controllers\Transaksi\PO\POApprovalController;
 use App\Http\Controllers\Transaksi\PO\POBrowseController;
@@ -124,6 +125,18 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware'=>'can:view_item'],function(){
         Route::resource('viewitem', ItemStockController::class);
         Route::get('viewitem/detailitem/{id}/{dom}',[ItemStockController::class, 'getdetail'])->name('getDetailItem');
+    });
+
+    Route::group(['middleware'=>'can:view_dashboard'],function(){
+        Route::resource('dashboard',DashboardController::class);
+        Route::get('getallsj',[DashboardController::class, 'getallsj'])->name('getAllSJ');
+        Route::get('getallpartsj',[DashboardController::class, 'getallpartsj'])->name('getAllPartSJ');
+        Route::get('getstokitemlokasi',[DashboardController::class, 'getstokitemlokasi'])->name('getStokItemLokasi');
+
+        Route::get('detailsj/{bulan}/{tahun}', [DashboardController::class, 'detailsj'])->name('detailSJ');
+        Route::get('detailsjpart/{part}', [DashboardController::class, 'detailsjpart'])->name('detailSJPart');
+        Route::get('detailinvoice/{bulan}', [DashboardController::class, 'detailinvoice'])->name('detailInvoice');
+        Route::get('detailstokitem/{lokasi}/{tipe}', [DashboardController::class, 'detailstokitem'])->name('detailStokItem');
     });
 
     /**

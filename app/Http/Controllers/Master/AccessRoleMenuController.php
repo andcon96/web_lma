@@ -90,18 +90,21 @@ class AccessRoleMenuController extends Controller
         $cbAlokItem = $request->input('cbAlokItem');
 
         //Menu Setting
-        $cbUsrMt = $request->input('cbUsrMt');  
-        $cbRoleMt = $request->input('cbRoleMt');  
-        $cbRoleMenuMt = $request->input('cbRoleMenuMt');  
-        $cbWSAQXMt = $request->input('cbWSAQXMt');  
-        $cbEmail = $request->input('cbEmail');  
-        $cbDomain = $request->input('cbDomain');  
-        $cbCustomer = $request->input('cbCustomer');  
-        $cbLocation = $request->input('cbLocation');  
-        $cbSite = $request->input('cbSite');  
-        $cbSupplier = $request->input('cbSupplier');            
+        $cbUsrMt = $request->input('cbUsrMt');
+        $cbRoleMt = $request->input('cbRoleMt');
+        $cbRoleMenuMt = $request->input('cbRoleMenuMt');
+        $cbWSAQXMt = $request->input('cbWSAQXMt');
+        $cbEmail = $request->input('cbEmail');
+        $cbDomain = $request->input('cbDomain');
+        $cbCustomer = $request->input('cbCustomer');
+        $cbLocation = $request->input('cbLocation');
+        $cbSite = $request->input('cbSite');
+        $cbSupplier = $request->input('cbSupplier');
 
-        $data = 'TR' . 'MS' . $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbPOBrowse . $cbRcptUnplanned . $cbStockItem . $cbHutangCust . $cbAlokItem . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier  . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier ;
+        // Dashboard
+        $cbDashboard = $request->input('cbDashboard');
+
+        $data = 'TR' . 'MS' . $cbCreateSJ . $cbBrowseSJ . $cbConfSJ . $cbPOReceipt . $cbPOApproval . $cbPOBrowse . $cbRcptUnplanned . $cbStockItem . $cbHutangCust . $cbAlokItem . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier  . $cbUsrMt . $cbRoleMt . $cbRoleMenuMt . $cbWSAQXMt . $cbEmail . $cbDomain . $cbCustomer . $cbLocation . $cbSite . $cbSupplier. $cbDashboard;
 
         DB::beginTransaction();
 
@@ -109,13 +112,13 @@ class AccessRoleMenuController extends Controller
             $roleAccess = RoleType::where('id', $request->edit_id)->first();
             $roleAccess->accessmenu = $data;
             $roleAccess->save();
-            
+
             DB::commit();
-            alert()->success('Success','Role Access successfully updated');
+            alert()->success('Success', 'Role Access successfully updated');
             return redirect()->back();
         } catch (\Exception $err) {
             DB::rollBack();
-            alert()->error('Error','Failed to save role access');
+            alert()->error('Error', 'Failed to save role access');
             return redirect()->back();
         }
     }

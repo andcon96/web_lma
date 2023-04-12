@@ -449,6 +449,8 @@
   <!-- jQuery -->
   <script src="{{url('assets/css/jquery-3.2.1.min.js')}}"></script>
   <script src="{{url('assets/css/jquery-ui.js')}}"></script>
+  <!-- Chart JS -->
+  <script src="{{ url('vendors/chart.js/dist/Chart.min.js') }}"></script>
   <!--Date Picker-->
   <script src="{{url('vendors/popper.js/dist/umd/popper.min.js')}}"></script>
   <!-- Bootstrap -->
@@ -462,8 +464,6 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <!--Sweet Alert-->
   @include('sweetalert::alert')
-  <!-- Chart JS -->
-  <script src="{{ url('vendors/chart.js/dist/Chart.min.js') }}"></script>
   <!-- Barcode Scanner -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
 

@@ -79,6 +79,24 @@
             <hr>
           </div>
 
+          
+          <div class="form-group">
+            <h6>
+              <center><strong>Dashboard</strong></center>
+              </h5>
+              <hr>
+          </div>
+
+          <div class="form-group row">
+            <label for="level" class="col-md-6 col-form-label text-md-right">{{ __('Dashboard') }}</label>
+            <div class="col-md-6">
+              <label class="switch" for="cbDashboard">
+                <input type="checkbox" id="cbDashboard" name="cbDashboard" value="DS01" />
+                <div class="slider round"></div>
+              </label>
+            </div>
+          </div>
+
           <div class="form-group">
             <h6>
               <center><strong>PO</strong></center>
@@ -453,6 +471,13 @@
             }else{
               document.getElementById("cbAlokItem").checked = false;
             }
+
+            if(totmenu.search("DS01") >= 0){
+              document.getElementById("cbDashboard").checked = true;  
+            }else{
+              document.getElementById("cbDashboard").checked = false;
+            }
+
 
             //Setting
             if(totmenu.search("ST01") >= 0){

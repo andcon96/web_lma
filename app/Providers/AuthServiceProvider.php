@@ -117,6 +117,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'LP03');
         });
 
+        Gate::define('view_dashboard', function($user){
+            return $user->getRole->role == Role::SUPER_USER || str_contains($user->getRoleType->accessmenu, 'DS01');
+        });
+
 
         
 
