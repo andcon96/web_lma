@@ -66,6 +66,22 @@ class DashboardController extends Controller
         $labelinvoice = $invoiceTotalByMonthYear->keys();
         $datainvoice  = $invoiceTotalByMonthYear->values();
 
+        // Dashboard 3 A --> Outstanding Hutang
+
+        $gethutang = (new WSAServices())->wsaGetOutstandingHutang(Session::get('domain'));
+        if($gethutang === false){
+            alert()->error('Error', 'WSA Failed');
+            return redirect()->back();
+        }
+        $gethutang = collect($gethutang)->groupBy('group_inv_date');
+        $hutangTotalByMonthYear = $gethutang->map(function ($invoices) {
+            return $invoices->sum('t_sisainv');
+        });
+
+        $labelhutang = $hutangTotalByMonthYear->keys();
+        $datahutang  = $hutangTotalByMonthYear->values();
+        
+
         // Dashboard 4 --> Stok All Item 
 
         $getItem = (new WSAServices())->wsagetstokallitem(Session::get('domain'));
@@ -144,6 +160,8 @@ class DashboardController extends Controller
             'getinvoice',
             'labelinvoice',
             'datainvoice',
+            'labelhutang',
+            'datahutang',
             'labelitem',
             'getItemReject',
             'getItemNonReject',
@@ -300,10 +318,6 @@ class DashboardController extends Controller
        
         $listdetail = $listdetail->paginate(10);
 
-
-
-
-
         $sj = SuratJalan::query()
             ->where('sj_status', '=', 'New');
             
@@ -352,5 +366,18 @@ class DashboardController extends Controller
         }
 
         return view('transaksi.dashboard.detailstokitem', compact('data', 'lokasi'));
+    }
+
+    public function detailhutang($tahunbulan)
+    {
+        $gethutang = (new WSAServices())->wsaGetOutstandingHutang(Session::get('domain'));
+        if ($gethutang === false) {
+            alert()->error('Error', 'WSA Failed');
+            return redirect()->back();
+        }
+        $gethutang = collect($gethutang)->where('group_inv_date', $tahunbulan);
+        $gethutang = $gethutang->values(); // Reset Key Collection
+        
+        return view('transaksi.dashboard.detailhutang', compact('gethutang', 'tahunbulan'));
     }
 }

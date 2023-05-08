@@ -136,6 +136,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('detailsj/{bulan}/{tahun}', [DashboardController::class, 'detailsj'])->name('detailSJ');
         Route::get('detailsjpart/{part}', [DashboardController::class, 'detailsjpart'])->name('detailSJPart');
         Route::get('detailinvoice/{bulan}', [DashboardController::class, 'detailinvoice'])->name('detailInvoice');
+        Route::get('detailhutang/{bulan}', [DashboardController::class, 'detailhutang'])->name('detailHutang');
         Route::get('detailstokitem/{lokasi}/{tipe}', [DashboardController::class, 'detailstokitem'])->name('detailStokItem');
     });
 

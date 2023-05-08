@@ -51,6 +51,7 @@
             </div>
         </div>
     </div>
+
     <div class="row col-12" style="margin-left:1px;">
         <div class="col-xl-12">
             <div class="card">
@@ -128,6 +129,48 @@
                             </div>
                         </div>
                         <canvas id="invoiceChart" style="display: block; height: 360px; width:955px;"
+                            class="chartjs-render-monitor"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row col-12" style="margin-left:1px;">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 class="card-title mb-2" style="text-align:center;"></h4>
+                        </div>
+                        <div class="col-sm-12 hidden-sm-down">
+                            <div role="toolbar" style="text-align:center !important;">
+                                {{-- <div class="btn-group mr-3" data-toggle="buttons" aria-label="Second group">
+                                    <select id="partsj" class="form-control mb-2" required>
+                                        <option value="1">Total Qty</option>
+                                        <option value="2">Total SJ</option>
+                                    </select>
+                                </div> --}}
+                            </div>
+                        </div>
+                        <!--/.col-->
+                    </div>
+                    <!--/.row-->
+                    <div class="chart-wrapper mt-4 mr-3 ml-3">
+                        <div class="chartjs-size-monitor"
+                            style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                            <div class="chartjs-size-monitor-expand"
+                                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:500px;height:500px;left:0;top:0"></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink"
+                                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                <div style="position:absolute;width:200%;height:200%;left:0; top:0">
+                                </div>
+                            </div>
+                        </div>
+                        <canvas id="hutangChart" style="display: block; height: 360px; width:955px;"
                             class="chartjs-render-monitor"></canvas>
                     </div>
                 </div>
@@ -351,7 +394,7 @@
             options: {
                 title: {
                     display: true,
-                    text: ['Outstanding Invoice'],
+                    text: ['Outstanding Customer Invoice'],
                     fontSize: 18
                 },
                 responsive: true,
@@ -376,6 +419,56 @@
         const InvChart = new Chart(
             document.getElementById('invoiceChart'),
             configinv
+        );
+
+        
+        var labelhutang = {{ Js::from($labelhutang) }};
+        var totalhutang = {{ Js::from($datahutang) }};
+
+        const datahutang = {
+            labels: labelhutang,
+            datasets: [{
+                label: 'Total Hutang',
+                backgroundColor: '#00539CFF',
+                borderColor: '#00539CFF',
+                data: totalinv,
+                hoverBackgroundColor: '#326EB3',
+                hoverBorderColor: '#326EB3',
+                hoverBorderWidth: '3'
+            }]
+        }
+
+        const confighutang = {
+            type: 'bar',
+            data: datahutang,
+            options: {
+                title: {
+                    display: true,
+                    text: ['Outstanding Supplier Invoice'],
+                    fontSize: 18
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                onClick: (evt) => {
+                    var activePoints = InvChart.getElementsAtEventForMode(evt, 'point', InvChart.options);
+                    if (activePoints.length > 0) {
+                        var firstPoint = activePoints[0];
+                        var label = InvChart.data.labels[firstPoint._index];
+                        var value = InvChart.data.datasets[firstPoint._datasetIndex].data[firstPoint._index];
+
+                        var url = "{{ route('detailHutang', [':label']) }}"
+                        url = url.replace(':label', label);
+
+                        window.location = url;
+                    }
+
+                }
+            }
+        };
+
+        const HutangChart = new Chart(
+            document.getElementById('hutangChart'),
+            confighutang
         );
 
 
