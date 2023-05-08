@@ -9,6 +9,7 @@ use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use App\Services\CreateTempTable;
 use App\Services\QxtendServices;
+use App\Services\WSAServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as Session;
 use Maatwebsite\Excel\Facades\Excel;
@@ -64,10 +65,29 @@ class SuratJalanConfirmController extends Controller
             ->get();
 
         $loc = LocMstr::where('loc_domain',Session::get('domain'))->get();
+
+        $sonbr = $data->sj_so_nbr;
+        $socust = $data->sj_so_cust;
+
+        //harus ambil data qty ship so tersebut dari qad untuk perhitungan Qty Open
+        $getso = (new WSAServices())->wsagetso($socust,$sonbr);
+        if ($getso === false) {
+            alert()->error('Error', 'WSA Failed')->persistent('Dismiss');
+            return redirect()->route('sjconfirm.index');
+        } else {
+            if ($getso[1] == 'false') {
+                alert()->error('Error', 'SO Number or Customer Not Found')->persistent('Dismiss');
+                return redirect()->route('sjconfirm.index');
+            }
+
+            $tempPO = (new CreateTempTable())->createSOTemp($getso[0]);
+        }
+
+        $soqad = $tempPO[1]->first()->sod_qty_ship;
         
         
         // dd($listsj);
-        return view('transaksi.sjconfirm.edit',compact('data','listsjopen','loc','listsjship'));
+        return view('transaksi.sjconfirm.edit',compact('data','listsjopen','loc','listsjship','soqad'));
     }
 
     public function update(Request $request){
