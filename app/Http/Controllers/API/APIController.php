@@ -11,7 +11,9 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class APIController extends Controller
 {
@@ -44,8 +46,6 @@ class APIController extends Controller
                 $poinvc1->invcnbr = $param2;
                 $poinvc1->status = 'approved';
 
-                $poinvc1->save();
-
                 // dd($emailto);
 
                 $pesan = 'PO Invoice Information';
@@ -68,6 +68,13 @@ class APIController extends Controller
                     $dom
                 );
 
+                $countfailedjob = DB::table('failed_jobs')->count();
+
+                if($countfailedjob > 0){
+                    Artisan::call('queue:retry','all');
+                }
+
+                $poinvc1->save();
 
                 // dd($emailto);
 
@@ -107,8 +114,6 @@ class APIController extends Controller
                 $poinvc2->invcnbr = $param2;
                 $poinvc2->status = 'rejected';
 
-                $poinvc2->save();
-
                 $pesan = 'PO Invoice Information';
                 $pesan2 = 'Invoice sudah direject';
                 $ponbr =  $param1;
@@ -128,6 +133,15 @@ class APIController extends Controller
                     $amt,
                     $dom
                 );
+
+
+                $countfailedjob = DB::table('failed_jobs')->count();
+
+                if($countfailedjob > 0){
+                    Artisan::call('queue:retry','all');
+                }
+
+                $poinvc2->save();
 
                 return view('Invc_no');
             }else{
