@@ -3,7 +3,7 @@
 @section('breadcrumbs')
     <ol class="breadcrumb float-sm-right">
         <li class="breadcrumb-item"><a href="{{ url('/') }}">Transaksi</a></li>
-        <li class="breadcrumb-item active">Detail Outstanding Customer Invoice - {{ $tahunbulan }}</li>
+        <li class="breadcrumb-item active">Detail Outstanding Supplier Invoice - {{ $tahunbulan }}</li>
     </ol>
 @endsection
 
@@ -26,7 +26,7 @@
                 @php($custcode = '')
                 @php($totalinv = 0)
                 @php($totalsisainv = 0)
-                @forelse ($getinvoice as $index => $datas)
+                @forelse ($gethutang as $index => $datas)
                     @if ($index != 0 && $custcode != $datas['t_custcode'])
                         <tr>
                             <td colspan="4"><b>Sub Total</b></td>

@@ -27,17 +27,19 @@
             </thead>
             <tbody>
                 @forelse ($data as $index => $datas)
-                    <tr>
-                        <td>{{ $datas->t_part }} -- {{ $datas->t_desc1 }}</td>
-                        <td>{{ $datas->t_um }}</td>
-                        <td>{{ $datas->t_location }}</td>
-                        <td>{{ $datas->t_lot }}</td>
-                        @if ($lokasi == 'Ongoing Web')
-                        <td>{{ number_format((float) $datas->t_qtyinput_web, 2, '.', ',') }}</td>
-                        @else
-                        <td>{{ number_format((float) $datas->t_qtyoh, 2, '.', ',') }}</td>
-                        @endif
-                    </tr>
+                    @if (($lokasi != 'Ongoing Web' && $datas->t_qtyoh != 0) || ($lokasi == 'Ongoing Web' && $datas->t_qtyinput_web != 0))
+                        <tr>
+                            <td>{{ $datas->t_part }} -- {{ $datas->t_desc1 }}</td>
+                            <td>{{ $datas->t_um }}</td>
+                            <td>{{ $datas->t_location }}</td>
+                            <td>{{ $datas->t_lot }}</td>
+                            @if ($lokasi == 'Ongoing Web')
+                                <td>{{ number_format((float) $datas->t_qtyinput_web, 2, '.', ',') }}</td>
+                            @else
+                                <td>{{ number_format((float) $datas->t_qtyoh, 2, '.', ',') }}</td>
+                            @endif
+                        </tr>
+                    @endif
                 @empty
                     <td colspan='7' class='text-danger'><b>No Data Available</b></td>
                 @endforelse

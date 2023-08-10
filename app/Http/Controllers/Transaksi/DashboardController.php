@@ -7,6 +7,7 @@ use App\Models\Transaksi\SuratJalan;
 use App\Models\Transaksi\SuratJalanDetail;
 use App\Services\CreateTempTable;
 use App\Services\WSAServices;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -65,26 +66,42 @@ class DashboardController extends Controller
         $labelinvoice = $invoiceTotalByMonthYear->keys();
         $datainvoice  = $invoiceTotalByMonthYear->values();
 
+        // Dashboard 3 A --> Outstanding Hutang
+
+        $gethutang = (new WSAServices())->wsaGetOutstandingHutang(Session::get('domain'));
+        if($gethutang === false){
+            alert()->error('Error', 'WSA Failed');
+            return redirect()->back();
+        }
+        $gethutang = collect($gethutang)->groupBy('group_inv_date');
+        $hutangTotalByMonthYear = $gethutang->map(function ($invoices) {
+            return $invoices->sum('t_sisainv');
+        });
+
+        $labelhutang = $hutangTotalByMonthYear->keys();
+        $datahutang  = $hutangTotalByMonthYear->values();
+        
+
         // Dashboard 4 --> Stok All Item 
 
         $getItem = (new WSAServices())->wsagetstokallitem(Session::get('domain'));
         // Ambil Semua Jenis Item
         $getLocation = collect($getItem)->groupBy('t_location');
         $listlocation = $getLocation->keys()->toArray();
-        array_walk($listlocation, function(&$value) {
+        array_walk($listlocation, function (&$value) {
             if ($value === '') {
                 $value = null;
             }
         });
         $getLotSerial = collect($getItem)->groupBy('t_lot');
         $listLotSerial = $getLotSerial->keys()->toArray();
-        array_walk($listLotSerial, function(&$value) {
+        array_walk($listLotSerial, function (&$value) {
             if ($value === '') {
                 $value = null;
             }
         });
-        
-        
+
+
         $getKeyItem = collect($getItem)->groupBy('t_part');
         $labelitem = $getKeyItem->keys()->toArray();
 
@@ -99,10 +116,10 @@ class DashboardController extends Controller
         $getItemNonReject = $getItemNonReject->map(function ($t_qtyoh) {
             return $t_qtyoh->sum('t_qtyoh');
         })->toArray();
-        
+
         // Ambil Stok di web.
         $ongoingweb = (new CreateTempTable())->tempDetailItemAll($getItem);
-        
+
         // Tambah row di array jika tidak ada
         foreach ($labelitem as $key => $datas) {
             if (!array_key_exists($datas, $getItemReject)) {
@@ -121,7 +138,7 @@ class DashboardController extends Controller
         ksort($getItemNonReject);
         ksort($ongoingweb);
         sort($labelitem);
-        
+
         // Collect Lagi biar bisa kebaca Chart JS
         $getItemReject = collect($getItemReject);
         $getItemNonReject = collect($getItemNonReject);
@@ -143,6 +160,8 @@ class DashboardController extends Controller
             'getinvoice',
             'labelinvoice',
             'datainvoice',
+            'labelhutang',
+            'datahutang',
             'labelitem',
             'getItemReject',
             'getItemNonReject',
@@ -222,9 +241,10 @@ class DashboardController extends Controller
         return [$label, $data];
     }
 
-    public function detailsj($bulan, $tahun)
+    public function detailsj($bulan, $tahun, Request $request)
     {
         $listsj = SuratJalan::query()
+            ->with(['getDetailCust', 'getDetailShip', 'getDetailBill'])
             ->where('sj_status', '=', 'New')
             ->whereMonth('created_at', '=', date('m', strtotime($bulan)));
 
@@ -232,21 +252,80 @@ class DashboardController extends Controller
             $listsj->whereYear('created_at', $tahun);
         }
 
+        $lucust = $listsj->groupBy('sj_so_cust')->get();
+        $lubill = $listsj->groupBy('sj_so_bill')->get();
+        $lunopol = $listsj->groupBy('sj_nopol')->get();
+
+        if ($request->sjnbr) {
+            $listsj->where("sj_nbr", $request->sjnbr);
+        }
+        if ($request->sonbr) {
+            $listsj->where("sj_so_nbr", $request->sonbr);
+        }
+        if ($request->cust) {
+            $listsj->where("sj_so_cust", $request->cust);
+        }
+        if ($request->billto) {
+            $listsj->where("sj_so_bill", $request->billto);
+        }
+        if ($request->startdate) {
+            $newdate = date('Y-m-d H:i:s', strtotime($request->startdate));
+            $listsj->where("created_at", '>=', $newdate);
+        }
+        if ($request->enddate) {
+            $newdate = date('Y-m-d H:i:s',strtotime($request->enddate . ' +1 day'));   
+            $listsj->where("created_at", '<=', $newdate);
+        }
+        if ($request->nopol) {
+            $listsj->where("sj_nopol", $request->nopol);
+        }
+
+
+        $lusj = $listsj->get();
+
+
         $listsj =  $listsj->paginate(10);
 
-        return view('transaksi.dashboard.detailsj', compact('listsj', 'bulan', 'tahun'));
+        return view('transaksi.dashboard.detailsj', compact('listsj', 'bulan', 'tahun', 'lusj', 'lucust', 'lubill', 'lunopol'));
     }
 
-    public function detailsjpart($part)
+    public function detailsjpart($part, Request $request)
     {
-        // dd($part);
         $listdetail = SuratJalanDetail::query()
-            ->with('getMaster')
+            ->with(['getMaster','getMaster.getDetailCust', 'getMaster.getDetailShip', 'getMaster.getDetailBill'])
             ->whereRelation('getMaster', 'sj_status', 'New')
-            ->where('sj_part_desc', $part)
-            ->paginate(10);
+            ->where('sj_part_desc', $part);
 
-        return view('transaksi.dashboard.detailsjpart', compact('listdetail', 'part'));
+        $listsj = $listdetail->groupBy('sj_mstr_id')->get();     
+
+        if($request->sjnbr){
+            $listdetail->whereRelation('getMaster', 'sj_nbr', $request->sjnbr);
+        }   
+        if($request->sonbr){
+            $listdetail->whereRelation('getMaster', 'sj_so_nbr', $request->sonbr);
+        }   
+        if($request->cust){
+            $listdetail->whereRelation('getMaster', 'sj_so_cust', $request->cust);
+        }   
+        if ($request->startdate) {
+            $newdate = date('Y-m-d H:i:s', strtotime($request->startdate));
+            $listdetail->where("created_at", '>=', $newdate);
+        }
+        if ($request->enddate) {
+            $newdate = date('Y-m-d H:i:s',strtotime($request->enddate . ' +1 day'));   
+            $listdetail->where("created_at", '<=', $newdate);
+        }
+       
+        $listdetail = $listdetail->paginate(10);
+
+        $sj = SuratJalan::query()
+            ->where('sj_status', '=', 'New');
+            
+        $lucust = $sj->groupBy('sj_so_cust')->get();
+
+        $sj = $sj->get();
+
+        return view('transaksi.dashboard.detailsjpart', compact('listdetail', 'part','lucust','listsj'));
     }
 
     public function detailinvoice($tahunbulan)
@@ -257,7 +336,8 @@ class DashboardController extends Controller
             return redirect()->back();
         }
         $getinvoice = collect($getinvoice)->where('group_inv_date', $tahunbulan);
-
+        $getinvoice = $getinvoice->values(); // Reset Key Collection
+        
         return view('transaksi.dashboard.detailinvoice', compact('getinvoice', 'tahunbulan'));
     }
 
@@ -270,9 +350,9 @@ class DashboardController extends Controller
             return redirect()->back();
         }
 
-        if($lokasi == 'Ongoing Web'){
+        if ($lokasi == 'Ongoing Web') {
             $data = (new CreateTempTable())->tempDetailItem($getItem[0]);
-            
+
             return view('transaksi.dashboard.detailstokitem', compact('data', 'lokasi'));
         }
 
@@ -286,5 +366,18 @@ class DashboardController extends Controller
         }
 
         return view('transaksi.dashboard.detailstokitem', compact('data', 'lokasi'));
+    }
+
+    public function detailhutang($tahunbulan)
+    {
+        $gethutang = (new WSAServices())->wsaGetOutstandingHutang(Session::get('domain'));
+        if ($gethutang === false) {
+            alert()->error('Error', 'WSA Failed');
+            return redirect()->back();
+        }
+        $gethutang = collect($gethutang)->where('group_inv_date', $tahunbulan);
+        $gethutang = $gethutang->values(); // Reset Key Collection
+        
+        return view('transaksi.dashboard.detailhutang', compact('gethutang', 'tahunbulan'));
     }
 }
