@@ -67,7 +67,7 @@ class ResendReceiver extends Command
             $dom
         );
 
-        Log::channel('resendreceiver')->info('Email Receiver Berhasil di Resend');
+        Log::channel('resendreceiver')->info('Email Receiver Berhasil di Resend dengan informasi : '.$ponbr.' '.$invcnbr.' '.$supp.' '.$postingdate.' '.$amt.' '.$dom.' ');
 
 
     }
