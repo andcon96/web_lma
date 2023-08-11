@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Jobs\EmailtoReceiver;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class ResendReceiver extends Command
 {
@@ -19,7 +20,7 @@ class ResendReceiver extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Resened Email Receiver';
 
     /**
      * Create a new command instance.
@@ -66,6 +67,8 @@ class ResendReceiver extends Command
             $dom
         );
 
-        
+        Log::channel('resendreceiver')->info('Email Receiver Berhasil di Resend');
+
+
     }
 }
