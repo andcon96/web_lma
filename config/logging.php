@@ -155,6 +155,12 @@ return [
             'path' => storage_path('logs/poreceipt.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+
+        'resendreceiver' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/resendreceiver.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
     ],
 
 ];
